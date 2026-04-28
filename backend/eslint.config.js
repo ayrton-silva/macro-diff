@@ -13,6 +13,12 @@ export default tseslint.config(
       ecmaVersion: 2020,
       globals: globals.node,
     },
+    rules: {
+      "padding-line-between-statements": [
+        "error",
+        { blankLine: "always", "prev": "*", "next": "return" },
+      ]
+    }
   },
   eslintConfigPrettier,
 )

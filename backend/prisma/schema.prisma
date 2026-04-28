@@ -1,0 +1,56 @@
+datasource db {
+    provider = "postgresql"
+}
+
+generator client {
+    provider = "prisma-client"
+    output   = "./generated/prisma"
+}
+
+model Summoner {
+    id              String           @id
+    gameName        String
+    tagLine         String
+    summonerLeagues SummonerLeague[]
+}
+
+model SummonerLeague {
+    id           String          @id
+    queueType    LeagueQueueType
+    tier         LeagueTier
+    rank         LeagueRank
+    summoner     Summoner        @relation(fields: [summonerId], references: [id])
+    summonerId   String
+    leaguePoints Int
+    wins         Int
+    losses       Int
+    veteran      Boolean
+    inactive     Boolean
+    freshBlood   Boolean
+    hotStreak    Boolean
+}
+
+enum LeagueQueueType {
+    RANKED_SOLO_5x5
+    RANKED_FLEX_SR
+}
+
+enum LeagueTier {
+    IRON
+    BRONZE
+    SILVER
+    GOLD
+    PLATINUM
+    EMERALD
+    DIAMOND
+    MASTER
+    GRANDMASTER
+    CHALLENGER
+}
+
+enum LeagueRank {
+    I
+    II
+    III
+    IV
+}
