@@ -1,5 +1,3 @@
-dist
-node_modules
 package-lock.json
-coverage
-*.min.js
+pnpm-lock.yaml
+yarn.lock
