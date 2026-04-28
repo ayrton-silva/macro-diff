@@ -2,10 +2,14 @@ import type {
   RiotAccountRequest,
   RiotAccountResponse,
 } from '../dto/riotAccountDto'
+import type {
+  RiotSummonerRequest,
+  RiotSummonerResponse,
+} from '../dto/riotSummonerDto'
 
 const RIOT_API_KEY = process.env.RIOT_API_KEY
 
-export async function getRiotAccount({
+export async function getAccount({
   gameName,
   region = 'americas',
   tagLine,
@@ -20,7 +24,28 @@ export async function getRiotAccount({
 
   const data = (await response.json()) as RiotAccountResponse
 
-  if (!data.puuid || !data.gameName || !data.tagLine) {
+  if (!data.puuid) {
+    throw new Error('Invalid Riot API response')
+  }
+
+  return data
+}
+
+export async function getSummoner({
+  puuid,
+  region = 'br1',
+}: RiotSummonerRequest): Promise<RiotSummonerResponse> {
+  const url = `https://${encodeURIComponent(region)}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${encodeURIComponent(puuid)}`
+
+  const response = await fetch(url, {
+    headers: {
+      'X-Riot-Token': RIOT_API_KEY || '',
+    },
+  })
+
+  const data = (await response.json()) as RiotSummonerResponse
+
+  if (!data.puuid) {
     throw new Error('Invalid Riot API response')
   }
 

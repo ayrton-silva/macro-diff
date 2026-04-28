@@ -17,10 +17,10 @@ Delete SummonerLeague
 import { Prisma } from '../../prisma/generated/prisma/client'
 import { prisma } from '../app'
 import type { RiotAccountRequest } from '../dto/riotAccountDto'
-import { getRiotAccount } from '../services/riotService'
+import { getAccount } from '../services/riotService'
 
 export async function createSummoner(request: RiotAccountRequest) {
-  const summoner = await getRiotAccount(request)
+  const summoner = await getAccount(request)
 
   try {
     await prisma.summoner.create({
