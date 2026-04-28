@@ -1,16 +1,15 @@
+import type {
+  RiotAccountRequest,
+  RiotAccountResponse,
+} from '../dto/riotAccountDto'
+
 const RIOT_API_KEY = process.env.RIOT_API_KEY
 
-type RiotAccountResponse = {
-  puuid: string
-  gameName: string
-  tagLine: string
-}
-
-export async function getRiotAccount(
-  region: string,
-  gameName: string,
-  tagLine: string,
-): Promise<RiotAccountResponse> {
+export async function getRiotAccount({
+  gameName,
+  region = 'americas',
+  tagLine,
+}: RiotAccountRequest): Promise<RiotAccountResponse> {
   const url = `https://${region}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(gameName)}/${encodeURIComponent(tagLine)}`
 
   const response = await fetch(url, {
@@ -19,11 +18,11 @@ export async function getRiotAccount(
     },
   })
 
-  const data: Partial<RiotAccountResponse> = await response.json()
+  const data = (await response.json()) as RiotAccountResponse
 
   if (!data.puuid || !data.gameName || !data.tagLine) {
     throw new Error('Invalid Riot API response')
   }
 
-  return data as RiotAccountResponse
+  return data
 }
