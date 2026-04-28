@@ -1,5 +1,8 @@
 import type { FastifyInstance } from 'fastify'
-import { readAllSummoners } from '../repositories/riotAccount.repositories'
+import {
+  readAllSummoners,
+  readSummoner,
+} from '../repositories/riotAccount.repositories'
 
 export async function summonersRoutes(app: FastifyInstance) {
   app.get('/summoners', async () => {
@@ -8,13 +11,10 @@ export async function summonersRoutes(app: FastifyInstance) {
     return summoners
   })
 
-  //   app.get('/summoners/:summonersId', async (request) => {
-  //     const { matchId } = request.params as { matchId: string }
+  app.get('/summoners/:summonerId', async (request) => {
+    const { summonerId } = request.params as { summonerId: string }
+    const summoner = await readSummoner(summonerId)
 
-  //     return {
-  //       example: true,
-  //       description: 'Dados de match — a implementar',
-  //       matchId,
-  //     }
-  //   })
+    return summoner
+  })
 }

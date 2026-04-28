@@ -62,6 +62,7 @@ export async function readAllSummoners() {
 }
 
 export async function readSummoner(id: string) {
+  console.log('iddd', id)
   try {
     const summoner = await prisma.summoner.findUnique({ where: { id: id } })
 
