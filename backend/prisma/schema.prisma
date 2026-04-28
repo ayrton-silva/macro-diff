@@ -12,6 +12,16 @@ model Summoner {
     gameName        String
     tagLine         String
     summonerLeagues SummonerLeague[]
+    level           Int
+    revisionDate    Int
+    profileIcon     ProfileIcon      @relation(fields: [profileIconId], references: [id])
+    profileIconId   String
+}
+
+model ProfileIcon {
+    id        String     @id
+    imageUrl  String
+    summoners Summoner[]
 }
 
 model SummonerLeague {
