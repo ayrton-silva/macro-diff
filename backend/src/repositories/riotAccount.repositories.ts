@@ -1,0 +1,15 @@
+/*  TO DO
+
+SUMMONER
+Read Summoner
+Create Summoner
+Upsert Summoner
+Delete Summoner
+
+SUMMONER LEAGUE
+Read SummonerLeague
+Create SummonerLeague
+Upsert SummonerLeague
+Delete SummonerLeague
+
+*/

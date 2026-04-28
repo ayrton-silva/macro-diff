@@ -9,12 +9,11 @@ const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL!,
 });
 
+export const prisma = new PrismaClient({ adapter });
+
 export async function buildApp() {
   const app = Fastify({ logger: true })
   await registerRoutes(app)
-  const prisma = new PrismaClient({ adapter });
-  //const response = await prisma.summoner.findMany()
-  //console.log(response)
 
   return app
 }
