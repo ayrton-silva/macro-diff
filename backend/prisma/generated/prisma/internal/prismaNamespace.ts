@@ -16,10 +16,10 @@
  */
 
 import * as runtime from "@prisma/client/runtime/client"
-import type * as Prisma from "../models.js"
-import { type PrismaClient } from "./class.js"
+import type * as Prisma from "../models.ts"
+import { type PrismaClient } from "./class.ts"
 
-export type * from '../models.js'
+export type * from '../models.ts'
 
 export type DMMF = typeof runtime.DMMF
 
@@ -595,7 +595,10 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const SummonerScalarFieldEnum = {
   id: 'id',
   gameName: 'gameName',
-  tagLine: 'tagLine'
+  tagLine: 'tagLine',
+  level: 'level',
+  revisionDate: 'revisionDate',
+  profileIconId: 'profileIconId'
 } as const
 
 export type SummonerScalarFieldEnum = (typeof SummonerScalarFieldEnum)[keyof typeof SummonerScalarFieldEnum]
@@ -656,48 +659,6 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'LeagueQueueType'
- */
-export type EnumLeagueQueueTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeagueQueueType'>
-    
-
-
-/**
- * Reference to a field of type 'LeagueQueueType[]'
- */
-export type ListEnumLeagueQueueTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeagueQueueType[]'>
-    
-
-
-/**
- * Reference to a field of type 'LeagueTier'
- */
-export type EnumLeagueTierFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeagueTier'>
-    
-
-
-/**
- * Reference to a field of type 'LeagueTier[]'
- */
-export type ListEnumLeagueTierFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeagueTier[]'>
-    
-
-
-/**
- * Reference to a field of type 'LeagueRank'
- */
-export type EnumLeagueRankFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeagueRank'>
-    
-
-
-/**
- * Reference to a field of type 'LeagueRank[]'
- */
-export type ListEnumLeagueRankFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeagueRank[]'>
-    
-
-
-/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -708,6 +669,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'BigInt'
+ */
+export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
+    
+
+
+/**
+ * Reference to a field of type 'BigInt[]'
+ */
+export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
     
 
 

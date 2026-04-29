@@ -8,6 +8,6 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Summoner.js'
-export type * from './models/SummonerLeague.js'
-export type * from './commonInputTypes.js'
+export type * from './models/Summoner.ts'
+export type * from './models/SummonerLeague.ts'
+export type * from './commonInputTypes.ts'

@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums.ts"
+import type * as Prisma from "../internal/prismaNamespace.ts"
 
 /**
  * Model SummonerLeague
@@ -40,9 +40,9 @@ export type SummonerLeagueSumAggregateOutputType = {
 
 export type SummonerLeagueMinAggregateOutputType = {
   id: string | null
-  queueType: $Enums.LeagueQueueType | null
-  tier: $Enums.LeagueTier | null
-  rank: $Enums.LeagueRank | null
+  queueType: string | null
+  tier: string | null
+  rank: string | null
   summonerId: string | null
   leaguePoints: number | null
   wins: number | null
@@ -55,9 +55,9 @@ export type SummonerLeagueMinAggregateOutputType = {
 
 export type SummonerLeagueMaxAggregateOutputType = {
   id: string | null
-  queueType: $Enums.LeagueQueueType | null
-  tier: $Enums.LeagueTier | null
-  rank: $Enums.LeagueRank | null
+  queueType: string | null
+  tier: string | null
+  rank: string | null
   summonerId: string | null
   leaguePoints: number | null
   wins: number | null
@@ -231,9 +231,9 @@ export type SummonerLeagueGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 
 export type SummonerLeagueGroupByOutputType = {
   id: string
-  queueType: $Enums.LeagueQueueType
-  tier: $Enums.LeagueTier
-  rank: $Enums.LeagueRank
+  queueType: string
+  tier: string
+  rank: string
   summonerId: string
   leaguePoints: number
   wins: number
@@ -269,9 +269,9 @@ export type SummonerLeagueWhereInput = {
   OR?: Prisma.SummonerLeagueWhereInput[]
   NOT?: Prisma.SummonerLeagueWhereInput | Prisma.SummonerLeagueWhereInput[]
   id?: Prisma.StringFilter<"SummonerLeague"> | string
-  queueType?: Prisma.EnumLeagueQueueTypeFilter<"SummonerLeague"> | $Enums.LeagueQueueType
-  tier?: Prisma.EnumLeagueTierFilter<"SummonerLeague"> | $Enums.LeagueTier
-  rank?: Prisma.EnumLeagueRankFilter<"SummonerLeague"> | $Enums.LeagueRank
+  queueType?: Prisma.StringFilter<"SummonerLeague"> | string
+  tier?: Prisma.StringFilter<"SummonerLeague"> | string
+  rank?: Prisma.StringFilter<"SummonerLeague"> | string
   summonerId?: Prisma.StringFilter<"SummonerLeague"> | string
   leaguePoints?: Prisma.IntFilter<"SummonerLeague"> | number
   wins?: Prisma.IntFilter<"SummonerLeague"> | number
@@ -304,9 +304,9 @@ export type SummonerLeagueWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.SummonerLeagueWhereInput | Prisma.SummonerLeagueWhereInput[]
   OR?: Prisma.SummonerLeagueWhereInput[]
   NOT?: Prisma.SummonerLeagueWhereInput | Prisma.SummonerLeagueWhereInput[]
-  queueType?: Prisma.EnumLeagueQueueTypeFilter<"SummonerLeague"> | $Enums.LeagueQueueType
-  tier?: Prisma.EnumLeagueTierFilter<"SummonerLeague"> | $Enums.LeagueTier
-  rank?: Prisma.EnumLeagueRankFilter<"SummonerLeague"> | $Enums.LeagueRank
+  queueType?: Prisma.StringFilter<"SummonerLeague"> | string
+  tier?: Prisma.StringFilter<"SummonerLeague"> | string
+  rank?: Prisma.StringFilter<"SummonerLeague"> | string
   summonerId?: Prisma.StringFilter<"SummonerLeague"> | string
   leaguePoints?: Prisma.IntFilter<"SummonerLeague"> | number
   wins?: Prisma.IntFilter<"SummonerLeague"> | number
@@ -343,9 +343,9 @@ export type SummonerLeagueScalarWhereWithAggregatesInput = {
   OR?: Prisma.SummonerLeagueScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SummonerLeagueScalarWhereWithAggregatesInput | Prisma.SummonerLeagueScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"SummonerLeague"> | string
-  queueType?: Prisma.EnumLeagueQueueTypeWithAggregatesFilter<"SummonerLeague"> | $Enums.LeagueQueueType
-  tier?: Prisma.EnumLeagueTierWithAggregatesFilter<"SummonerLeague"> | $Enums.LeagueTier
-  rank?: Prisma.EnumLeagueRankWithAggregatesFilter<"SummonerLeague"> | $Enums.LeagueRank
+  queueType?: Prisma.StringWithAggregatesFilter<"SummonerLeague"> | string
+  tier?: Prisma.StringWithAggregatesFilter<"SummonerLeague"> | string
+  rank?: Prisma.StringWithAggregatesFilter<"SummonerLeague"> | string
   summonerId?: Prisma.StringWithAggregatesFilter<"SummonerLeague"> | string
   leaguePoints?: Prisma.IntWithAggregatesFilter<"SummonerLeague"> | number
   wins?: Prisma.IntWithAggregatesFilter<"SummonerLeague"> | number
@@ -358,9 +358,9 @@ export type SummonerLeagueScalarWhereWithAggregatesInput = {
 
 export type SummonerLeagueCreateInput = {
   id: string
-  queueType: $Enums.LeagueQueueType
-  tier: $Enums.LeagueTier
-  rank: $Enums.LeagueRank
+  queueType: string
+  tier: string
+  rank: string
   leaguePoints: number
   wins: number
   losses: number
@@ -373,9 +373,9 @@ export type SummonerLeagueCreateInput = {
 
 export type SummonerLeagueUncheckedCreateInput = {
   id: string
-  queueType: $Enums.LeagueQueueType
-  tier: $Enums.LeagueTier
-  rank: $Enums.LeagueRank
+  queueType: string
+  tier: string
+  rank: string
   summonerId: string
   leaguePoints: number
   wins: number
@@ -388,9 +388,9 @@ export type SummonerLeagueUncheckedCreateInput = {
 
 export type SummonerLeagueUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  queueType?: Prisma.EnumLeagueQueueTypeFieldUpdateOperationsInput | $Enums.LeagueQueueType
-  tier?: Prisma.EnumLeagueTierFieldUpdateOperationsInput | $Enums.LeagueTier
-  rank?: Prisma.EnumLeagueRankFieldUpdateOperationsInput | $Enums.LeagueRank
+  queueType?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  rank?: Prisma.StringFieldUpdateOperationsInput | string
   leaguePoints?: Prisma.IntFieldUpdateOperationsInput | number
   wins?: Prisma.IntFieldUpdateOperationsInput | number
   losses?: Prisma.IntFieldUpdateOperationsInput | number
@@ -403,9 +403,9 @@ export type SummonerLeagueUpdateInput = {
 
 export type SummonerLeagueUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  queueType?: Prisma.EnumLeagueQueueTypeFieldUpdateOperationsInput | $Enums.LeagueQueueType
-  tier?: Prisma.EnumLeagueTierFieldUpdateOperationsInput | $Enums.LeagueTier
-  rank?: Prisma.EnumLeagueRankFieldUpdateOperationsInput | $Enums.LeagueRank
+  queueType?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  rank?: Prisma.StringFieldUpdateOperationsInput | string
   summonerId?: Prisma.StringFieldUpdateOperationsInput | string
   leaguePoints?: Prisma.IntFieldUpdateOperationsInput | number
   wins?: Prisma.IntFieldUpdateOperationsInput | number
@@ -418,9 +418,9 @@ export type SummonerLeagueUncheckedUpdateInput = {
 
 export type SummonerLeagueCreateManyInput = {
   id: string
-  queueType: $Enums.LeagueQueueType
-  tier: $Enums.LeagueTier
-  rank: $Enums.LeagueRank
+  queueType: string
+  tier: string
+  rank: string
   summonerId: string
   leaguePoints: number
   wins: number
@@ -433,9 +433,9 @@ export type SummonerLeagueCreateManyInput = {
 
 export type SummonerLeagueUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  queueType?: Prisma.EnumLeagueQueueTypeFieldUpdateOperationsInput | $Enums.LeagueQueueType
-  tier?: Prisma.EnumLeagueTierFieldUpdateOperationsInput | $Enums.LeagueTier
-  rank?: Prisma.EnumLeagueRankFieldUpdateOperationsInput | $Enums.LeagueRank
+  queueType?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  rank?: Prisma.StringFieldUpdateOperationsInput | string
   leaguePoints?: Prisma.IntFieldUpdateOperationsInput | number
   wins?: Prisma.IntFieldUpdateOperationsInput | number
   losses?: Prisma.IntFieldUpdateOperationsInput | number
@@ -447,9 +447,9 @@ export type SummonerLeagueUpdateManyMutationInput = {
 
 export type SummonerLeagueUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  queueType?: Prisma.EnumLeagueQueueTypeFieldUpdateOperationsInput | $Enums.LeagueQueueType
-  tier?: Prisma.EnumLeagueTierFieldUpdateOperationsInput | $Enums.LeagueTier
-  rank?: Prisma.EnumLeagueRankFieldUpdateOperationsInput | $Enums.LeagueRank
+  queueType?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  rank?: Prisma.StringFieldUpdateOperationsInput | string
   summonerId?: Prisma.StringFieldUpdateOperationsInput | string
   leaguePoints?: Prisma.IntFieldUpdateOperationsInput | number
   wins?: Prisma.IntFieldUpdateOperationsInput | number
@@ -569,35 +569,15 @@ export type SummonerLeagueUncheckedUpdateManyWithoutSummonerNestedInput = {
   deleteMany?: Prisma.SummonerLeagueScalarWhereInput | Prisma.SummonerLeagueScalarWhereInput[]
 }
 
-export type EnumLeagueQueueTypeFieldUpdateOperationsInput = {
-  set?: $Enums.LeagueQueueType
-}
-
-export type EnumLeagueTierFieldUpdateOperationsInput = {
-  set?: $Enums.LeagueTier
-}
-
-export type EnumLeagueRankFieldUpdateOperationsInput = {
-  set?: $Enums.LeagueRank
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
 export type SummonerLeagueCreateWithoutSummonerInput = {
   id: string
-  queueType: $Enums.LeagueQueueType
-  tier: $Enums.LeagueTier
-  rank: $Enums.LeagueRank
+  queueType: string
+  tier: string
+  rank: string
   leaguePoints: number
   wins: number
   losses: number
@@ -609,9 +589,9 @@ export type SummonerLeagueCreateWithoutSummonerInput = {
 
 export type SummonerLeagueUncheckedCreateWithoutSummonerInput = {
   id: string
-  queueType: $Enums.LeagueQueueType
-  tier: $Enums.LeagueTier
-  rank: $Enums.LeagueRank
+  queueType: string
+  tier: string
+  rank: string
   leaguePoints: number
   wins: number
   losses: number
@@ -652,9 +632,9 @@ export type SummonerLeagueScalarWhereInput = {
   OR?: Prisma.SummonerLeagueScalarWhereInput[]
   NOT?: Prisma.SummonerLeagueScalarWhereInput | Prisma.SummonerLeagueScalarWhereInput[]
   id?: Prisma.StringFilter<"SummonerLeague"> | string
-  queueType?: Prisma.EnumLeagueQueueTypeFilter<"SummonerLeague"> | $Enums.LeagueQueueType
-  tier?: Prisma.EnumLeagueTierFilter<"SummonerLeague"> | $Enums.LeagueTier
-  rank?: Prisma.EnumLeagueRankFilter<"SummonerLeague"> | $Enums.LeagueRank
+  queueType?: Prisma.StringFilter<"SummonerLeague"> | string
+  tier?: Prisma.StringFilter<"SummonerLeague"> | string
+  rank?: Prisma.StringFilter<"SummonerLeague"> | string
   summonerId?: Prisma.StringFilter<"SummonerLeague"> | string
   leaguePoints?: Prisma.IntFilter<"SummonerLeague"> | number
   wins?: Prisma.IntFilter<"SummonerLeague"> | number
@@ -667,9 +647,9 @@ export type SummonerLeagueScalarWhereInput = {
 
 export type SummonerLeagueCreateManySummonerInput = {
   id: string
-  queueType: $Enums.LeagueQueueType
-  tier: $Enums.LeagueTier
-  rank: $Enums.LeagueRank
+  queueType: string
+  tier: string
+  rank: string
   leaguePoints: number
   wins: number
   losses: number
@@ -681,9 +661,9 @@ export type SummonerLeagueCreateManySummonerInput = {
 
 export type SummonerLeagueUpdateWithoutSummonerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  queueType?: Prisma.EnumLeagueQueueTypeFieldUpdateOperationsInput | $Enums.LeagueQueueType
-  tier?: Prisma.EnumLeagueTierFieldUpdateOperationsInput | $Enums.LeagueTier
-  rank?: Prisma.EnumLeagueRankFieldUpdateOperationsInput | $Enums.LeagueRank
+  queueType?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  rank?: Prisma.StringFieldUpdateOperationsInput | string
   leaguePoints?: Prisma.IntFieldUpdateOperationsInput | number
   wins?: Prisma.IntFieldUpdateOperationsInput | number
   losses?: Prisma.IntFieldUpdateOperationsInput | number
@@ -695,9 +675,9 @@ export type SummonerLeagueUpdateWithoutSummonerInput = {
 
 export type SummonerLeagueUncheckedUpdateWithoutSummonerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  queueType?: Prisma.EnumLeagueQueueTypeFieldUpdateOperationsInput | $Enums.LeagueQueueType
-  tier?: Prisma.EnumLeagueTierFieldUpdateOperationsInput | $Enums.LeagueTier
-  rank?: Prisma.EnumLeagueRankFieldUpdateOperationsInput | $Enums.LeagueRank
+  queueType?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  rank?: Prisma.StringFieldUpdateOperationsInput | string
   leaguePoints?: Prisma.IntFieldUpdateOperationsInput | number
   wins?: Prisma.IntFieldUpdateOperationsInput | number
   losses?: Prisma.IntFieldUpdateOperationsInput | number
@@ -709,9 +689,9 @@ export type SummonerLeagueUncheckedUpdateWithoutSummonerInput = {
 
 export type SummonerLeagueUncheckedUpdateManyWithoutSummonerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  queueType?: Prisma.EnumLeagueQueueTypeFieldUpdateOperationsInput | $Enums.LeagueQueueType
-  tier?: Prisma.EnumLeagueTierFieldUpdateOperationsInput | $Enums.LeagueTier
-  rank?: Prisma.EnumLeagueRankFieldUpdateOperationsInput | $Enums.LeagueRank
+  queueType?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  rank?: Prisma.StringFieldUpdateOperationsInput | string
   leaguePoints?: Prisma.IntFieldUpdateOperationsInput | number
   wins?: Prisma.IntFieldUpdateOperationsInput | number
   losses?: Prisma.IntFieldUpdateOperationsInput | number
@@ -804,9 +784,9 @@ export type $SummonerLeaguePayload<ExtArgs extends runtime.Types.Extensions.Inte
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    queueType: $Enums.LeagueQueueType
-    tier: $Enums.LeagueTier
-    rank: $Enums.LeagueRank
+    queueType: string
+    tier: string
+    rank: string
     summonerId: string
     leaguePoints: number
     wins: number
@@ -1240,9 +1220,9 @@ export interface Prisma__SummonerLeagueClient<T, Null = never, ExtArgs extends r
  */
 export interface SummonerLeagueFieldRefs {
   readonly id: Prisma.FieldRef<"SummonerLeague", 'String'>
-  readonly queueType: Prisma.FieldRef<"SummonerLeague", 'LeagueQueueType'>
-  readonly tier: Prisma.FieldRef<"SummonerLeague", 'LeagueTier'>
-  readonly rank: Prisma.FieldRef<"SummonerLeague", 'LeagueRank'>
+  readonly queueType: Prisma.FieldRef<"SummonerLeague", 'String'>
+  readonly tier: Prisma.FieldRef<"SummonerLeague", 'String'>
+  readonly rank: Prisma.FieldRef<"SummonerLeague", 'String'>
   readonly summonerId: Prisma.FieldRef<"SummonerLeague", 'String'>
   readonly leaguePoints: Prisma.FieldRef<"SummonerLeague", 'Int'>
   readonly wins: Prisma.FieldRef<"SummonerLeague", 'Int'>

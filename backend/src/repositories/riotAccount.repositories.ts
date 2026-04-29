@@ -1,45 +1,51 @@
-/*  TO DO
-
-SUMMONER
-Read Summoner
-Create Summoner
-Upsert Summoner
-Delete Summoner
-
-SUMMONER LEAGUE
-Read SummonerLeague
-Create SummonerLeague
-Upsert SummonerLeague
-Delete SummonerLeague
-
-*/
-
 import { Prisma } from '../../prisma/generated/prisma/client'
 import { prisma } from '../app'
 import type { RiotAccountRequest } from '../dto/riotAccountDto'
-import { getAccount } from '../services/riotService'
+import { getAccount, getSummoner } from '../services/riotService'
+import { createSummonerLeague } from './riotSummonerLeague.repositories'
 
 export async function createSummoner(request: RiotAccountRequest) {
-  const summoner = await getAccount(request)
+  const account = await getAccount(request)
+  const summoner = await getSummoner({
+    puuid: account.puuid,
+  })
+
+  const savedSummonerLeague = await createSummonerLeague({
+    puuid: account.puuid,
+  })
+
+  console.log('saved', savedSummonerLeague)
 
   try {
-    await prisma.summoner.create({
-      data: {
-        gameName: summoner.gameName,
-        tagLine: summoner.tagLine,
-        id: summoner.puuid,
+    await prisma.summoner.upsert({
+      where: { id: account.puuid },
+      update: {
+        gameName: account.gameName,
+        tagLine: account.tagLine,
+        level: summoner.summonerLevel,
+        revisionDate: summoner.revisionDate,
+        profileIconId: summoner.profileIconId,
+      },
+      create: {
+        gameName: account.gameName,
+        tagLine: account.tagLine,
+        id: account.puuid,
+        level: summoner.summonerLevel,
+        revisionDate: summoner.revisionDate,
+        profileIconId: summoner.profileIconId,
       },
     })
   } catch (e) {
-    if (e instanceof Prisma.PrismaClientKnownRequestError) {
-      if (e.code === 'P2002') {
-        console.log(
-          'There is a unique constraint violation, a new summoner cannot be created with this puuid',
-        )
-      }
-    } else {
-      throw e
-    }
+    console.log(e)
+    // if (e instanceof Prisma.PrismaClientKnownRequestError) {
+    //   if (e.code === 'P2002') {
+    //     console.log(
+    //       'There is a unique constraint violation, a new summoner cannot be created with this puuid',
+    //     )
+    //   }
+    // } else {
+    //   throw e
+    // }
   }
 }
 

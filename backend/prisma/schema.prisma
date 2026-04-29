@@ -13,23 +13,16 @@ model Summoner {
     tagLine         String
     summonerLeagues SummonerLeague[]
     level           Int
-    revisionDate    Int
-    profileIcon     ProfileIcon      @relation(fields: [profileIconId], references: [id])
-    profileIconId   String
-}
-
-model ProfileIcon {
-    id        String     @id
-    imageUrl  String
-    summoners Summoner[]
+    revisionDate    BigInt
+    profileIconId   Int
 }
 
 model SummonerLeague {
-    id           String          @id
-    queueType    LeagueQueueType
-    tier         LeagueTier
-    rank         LeagueRank
-    summoner     Summoner        @relation(fields: [summonerId], references: [id])
+    id           String   @id
+    queueType    String
+    tier         String
+    rank         String
+    summoner     Summoner @relation(fields: [summonerId], references: [id])
     summonerId   String
     leaguePoints Int
     wins         Int
@@ -38,29 +31,4 @@ model SummonerLeague {
     inactive     Boolean
     freshBlood   Boolean
     hotStreak    Boolean
-}
-
-enum LeagueQueueType {
-    RANKED_SOLO_5x5
-    RANKED_FLEX_SR
-}
-
-enum LeagueTier {
-    IRON
-    BRONZE
-    SILVER
-    GOLD
-    PLATINUM
-    EMERALD
-    DIAMOND
-    MASTER
-    GRANDMASTER
-    CHALLENGER
-}
-
-enum LeagueRank {
-    I
-    II
-    III
-    IV
 }

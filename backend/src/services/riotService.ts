@@ -6,6 +6,10 @@ import type {
   RiotSummonerRequest,
   RiotSummonerResponse,
 } from '../dto/riotSummonerDto'
+import type {
+  RiotSummonerLeagueRequest,
+  RiotSummonerLeagueResponse,
+} from '../dto/riotSummonerLeagueDto'
 
 const RIOT_API_KEY = process.env.RIOT_API_KEY
 
@@ -46,6 +50,26 @@ export async function getSummoner({
   const data = (await response.json()) as RiotSummonerResponse
 
   if (!data.puuid) {
+    throw new Error('Invalid Riot API response')
+  }
+
+  return data
+}
+
+export async function getSummonerLeague({
+  puuid,
+  region = 'br1',
+}: RiotSummonerLeagueRequest): Promise<RiotSummonerLeagueResponse> {
+  const url = `https://${encodeURIComponent(region)}.api.riotgames.com/lol/league/v4/entries/by-puuid/${encodeURIComponent(puuid)}`
+  const response = await fetch(url, {
+    headers: {
+      'X-Riot-Token': RIOT_API_KEY || '',
+    },
+  })
+
+  const data = (await response.json()) as RiotSummonerLeagueResponse
+
+  if (!data) {
     throw new Error('Invalid Riot API response')
   }
 

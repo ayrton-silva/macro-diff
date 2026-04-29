@@ -9,35 +9,7 @@
 * 🟢 You can import this file directly.
 */
 
-export const LeagueQueueType = {
-  RANKED_SOLO_5x5: 'RANKED_SOLO_5x5',
-  RANKED_FLEX_SR: 'RANKED_FLEX_SR'
-} as const
-
-export type LeagueQueueType = (typeof LeagueQueueType)[keyof typeof LeagueQueueType]
 
 
-export const LeagueTier = {
-  IRON: 'IRON',
-  BRONZE: 'BRONZE',
-  SILVER: 'SILVER',
-  GOLD: 'GOLD',
-  PLATINUM: 'PLATINUM',
-  EMERALD: 'EMERALD',
-  DIAMOND: 'DIAMOND',
-  MASTER: 'MASTER',
-  GRANDMASTER: 'GRANDMASTER',
-  CHALLENGER: 'CHALLENGER'
-} as const
-
-export type LeagueTier = (typeof LeagueTier)[keyof typeof LeagueTier]
-
-
-export const LeagueRank = {
-  I: 'I',
-  II: 'II',
-  III: 'III',
-  IV: 'IV'
-} as const
-
-export type LeagueRank = (typeof LeagueRank)[keyof typeof LeagueRank]
+// This file is empty because there are no enums in the schema.
+export {}

@@ -10,8 +10,8 @@
  */
 
 import type * as runtime from "@prisma/client/runtime/client"
-import * as $Enums from "./enums.js"
-import type * as Prisma from "./internal/prismaNamespace.js"
+import * as $Enums from "./enums.ts"
+import type * as Prisma from "./internal/prismaNamespace.ts"
 
 
 export type StringFilter<$PrismaModel = never> = {
@@ -27,6 +27,28 @@ export type StringFilter<$PrismaModel = never> = {
   endsWith?: string | Prisma.StringFieldRefInput<$PrismaModel>
   mode?: Prisma.QueryMode
   not?: Prisma.NestedStringFilter<$PrismaModel> | string
+}
+
+export type IntFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
+  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
+  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedIntFilter<$PrismaModel> | number
+}
+
+export type BigIntFilter<$PrismaModel = never> = {
+  equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  notIn?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  lt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  lte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBigIntFilter<$PrismaModel> | bigint | number
 }
 
 export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -47,73 +69,6 @@ export type StringWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedStringFilter<$PrismaModel>
 }
 
-export type EnumLeagueQueueTypeFilter<$PrismaModel = never> = {
-  equals?: $Enums.LeagueQueueType | Prisma.EnumLeagueQueueTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.LeagueQueueType[] | Prisma.ListEnumLeagueQueueTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.LeagueQueueType[] | Prisma.ListEnumLeagueQueueTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumLeagueQueueTypeFilter<$PrismaModel> | $Enums.LeagueQueueType
-}
-
-export type EnumLeagueTierFilter<$PrismaModel = never> = {
-  equals?: $Enums.LeagueTier | Prisma.EnumLeagueTierFieldRefInput<$PrismaModel>
-  in?: $Enums.LeagueTier[] | Prisma.ListEnumLeagueTierFieldRefInput<$PrismaModel>
-  notIn?: $Enums.LeagueTier[] | Prisma.ListEnumLeagueTierFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumLeagueTierFilter<$PrismaModel> | $Enums.LeagueTier
-}
-
-export type EnumLeagueRankFilter<$PrismaModel = never> = {
-  equals?: $Enums.LeagueRank | Prisma.EnumLeagueRankFieldRefInput<$PrismaModel>
-  in?: $Enums.LeagueRank[] | Prisma.ListEnumLeagueRankFieldRefInput<$PrismaModel>
-  notIn?: $Enums.LeagueRank[] | Prisma.ListEnumLeagueRankFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumLeagueRankFilter<$PrismaModel> | $Enums.LeagueRank
-}
-
-export type IntFilter<$PrismaModel = never> = {
-  equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
-  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
-  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
-  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
-  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
-  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
-  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedIntFilter<$PrismaModel> | number
-}
-
-export type BoolFilter<$PrismaModel = never> = {
-  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
-}
-
-export type EnumLeagueQueueTypeWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.LeagueQueueType | Prisma.EnumLeagueQueueTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.LeagueQueueType[] | Prisma.ListEnumLeagueQueueTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.LeagueQueueType[] | Prisma.ListEnumLeagueQueueTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumLeagueQueueTypeWithAggregatesFilter<$PrismaModel> | $Enums.LeagueQueueType
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumLeagueQueueTypeFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumLeagueQueueTypeFilter<$PrismaModel>
-}
-
-export type EnumLeagueTierWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.LeagueTier | Prisma.EnumLeagueTierFieldRefInput<$PrismaModel>
-  in?: $Enums.LeagueTier[] | Prisma.ListEnumLeagueTierFieldRefInput<$PrismaModel>
-  notIn?: $Enums.LeagueTier[] | Prisma.ListEnumLeagueTierFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumLeagueTierWithAggregatesFilter<$PrismaModel> | $Enums.LeagueTier
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumLeagueTierFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumLeagueTierFilter<$PrismaModel>
-}
-
-export type EnumLeagueRankWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.LeagueRank | Prisma.EnumLeagueRankFieldRefInput<$PrismaModel>
-  in?: $Enums.LeagueRank[] | Prisma.ListEnumLeagueRankFieldRefInput<$PrismaModel>
-  notIn?: $Enums.LeagueRank[] | Prisma.ListEnumLeagueRankFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumLeagueRankWithAggregatesFilter<$PrismaModel> | $Enums.LeagueRank
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumLeagueRankFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumLeagueRankFilter<$PrismaModel>
-}
-
 export type IntWithAggregatesFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -128,6 +83,27 @@ export type IntWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedIntFilter<$PrismaModel>
   _max?: Prisma.NestedIntFilter<$PrismaModel>
+}
+
+export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  notIn?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  lt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  lte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatFilter<$PrismaModel>
+  _sum?: Prisma.NestedBigIntFilter<$PrismaModel>
+  _min?: Prisma.NestedBigIntFilter<$PrismaModel>
+  _max?: Prisma.NestedBigIntFilter<$PrismaModel>
+}
+
+export type BoolFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
 }
 
 export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -152,6 +128,28 @@ export type NestedStringFilter<$PrismaModel = never> = {
   not?: Prisma.NestedStringFilter<$PrismaModel> | string
 }
 
+export type NestedIntFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
+  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
+  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedIntFilter<$PrismaModel> | number
+}
+
+export type NestedBigIntFilter<$PrismaModel = never> = {
+  equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  notIn?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  lt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  lte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBigIntFilter<$PrismaModel> | bigint | number
+}
+
 export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -167,73 +165,6 @@ export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedStringFilter<$PrismaModel>
   _max?: Prisma.NestedStringFilter<$PrismaModel>
-}
-
-export type NestedIntFilter<$PrismaModel = never> = {
-  equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
-  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
-  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
-  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
-  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
-  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
-  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedIntFilter<$PrismaModel> | number
-}
-
-export type NestedEnumLeagueQueueTypeFilter<$PrismaModel = never> = {
-  equals?: $Enums.LeagueQueueType | Prisma.EnumLeagueQueueTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.LeagueQueueType[] | Prisma.ListEnumLeagueQueueTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.LeagueQueueType[] | Prisma.ListEnumLeagueQueueTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumLeagueQueueTypeFilter<$PrismaModel> | $Enums.LeagueQueueType
-}
-
-export type NestedEnumLeagueTierFilter<$PrismaModel = never> = {
-  equals?: $Enums.LeagueTier | Prisma.EnumLeagueTierFieldRefInput<$PrismaModel>
-  in?: $Enums.LeagueTier[] | Prisma.ListEnumLeagueTierFieldRefInput<$PrismaModel>
-  notIn?: $Enums.LeagueTier[] | Prisma.ListEnumLeagueTierFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumLeagueTierFilter<$PrismaModel> | $Enums.LeagueTier
-}
-
-export type NestedEnumLeagueRankFilter<$PrismaModel = never> = {
-  equals?: $Enums.LeagueRank | Prisma.EnumLeagueRankFieldRefInput<$PrismaModel>
-  in?: $Enums.LeagueRank[] | Prisma.ListEnumLeagueRankFieldRefInput<$PrismaModel>
-  notIn?: $Enums.LeagueRank[] | Prisma.ListEnumLeagueRankFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumLeagueRankFilter<$PrismaModel> | $Enums.LeagueRank
-}
-
-export type NestedBoolFilter<$PrismaModel = never> = {
-  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
-}
-
-export type NestedEnumLeagueQueueTypeWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.LeagueQueueType | Prisma.EnumLeagueQueueTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.LeagueQueueType[] | Prisma.ListEnumLeagueQueueTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.LeagueQueueType[] | Prisma.ListEnumLeagueQueueTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumLeagueQueueTypeWithAggregatesFilter<$PrismaModel> | $Enums.LeagueQueueType
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumLeagueQueueTypeFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumLeagueQueueTypeFilter<$PrismaModel>
-}
-
-export type NestedEnumLeagueTierWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.LeagueTier | Prisma.EnumLeagueTierFieldRefInput<$PrismaModel>
-  in?: $Enums.LeagueTier[] | Prisma.ListEnumLeagueTierFieldRefInput<$PrismaModel>
-  notIn?: $Enums.LeagueTier[] | Prisma.ListEnumLeagueTierFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumLeagueTierWithAggregatesFilter<$PrismaModel> | $Enums.LeagueTier
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumLeagueTierFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumLeagueTierFilter<$PrismaModel>
-}
-
-export type NestedEnumLeagueRankWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.LeagueRank | Prisma.EnumLeagueRankFieldRefInput<$PrismaModel>
-  in?: $Enums.LeagueRank[] | Prisma.ListEnumLeagueRankFieldRefInput<$PrismaModel>
-  notIn?: $Enums.LeagueRank[] | Prisma.ListEnumLeagueRankFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumLeagueRankWithAggregatesFilter<$PrismaModel> | $Enums.LeagueRank
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumLeagueRankFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumLeagueRankFilter<$PrismaModel>
 }
 
 export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -261,6 +192,27 @@ export type NestedFloatFilter<$PrismaModel = never> = {
   gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   not?: Prisma.NestedFloatFilter<$PrismaModel> | number
+}
+
+export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  notIn?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  lt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  lte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatFilter<$PrismaModel>
+  _sum?: Prisma.NestedBigIntFilter<$PrismaModel>
+  _min?: Prisma.NestedBigIntFilter<$PrismaModel>
+  _max?: Prisma.NestedBigIntFilter<$PrismaModel>
+}
+
+export type NestedBoolFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
 }
 
 export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {

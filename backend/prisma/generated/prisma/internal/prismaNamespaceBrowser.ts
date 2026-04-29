@@ -17,8 +17,8 @@
 
 import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models.js'
-export type * from './prismaNamespace.js'
+export type * from '../models.ts'
+export type * from './prismaNamespace.ts'
 
 export const Decimal = runtime.Decimal
 
@@ -74,7 +74,10 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const SummonerScalarFieldEnum = {
   id: 'id',
   gameName: 'gameName',
-  tagLine: 'tagLine'
+  tagLine: 'tagLine',
+  level: 'level',
+  revisionDate: 'revisionDate',
+  profileIconId: 'profileIconId'
 } as const
 
 export type SummonerScalarFieldEnum = (typeof SummonerScalarFieldEnum)[keyof typeof SummonerScalarFieldEnum]
