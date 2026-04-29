@@ -117,6 +117,7 @@ export const ParticipantScalarFieldEnum = {
   matchId: 'matchId',
   championName: 'championName',
   lane: 'lane',
+  teamPosition: 'teamPosition',
   summoner1Id: 'summoner1Id',
   summoner2Id: 'summoner2Id',
   totalMinionsKilled: 'totalMinionsKilled',
@@ -129,7 +130,8 @@ export const ParticipantScalarFieldEnum = {
   item3: 'item3',
   item4: 'item4',
   item5: 'item5',
-  item6: 'item6'
+  item6: 'item6',
+  win: 'win'
 } as const
 
 export type ParticipantScalarFieldEnum = (typeof ParticipantScalarFieldEnum)[keyof typeof ParticipantScalarFieldEnum]

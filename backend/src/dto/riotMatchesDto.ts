@@ -21,6 +21,7 @@ export type Participants = {
     puuid: string,
     championName: string,
     lane: string,
+    teamPosition: string,
     summoner1Id: number,
     summoner2Id: number,
     totalMinionsKilled: number,
@@ -36,4 +37,5 @@ export type Participants = {
     item6: number,
     riotIdGameName: string,
     riotIdTagline: string,
+    win: boolean
 }

@@ -48,6 +48,7 @@ model Participant {
     match                       Match    @relation(fields: [matchId], references: [matchId])
     championName                String
     lane                        String
+    teamPosition                String
     summoner1Id                 Int
     summoner2Id                 Int
     totalMinionsKilled          Int
@@ -61,6 +62,7 @@ model Participant {
     item4                       Int
     item5                       Int
     item6                       Int
+    win                         Boolean
 
     @@id(name: "participantId", [summonerId, matchId])
 }

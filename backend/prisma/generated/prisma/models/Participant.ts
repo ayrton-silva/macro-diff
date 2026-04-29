@@ -63,6 +63,7 @@ export type ParticipantMinAggregateOutputType = {
   matchId: string | null
   championName: string | null
   lane: string | null
+  teamPosition: string | null
   summoner1Id: number | null
   summoner2Id: number | null
   totalMinionsKilled: number | null
@@ -76,6 +77,7 @@ export type ParticipantMinAggregateOutputType = {
   item4: number | null
   item5: number | null
   item6: number | null
+  win: boolean | null
 }
 
 export type ParticipantMaxAggregateOutputType = {
@@ -83,6 +85,7 @@ export type ParticipantMaxAggregateOutputType = {
   matchId: string | null
   championName: string | null
   lane: string | null
+  teamPosition: string | null
   summoner1Id: number | null
   summoner2Id: number | null
   totalMinionsKilled: number | null
@@ -96,6 +99,7 @@ export type ParticipantMaxAggregateOutputType = {
   item4: number | null
   item5: number | null
   item6: number | null
+  win: boolean | null
 }
 
 export type ParticipantCountAggregateOutputType = {
@@ -103,6 +107,7 @@ export type ParticipantCountAggregateOutputType = {
   matchId: number
   championName: number
   lane: number
+  teamPosition: number
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
@@ -116,6 +121,7 @@ export type ParticipantCountAggregateOutputType = {
   item4: number
   item5: number
   item6: number
+  win: number
   _all: number
 }
 
@@ -157,6 +163,7 @@ export type ParticipantMinAggregateInputType = {
   matchId?: true
   championName?: true
   lane?: true
+  teamPosition?: true
   summoner1Id?: true
   summoner2Id?: true
   totalMinionsKilled?: true
@@ -170,6 +177,7 @@ export type ParticipantMinAggregateInputType = {
   item4?: true
   item5?: true
   item6?: true
+  win?: true
 }
 
 export type ParticipantMaxAggregateInputType = {
@@ -177,6 +185,7 @@ export type ParticipantMaxAggregateInputType = {
   matchId?: true
   championName?: true
   lane?: true
+  teamPosition?: true
   summoner1Id?: true
   summoner2Id?: true
   totalMinionsKilled?: true
@@ -190,6 +199,7 @@ export type ParticipantMaxAggregateInputType = {
   item4?: true
   item5?: true
   item6?: true
+  win?: true
 }
 
 export type ParticipantCountAggregateInputType = {
@@ -197,6 +207,7 @@ export type ParticipantCountAggregateInputType = {
   matchId?: true
   championName?: true
   lane?: true
+  teamPosition?: true
   summoner1Id?: true
   summoner2Id?: true
   totalMinionsKilled?: true
@@ -210,6 +221,7 @@ export type ParticipantCountAggregateInputType = {
   item4?: true
   item5?: true
   item6?: true
+  win?: true
   _all?: true
 }
 
@@ -304,6 +316,7 @@ export type ParticipantGroupByOutputType = {
   matchId: string
   championName: string
   lane: string
+  teamPosition: string
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
@@ -317,6 +330,7 @@ export type ParticipantGroupByOutputType = {
   item4: number
   item5: number
   item6: number
+  win: boolean
   _count: ParticipantCountAggregateOutputType | null
   _avg: ParticipantAvgAggregateOutputType | null
   _sum: ParticipantSumAggregateOutputType | null
@@ -347,6 +361,7 @@ export type ParticipantWhereInput = {
   matchId?: Prisma.StringFilter<"Participant"> | string
   championName?: Prisma.StringFilter<"Participant"> | string
   lane?: Prisma.StringFilter<"Participant"> | string
+  teamPosition?: Prisma.StringFilter<"Participant"> | string
   summoner1Id?: Prisma.IntFilter<"Participant"> | number
   summoner2Id?: Prisma.IntFilter<"Participant"> | number
   totalMinionsKilled?: Prisma.IntFilter<"Participant"> | number
@@ -360,6 +375,7 @@ export type ParticipantWhereInput = {
   item4?: Prisma.IntFilter<"Participant"> | number
   item5?: Prisma.IntFilter<"Participant"> | number
   item6?: Prisma.IntFilter<"Participant"> | number
+  win?: Prisma.BoolFilter<"Participant"> | boolean
   summoner?: Prisma.XOR<Prisma.SummonerScalarRelationFilter, Prisma.SummonerWhereInput>
   match?: Prisma.XOR<Prisma.MatchScalarRelationFilter, Prisma.MatchWhereInput>
 }
@@ -369,6 +385,7 @@ export type ParticipantOrderByWithRelationInput = {
   matchId?: Prisma.SortOrder
   championName?: Prisma.SortOrder
   lane?: Prisma.SortOrder
+  teamPosition?: Prisma.SortOrder
   summoner1Id?: Prisma.SortOrder
   summoner2Id?: Prisma.SortOrder
   totalMinionsKilled?: Prisma.SortOrder
@@ -382,6 +399,7 @@ export type ParticipantOrderByWithRelationInput = {
   item4?: Prisma.SortOrder
   item5?: Prisma.SortOrder
   item6?: Prisma.SortOrder
+  win?: Prisma.SortOrder
   summoner?: Prisma.SummonerOrderByWithRelationInput
   match?: Prisma.MatchOrderByWithRelationInput
 }
@@ -395,6 +413,7 @@ export type ParticipantWhereUniqueInput = Prisma.AtLeast<{
   matchId?: Prisma.StringFilter<"Participant"> | string
   championName?: Prisma.StringFilter<"Participant"> | string
   lane?: Prisma.StringFilter<"Participant"> | string
+  teamPosition?: Prisma.StringFilter<"Participant"> | string
   summoner1Id?: Prisma.IntFilter<"Participant"> | number
   summoner2Id?: Prisma.IntFilter<"Participant"> | number
   totalMinionsKilled?: Prisma.IntFilter<"Participant"> | number
@@ -408,6 +427,7 @@ export type ParticipantWhereUniqueInput = Prisma.AtLeast<{
   item4?: Prisma.IntFilter<"Participant"> | number
   item5?: Prisma.IntFilter<"Participant"> | number
   item6?: Prisma.IntFilter<"Participant"> | number
+  win?: Prisma.BoolFilter<"Participant"> | boolean
   summoner?: Prisma.XOR<Prisma.SummonerScalarRelationFilter, Prisma.SummonerWhereInput>
   match?: Prisma.XOR<Prisma.MatchScalarRelationFilter, Prisma.MatchWhereInput>
 }, "participantId">
@@ -417,6 +437,7 @@ export type ParticipantOrderByWithAggregationInput = {
   matchId?: Prisma.SortOrder
   championName?: Prisma.SortOrder
   lane?: Prisma.SortOrder
+  teamPosition?: Prisma.SortOrder
   summoner1Id?: Prisma.SortOrder
   summoner2Id?: Prisma.SortOrder
   totalMinionsKilled?: Prisma.SortOrder
@@ -430,6 +451,7 @@ export type ParticipantOrderByWithAggregationInput = {
   item4?: Prisma.SortOrder
   item5?: Prisma.SortOrder
   item6?: Prisma.SortOrder
+  win?: Prisma.SortOrder
   _count?: Prisma.ParticipantCountOrderByAggregateInput
   _avg?: Prisma.ParticipantAvgOrderByAggregateInput
   _max?: Prisma.ParticipantMaxOrderByAggregateInput
@@ -445,6 +467,7 @@ export type ParticipantScalarWhereWithAggregatesInput = {
   matchId?: Prisma.StringWithAggregatesFilter<"Participant"> | string
   championName?: Prisma.StringWithAggregatesFilter<"Participant"> | string
   lane?: Prisma.StringWithAggregatesFilter<"Participant"> | string
+  teamPosition?: Prisma.StringWithAggregatesFilter<"Participant"> | string
   summoner1Id?: Prisma.IntWithAggregatesFilter<"Participant"> | number
   summoner2Id?: Prisma.IntWithAggregatesFilter<"Participant"> | number
   totalMinionsKilled?: Prisma.IntWithAggregatesFilter<"Participant"> | number
@@ -458,11 +481,13 @@ export type ParticipantScalarWhereWithAggregatesInput = {
   item4?: Prisma.IntWithAggregatesFilter<"Participant"> | number
   item5?: Prisma.IntWithAggregatesFilter<"Participant"> | number
   item6?: Prisma.IntWithAggregatesFilter<"Participant"> | number
+  win?: Prisma.BoolWithAggregatesFilter<"Participant"> | boolean
 }
 
 export type ParticipantCreateInput = {
   championName: string
   lane: string
+  teamPosition: string
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
@@ -476,6 +501,7 @@ export type ParticipantCreateInput = {
   item4: number
   item5: number
   item6: number
+  win: boolean
   summoner: Prisma.SummonerCreateNestedOneWithoutParticipantsInput
   match: Prisma.MatchCreateNestedOneWithoutParticipantsInput
 }
@@ -485,6 +511,7 @@ export type ParticipantUncheckedCreateInput = {
   matchId: string
   championName: string
   lane: string
+  teamPosition: string
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
@@ -498,11 +525,13 @@ export type ParticipantUncheckedCreateInput = {
   item4: number
   item5: number
   item6: number
+  win: boolean
 }
 
 export type ParticipantUpdateInput = {
   championName?: Prisma.StringFieldUpdateOperationsInput | string
   lane?: Prisma.StringFieldUpdateOperationsInput | string
+  teamPosition?: Prisma.StringFieldUpdateOperationsInput | string
   summoner1Id?: Prisma.IntFieldUpdateOperationsInput | number
   summoner2Id?: Prisma.IntFieldUpdateOperationsInput | number
   totalMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
@@ -516,6 +545,7 @@ export type ParticipantUpdateInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  win?: Prisma.BoolFieldUpdateOperationsInput | boolean
   summoner?: Prisma.SummonerUpdateOneRequiredWithoutParticipantsNestedInput
   match?: Prisma.MatchUpdateOneRequiredWithoutParticipantsNestedInput
 }
@@ -525,6 +555,7 @@ export type ParticipantUncheckedUpdateInput = {
   matchId?: Prisma.StringFieldUpdateOperationsInput | string
   championName?: Prisma.StringFieldUpdateOperationsInput | string
   lane?: Prisma.StringFieldUpdateOperationsInput | string
+  teamPosition?: Prisma.StringFieldUpdateOperationsInput | string
   summoner1Id?: Prisma.IntFieldUpdateOperationsInput | number
   summoner2Id?: Prisma.IntFieldUpdateOperationsInput | number
   totalMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
@@ -538,6 +569,7 @@ export type ParticipantUncheckedUpdateInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ParticipantCreateManyInput = {
@@ -545,6 +577,7 @@ export type ParticipantCreateManyInput = {
   matchId: string
   championName: string
   lane: string
+  teamPosition: string
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
@@ -558,11 +591,13 @@ export type ParticipantCreateManyInput = {
   item4: number
   item5: number
   item6: number
+  win: boolean
 }
 
 export type ParticipantUpdateManyMutationInput = {
   championName?: Prisma.StringFieldUpdateOperationsInput | string
   lane?: Prisma.StringFieldUpdateOperationsInput | string
+  teamPosition?: Prisma.StringFieldUpdateOperationsInput | string
   summoner1Id?: Prisma.IntFieldUpdateOperationsInput | number
   summoner2Id?: Prisma.IntFieldUpdateOperationsInput | number
   totalMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
@@ -576,6 +611,7 @@ export type ParticipantUpdateManyMutationInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ParticipantUncheckedUpdateManyInput = {
@@ -583,6 +619,7 @@ export type ParticipantUncheckedUpdateManyInput = {
   matchId?: Prisma.StringFieldUpdateOperationsInput | string
   championName?: Prisma.StringFieldUpdateOperationsInput | string
   lane?: Prisma.StringFieldUpdateOperationsInput | string
+  teamPosition?: Prisma.StringFieldUpdateOperationsInput | string
   summoner1Id?: Prisma.IntFieldUpdateOperationsInput | number
   summoner2Id?: Prisma.IntFieldUpdateOperationsInput | number
   totalMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
@@ -596,6 +633,7 @@ export type ParticipantUncheckedUpdateManyInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ParticipantListRelationFilter = {
@@ -618,6 +656,7 @@ export type ParticipantCountOrderByAggregateInput = {
   matchId?: Prisma.SortOrder
   championName?: Prisma.SortOrder
   lane?: Prisma.SortOrder
+  teamPosition?: Prisma.SortOrder
   summoner1Id?: Prisma.SortOrder
   summoner2Id?: Prisma.SortOrder
   totalMinionsKilled?: Prisma.SortOrder
@@ -631,6 +670,7 @@ export type ParticipantCountOrderByAggregateInput = {
   item4?: Prisma.SortOrder
   item5?: Prisma.SortOrder
   item6?: Prisma.SortOrder
+  win?: Prisma.SortOrder
 }
 
 export type ParticipantAvgOrderByAggregateInput = {
@@ -654,6 +694,7 @@ export type ParticipantMaxOrderByAggregateInput = {
   matchId?: Prisma.SortOrder
   championName?: Prisma.SortOrder
   lane?: Prisma.SortOrder
+  teamPosition?: Prisma.SortOrder
   summoner1Id?: Prisma.SortOrder
   summoner2Id?: Prisma.SortOrder
   totalMinionsKilled?: Prisma.SortOrder
@@ -667,6 +708,7 @@ export type ParticipantMaxOrderByAggregateInput = {
   item4?: Prisma.SortOrder
   item5?: Prisma.SortOrder
   item6?: Prisma.SortOrder
+  win?: Prisma.SortOrder
 }
 
 export type ParticipantMinOrderByAggregateInput = {
@@ -674,6 +716,7 @@ export type ParticipantMinOrderByAggregateInput = {
   matchId?: Prisma.SortOrder
   championName?: Prisma.SortOrder
   lane?: Prisma.SortOrder
+  teamPosition?: Prisma.SortOrder
   summoner1Id?: Prisma.SortOrder
   summoner2Id?: Prisma.SortOrder
   totalMinionsKilled?: Prisma.SortOrder
@@ -687,6 +730,7 @@ export type ParticipantMinOrderByAggregateInput = {
   item4?: Prisma.SortOrder
   item5?: Prisma.SortOrder
   item6?: Prisma.SortOrder
+  win?: Prisma.SortOrder
 }
 
 export type ParticipantSumOrderByAggregateInput = {
@@ -792,6 +836,7 @@ export type ParticipantUncheckedUpdateManyWithoutMatchNestedInput = {
 export type ParticipantCreateWithoutSummonerInput = {
   championName: string
   lane: string
+  teamPosition: string
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
@@ -805,6 +850,7 @@ export type ParticipantCreateWithoutSummonerInput = {
   item4: number
   item5: number
   item6: number
+  win: boolean
   match: Prisma.MatchCreateNestedOneWithoutParticipantsInput
 }
 
@@ -812,6 +858,7 @@ export type ParticipantUncheckedCreateWithoutSummonerInput = {
   matchId: string
   championName: string
   lane: string
+  teamPosition: string
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
@@ -825,6 +872,7 @@ export type ParticipantUncheckedCreateWithoutSummonerInput = {
   item4: number
   item5: number
   item6: number
+  win: boolean
 }
 
 export type ParticipantCreateOrConnectWithoutSummonerInput = {
@@ -861,6 +909,7 @@ export type ParticipantScalarWhereInput = {
   matchId?: Prisma.StringFilter<"Participant"> | string
   championName?: Prisma.StringFilter<"Participant"> | string
   lane?: Prisma.StringFilter<"Participant"> | string
+  teamPosition?: Prisma.StringFilter<"Participant"> | string
   summoner1Id?: Prisma.IntFilter<"Participant"> | number
   summoner2Id?: Prisma.IntFilter<"Participant"> | number
   totalMinionsKilled?: Prisma.IntFilter<"Participant"> | number
@@ -874,11 +923,13 @@ export type ParticipantScalarWhereInput = {
   item4?: Prisma.IntFilter<"Participant"> | number
   item5?: Prisma.IntFilter<"Participant"> | number
   item6?: Prisma.IntFilter<"Participant"> | number
+  win?: Prisma.BoolFilter<"Participant"> | boolean
 }
 
 export type ParticipantCreateWithoutMatchInput = {
   championName: string
   lane: string
+  teamPosition: string
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
@@ -892,6 +943,7 @@ export type ParticipantCreateWithoutMatchInput = {
   item4: number
   item5: number
   item6: number
+  win: boolean
   summoner: Prisma.SummonerCreateNestedOneWithoutParticipantsInput
 }
 
@@ -899,6 +951,7 @@ export type ParticipantUncheckedCreateWithoutMatchInput = {
   summonerId: string
   championName: string
   lane: string
+  teamPosition: string
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
@@ -912,6 +965,7 @@ export type ParticipantUncheckedCreateWithoutMatchInput = {
   item4: number
   item5: number
   item6: number
+  win: boolean
 }
 
 export type ParticipantCreateOrConnectWithoutMatchInput = {
@@ -944,6 +998,7 @@ export type ParticipantCreateManySummonerInput = {
   matchId: string
   championName: string
   lane: string
+  teamPosition: string
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
@@ -957,11 +1012,13 @@ export type ParticipantCreateManySummonerInput = {
   item4: number
   item5: number
   item6: number
+  win: boolean
 }
 
 export type ParticipantUpdateWithoutSummonerInput = {
   championName?: Prisma.StringFieldUpdateOperationsInput | string
   lane?: Prisma.StringFieldUpdateOperationsInput | string
+  teamPosition?: Prisma.StringFieldUpdateOperationsInput | string
   summoner1Id?: Prisma.IntFieldUpdateOperationsInput | number
   summoner2Id?: Prisma.IntFieldUpdateOperationsInput | number
   totalMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
@@ -975,6 +1032,7 @@ export type ParticipantUpdateWithoutSummonerInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  win?: Prisma.BoolFieldUpdateOperationsInput | boolean
   match?: Prisma.MatchUpdateOneRequiredWithoutParticipantsNestedInput
 }
 
@@ -982,6 +1040,7 @@ export type ParticipantUncheckedUpdateWithoutSummonerInput = {
   matchId?: Prisma.StringFieldUpdateOperationsInput | string
   championName?: Prisma.StringFieldUpdateOperationsInput | string
   lane?: Prisma.StringFieldUpdateOperationsInput | string
+  teamPosition?: Prisma.StringFieldUpdateOperationsInput | string
   summoner1Id?: Prisma.IntFieldUpdateOperationsInput | number
   summoner2Id?: Prisma.IntFieldUpdateOperationsInput | number
   totalMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
@@ -995,12 +1054,14 @@ export type ParticipantUncheckedUpdateWithoutSummonerInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ParticipantUncheckedUpdateManyWithoutSummonerInput = {
   matchId?: Prisma.StringFieldUpdateOperationsInput | string
   championName?: Prisma.StringFieldUpdateOperationsInput | string
   lane?: Prisma.StringFieldUpdateOperationsInput | string
+  teamPosition?: Prisma.StringFieldUpdateOperationsInput | string
   summoner1Id?: Prisma.IntFieldUpdateOperationsInput | number
   summoner2Id?: Prisma.IntFieldUpdateOperationsInput | number
   totalMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1014,12 +1075,14 @@ export type ParticipantUncheckedUpdateManyWithoutSummonerInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ParticipantCreateManyMatchInput = {
   summonerId: string
   championName: string
   lane: string
+  teamPosition: string
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
@@ -1033,11 +1096,13 @@ export type ParticipantCreateManyMatchInput = {
   item4: number
   item5: number
   item6: number
+  win: boolean
 }
 
 export type ParticipantUpdateWithoutMatchInput = {
   championName?: Prisma.StringFieldUpdateOperationsInput | string
   lane?: Prisma.StringFieldUpdateOperationsInput | string
+  teamPosition?: Prisma.StringFieldUpdateOperationsInput | string
   summoner1Id?: Prisma.IntFieldUpdateOperationsInput | number
   summoner2Id?: Prisma.IntFieldUpdateOperationsInput | number
   totalMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1051,6 +1116,7 @@ export type ParticipantUpdateWithoutMatchInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  win?: Prisma.BoolFieldUpdateOperationsInput | boolean
   summoner?: Prisma.SummonerUpdateOneRequiredWithoutParticipantsNestedInput
 }
 
@@ -1058,6 +1124,7 @@ export type ParticipantUncheckedUpdateWithoutMatchInput = {
   summonerId?: Prisma.StringFieldUpdateOperationsInput | string
   championName?: Prisma.StringFieldUpdateOperationsInput | string
   lane?: Prisma.StringFieldUpdateOperationsInput | string
+  teamPosition?: Prisma.StringFieldUpdateOperationsInput | string
   summoner1Id?: Prisma.IntFieldUpdateOperationsInput | number
   summoner2Id?: Prisma.IntFieldUpdateOperationsInput | number
   totalMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1071,12 +1138,14 @@ export type ParticipantUncheckedUpdateWithoutMatchInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ParticipantUncheckedUpdateManyWithoutMatchInput = {
   summonerId?: Prisma.StringFieldUpdateOperationsInput | string
   championName?: Prisma.StringFieldUpdateOperationsInput | string
   lane?: Prisma.StringFieldUpdateOperationsInput | string
+  teamPosition?: Prisma.StringFieldUpdateOperationsInput | string
   summoner1Id?: Prisma.IntFieldUpdateOperationsInput | number
   summoner2Id?: Prisma.IntFieldUpdateOperationsInput | number
   totalMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1090,6 +1159,7 @@ export type ParticipantUncheckedUpdateManyWithoutMatchInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -1099,6 +1169,7 @@ export type ParticipantSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   matchId?: boolean
   championName?: boolean
   lane?: boolean
+  teamPosition?: boolean
   summoner1Id?: boolean
   summoner2Id?: boolean
   totalMinionsKilled?: boolean
@@ -1112,6 +1183,7 @@ export type ParticipantSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   item4?: boolean
   item5?: boolean
   item6?: boolean
+  win?: boolean
   summoner?: boolean | Prisma.SummonerDefaultArgs<ExtArgs>
   match?: boolean | Prisma.MatchDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["participant"]>
@@ -1121,6 +1193,7 @@ export type ParticipantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   matchId?: boolean
   championName?: boolean
   lane?: boolean
+  teamPosition?: boolean
   summoner1Id?: boolean
   summoner2Id?: boolean
   totalMinionsKilled?: boolean
@@ -1134,6 +1207,7 @@ export type ParticipantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   item4?: boolean
   item5?: boolean
   item6?: boolean
+  win?: boolean
   summoner?: boolean | Prisma.SummonerDefaultArgs<ExtArgs>
   match?: boolean | Prisma.MatchDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["participant"]>
@@ -1143,6 +1217,7 @@ export type ParticipantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   matchId?: boolean
   championName?: boolean
   lane?: boolean
+  teamPosition?: boolean
   summoner1Id?: boolean
   summoner2Id?: boolean
   totalMinionsKilled?: boolean
@@ -1156,6 +1231,7 @@ export type ParticipantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   item4?: boolean
   item5?: boolean
   item6?: boolean
+  win?: boolean
   summoner?: boolean | Prisma.SummonerDefaultArgs<ExtArgs>
   match?: boolean | Prisma.MatchDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["participant"]>
@@ -1165,6 +1241,7 @@ export type ParticipantSelectScalar = {
   matchId?: boolean
   championName?: boolean
   lane?: boolean
+  teamPosition?: boolean
   summoner1Id?: boolean
   summoner2Id?: boolean
   totalMinionsKilled?: boolean
@@ -1178,9 +1255,10 @@ export type ParticipantSelectScalar = {
   item4?: boolean
   item5?: boolean
   item6?: boolean
+  win?: boolean
 }
 
-export type ParticipantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"summonerId" | "matchId" | "championName" | "lane" | "summoner1Id" | "summoner2Id" | "totalMinionsKilled" | "totalDamageDealtToChampions" | "wardsPlaced" | "goldEarned" | "item0" | "item1" | "item2" | "item3" | "item4" | "item5" | "item6", ExtArgs["result"]["participant"]>
+export type ParticipantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"summonerId" | "matchId" | "championName" | "lane" | "teamPosition" | "summoner1Id" | "summoner2Id" | "totalMinionsKilled" | "totalDamageDealtToChampions" | "wardsPlaced" | "goldEarned" | "item0" | "item1" | "item2" | "item3" | "item4" | "item5" | "item6" | "win", ExtArgs["result"]["participant"]>
 export type ParticipantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   summoner?: boolean | Prisma.SummonerDefaultArgs<ExtArgs>
   match?: boolean | Prisma.MatchDefaultArgs<ExtArgs>
@@ -1205,6 +1283,7 @@ export type $ParticipantPayload<ExtArgs extends runtime.Types.Extensions.Interna
     matchId: string
     championName: string
     lane: string
+    teamPosition: string
     summoner1Id: number
     summoner2Id: number
     totalMinionsKilled: number
@@ -1218,6 +1297,7 @@ export type $ParticipantPayload<ExtArgs extends runtime.Types.Extensions.Interna
     item4: number
     item5: number
     item6: number
+    win: boolean
   }, ExtArgs["result"]["participant"]>
   composites: {}
 }
@@ -1647,6 +1727,7 @@ export interface ParticipantFieldRefs {
   readonly matchId: Prisma.FieldRef<"Participant", 'String'>
   readonly championName: Prisma.FieldRef<"Participant", 'String'>
   readonly lane: Prisma.FieldRef<"Participant", 'String'>
+  readonly teamPosition: Prisma.FieldRef<"Participant", 'String'>
   readonly summoner1Id: Prisma.FieldRef<"Participant", 'Int'>
   readonly summoner2Id: Prisma.FieldRef<"Participant", 'Int'>
   readonly totalMinionsKilled: Prisma.FieldRef<"Participant", 'Int'>
@@ -1660,6 +1741,7 @@ export interface ParticipantFieldRefs {
   readonly item4: Prisma.FieldRef<"Participant", 'Int'>
   readonly item5: Prisma.FieldRef<"Participant", 'Int'>
   readonly item6: Prisma.FieldRef<"Participant", 'Int'>
+  readonly win: Prisma.FieldRef<"Participant", 'Boolean'>
 }
     
 
