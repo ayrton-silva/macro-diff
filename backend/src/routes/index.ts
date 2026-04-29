@@ -1,6 +1,8 @@
 import type { FastifyInstance } from 'fastify'
 import { summonersRoutes } from './summoners.js'
 import { matchesRoutes } from './matches.js'
+import Fastify from 'fastify'
+import cors from '@fastify/cors'
 
 export async function registerRoutes(app: FastifyInstance) {
   await app.register(rootRoutes)
@@ -8,6 +10,9 @@ export async function registerRoutes(app: FastifyInstance) {
   await app.register(summonersRoutes)
   await app.register(matchesRoutes)
 }
+
+const fastify = Fastify()
+await fastify.register(cors)
 
 export async function rootRoutes(app: FastifyInstance) {
   app.get('/', async () => ({
