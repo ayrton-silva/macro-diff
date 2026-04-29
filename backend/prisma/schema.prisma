@@ -13,8 +13,9 @@ model Summoner {
     tagLine         String
     summonerLeagues SummonerLeague[]
     level           Int
-    revisionDate    BigInt
+    revisionDate    String
     profileIconId   Int
+    participants    Participant[]
 }
 
 model SummonerLeague {
@@ -31,4 +32,35 @@ model SummonerLeague {
     inactive     Boolean
     freshBlood   Boolean
     hotStreak    Boolean
+}
+
+model Match {
+    matchId      String        @id
+    gameDuration Int
+    gameMode     String
+    participants Participant[]
+}
+
+model Participant {
+    summonerId                  String
+    matchId                     String
+    summoner                    Summoner @relation(fields: [summonerId], references: [id])
+    match                       Match    @relation(fields: [matchId], references: [matchId])
+    championName                String
+    lane                        String
+    summoner1Id                 Int
+    summoner2Id                 Int
+    totalMinionsKilled          Int
+    totalDamageDealtToChampions Int
+    wardsPlaced                 Int
+    goldEarned                  Int
+    item0                       Int
+    item1                       Int
+    item2                       Int
+    item3                       Int
+    item4                       Int
+    item5                       Int
+    item6                       Int
+
+    @@id(name: "participantId", [summonerId, matchId])
 }

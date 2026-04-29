@@ -6,6 +6,6 @@ export type RiotSummonerRequest = {
 export type RiotSummonerResponse = {
   puuid: string
   profileIconId: number
-  revisionDate: number
+  revisionDate: string
   summonerLevel: number
 }

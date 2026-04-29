@@ -27,3 +27,13 @@ export type Summoner = Prisma.SummonerModel
  * 
  */
 export type SummonerLeague = Prisma.SummonerLeagueModel
+/**
+ * Model Match
+ * 
+ */
+export type Match = Prisma.MatchModel
+/**
+ * Model Participant
+ * 
+ */
+export type Participant = Prisma.ParticipantModel

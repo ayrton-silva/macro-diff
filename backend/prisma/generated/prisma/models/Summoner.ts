@@ -28,13 +28,11 @@ export type AggregateSummoner = {
 
 export type SummonerAvgAggregateOutputType = {
   level: number | null
-  revisionDate: number | null
   profileIconId: number | null
 }
 
 export type SummonerSumAggregateOutputType = {
   level: number | null
-  revisionDate: bigint | null
   profileIconId: number | null
 }
 
@@ -43,7 +41,7 @@ export type SummonerMinAggregateOutputType = {
   gameName: string | null
   tagLine: string | null
   level: number | null
-  revisionDate: bigint | null
+  revisionDate: string | null
   profileIconId: number | null
 }
 
@@ -52,7 +50,7 @@ export type SummonerMaxAggregateOutputType = {
   gameName: string | null
   tagLine: string | null
   level: number | null
-  revisionDate: bigint | null
+  revisionDate: string | null
   profileIconId: number | null
 }
 
@@ -69,13 +67,11 @@ export type SummonerCountAggregateOutputType = {
 
 export type SummonerAvgAggregateInputType = {
   level?: true
-  revisionDate?: true
   profileIconId?: true
 }
 
 export type SummonerSumAggregateInputType = {
   level?: true
-  revisionDate?: true
   profileIconId?: true
 }
 
@@ -198,7 +194,7 @@ export type SummonerGroupByOutputType = {
   gameName: string
   tagLine: string
   level: number
-  revisionDate: bigint
+  revisionDate: string
   profileIconId: number
   _count: SummonerCountAggregateOutputType | null
   _avg: SummonerAvgAggregateOutputType | null
@@ -230,9 +226,10 @@ export type SummonerWhereInput = {
   gameName?: Prisma.StringFilter<"Summoner"> | string
   tagLine?: Prisma.StringFilter<"Summoner"> | string
   level?: Prisma.IntFilter<"Summoner"> | number
-  revisionDate?: Prisma.BigIntFilter<"Summoner"> | bigint | number
+  revisionDate?: Prisma.StringFilter<"Summoner"> | string
   profileIconId?: Prisma.IntFilter<"Summoner"> | number
   summonerLeagues?: Prisma.SummonerLeagueListRelationFilter
+  participants?: Prisma.ParticipantListRelationFilter
 }
 
 export type SummonerOrderByWithRelationInput = {
@@ -243,6 +240,7 @@ export type SummonerOrderByWithRelationInput = {
   revisionDate?: Prisma.SortOrder
   profileIconId?: Prisma.SortOrder
   summonerLeagues?: Prisma.SummonerLeagueOrderByRelationAggregateInput
+  participants?: Prisma.ParticipantOrderByRelationAggregateInput
 }
 
 export type SummonerWhereUniqueInput = Prisma.AtLeast<{
@@ -253,9 +251,10 @@ export type SummonerWhereUniqueInput = Prisma.AtLeast<{
   gameName?: Prisma.StringFilter<"Summoner"> | string
   tagLine?: Prisma.StringFilter<"Summoner"> | string
   level?: Prisma.IntFilter<"Summoner"> | number
-  revisionDate?: Prisma.BigIntFilter<"Summoner"> | bigint | number
+  revisionDate?: Prisma.StringFilter<"Summoner"> | string
   profileIconId?: Prisma.IntFilter<"Summoner"> | number
   summonerLeagues?: Prisma.SummonerLeagueListRelationFilter
+  participants?: Prisma.ParticipantListRelationFilter
 }, "id">
 
 export type SummonerOrderByWithAggregationInput = {
@@ -280,7 +279,7 @@ export type SummonerScalarWhereWithAggregatesInput = {
   gameName?: Prisma.StringWithAggregatesFilter<"Summoner"> | string
   tagLine?: Prisma.StringWithAggregatesFilter<"Summoner"> | string
   level?: Prisma.IntWithAggregatesFilter<"Summoner"> | number
-  revisionDate?: Prisma.BigIntWithAggregatesFilter<"Summoner"> | bigint | number
+  revisionDate?: Prisma.StringWithAggregatesFilter<"Summoner"> | string
   profileIconId?: Prisma.IntWithAggregatesFilter<"Summoner"> | number
 }
 
@@ -289,9 +288,10 @@ export type SummonerCreateInput = {
   gameName: string
   tagLine: string
   level: number
-  revisionDate: bigint | number
+  revisionDate: string
   profileIconId: number
   summonerLeagues?: Prisma.SummonerLeagueCreateNestedManyWithoutSummonerInput
+  participants?: Prisma.ParticipantCreateNestedManyWithoutSummonerInput
 }
 
 export type SummonerUncheckedCreateInput = {
@@ -299,9 +299,10 @@ export type SummonerUncheckedCreateInput = {
   gameName: string
   tagLine: string
   level: number
-  revisionDate: bigint | number
+  revisionDate: string
   profileIconId: number
   summonerLeagues?: Prisma.SummonerLeagueUncheckedCreateNestedManyWithoutSummonerInput
+  participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutSummonerInput
 }
 
 export type SummonerUpdateInput = {
@@ -309,9 +310,10 @@ export type SummonerUpdateInput = {
   gameName?: Prisma.StringFieldUpdateOperationsInput | string
   tagLine?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
-  revisionDate?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  revisionDate?: Prisma.StringFieldUpdateOperationsInput | string
   profileIconId?: Prisma.IntFieldUpdateOperationsInput | number
   summonerLeagues?: Prisma.SummonerLeagueUpdateManyWithoutSummonerNestedInput
+  participants?: Prisma.ParticipantUpdateManyWithoutSummonerNestedInput
 }
 
 export type SummonerUncheckedUpdateInput = {
@@ -319,9 +321,10 @@ export type SummonerUncheckedUpdateInput = {
   gameName?: Prisma.StringFieldUpdateOperationsInput | string
   tagLine?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
-  revisionDate?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  revisionDate?: Prisma.StringFieldUpdateOperationsInput | string
   profileIconId?: Prisma.IntFieldUpdateOperationsInput | number
   summonerLeagues?: Prisma.SummonerLeagueUncheckedUpdateManyWithoutSummonerNestedInput
+  participants?: Prisma.ParticipantUncheckedUpdateManyWithoutSummonerNestedInput
 }
 
 export type SummonerCreateManyInput = {
@@ -329,7 +332,7 @@ export type SummonerCreateManyInput = {
   gameName: string
   tagLine: string
   level: number
-  revisionDate: bigint | number
+  revisionDate: string
   profileIconId: number
 }
 
@@ -338,7 +341,7 @@ export type SummonerUpdateManyMutationInput = {
   gameName?: Prisma.StringFieldUpdateOperationsInput | string
   tagLine?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
-  revisionDate?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  revisionDate?: Prisma.StringFieldUpdateOperationsInput | string
   profileIconId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -347,7 +350,7 @@ export type SummonerUncheckedUpdateManyInput = {
   gameName?: Prisma.StringFieldUpdateOperationsInput | string
   tagLine?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
-  revisionDate?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  revisionDate?: Prisma.StringFieldUpdateOperationsInput | string
   profileIconId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -362,7 +365,6 @@ export type SummonerCountOrderByAggregateInput = {
 
 export type SummonerAvgOrderByAggregateInput = {
   level?: Prisma.SortOrder
-  revisionDate?: Prisma.SortOrder
   profileIconId?: Prisma.SortOrder
 }
 
@@ -386,7 +388,6 @@ export type SummonerMinOrderByAggregateInput = {
 
 export type SummonerSumOrderByAggregateInput = {
   level?: Prisma.SortOrder
-  revisionDate?: Prisma.SortOrder
   profileIconId?: Prisma.SortOrder
 }
 
@@ -407,14 +408,6 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type BigIntFieldUpdateOperationsInput = {
-  set?: bigint | number
-  increment?: bigint | number
-  decrement?: bigint | number
-  multiply?: bigint | number
-  divide?: bigint | number
-}
-
 export type SummonerCreateNestedOneWithoutSummonerLeaguesInput = {
   create?: Prisma.XOR<Prisma.SummonerCreateWithoutSummonerLeaguesInput, Prisma.SummonerUncheckedCreateWithoutSummonerLeaguesInput>
   connectOrCreate?: Prisma.SummonerCreateOrConnectWithoutSummonerLeaguesInput
@@ -429,13 +422,28 @@ export type SummonerUpdateOneRequiredWithoutSummonerLeaguesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SummonerUpdateToOneWithWhereWithoutSummonerLeaguesInput, Prisma.SummonerUpdateWithoutSummonerLeaguesInput>, Prisma.SummonerUncheckedUpdateWithoutSummonerLeaguesInput>
 }
 
+export type SummonerCreateNestedOneWithoutParticipantsInput = {
+  create?: Prisma.XOR<Prisma.SummonerCreateWithoutParticipantsInput, Prisma.SummonerUncheckedCreateWithoutParticipantsInput>
+  connectOrCreate?: Prisma.SummonerCreateOrConnectWithoutParticipantsInput
+  connect?: Prisma.SummonerWhereUniqueInput
+}
+
+export type SummonerUpdateOneRequiredWithoutParticipantsNestedInput = {
+  create?: Prisma.XOR<Prisma.SummonerCreateWithoutParticipantsInput, Prisma.SummonerUncheckedCreateWithoutParticipantsInput>
+  connectOrCreate?: Prisma.SummonerCreateOrConnectWithoutParticipantsInput
+  upsert?: Prisma.SummonerUpsertWithoutParticipantsInput
+  connect?: Prisma.SummonerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SummonerUpdateToOneWithWhereWithoutParticipantsInput, Prisma.SummonerUpdateWithoutParticipantsInput>, Prisma.SummonerUncheckedUpdateWithoutParticipantsInput>
+}
+
 export type SummonerCreateWithoutSummonerLeaguesInput = {
   id: string
   gameName: string
   tagLine: string
   level: number
-  revisionDate: bigint | number
+  revisionDate: string
   profileIconId: number
+  participants?: Prisma.ParticipantCreateNestedManyWithoutSummonerInput
 }
 
 export type SummonerUncheckedCreateWithoutSummonerLeaguesInput = {
@@ -443,8 +451,9 @@ export type SummonerUncheckedCreateWithoutSummonerLeaguesInput = {
   gameName: string
   tagLine: string
   level: number
-  revisionDate: bigint | number
+  revisionDate: string
   profileIconId: number
+  participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutSummonerInput
 }
 
 export type SummonerCreateOrConnectWithoutSummonerLeaguesInput = {
@@ -468,8 +477,9 @@ export type SummonerUpdateWithoutSummonerLeaguesInput = {
   gameName?: Prisma.StringFieldUpdateOperationsInput | string
   tagLine?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
-  revisionDate?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  revisionDate?: Prisma.StringFieldUpdateOperationsInput | string
   profileIconId?: Prisma.IntFieldUpdateOperationsInput | number
+  participants?: Prisma.ParticipantUpdateManyWithoutSummonerNestedInput
 }
 
 export type SummonerUncheckedUpdateWithoutSummonerLeaguesInput = {
@@ -477,8 +487,65 @@ export type SummonerUncheckedUpdateWithoutSummonerLeaguesInput = {
   gameName?: Prisma.StringFieldUpdateOperationsInput | string
   tagLine?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
-  revisionDate?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  revisionDate?: Prisma.StringFieldUpdateOperationsInput | string
   profileIconId?: Prisma.IntFieldUpdateOperationsInput | number
+  participants?: Prisma.ParticipantUncheckedUpdateManyWithoutSummonerNestedInput
+}
+
+export type SummonerCreateWithoutParticipantsInput = {
+  id: string
+  gameName: string
+  tagLine: string
+  level: number
+  revisionDate: string
+  profileIconId: number
+  summonerLeagues?: Prisma.SummonerLeagueCreateNestedManyWithoutSummonerInput
+}
+
+export type SummonerUncheckedCreateWithoutParticipantsInput = {
+  id: string
+  gameName: string
+  tagLine: string
+  level: number
+  revisionDate: string
+  profileIconId: number
+  summonerLeagues?: Prisma.SummonerLeagueUncheckedCreateNestedManyWithoutSummonerInput
+}
+
+export type SummonerCreateOrConnectWithoutParticipantsInput = {
+  where: Prisma.SummonerWhereUniqueInput
+  create: Prisma.XOR<Prisma.SummonerCreateWithoutParticipantsInput, Prisma.SummonerUncheckedCreateWithoutParticipantsInput>
+}
+
+export type SummonerUpsertWithoutParticipantsInput = {
+  update: Prisma.XOR<Prisma.SummonerUpdateWithoutParticipantsInput, Prisma.SummonerUncheckedUpdateWithoutParticipantsInput>
+  create: Prisma.XOR<Prisma.SummonerCreateWithoutParticipantsInput, Prisma.SummonerUncheckedCreateWithoutParticipantsInput>
+  where?: Prisma.SummonerWhereInput
+}
+
+export type SummonerUpdateToOneWithWhereWithoutParticipantsInput = {
+  where?: Prisma.SummonerWhereInput
+  data: Prisma.XOR<Prisma.SummonerUpdateWithoutParticipantsInput, Prisma.SummonerUncheckedUpdateWithoutParticipantsInput>
+}
+
+export type SummonerUpdateWithoutParticipantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  gameName?: Prisma.StringFieldUpdateOperationsInput | string
+  tagLine?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  revisionDate?: Prisma.StringFieldUpdateOperationsInput | string
+  profileIconId?: Prisma.IntFieldUpdateOperationsInput | number
+  summonerLeagues?: Prisma.SummonerLeagueUpdateManyWithoutSummonerNestedInput
+}
+
+export type SummonerUncheckedUpdateWithoutParticipantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  gameName?: Prisma.StringFieldUpdateOperationsInput | string
+  tagLine?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  revisionDate?: Prisma.StringFieldUpdateOperationsInput | string
+  profileIconId?: Prisma.IntFieldUpdateOperationsInput | number
+  summonerLeagues?: Prisma.SummonerLeagueUncheckedUpdateManyWithoutSummonerNestedInput
 }
 
 
@@ -488,10 +555,12 @@ export type SummonerUncheckedUpdateWithoutSummonerLeaguesInput = {
 
 export type SummonerCountOutputType = {
   summonerLeagues: number
+  participants: number
 }
 
 export type SummonerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   summonerLeagues?: boolean | SummonerCountOutputTypeCountSummonerLeaguesArgs
+  participants?: boolean | SummonerCountOutputTypeCountParticipantsArgs
 }
 
 /**
@@ -511,6 +580,13 @@ export type SummonerCountOutputTypeCountSummonerLeaguesArgs<ExtArgs extends runt
   where?: Prisma.SummonerLeagueWhereInput
 }
 
+/**
+ * SummonerCountOutputType without action
+ */
+export type SummonerCountOutputTypeCountParticipantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ParticipantWhereInput
+}
+
 
 export type SummonerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -520,6 +596,7 @@ export type SummonerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   revisionDate?: boolean
   profileIconId?: boolean
   summonerLeagues?: boolean | Prisma.Summoner$summonerLeaguesArgs<ExtArgs>
+  participants?: boolean | Prisma.Summoner$participantsArgs<ExtArgs>
   _count?: boolean | Prisma.SummonerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["summoner"]>
 
@@ -553,6 +630,7 @@ export type SummonerSelectScalar = {
 export type SummonerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "gameName" | "tagLine" | "level" | "revisionDate" | "profileIconId", ExtArgs["result"]["summoner"]>
 export type SummonerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   summonerLeagues?: boolean | Prisma.Summoner$summonerLeaguesArgs<ExtArgs>
+  participants?: boolean | Prisma.Summoner$participantsArgs<ExtArgs>
   _count?: boolean | Prisma.SummonerCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SummonerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -562,13 +640,14 @@ export type $SummonerPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Summoner"
   objects: {
     summonerLeagues: Prisma.$SummonerLeaguePayload<ExtArgs>[]
+    participants: Prisma.$ParticipantPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     gameName: string
     tagLine: string
     level: number
-    revisionDate: bigint
+    revisionDate: string
     profileIconId: number
   }, ExtArgs["result"]["summoner"]>
   composites: {}
@@ -965,6 +1044,7 @@ readonly fields: SummonerFieldRefs;
 export interface Prisma__SummonerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   summonerLeagues<T extends Prisma.Summoner$summonerLeaguesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Summoner$summonerLeaguesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SummonerLeaguePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  participants<T extends Prisma.Summoner$participantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Summoner$participantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -998,7 +1078,7 @@ export interface SummonerFieldRefs {
   readonly gameName: Prisma.FieldRef<"Summoner", 'String'>
   readonly tagLine: Prisma.FieldRef<"Summoner", 'String'>
   readonly level: Prisma.FieldRef<"Summoner", 'Int'>
-  readonly revisionDate: Prisma.FieldRef<"Summoner", 'BigInt'>
+  readonly revisionDate: Prisma.FieldRef<"Summoner", 'String'>
   readonly profileIconId: Prisma.FieldRef<"Summoner", 'Int'>
 }
     
@@ -1414,6 +1494,30 @@ export type Summoner$summonerLeaguesArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.SummonerLeagueScalarFieldEnum | Prisma.SummonerLeagueScalarFieldEnum[]
+}
+
+/**
+ * Summoner.participants
+ */
+export type Summoner$participantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Participant
+   */
+  select?: Prisma.ParticipantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Participant
+   */
+  omit?: Prisma.ParticipantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ParticipantInclude<ExtArgs> | null
+  where?: Prisma.ParticipantWhereInput
+  orderBy?: Prisma.ParticipantOrderByWithRelationInput | Prisma.ParticipantOrderByWithRelationInput[]
+  cursor?: Prisma.ParticipantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ParticipantScalarFieldEnum | Prisma.ParticipantScalarFieldEnum[]
 }
 
 /**

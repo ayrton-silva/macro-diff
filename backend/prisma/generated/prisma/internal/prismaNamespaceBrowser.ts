@@ -52,7 +52,9 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Summoner: 'Summoner',
-  SummonerLeague: 'SummonerLeague'
+  SummonerLeague: 'SummonerLeague',
+  Match: 'Match',
+  Participant: 'Participant'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -99,6 +101,38 @@ export const SummonerLeagueScalarFieldEnum = {
 } as const
 
 export type SummonerLeagueScalarFieldEnum = (typeof SummonerLeagueScalarFieldEnum)[keyof typeof SummonerLeagueScalarFieldEnum]
+
+
+export const MatchScalarFieldEnum = {
+  matchId: 'matchId',
+  gameDuration: 'gameDuration',
+  gameMode: 'gameMode'
+} as const
+
+export type MatchScalarFieldEnum = (typeof MatchScalarFieldEnum)[keyof typeof MatchScalarFieldEnum]
+
+
+export const ParticipantScalarFieldEnum = {
+  summonerId: 'summonerId',
+  matchId: 'matchId',
+  championName: 'championName',
+  lane: 'lane',
+  summoner1Id: 'summoner1Id',
+  summoner2Id: 'summoner2Id',
+  totalMinionsKilled: 'totalMinionsKilled',
+  totalDamageDealtToChampions: 'totalDamageDealtToChampions',
+  wardsPlaced: 'wardsPlaced',
+  goldEarned: 'goldEarned',
+  item0: 'item0',
+  item1: 'item1',
+  item2: 'item2',
+  item3: 'item3',
+  item4: 'item4',
+  item5: 'item5',
+  item6: 'item6'
+} as const
+
+export type ParticipantScalarFieldEnum = (typeof ParticipantScalarFieldEnum)[keyof typeof ParticipantScalarFieldEnum]
 
 
 export const SortOrder = {

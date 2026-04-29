@@ -11,12 +11,11 @@ export async function createSummonerLeague(request: RiotSummonerLeagueRequest) {
     console.log('league', league)
     try {
       await prisma.summonerLeague.upsert({
-        where: { id: request.puuid },
+        where: { id: league.leagueId },
         update: {
           queueType: league.queueType,
           tier: league.tier,
           rank: league.rank,
-          summonerId: request.puuid,
           leaguePoints: league.leaguePoints,
           wins: league.wins,
           losses: league.losses,

@@ -23,7 +23,7 @@ export async function createSummoner(request: RiotAccountRequest) {
         gameName: account.gameName,
         tagLine: account.tagLine,
         level: summoner.summonerLevel,
-        revisionDate: summoner.revisionDate,
+        revisionDate: summoner.revisionDate.toString(),
         profileIconId: summoner.profileIconId,
       },
       create: {
@@ -31,7 +31,7 @@ export async function createSummoner(request: RiotAccountRequest) {
         tagLine: account.tagLine,
         id: account.puuid,
         level: summoner.summonerLevel,
-        revisionDate: summoner.revisionDate,
+        revisionDate: summoner.revisionDate.toString(),
         profileIconId: summoner.profileIconId,
       },
     })
