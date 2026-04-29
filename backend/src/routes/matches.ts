@@ -1,5 +1,8 @@
 import type { FastifyInstance } from 'fastify'
-import { createMatches, readMatch } from '../repositories/riotMatches.repositories'
+import {
+  createMatches,
+  readMatch,
+} from '../repositories/riotMatches.repositories'
 
 /** Rotas de exemplo para match + timeline (corpo vazio / stub). */
 
@@ -7,13 +10,14 @@ import { createMatches, readMatch } from '../repositories/riotMatches.repositori
 
 export async function matchesRoutes(app: FastifyInstance) {
   app.get('/matches/:puuid', async (request) => {
-    const  { puuid } = request.params as { puuid: string }
+    const { puuid } = request.params as { puuid: string }
     const { numberOfMatches } = request.query as { numberOfMatches: number }
 
     const response = await createMatches({
       puuid: puuid,
-      numberOfMatches: numberOfMatches
+      numberOfMatches: numberOfMatches,
     })
+
     return response
   })
 
@@ -21,6 +25,7 @@ export async function matchesRoutes(app: FastifyInstance) {
     const { matchId } = request.params as { matchId: string }
 
     const response = await readMatch(matchId)
+
     return response
   })
 }
