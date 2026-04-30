@@ -36,6 +36,7 @@ export async function createSummoner(request: RiotAccountRequest) {
   } catch (e) {
     console.log(e)
   }
+  return { "Summoner created!": { "summoner": account.gameName } }
 }
 
 export async function readAllSummoners() {
@@ -61,6 +62,40 @@ export async function readSummoner(id: string) {
     const summoner = await prisma.summoner.findUnique({ where: { id: id } })
 
     return summoner
+  } catch (e) {
+    if (e instanceof Prisma.PrismaClientKnownRequestError) {
+      if (e.code === 'P2002') {
+        console.log(
+          'There is a unique constraint violation, a new summoner cannot be created with this puuid',
+        )
+      }
+    } else {
+      throw e
+    }
+  }
+}
+
+export async function searchSummoner(request: RiotAccountRequest) {
+  try {
+    const summoner = await prisma.summoner.findMany({
+      where: {
+        gameName: {
+          contains: request.gameName,
+          mode: "insensitive",
+        },
+      }
+    })
+
+    const summonerStartMatch = await prisma.summoner.findMany({
+      where: {
+        gameName: {
+          startsWith: request.gameName.slice(0, 3),
+          mode: "insensitive",
+        },
+      }
+    })
+
+    return { "directSearch": summoner, "startWithSearch": summonerStartMatch }
   } catch (e) {
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
       if (e.code === 'P2002') {

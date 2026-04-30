@@ -19,21 +19,25 @@ export async function getAccount({
   tagLine,
 }: RiotAccountRequest): Promise<RiotAccountResponse> {
   const url = `https://${region}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(gameName)}/${encodeURIComponent(tagLine)}`
+    const response = await fetch(url, {
+      headers: {
+        'X-Riot-Token': RIOT_API_KEY || '',
+      },
+    })
+  const data = await response.json()
 
-  const response = await fetch(url, {
-    headers: {
-      'X-Riot-Token': RIOT_API_KEY || '',
-    },
-  })
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error("Player not found!")
+    }
 
-  const data = (await response.json()) as RiotAccountResponse
-
-  if (!data.puuid) {
-    throw new Error('Invalid Riot API response')
+    throw new Error(`Riot API error: ${response.status}`)
   }
 
-  return data
+  return data as RiotAccountResponse
 }
+
+
 
 export async function getSummoner({
   puuid,
