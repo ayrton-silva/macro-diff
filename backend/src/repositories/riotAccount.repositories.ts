@@ -5,6 +5,9 @@ import { getAccount, getSummoner } from '../services/riotService'
 import { createSummonerLeague } from './riotSummonerLeague.repositories'
 
 export async function createSummoner(request: RiotAccountRequest) {
+  if(!request.gameName || !request.tagLine){
+    return "Missing gameName or tagLine!"
+  }
   const account = await getAccount(request)
   const summoner = await getSummoner({
     puuid: account.puuid,
