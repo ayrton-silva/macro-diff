@@ -20,7 +20,7 @@ export async function createMatches(request: RiotMatchesRequest) {
         data: {
           matchId: match,
           gameDuration: matchData.info.gameDuration,
-          gameEndTimestamp: matchData.info.gameEndTimestamp,
+          gameEndTimestamp: matchData.info.gameEndTimestamp.toString(),
           gameMode: matchData.info.gameMode,
           gameType: matchData.info.gameType
         },

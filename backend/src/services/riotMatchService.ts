@@ -49,6 +49,5 @@ export async function getMatchDetails({
   if (!data) {
     throw new Error('Invalid Riot API response')
   }
-  console.log(data)
   return data
 }
