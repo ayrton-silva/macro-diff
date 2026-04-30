@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/summoners')({
@@ -5,5 +6,13 @@ export const Route = createFileRoute('/summoners')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/summoners"!</div>
+  return (
+    <div>
+      <div>Hello "/summoners"!</div>
+      <Avatar>
+        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarFallback>CN</AvatarFallback>
+      </Avatar>
+    </div>
+  )
 }

@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SummonersRouteImport } from './routes/summoners'
+import { Route as MatchesRouteImport } from './routes/matches'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SummonersRoute = SummonersRouteImport.update({
   id: '/summoners',
   path: '/summoners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MatchesRoute = MatchesRouteImport.update({
+  id: '/matches',
+  path: '/matches',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -32,30 +38,34 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/matches': typeof MatchesRoute
   '/summoners': typeof SummonersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/matches': typeof MatchesRoute
   '/summoners': typeof SummonersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/matches': typeof MatchesRoute
   '/summoners': typeof SummonersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/summoners'
+  fullPaths: '/' | '/about' | '/matches' | '/summoners'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/summoners'
-  id: '__root__' | '/' | '/about' | '/summoners'
+  to: '/' | '/about' | '/matches' | '/summoners'
+  id: '__root__' | '/' | '/about' | '/matches' | '/summoners'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  MatchesRoute: typeof MatchesRoute
   SummonersRoute: typeof SummonersRoute
 }
 
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/summoners'
       fullPath: '/summoners'
       preLoaderRoute: typeof SummonersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/matches': {
+      id: '/matches'
+      path: '/matches'
+      fullPath: '/matches'
+      preLoaderRoute: typeof MatchesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  MatchesRoute: MatchesRoute,
   SummonersRoute: SummonersRoute,
 }
 export const routeTree = rootRouteImport
