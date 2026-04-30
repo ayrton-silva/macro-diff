@@ -13,7 +13,9 @@ export type RiotMatchDataRequest = {
 export type RiotMatchDataResponse = {
     info:{
         gameDuration: number,
+        gameEndTimestamp: string,
         gameMode: string,
+        gameType: string,
         participants: Participants[],
     }
 }

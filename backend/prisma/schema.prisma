@@ -37,7 +37,9 @@ model SummonerLeague {
 model Match {
     matchId      String        @id
     gameDuration Int
+    gameEndTimestamp String
     gameMode     String
+    gameType     String
     participants Participant[]
 }
 

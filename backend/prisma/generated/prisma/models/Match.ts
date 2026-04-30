@@ -37,19 +37,25 @@ export type MatchSumAggregateOutputType = {
 export type MatchMinAggregateOutputType = {
   matchId: string | null
   gameDuration: number | null
+  gameEndTimestamp: string | null
   gameMode: string | null
+  gameType: string | null
 }
 
 export type MatchMaxAggregateOutputType = {
   matchId: string | null
   gameDuration: number | null
+  gameEndTimestamp: string | null
   gameMode: string | null
+  gameType: string | null
 }
 
 export type MatchCountAggregateOutputType = {
   matchId: number
   gameDuration: number
+  gameEndTimestamp: number
   gameMode: number
+  gameType: number
   _all: number
 }
 
@@ -65,19 +71,25 @@ export type MatchSumAggregateInputType = {
 export type MatchMinAggregateInputType = {
   matchId?: true
   gameDuration?: true
+  gameEndTimestamp?: true
   gameMode?: true
+  gameType?: true
 }
 
 export type MatchMaxAggregateInputType = {
   matchId?: true
   gameDuration?: true
+  gameEndTimestamp?: true
   gameMode?: true
+  gameType?: true
 }
 
 export type MatchCountAggregateInputType = {
   matchId?: true
   gameDuration?: true
+  gameEndTimestamp?: true
   gameMode?: true
+  gameType?: true
   _all?: true
 }
 
@@ -170,7 +182,9 @@ export type MatchGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type MatchGroupByOutputType = {
   matchId: string
   gameDuration: number
+  gameEndTimestamp: string
   gameMode: string
+  gameType: string
   _count: MatchCountAggregateOutputType | null
   _avg: MatchAvgAggregateOutputType | null
   _sum: MatchSumAggregateOutputType | null
@@ -199,14 +213,18 @@ export type MatchWhereInput = {
   NOT?: Prisma.MatchWhereInput | Prisma.MatchWhereInput[]
   matchId?: Prisma.StringFilter<"Match"> | string
   gameDuration?: Prisma.IntFilter<"Match"> | number
+  gameEndTimestamp?: Prisma.StringFilter<"Match"> | string
   gameMode?: Prisma.StringFilter<"Match"> | string
+  gameType?: Prisma.StringFilter<"Match"> | string
   participants?: Prisma.ParticipantListRelationFilter
 }
 
 export type MatchOrderByWithRelationInput = {
   matchId?: Prisma.SortOrder
   gameDuration?: Prisma.SortOrder
+  gameEndTimestamp?: Prisma.SortOrder
   gameMode?: Prisma.SortOrder
+  gameType?: Prisma.SortOrder
   participants?: Prisma.ParticipantOrderByRelationAggregateInput
 }
 
@@ -216,14 +234,18 @@ export type MatchWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.MatchWhereInput[]
   NOT?: Prisma.MatchWhereInput | Prisma.MatchWhereInput[]
   gameDuration?: Prisma.IntFilter<"Match"> | number
+  gameEndTimestamp?: Prisma.StringFilter<"Match"> | string
   gameMode?: Prisma.StringFilter<"Match"> | string
+  gameType?: Prisma.StringFilter<"Match"> | string
   participants?: Prisma.ParticipantListRelationFilter
 }, "matchId">
 
 export type MatchOrderByWithAggregationInput = {
   matchId?: Prisma.SortOrder
   gameDuration?: Prisma.SortOrder
+  gameEndTimestamp?: Prisma.SortOrder
   gameMode?: Prisma.SortOrder
+  gameType?: Prisma.SortOrder
   _count?: Prisma.MatchCountOrderByAggregateInput
   _avg?: Prisma.MatchAvgOrderByAggregateInput
   _max?: Prisma.MatchMaxOrderByAggregateInput
@@ -237,59 +259,77 @@ export type MatchScalarWhereWithAggregatesInput = {
   NOT?: Prisma.MatchScalarWhereWithAggregatesInput | Prisma.MatchScalarWhereWithAggregatesInput[]
   matchId?: Prisma.StringWithAggregatesFilter<"Match"> | string
   gameDuration?: Prisma.IntWithAggregatesFilter<"Match"> | number
+  gameEndTimestamp?: Prisma.StringWithAggregatesFilter<"Match"> | string
   gameMode?: Prisma.StringWithAggregatesFilter<"Match"> | string
+  gameType?: Prisma.StringWithAggregatesFilter<"Match"> | string
 }
 
 export type MatchCreateInput = {
   matchId: string
   gameDuration: number
+  gameEndTimestamp: string
   gameMode: string
+  gameType: string
   participants?: Prisma.ParticipantCreateNestedManyWithoutMatchInput
 }
 
 export type MatchUncheckedCreateInput = {
   matchId: string
   gameDuration: number
+  gameEndTimestamp: string
   gameMode: string
+  gameType: string
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutMatchInput
 }
 
 export type MatchUpdateInput = {
   matchId?: Prisma.StringFieldUpdateOperationsInput | string
   gameDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  gameEndTimestamp?: Prisma.StringFieldUpdateOperationsInput | string
   gameMode?: Prisma.StringFieldUpdateOperationsInput | string
+  gameType?: Prisma.StringFieldUpdateOperationsInput | string
   participants?: Prisma.ParticipantUpdateManyWithoutMatchNestedInput
 }
 
 export type MatchUncheckedUpdateInput = {
   matchId?: Prisma.StringFieldUpdateOperationsInput | string
   gameDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  gameEndTimestamp?: Prisma.StringFieldUpdateOperationsInput | string
   gameMode?: Prisma.StringFieldUpdateOperationsInput | string
+  gameType?: Prisma.StringFieldUpdateOperationsInput | string
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutMatchNestedInput
 }
 
 export type MatchCreateManyInput = {
   matchId: string
   gameDuration: number
+  gameEndTimestamp: string
   gameMode: string
+  gameType: string
 }
 
 export type MatchUpdateManyMutationInput = {
   matchId?: Prisma.StringFieldUpdateOperationsInput | string
   gameDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  gameEndTimestamp?: Prisma.StringFieldUpdateOperationsInput | string
   gameMode?: Prisma.StringFieldUpdateOperationsInput | string
+  gameType?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MatchUncheckedUpdateManyInput = {
   matchId?: Prisma.StringFieldUpdateOperationsInput | string
   gameDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  gameEndTimestamp?: Prisma.StringFieldUpdateOperationsInput | string
   gameMode?: Prisma.StringFieldUpdateOperationsInput | string
+  gameType?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MatchCountOrderByAggregateInput = {
   matchId?: Prisma.SortOrder
   gameDuration?: Prisma.SortOrder
+  gameEndTimestamp?: Prisma.SortOrder
   gameMode?: Prisma.SortOrder
+  gameType?: Prisma.SortOrder
 }
 
 export type MatchAvgOrderByAggregateInput = {
@@ -299,13 +339,17 @@ export type MatchAvgOrderByAggregateInput = {
 export type MatchMaxOrderByAggregateInput = {
   matchId?: Prisma.SortOrder
   gameDuration?: Prisma.SortOrder
+  gameEndTimestamp?: Prisma.SortOrder
   gameMode?: Prisma.SortOrder
+  gameType?: Prisma.SortOrder
 }
 
 export type MatchMinOrderByAggregateInput = {
   matchId?: Prisma.SortOrder
   gameDuration?: Prisma.SortOrder
+  gameEndTimestamp?: Prisma.SortOrder
   gameMode?: Prisma.SortOrder
+  gameType?: Prisma.SortOrder
 }
 
 export type MatchSumOrderByAggregateInput = {
@@ -334,13 +378,17 @@ export type MatchUpdateOneRequiredWithoutParticipantsNestedInput = {
 export type MatchCreateWithoutParticipantsInput = {
   matchId: string
   gameDuration: number
+  gameEndTimestamp: string
   gameMode: string
+  gameType: string
 }
 
 export type MatchUncheckedCreateWithoutParticipantsInput = {
   matchId: string
   gameDuration: number
+  gameEndTimestamp: string
   gameMode: string
+  gameType: string
 }
 
 export type MatchCreateOrConnectWithoutParticipantsInput = {
@@ -362,13 +410,17 @@ export type MatchUpdateToOneWithWhereWithoutParticipantsInput = {
 export type MatchUpdateWithoutParticipantsInput = {
   matchId?: Prisma.StringFieldUpdateOperationsInput | string
   gameDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  gameEndTimestamp?: Prisma.StringFieldUpdateOperationsInput | string
   gameMode?: Prisma.StringFieldUpdateOperationsInput | string
+  gameType?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MatchUncheckedUpdateWithoutParticipantsInput = {
   matchId?: Prisma.StringFieldUpdateOperationsInput | string
   gameDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  gameEndTimestamp?: Prisma.StringFieldUpdateOperationsInput | string
   gameMode?: Prisma.StringFieldUpdateOperationsInput | string
+  gameType?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -405,7 +457,9 @@ export type MatchCountOutputTypeCountParticipantsArgs<ExtArgs extends runtime.Ty
 export type MatchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   matchId?: boolean
   gameDuration?: boolean
+  gameEndTimestamp?: boolean
   gameMode?: boolean
+  gameType?: boolean
   participants?: boolean | Prisma.Match$participantsArgs<ExtArgs>
   _count?: boolean | Prisma.MatchCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["match"]>
@@ -413,22 +467,28 @@ export type MatchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type MatchSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   matchId?: boolean
   gameDuration?: boolean
+  gameEndTimestamp?: boolean
   gameMode?: boolean
+  gameType?: boolean
 }, ExtArgs["result"]["match"]>
 
 export type MatchSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   matchId?: boolean
   gameDuration?: boolean
+  gameEndTimestamp?: boolean
   gameMode?: boolean
+  gameType?: boolean
 }, ExtArgs["result"]["match"]>
 
 export type MatchSelectScalar = {
   matchId?: boolean
   gameDuration?: boolean
+  gameEndTimestamp?: boolean
   gameMode?: boolean
+  gameType?: boolean
 }
 
-export type MatchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"matchId" | "gameDuration" | "gameMode", ExtArgs["result"]["match"]>
+export type MatchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"matchId" | "gameDuration" | "gameEndTimestamp" | "gameMode" | "gameType", ExtArgs["result"]["match"]>
 export type MatchInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   participants?: boolean | Prisma.Match$participantsArgs<ExtArgs>
   _count?: boolean | Prisma.MatchCountOutputTypeDefaultArgs<ExtArgs>
@@ -444,7 +504,9 @@ export type $MatchPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     matchId: string
     gameDuration: number
+    gameEndTimestamp: string
     gameMode: string
+    gameType: string
   }, ExtArgs["result"]["match"]>
   composites: {}
 }
@@ -871,7 +933,9 @@ export interface Prisma__MatchClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface MatchFieldRefs {
   readonly matchId: Prisma.FieldRef<"Match", 'String'>
   readonly gameDuration: Prisma.FieldRef<"Match", 'Int'>
+  readonly gameEndTimestamp: Prisma.FieldRef<"Match", 'String'>
   readonly gameMode: Prisma.FieldRef<"Match", 'String'>
+  readonly gameType: Prisma.FieldRef<"Match", 'String'>
 }
     
 

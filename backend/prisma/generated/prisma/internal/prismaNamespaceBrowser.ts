@@ -106,7 +106,9 @@ export type SummonerLeagueScalarFieldEnum = (typeof SummonerLeagueScalarFieldEnu
 export const MatchScalarFieldEnum = {
   matchId: 'matchId',
   gameDuration: 'gameDuration',
-  gameMode: 'gameMode'
+  gameEndTimestamp: 'gameEndTimestamp',
+  gameMode: 'gameMode',
+  gameType: 'gameType'
 } as const
 
 export type MatchScalarFieldEnum = (typeof MatchScalarFieldEnum)[keyof typeof MatchScalarFieldEnum]
