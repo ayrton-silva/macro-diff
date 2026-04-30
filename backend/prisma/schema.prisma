@@ -49,6 +49,7 @@ model Participant {
     summoner                    Summoner @relation(fields: [summonerId], references: [id])
     match                       Match    @relation(fields: [matchId], references: [matchId])
     championName                String
+    champLevel                  Int
     lane                        String
     teamPosition                String
     summoner1Id                 Int

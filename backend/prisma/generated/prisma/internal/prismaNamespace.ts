@@ -787,6 +787,7 @@ export const ParticipantScalarFieldEnum = {
   summonerId: 'summonerId',
   matchId: 'matchId',
   championName: 'championName',
+  champLevel: 'champLevel',
   lane: 'lane',
   teamPosition: 'teamPosition',
   summoner1Id: 'summoner1Id',

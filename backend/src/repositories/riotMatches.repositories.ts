@@ -43,6 +43,7 @@ export async function createMatches(request: RiotMatchesRequest) {
               summonerId: participant.puuid,
               matchId: match,
               championName: participant.championName,
+              champLevel: participant.champLevel,
               lane: participant.lane,
               teamPosition: participant.teamPosition,
               summoner1Id: participant.summoner1Id,

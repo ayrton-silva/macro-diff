@@ -22,6 +22,7 @@ export type RiotMatchDataResponse = {
 export type Participants = {
     puuid: string,
     championName: string,
+    champLevel: number,
     lane: string,
     teamPosition: string,
     summoner1Id: number,
