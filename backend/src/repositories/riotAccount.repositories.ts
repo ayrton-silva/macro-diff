@@ -83,7 +83,11 @@ export async function searchSummoner(request: RiotAccountRequest) {
           contains: request.gameName,
           mode: "insensitive",
         },
-      }
+      },
+      include:{
+        summonerLeagues: true
+      },
+      take: 10
     })
 
     const summonerStartMatch = await prisma.summoner.findMany({
@@ -92,10 +96,28 @@ export async function searchSummoner(request: RiotAccountRequest) {
           startsWith: request.gameName.slice(0, 3),
           mode: "insensitive",
         },
+      },
+      include:{
+        summonerLeagues: true
+      },
+      take: 10
+    })
+
+    const summonerExactlyMatch = await prisma.summoner.findMany({
+      where: {
+        gameName: {
+          equals: request.gameName
+        },
+        tagLine: {
+          equals: request.tagLine
+        },
+      },
+      include:{
+        summonerLeagues: true
       }
     })
 
-    return { "directSearch": summoner, "startWithSearch": summonerStartMatch }
+    return { "directSearch": summoner, "startWithSearch": summonerStartMatch, "summonerExactlyMatch":summonerExactlyMatch }
   } catch (e) {
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
       if (e.code === 'P2002') {
