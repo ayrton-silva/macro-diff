@@ -8,12 +8,10 @@ export async function createSummonerLeague(request: RiotSummonerLeagueRequest) {
   })
 
   for (const league of summonerLeague) {
-    console.log('league', league)
     try {
       await prisma.summonerLeague.upsert({
         where: { id: league.leagueId },
         update: {
-          queueType: league.queueType,
           tier: league.tier,
           rank: league.rank,
           leaguePoints: league.leaguePoints,
@@ -41,15 +39,6 @@ export async function createSummonerLeague(request: RiotSummonerLeagueRequest) {
       })
     } catch (e) {
       console.log(e)
-      // if (e instanceof Prisma.PrismaClientKnownRequestError) {
-      //   if (e.code === 'P2002') {
-      //     console.log(
-      //       'There is a unique constraint violation, a new summoner cannot be created with this puuid',
-      //     )
-      //   }
-      // } else {
-      //   throw e
-      // }
     }
   }
 }

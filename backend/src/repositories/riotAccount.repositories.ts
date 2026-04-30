@@ -10,12 +10,6 @@ export async function createSummoner(request: RiotAccountRequest) {
     puuid: account.puuid,
   })
 
-  const savedSummonerLeague = await createSummonerLeague({
-    puuid: account.puuid,
-  })
-
-  console.log('saved', savedSummonerLeague)
-
   try {
     await prisma.summoner.upsert({
       where: { id: account.puuid },
@@ -35,17 +29,12 @@ export async function createSummoner(request: RiotAccountRequest) {
         profileIconId: summoner.profileIconId,
       },
     })
+
+    await createSummonerLeague({
+      puuid: account.puuid,
+    })
   } catch (e) {
     console.log(e)
-    // if (e instanceof Prisma.PrismaClientKnownRequestError) {
-    //   if (e.code === 'P2002') {
-    //     console.log(
-    //       'There is a unique constraint violation, a new summoner cannot be created with this puuid',
-    //     )
-    //   }
-    // } else {
-    //   throw e
-    // }
   }
 }
 
