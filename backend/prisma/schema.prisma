@@ -35,12 +35,12 @@ model SummonerLeague {
 }
 
 model Match {
-    matchId      String        @id
-    gameDuration Int
+    matchId          String        @id
+    gameDuration     Int
     gameEndTimestamp String
-    gameMode     String
-    gameType     String
-    participants Participant[]
+    gameMode         String
+    gameType         String
+    participants     Participant[]
 }
 
 model Participant {
@@ -50,6 +50,9 @@ model Participant {
     match                       Match    @relation(fields: [matchId], references: [matchId])
     championName                String
     champLevel                  Int
+    assists                     Int
+    deaths                      Int
+    kills                       Int
     lane                        String
     teamPosition                String
     summoner1Id                 Int
@@ -65,6 +68,17 @@ model Participant {
     item4                       Int
     item5                       Int
     item6                       Int
+    perksStat0                  Int
+    perksStat1                  Int
+    perksStat2                  Int
+    perksPrimaryStyle           Int
+    perksPrimaryStyleSelection0 Int
+    perksPrimaryStyleSelection1 Int
+    perksPrimaryStyleSelection2 Int
+    perksPrimaryStyleSelection3 Int
+    perksSubStyle               Int
+    perksSubStyleSelection0     Int
+    perksSubStyleSelection1     Int
     teamId                      String
     win                         Boolean
 

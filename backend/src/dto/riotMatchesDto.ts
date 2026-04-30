@@ -11,7 +11,7 @@ export type RiotMatchDataRequest = {
     region?: string
 }
 export type RiotMatchDataResponse = {
-    info:{
+    info: {
         gameDuration: number,
         gameEndTimestamp: string,
         gameMode: string,
@@ -23,6 +23,9 @@ export type Participants = {
     puuid: string,
     championName: string,
     champLevel: number,
+    assists: number,
+    deaths: number,
+    kills: number,
     lane: string,
     teamPosition: string,
     summoner1Id: number,
@@ -40,6 +43,31 @@ export type Participants = {
     item4: number,
     item5: number,
     item6: number,
+    perks: {
+        statPerks: {
+            defense: number,
+            flex: number,
+            offense: number,
+        },
+        styles: [
+            {
+                selections: [
+                    { perk: number },
+                    { perk: number },
+                    { perk: number },
+                    { perk: number },
+                ],
+                style: number,
+            },
+            {
+                selections: [
+                    { perk: number },
+                    { perk: number },
+                ]
+                style: number,
+            }
+        ]
+    }
     teamId: string,
     win: boolean
 }
