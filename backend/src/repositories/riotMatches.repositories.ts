@@ -59,6 +59,7 @@ export async function createMatches(request: RiotMatchesRequest) {
               item4: participant.item4,
               item5: participant.item5,
               item6: participant.item6,
+              teamId: participant.teamId.toString(),
               win: participant.win,
             },
           })

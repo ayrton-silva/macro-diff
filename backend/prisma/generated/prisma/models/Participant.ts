@@ -77,6 +77,7 @@ export type ParticipantMinAggregateOutputType = {
   item4: number | null
   item5: number | null
   item6: number | null
+  teamId: string | null
   win: boolean | null
 }
 
@@ -99,6 +100,7 @@ export type ParticipantMaxAggregateOutputType = {
   item4: number | null
   item5: number | null
   item6: number | null
+  teamId: string | null
   win: boolean | null
 }
 
@@ -121,6 +123,7 @@ export type ParticipantCountAggregateOutputType = {
   item4: number
   item5: number
   item6: number
+  teamId: number
   win: number
   _all: number
 }
@@ -177,6 +180,7 @@ export type ParticipantMinAggregateInputType = {
   item4?: true
   item5?: true
   item6?: true
+  teamId?: true
   win?: true
 }
 
@@ -199,6 +203,7 @@ export type ParticipantMaxAggregateInputType = {
   item4?: true
   item5?: true
   item6?: true
+  teamId?: true
   win?: true
 }
 
@@ -221,6 +226,7 @@ export type ParticipantCountAggregateInputType = {
   item4?: true
   item5?: true
   item6?: true
+  teamId?: true
   win?: true
   _all?: true
 }
@@ -330,6 +336,7 @@ export type ParticipantGroupByOutputType = {
   item4: number
   item5: number
   item6: number
+  teamId: string
   win: boolean
   _count: ParticipantCountAggregateOutputType | null
   _avg: ParticipantAvgAggregateOutputType | null
@@ -375,6 +382,7 @@ export type ParticipantWhereInput = {
   item4?: Prisma.IntFilter<"Participant"> | number
   item5?: Prisma.IntFilter<"Participant"> | number
   item6?: Prisma.IntFilter<"Participant"> | number
+  teamId?: Prisma.StringFilter<"Participant"> | string
   win?: Prisma.BoolFilter<"Participant"> | boolean
   summoner?: Prisma.XOR<Prisma.SummonerScalarRelationFilter, Prisma.SummonerWhereInput>
   match?: Prisma.XOR<Prisma.MatchScalarRelationFilter, Prisma.MatchWhereInput>
@@ -399,6 +407,7 @@ export type ParticipantOrderByWithRelationInput = {
   item4?: Prisma.SortOrder
   item5?: Prisma.SortOrder
   item6?: Prisma.SortOrder
+  teamId?: Prisma.SortOrder
   win?: Prisma.SortOrder
   summoner?: Prisma.SummonerOrderByWithRelationInput
   match?: Prisma.MatchOrderByWithRelationInput
@@ -427,6 +436,7 @@ export type ParticipantWhereUniqueInput = Prisma.AtLeast<{
   item4?: Prisma.IntFilter<"Participant"> | number
   item5?: Prisma.IntFilter<"Participant"> | number
   item6?: Prisma.IntFilter<"Participant"> | number
+  teamId?: Prisma.StringFilter<"Participant"> | string
   win?: Prisma.BoolFilter<"Participant"> | boolean
   summoner?: Prisma.XOR<Prisma.SummonerScalarRelationFilter, Prisma.SummonerWhereInput>
   match?: Prisma.XOR<Prisma.MatchScalarRelationFilter, Prisma.MatchWhereInput>
@@ -451,6 +461,7 @@ export type ParticipantOrderByWithAggregationInput = {
   item4?: Prisma.SortOrder
   item5?: Prisma.SortOrder
   item6?: Prisma.SortOrder
+  teamId?: Prisma.SortOrder
   win?: Prisma.SortOrder
   _count?: Prisma.ParticipantCountOrderByAggregateInput
   _avg?: Prisma.ParticipantAvgOrderByAggregateInput
@@ -481,6 +492,7 @@ export type ParticipantScalarWhereWithAggregatesInput = {
   item4?: Prisma.IntWithAggregatesFilter<"Participant"> | number
   item5?: Prisma.IntWithAggregatesFilter<"Participant"> | number
   item6?: Prisma.IntWithAggregatesFilter<"Participant"> | number
+  teamId?: Prisma.StringWithAggregatesFilter<"Participant"> | string
   win?: Prisma.BoolWithAggregatesFilter<"Participant"> | boolean
 }
 
@@ -501,6 +513,7 @@ export type ParticipantCreateInput = {
   item4: number
   item5: number
   item6: number
+  teamId: string
   win: boolean
   summoner: Prisma.SummonerCreateNestedOneWithoutParticipantsInput
   match: Prisma.MatchCreateNestedOneWithoutParticipantsInput
@@ -525,6 +538,7 @@ export type ParticipantUncheckedCreateInput = {
   item4: number
   item5: number
   item6: number
+  teamId: string
   win: boolean
 }
 
@@ -545,6 +559,7 @@ export type ParticipantUpdateInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  teamId?: Prisma.StringFieldUpdateOperationsInput | string
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
   summoner?: Prisma.SummonerUpdateOneRequiredWithoutParticipantsNestedInput
   match?: Prisma.MatchUpdateOneRequiredWithoutParticipantsNestedInput
@@ -569,6 +584,7 @@ export type ParticipantUncheckedUpdateInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  teamId?: Prisma.StringFieldUpdateOperationsInput | string
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -591,6 +607,7 @@ export type ParticipantCreateManyInput = {
   item4: number
   item5: number
   item6: number
+  teamId: string
   win: boolean
 }
 
@@ -611,6 +628,7 @@ export type ParticipantUpdateManyMutationInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  teamId?: Prisma.StringFieldUpdateOperationsInput | string
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -633,6 +651,7 @@ export type ParticipantUncheckedUpdateManyInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  teamId?: Prisma.StringFieldUpdateOperationsInput | string
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -670,6 +689,7 @@ export type ParticipantCountOrderByAggregateInput = {
   item4?: Prisma.SortOrder
   item5?: Prisma.SortOrder
   item6?: Prisma.SortOrder
+  teamId?: Prisma.SortOrder
   win?: Prisma.SortOrder
 }
 
@@ -708,6 +728,7 @@ export type ParticipantMaxOrderByAggregateInput = {
   item4?: Prisma.SortOrder
   item5?: Prisma.SortOrder
   item6?: Prisma.SortOrder
+  teamId?: Prisma.SortOrder
   win?: Prisma.SortOrder
 }
 
@@ -730,6 +751,7 @@ export type ParticipantMinOrderByAggregateInput = {
   item4?: Prisma.SortOrder
   item5?: Prisma.SortOrder
   item6?: Prisma.SortOrder
+  teamId?: Prisma.SortOrder
   win?: Prisma.SortOrder
 }
 
@@ -850,6 +872,7 @@ export type ParticipantCreateWithoutSummonerInput = {
   item4: number
   item5: number
   item6: number
+  teamId: string
   win: boolean
   match: Prisma.MatchCreateNestedOneWithoutParticipantsInput
 }
@@ -872,6 +895,7 @@ export type ParticipantUncheckedCreateWithoutSummonerInput = {
   item4: number
   item5: number
   item6: number
+  teamId: string
   win: boolean
 }
 
@@ -923,6 +947,7 @@ export type ParticipantScalarWhereInput = {
   item4?: Prisma.IntFilter<"Participant"> | number
   item5?: Prisma.IntFilter<"Participant"> | number
   item6?: Prisma.IntFilter<"Participant"> | number
+  teamId?: Prisma.StringFilter<"Participant"> | string
   win?: Prisma.BoolFilter<"Participant"> | boolean
 }
 
@@ -943,6 +968,7 @@ export type ParticipantCreateWithoutMatchInput = {
   item4: number
   item5: number
   item6: number
+  teamId: string
   win: boolean
   summoner: Prisma.SummonerCreateNestedOneWithoutParticipantsInput
 }
@@ -965,6 +991,7 @@ export type ParticipantUncheckedCreateWithoutMatchInput = {
   item4: number
   item5: number
   item6: number
+  teamId: string
   win: boolean
 }
 
@@ -1012,6 +1039,7 @@ export type ParticipantCreateManySummonerInput = {
   item4: number
   item5: number
   item6: number
+  teamId: string
   win: boolean
 }
 
@@ -1032,6 +1060,7 @@ export type ParticipantUpdateWithoutSummonerInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  teamId?: Prisma.StringFieldUpdateOperationsInput | string
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
   match?: Prisma.MatchUpdateOneRequiredWithoutParticipantsNestedInput
 }
@@ -1054,6 +1083,7 @@ export type ParticipantUncheckedUpdateWithoutSummonerInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  teamId?: Prisma.StringFieldUpdateOperationsInput | string
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -1075,6 +1105,7 @@ export type ParticipantUncheckedUpdateManyWithoutSummonerInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  teamId?: Prisma.StringFieldUpdateOperationsInput | string
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -1096,6 +1127,7 @@ export type ParticipantCreateManyMatchInput = {
   item4: number
   item5: number
   item6: number
+  teamId: string
   win: boolean
 }
 
@@ -1116,6 +1148,7 @@ export type ParticipantUpdateWithoutMatchInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  teamId?: Prisma.StringFieldUpdateOperationsInput | string
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
   summoner?: Prisma.SummonerUpdateOneRequiredWithoutParticipantsNestedInput
 }
@@ -1138,6 +1171,7 @@ export type ParticipantUncheckedUpdateWithoutMatchInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  teamId?: Prisma.StringFieldUpdateOperationsInput | string
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -1159,6 +1193,7 @@ export type ParticipantUncheckedUpdateManyWithoutMatchInput = {
   item4?: Prisma.IntFieldUpdateOperationsInput | number
   item5?: Prisma.IntFieldUpdateOperationsInput | number
   item6?: Prisma.IntFieldUpdateOperationsInput | number
+  teamId?: Prisma.StringFieldUpdateOperationsInput | string
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -1183,6 +1218,7 @@ export type ParticipantSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   item4?: boolean
   item5?: boolean
   item6?: boolean
+  teamId?: boolean
   win?: boolean
   summoner?: boolean | Prisma.SummonerDefaultArgs<ExtArgs>
   match?: boolean | Prisma.MatchDefaultArgs<ExtArgs>
@@ -1207,6 +1243,7 @@ export type ParticipantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   item4?: boolean
   item5?: boolean
   item6?: boolean
+  teamId?: boolean
   win?: boolean
   summoner?: boolean | Prisma.SummonerDefaultArgs<ExtArgs>
   match?: boolean | Prisma.MatchDefaultArgs<ExtArgs>
@@ -1231,6 +1268,7 @@ export type ParticipantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   item4?: boolean
   item5?: boolean
   item6?: boolean
+  teamId?: boolean
   win?: boolean
   summoner?: boolean | Prisma.SummonerDefaultArgs<ExtArgs>
   match?: boolean | Prisma.MatchDefaultArgs<ExtArgs>
@@ -1255,10 +1293,11 @@ export type ParticipantSelectScalar = {
   item4?: boolean
   item5?: boolean
   item6?: boolean
+  teamId?: boolean
   win?: boolean
 }
 
-export type ParticipantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"summonerId" | "matchId" | "championName" | "lane" | "teamPosition" | "summoner1Id" | "summoner2Id" | "totalMinionsKilled" | "totalDamageDealtToChampions" | "wardsPlaced" | "goldEarned" | "item0" | "item1" | "item2" | "item3" | "item4" | "item5" | "item6" | "win", ExtArgs["result"]["participant"]>
+export type ParticipantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"summonerId" | "matchId" | "championName" | "lane" | "teamPosition" | "summoner1Id" | "summoner2Id" | "totalMinionsKilled" | "totalDamageDealtToChampions" | "wardsPlaced" | "goldEarned" | "item0" | "item1" | "item2" | "item3" | "item4" | "item5" | "item6" | "teamId" | "win", ExtArgs["result"]["participant"]>
 export type ParticipantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   summoner?: boolean | Prisma.SummonerDefaultArgs<ExtArgs>
   match?: boolean | Prisma.MatchDefaultArgs<ExtArgs>
@@ -1297,6 +1336,7 @@ export type $ParticipantPayload<ExtArgs extends runtime.Types.Extensions.Interna
     item4: number
     item5: number
     item6: number
+    teamId: string
     win: boolean
   }, ExtArgs["result"]["participant"]>
   composites: {}
@@ -1741,6 +1781,7 @@ export interface ParticipantFieldRefs {
   readonly item4: Prisma.FieldRef<"Participant", 'Int'>
   readonly item5: Prisma.FieldRef<"Participant", 'Int'>
   readonly item6: Prisma.FieldRef<"Participant", 'Int'>
+  readonly teamId: Prisma.FieldRef<"Participant", 'String'>
   readonly win: Prisma.FieldRef<"Participant", 'Boolean'>
 }
     

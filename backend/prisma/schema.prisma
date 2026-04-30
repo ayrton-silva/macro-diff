@@ -64,6 +64,7 @@ model Participant {
     item4                       Int
     item5                       Int
     item6                       Int
+    teamId                      String
     win                         Boolean
 
     @@id(name: "participantId", [summonerId, matchId])

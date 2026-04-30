@@ -802,6 +802,7 @@ export const ParticipantScalarFieldEnum = {
   item4: 'item4',
   item5: 'item5',
   item6: 'item6',
+  teamId: 'teamId',
   win: 'win'
 } as const
 

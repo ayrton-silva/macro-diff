@@ -30,6 +30,8 @@ export type Participants = {
     totalDamageDealtToChampions: number,
     wardsPlaced: number,
     goldEarned: number,
+    riotIdGameName: string,
+    riotIdTagline: string,
     item0: number,
     item1: number,
     item2: number,
@@ -37,7 +39,6 @@ export type Participants = {
     item4: number,
     item5: number,
     item6: number,
-    riotIdGameName: string,
-    riotIdTagline: string,
+    teamId: string,
     win: boolean
 }
