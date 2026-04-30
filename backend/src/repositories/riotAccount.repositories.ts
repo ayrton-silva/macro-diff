@@ -36,7 +36,7 @@ export async function createSummoner(request: RiotAccountRequest) {
   } catch (e) {
     console.log(e)
   }
-  return { "Summoner created!": { "summoner": account.gameName } }
+  return summoner
 }
 
 export async function readAllSummoners() {
