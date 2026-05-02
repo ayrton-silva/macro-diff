@@ -1,7 +1,7 @@
 import { Prisma } from '../../prisma/generated/prisma/client'
 import { prisma } from '../app'
 import type { RiotAccountRequest } from '../dto/riotAccountDto'
-import { getAccount, getSummoner } from '../services/riotService'
+import { getAccount, getSummoner, getSummonerNameByPuuid } from '../services/riotService'
 import { createSummonerLeague } from './riotSummonerLeague.repositories'
 
 export async function createSummoner(request: RiotAccountRequest) {
@@ -36,6 +36,44 @@ export async function createSummoner(request: RiotAccountRequest) {
 
     await createSummonerLeague({
       puuid: account.puuid,
+    })
+  } catch (e) {
+    console.log(e)
+  }
+  return summoner
+}
+export async function createSummonerByPuuid(puuid: string, region: string) {
+
+  const summoner = await getSummoner({
+    puuid: puuid,
+  })
+  const summonerData = await getSummonerNameByPuuid({
+    puuid: puuid,
+  })
+
+  try {
+    await prisma.summoner.upsert({
+      where: { id: puuid },
+      update: {
+        gameName: summonerData.gameName,
+        tagLine: summonerData.tagLine,
+        level: summoner.summonerLevel,
+        revisionDate: summoner.revisionDate.toString(),
+        profileIconId: summoner.profileIconId,
+      },
+      create: {
+        gameName: summonerData.gameName,
+        tagLine: summonerData.tagLine,
+        id: summonerData.puuid,
+        level: summoner.summonerLevel,
+        revisionDate: summoner.revisionDate.toString(),
+        region: region,
+        profileIconId: summoner.profileIconId,
+      },
+    })
+
+    await createSummonerLeague({
+      puuid: puuid,
     })
   } catch (e) {
     console.log(e)

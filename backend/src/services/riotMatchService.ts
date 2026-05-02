@@ -10,6 +10,8 @@ import type {
 
 import { validateRegion } from './riotService';
 
+//TO DO: check on getMatchDetails if the match has been completed, if not ignore match.
+
 const RIOT_API_KEY = process.env.RIOT_API_KEY
 
 export async function getMatches({
