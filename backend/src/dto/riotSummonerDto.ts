@@ -8,6 +8,7 @@ export type RiotSummonerResponse = {
   profileIconId: number
   revisionDate: string
   summonerLevel: number
+  region: string
 }
 
 export type RiotSummonerBadRepsonse = {

@@ -79,7 +79,8 @@ export const SummonerScalarFieldEnum = {
   tagLine: 'tagLine',
   level: 'level',
   revisionDate: 'revisionDate',
-  profileIconId: 'profileIconId'
+  profileIconId: 'profileIconId',
+  region: 'region'
 } as const
 
 export type SummonerScalarFieldEnum = (typeof SummonerScalarFieldEnum)[keyof typeof SummonerScalarFieldEnum]

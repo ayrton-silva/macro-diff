@@ -19,11 +19,11 @@ export async function getAccount({
   tagLine,
 }: RiotAccountRequest): Promise<RiotAccountResponse> {
   const url = `https://${region}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(gameName)}/${encodeURIComponent(tagLine)}`
-    const response = await fetch(url, {
-      headers: {
-        'X-Riot-Token': RIOT_API_KEY || '',
-      },
-    })
+  const response = await fetch(url, {
+    headers: {
+      'X-Riot-Token': RIOT_API_KEY || '',
+    },
+  })
   const data = await response.json()
 
   if (!response.ok) {
@@ -57,7 +57,7 @@ export async function getSummoner({
     throw new Error('Invalid Riot API response')
   }
 
-  return data
+  return { ...data, region }
 }
 
 export async function getSummonerLeague({

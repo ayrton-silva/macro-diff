@@ -15,6 +15,7 @@ model Summoner {
     level           Int
     revisionDate    String
     profileIconId   Int
+    region          String
     participants    Participant[]
 }
 
