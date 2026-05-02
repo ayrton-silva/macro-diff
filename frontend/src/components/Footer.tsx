@@ -5,11 +5,16 @@ export default function Footer() {
     <footer className="mt-20 border-t border-[var(--line)] px-4 pb-14 pt-10 text-[var(--sea-ink-soft)]">
       <div className="page-wrap flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
         <p className="m-0 text-sm">
-          &copy; {year} Your name here. All rights reserved.
+          &copy; {year} Ayrton Silva. All rights reserved.
+          
+        </p>
+        <p className="m-0 text-xs">
+          &copy; © 2012-{year} OP.GG. OP.GG is not endorsed by Riot Games and does not reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
         </p>
         <p className="island-kicker m-0">Built with TanStack Start</p>
       </div>
       <div className="mt-4 flex justify-center gap-4">
+
         <a
           href="https://x.com/tan_stack"
           target="_blank"

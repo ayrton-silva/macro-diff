@@ -1,30 +1,12 @@
-import { useForm } from '@tanstack/react-form'
 import * as z from 'zod'
 
-import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from '@/components/ui/field'
-import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import * as React from 'react'
+
+import { Select } from '@base-ui/react/select'
+import { Field } from '@base-ui/react/field'
+import { useForm } from '@tanstack/react-form'
 import { useNavigate } from '@tanstack/react-router'
+import { Search } from 'lucide-react';
 
 const formSchema = z.object({
   gameName: z
@@ -63,117 +45,127 @@ export function SearchSummonerForm() {
   ]
 
   return (
-    <Card className="w-full sm:max-w-md">
-      <CardHeader>
-        <CardTitle>Search summoner</CardTitle>
-        <CardDescription>Search by summoner name</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form
-          id="bug-report-form"
-          onSubmit={(e) => {
-            e.preventDefault()
-            form.handleSubmit()
-          }}
-        >
-          <FieldGroup className='flex-row'>
-            <form.Field
-              name="gameName"
-              children={(field) => {
-                const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid
-                return (
-                  <Field data-invalid={isInvalid}>
-                    <FieldLabel htmlFor={field.name}>Name</FieldLabel>
-                    <Input
-                      id={field.name}
-                      name={field.name}
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                      aria-invalid={isInvalid}
-                      placeholder="Nidalee é supp"
-                      autoComplete="off"
-                    />
-                    {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
-                    )}
-                  </Field>
-                )
-              }}
-            />
-            <form.Field
-              name="tagLine"
-              children={(field) => {
-                const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid
-                return (
-                  <Field data-invalid={isInvalid}>
-                    <FieldLabel htmlFor={field.name}>Tag</FieldLabel>
-                    <Input
-                      id={field.name}
-                      name={field.name}
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                      placeholder="#BR1"
-                      aria-invalid={isInvalid}
-                    />
+        <div className='w-full mt-10 md:w-fit bg-[#000d1d] rounded-md shadow-2xl shadow-green-400/20 ring-2 ring-green-400/10 mx-auto'>
 
-                    {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
-                    )}
-                  </Field>
-                )
-              }}
-            />
-            <form.Field
-              name="region"
-              children={(field) => {
-                const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid
-                return (
-                  <Field data-invalid={isInvalid}>
-                    <FieldLabel htmlFor={field.name}>Region</FieldLabel>
-                    <Select
-                      name={field.name}
-                      value={field.state.value}
-                      onValueChange={(value) => field.handleChange(value ?? '')}
-                    >
-                      <SelectTrigger
-                        id="form-tanstack-select-language"
-                        aria-invalid={isInvalid}
-                        className="min-w-[120px]"
-                      >
-                      <SelectValue placeholder="Select">
-                        {regions.find(r => r.value === field.state.value)?.label ?? null}
-                      </SelectValue>
-                      </SelectTrigger>
-                      <SelectContent align='center'>
-                        {regions.map(f => <SelectItem value={f.value}>{f.label}</SelectItem>)}
-                      </SelectContent>
-                    </Select>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        form.handleSubmit()
+      }}
+      className="flex flex-row gap-2 items-start"
+    >
+      <form.Field name="region">
+        {(field) => {
+          const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
+          return (
+            <Field.Root invalid={isInvalid} name={field.name}>
+              <Select.Root
+                value={field.state.value}
+                onValueChange={(value) => field.handleChange(value ?? '')}
+                items={regions}
+              >
+                <Select.Trigger
+                  className="min-w-[120px] h-12 px-3 flex items-center justify-between
+                    rounded-md  text-sm gap-2
+                    focus:outline-none focus:ring-2 focus:ring-ring
+                    data-[invalid]:border-destructive"
+                >
+                  <Select.Value placeholder="Region" />
+                  <Select.Icon />
+                </Select.Trigger>
 
-                    {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
-                    )}
-                  </Field>
-                )
-              }}
-            />
-          </FieldGroup>
-        </form>
-      </CardContent>
-      <CardFooter>
-        <Field orientation="horizontal">
-          <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
-          </Button>
-          <Button type="submit" form="bug-report-form">
-            Submit
-          </Button>
-        </Field>
-      </CardFooter>
-    </Card>
+                <Select.Portal>
+                  <Select.Positioner align="center" sideOffset={4}>
+                    <Select.Popup className="rounded-md  bg-gray-900 shadow-md p-1 min-w-[150px]">
+                      <Select.List>
+                        {regions.map((r) => (
+                          <Select.Item
+                            key={r.value}
+                            value={r.value}
+                            className="flex items-center gap-2 px-2 py-1.5 text-sm rounded cursor-pointer
+                              hover:bg-accent hover:text-accent-foreground
+                              data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
+                          >
+                            <Select.ItemIndicator>✓</Select.ItemIndicator>
+                            <Select.ItemText>{r.label}</Select.ItemText>
+                          </Select.Item>
+                        ))}
+                      </Select.List>
+                    </Select.Popup>
+                  </Select.Positioner>
+                </Select.Portal>
+              </Select.Root>
+
+              {isInvalid && (
+                <Field.Error className="text-xs text-destructive mt-1">
+                  {field.state.meta.errors.join(', ')}
+                </Field.Error>
+              )}
+            </Field.Root>
+          )
+        }}
+      </form.Field>
+      <form.Field name="gameName">
+        {(field) => {
+          const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
+          return (
+            <Field.Root invalid={isInvalid} name={field.name} className="w-[350px]">
+              <input
+                id={field.name}
+                value={field.state.value}
+                onBlur={field.handleBlur}
+                onChange={(e) => field.handleChange(e.target.value)}
+                placeholder="Summoner Name"
+                autoComplete="off"
+                className="h-12 w-full rounded-md  px-3 text-sm
+                  focus:outline-none focus:ring-2 focus:ring-ring
+                  data-[invalid]:border-destructive"
+              />
+              {isInvalid && (
+                <Field.Error className="text-xs text-destructive mt-1">
+                  {field.state.meta.errors.join(', ')}
+                </Field.Error>
+              )}
+            </Field.Root>
+          )
+        }}
+      </form.Field>
+      
+      <form.Field name="tagLine">
+        {(field) => {
+          const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
+          return (
+            <Field.Root invalid={isInvalid} name={field.name} className='flex items-center'>
+              <div>#</div>
+              <input
+                id={field.name}
+                value={field.state.value}
+                onBlur={field.handleBlur}
+                onChange={(e) => field.handleChange(e.target.value)}
+                placeholder="BR1"
+                className="h-12 w-24 rounded-md ml-1  px-3 text-sm
+                  focus:outline-none focus:ring-2 focus:ring-ring
+                  data-[invalid]:border-destructive"
+              />
+              {isInvalid && (
+                <Field.Error className="text-xs text-destructive mt-1">
+                  {field.state.meta.errors.join(', ')}
+                </Field.Error>
+              )}
+            </Field.Root>
+          )
+        }}
+      </form.Field>
+
+      <button
+        type="submit"
+        className="flex items-center h-12 px-4 rounded-md bg-green-400 text-black font-semibold shrink-0 text-sm hover:bg-green-300 cursor-pointer transition-colors"
+      >
+        <Search className='h-4'/>
+        GG
+      </button>
+    </form>
+
+  </div>
   )
 }
