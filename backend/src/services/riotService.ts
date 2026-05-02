@@ -24,6 +24,7 @@ export function validateRegion(region: string | undefined) {
       response = 'americas'
       break;
   }
+  console.log(response)
   return response
 }
 
@@ -96,7 +97,7 @@ export async function getSummonerNameByPuuid({
     throw new Error('Invalid Riot API response')
   }
 
-  return { ...data, region }
+  return { ...data, region: validateRegion(region) }
 }
 
 export async function getSummonerLeague({
