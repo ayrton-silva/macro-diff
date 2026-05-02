@@ -1,6 +1,7 @@
 import { SummonerCard } from '#/features/search-summoners/components/SummonerCard'
 import { useSummoners } from '#/features/search-summoners/hooks/useSummoners'
-import { createFileRoute, useSearch } from '@tanstack/react-router'
+import { createFileRoute, useNavigate, useSearch } from '@tanstack/react-router'
+import { useEffect, useState } from 'react'
 
 export const Route = createFileRoute('/search-summoners')({
   component: RouteComponent,
@@ -11,9 +12,7 @@ function RouteComponent() {
     from: Route.fullPath,
   })
 
-  console.log('reggion', region)
-  console.log('tag line', tagLine)
-  console.log('nameee ', gameName)
+  const [summoner, setSummoner] = useState({})
 
   const { status, data, error, isFetching } = useSummoners({
     gameName,
@@ -21,9 +20,33 @@ function RouteComponent() {
     region,
   })
 
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (status === 'success') {
+      setSummoner(data)
+    }
+  }, [data])
+
+  useEffect(() => {
+    if (
+      summoner.hasOwnProperty('summonerExactlyMatch') &&
+      summoner.summonerExactlyMatch.length > 0
+    ) {
+      navigate({
+        to: `/summoner`,
+        search: {
+          gameName: summoner.summonerExactlyMatch[0].gameName,
+          region: summoner.summonerExactlyMatch[0].region,
+          tagLine: summoner.summonerExactlyMatch[0].tagLine,
+        },
+      })
+    }
+  }, [summoner])
+
   return (
     <div>
-      {data?.directSearch?.map((summoner) => (
+      {summoner?.directSearch?.map((summoner) => (
         <SummonerCard summoner={summoner} />
       ))}
     </div>

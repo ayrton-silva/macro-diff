@@ -9,15 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SummonersRouteImport } from './routes/summoners'
+import { Route as SummonerRouteImport } from './routes/summoner'
 import { Route as SearchSummonersRouteImport } from './routes/search-summoners'
 import { Route as MatchesRouteImport } from './routes/matches'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
-const SummonersRoute = SummonersRouteImport.update({
-  id: '/summoners',
-  path: '/summoners',
+const SummonerRoute = SummonerRouteImport.update({
+  id: '/summoner',
+  path: '/summoner',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SearchSummonersRoute = SearchSummonersRouteImport.update({
@@ -46,14 +46,14 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/matches': typeof MatchesRoute
   '/search-summoners': typeof SearchSummonersRoute
-  '/summoners': typeof SummonersRoute
+  '/summoner': typeof SummonerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/matches': typeof MatchesRoute
   '/search-summoners': typeof SearchSummonersRoute
-  '/summoners': typeof SummonersRoute
+  '/summoner': typeof SummonerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,20 +61,20 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/matches': typeof MatchesRoute
   '/search-summoners': typeof SearchSummonersRoute
-  '/summoners': typeof SummonersRoute
+  '/summoner': typeof SummonerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/matches' | '/search-summoners' | '/summoners'
+  fullPaths: '/' | '/about' | '/matches' | '/search-summoners' | '/summoner'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/matches' | '/search-summoners' | '/summoners'
+  to: '/' | '/about' | '/matches' | '/search-summoners' | '/summoner'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/matches'
     | '/search-summoners'
-    | '/summoners'
+    | '/summoner'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -82,16 +82,16 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   MatchesRoute: typeof MatchesRoute
   SearchSummonersRoute: typeof SearchSummonersRoute
-  SummonersRoute: typeof SummonersRoute
+  SummonerRoute: typeof SummonerRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/summoners': {
-      id: '/summoners'
-      path: '/summoners'
-      fullPath: '/summoners'
-      preLoaderRoute: typeof SummonersRouteImport
+    '/summoner': {
+      id: '/summoner'
+      path: '/summoner'
+      fullPath: '/summoner'
+      preLoaderRoute: typeof SummonerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/search-summoners': {
@@ -130,7 +130,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   MatchesRoute: MatchesRoute,
   SearchSummonersRoute: SearchSummonersRoute,
-  SummonersRoute: SummonersRoute,
+  SummonerRoute: SummonerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

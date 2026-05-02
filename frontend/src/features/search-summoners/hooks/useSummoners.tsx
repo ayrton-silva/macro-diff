@@ -13,7 +13,7 @@ export function useSummoners({
   tagLine,
 }: SearchSummonersRequest) {
   return useQuery({
-    queryKey: ['lol', 'summoners'],
+    queryKey: ['lol', 'summoners', `${gameName + region + tagLine}`],
     queryFn: () => fetchSummoners({ gameName, region, tagLine }),
   })
 }
