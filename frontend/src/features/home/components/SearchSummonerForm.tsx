@@ -55,6 +55,13 @@ export function SearchSummonerForm() {
     },
   })
 
+  const regions = [
+    { value: "americas", label: "BR - Brazil" },
+    { value: "asia", label: "Asia" },
+    { value: "europe", label: "Europe" },
+    { value: "sea", label: "Sea" },
+  ]
+
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
@@ -69,7 +76,7 @@ export function SearchSummonerForm() {
             form.handleSubmit()
           }}
         >
-          <FieldGroup>
+          <FieldGroup className='flex-row'>
             <form.Field
               name="gameName"
               children={(field) => {
@@ -77,7 +84,7 @@ export function SearchSummonerForm() {
                   field.state.meta.isTouched && !field.state.meta.isValid
                 return (
                   <Field data-invalid={isInvalid}>
-                    <FieldLabel htmlFor={field.name}>Nome</FieldLabel>
+                    <FieldLabel htmlFor={field.name}>Name</FieldLabel>
                     <Input
                       id={field.name}
                       name={field.name}
@@ -138,10 +145,12 @@ export function SearchSummonerForm() {
                         aria-invalid={isInvalid}
                         className="min-w-[120px]"
                       >
-                        <SelectValue placeholder="Select" />
+                      <SelectValue placeholder="Select">
+                        {regions.find(r => r.value === field.state.value)?.label ?? null}
+                      </SelectValue>
                       </SelectTrigger>
-                      <SelectContent align="center">
-                        <SelectItem value="americas">br</SelectItem>
+                      <SelectContent align='center'>
+                        {regions.map(f => <SelectItem value={f.value}>{f.label}</SelectItem>)}
                       </SelectContent>
                     </Select>
 
