@@ -78,6 +78,30 @@ export async function readSummoner(id: string) {
   }
 }
 
+export async function readSummonerByName(request: RiotAccountRequest) {
+  try {
+    const summoner = await prisma.summoner.findFirst({ 
+      where: { 
+        gameName: request.gameName,
+        tagLine: request.tagLine,
+        region: request.region
+      } 
+    })
+
+    return summoner
+  } catch (e) {
+    if (e instanceof Prisma.PrismaClientKnownRequestError) {
+      if (e.code === 'P2002') {
+        console.log(
+          'There is a unique constraint violation, a new summoner cannot be created with this puuid',
+        )
+      }
+    } else {
+      throw e
+    }
+  }
+}
+
 export async function searchSummoner(request: RiotAccountRequest) {
   try {
     const summoner = await prisma.summoner.findMany({

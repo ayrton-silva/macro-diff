@@ -3,6 +3,7 @@ import {
   createSummoner,
   readAllSummoners,
   readSummoner,
+  readSummonerByName,
   searchSummoner,
 } from '../repositories/riotAccount.repositories'
 import type { RiotAccountRequest } from '../dto/riotAccountDto'
@@ -36,6 +37,14 @@ export async function summonersRoutes(app: FastifyInstance) {
   app.post('/summoners', async (request) => {
     const { gameName, tagLine, region } = request.body as RiotAccountRequest
     const summoner = await createSummoner({ gameName, tagLine, region })
+
+    return summoner
+  })
+
+  
+  app.get('/summoner', async (request) => {
+    const { gameName, tagLine, region } = request.query as RiotAccountRequest
+    const summoner = await readSummonerByName({gameName, tagLine, region})
 
     return summoner
   })
