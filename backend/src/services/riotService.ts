@@ -13,12 +13,26 @@ import type {
 
 const RIOT_API_KEY = process.env.RIOT_API_KEY
 
+export function validateRegion(region:string | undefined) {
+  let response = ''
+  switch (region) {
+    case 'br1':
+      response = 'americas'
+      break;
+  
+    default:
+      response = 'americas'
+      break;
+  }
+  return response
+}
+
 export async function getAccount({
   gameName,
-  region = 'americas',
+  region,
   tagLine,
 }: RiotAccountRequest): Promise<RiotAccountResponse> {
-  const url = `https://${region}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(gameName)}/${encodeURIComponent(tagLine)}`
+  const url = `https://${validateRegion(region)}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(gameName)}/${encodeURIComponent(tagLine)}`
   const response = await fetch(url, {
     headers: {
       'X-Riot-Token': RIOT_API_KEY || '',

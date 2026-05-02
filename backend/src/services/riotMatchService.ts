@@ -8,14 +8,16 @@ import type {
   RiotMatchDataResponse,
 } from '../dto/riotMatchesDto'
 
+import { validateRegion } from './riotService';
+
 const RIOT_API_KEY = process.env.RIOT_API_KEY
 
 export async function getMatches({
   puuid,
-  region = 'americas',
+  region,
   numberOfMatches
 }: RiotMatchesRequest): Promise<RiotMatchesResponse> {
-  const url = `https://${region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${numberOfMatches}`
+  const url = `https://${validateRegion(region)}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${numberOfMatches}`
 
   const response = await fetch(url, {
     headers: {
@@ -34,9 +36,9 @@ export async function getMatches({
 
 export async function getMatchDetails({
   matchId,
-  region = 'americas',
+  region,
 }: RiotMatchDataRequest): Promise<RiotMatchDataResponse> {
-  const url = `https://${encodeURIComponent(region)}.api.riotgames.com/lol/match/v5/matches/${matchId}`
+  const url = `https://${encodeURIComponent(validateRegion(region))}.api.riotgames.com/lol/match/v5/matches/${matchId}`
 
   const response = await fetch(url, {
     headers: {

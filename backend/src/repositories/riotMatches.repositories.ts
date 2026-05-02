@@ -32,6 +32,7 @@ export async function createMatches(request: RiotMatchesRequest) {
                     await createSummoner({
                         gameName: participant.riotIdGameName,
                         tagLine: participant.riotIdTagline,
+                        region: match.split('_')[0].toLowerCase()
                     })
 
                     await prisma.participant.upsert({

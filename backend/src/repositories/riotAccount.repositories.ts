@@ -29,6 +29,7 @@ export async function createSummoner(request: RiotAccountRequest) {
         id: account.puuid,
         level: summoner.summonerLevel,
         revisionDate: summoner.revisionDate.toString(),
+        region: request.region!,
         profileIconId: summoner.profileIconId,
       },
     })
