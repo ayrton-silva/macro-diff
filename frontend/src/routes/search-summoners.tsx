@@ -45,10 +45,19 @@ function RouteComponent() {
   }, [summoner])
 
   return (
-    <div>
-      {summoner?.directSearch?.map((summoner) => (
-        <SummonerCard summoner={summoner} />
-      ))}
+    <div className="max-w-5xl mx-auto">
+      <div className="mt-8 mb-8">
+        <h1 className="text-2xl font-bold text-white mb-2">Search Results</h1>
+        <p>
+          Found {summoner?.directSearch?.length} summoners matching{' '}
+          <span className="font-bold text-green-500">"{gameName}"</span>
+        </p>
+      </div>
+      <div className="mt-4 border border-gray-700 bg-[#0E1828] rounded-md">
+        {summoner?.directSearch?.map((summoner) => (
+          <SummonerCard summoner={summoner} />
+        ))}
+      </div>
     </div>
   )
 }

@@ -1,10 +1,6 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "@/components/ui/card"
-import { useMatch } from "../hooks/useMatches"
-import { ParticipantCard } from "./ParticipantCard"
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { useMatch } from '../hooks/useMatches'
+import { ParticipantCard } from './ParticipantCard'
 
 // === Header ====
 // Modo, Duração, Há quanto tempo
@@ -15,33 +11,39 @@ import { ParticipantCard } from "./ParticipantCard"
 // ================
 
 interface MatchCardProps {
-    matchId: string
+  matchId: string
 }
 
-export function MatchCard({matchId}: MatchCardProps) {
-    const { status, data, error, isFetching } = useMatch(matchId)
-    
-    return (
-        <div className="max-w-7xl mx-auto py-8 grid gap-6">
-            <Card className="bg-cyan-950">
-            <CardHeader>
+export function MatchCard({ matchId }: MatchCardProps) {
+  const { status, data, error, isFetching } = useMatch(matchId)
 
-            </CardHeader>
-            <CardContent>
-                <div className="flex gap-4">
-                    <div className="w-1/2 flex flex-col gap-4">
-                    {data?.participants.filter(p => p.teamId === '100')?.map(participant => (
-                        <ParticipantCard participant={participant}/>
-                     ))}
-                </div>
-                    <div className="w-1/2 flex flex-col gap-4">
-                        {data?.participants.filter(p => p.teamId === '200')?.map(participant => (
-                            <ParticipantCard participant={participant}/>
-                        ))}
-                    </div>
-                </div>
-            </CardContent>
-            </Card>
-        </div>
-    )
+  if (!data) {
+    return null
+  }
+
+  return (
+    <div className="max-w-7xl mx-auto py-8 grid gap-6">
+      <Card className="bg-cyan-950">
+        <CardHeader></CardHeader>
+        <CardContent>
+          <div className="flex gap-4">
+            <div className="w-1/2 flex flex-col gap-4">
+              {data?.participants
+                .filter((p) => p.teamId === '100')
+                ?.map((participant) => (
+                  <ParticipantCard participant={participant} />
+                ))}
+            </div>
+            <div className="w-1/2 flex flex-col gap-4">
+              {data?.participants
+                .filter((p) => p.teamId === '200')
+                ?.map((participant) => (
+                  <ParticipantCard participant={participant} />
+                ))}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  )
 }

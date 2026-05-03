@@ -18,13 +18,13 @@ export function validateRegion(region: string | undefined) {
   switch (region) {
     case 'br1':
       response = 'americas'
-      break;
+      break
 
     default:
       response = 'americas'
-      break;
+      break
   }
-  console.log(response)
+
   return response
 }
 
@@ -43,7 +43,7 @@ export async function getAccount({
 
   if (!response.ok) {
     if (response.status === 404) {
-      throw new Error("Player not found!")
+      throw new Error('Player not found!')
     }
 
     throw new Error(`Riot API error: ${response.status}`)
@@ -51,8 +51,6 @@ export async function getAccount({
 
   return data as RiotAccountResponse
 }
-
-
 
 export async function getSummoner({
   puuid,
@@ -78,9 +76,9 @@ export async function getSummonerNameByPuuid({
   puuid,
   region,
 }: RiotSummonerRequest): Promise<{
-  puuid: string;
-  gameName: string;
-  tagLine: string;
+  puuid: string
+  gameName: string
+  tagLine: string
   region: string | undefined
 }> {
   const url = `https://${validateRegion(region)}.api.riotgames.com/riot/account/v1/accounts/by-puuid/${encodeURIComponent(puuid)}`
