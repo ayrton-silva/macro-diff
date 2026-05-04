@@ -1,8 +1,9 @@
 import { z } from 'zod'
 import { createFileRoute, useSearch } from '@tanstack/react-router'
 import { useSummoner } from '@/features/summoner/hooks/useSummoner'
-import { MatchCard } from '@/features/matches-list/components/MatchCard'
 import { useMatches } from '@/features/matches-list/hooks/useMatches'
+import { SummonerHeader } from '#/features/summoner/components/SummonerHeader'
+import { SummonerMatchCard } from '#/features/summoner/components/SummonerMatchCard'
 
 const summonerSearchSchema = z.object({
   gameName: z.string().default(''),
@@ -35,10 +36,15 @@ function RouteComponent() {
 
   return (
     <div>
-      <div>Hello {data?.gameName}</div>
-      {dataMatches?.map((match: string) => (
-        <MatchCard matchId={match} />
-      ))}
+      {data && <SummonerHeader summoner={data} />}
+      <div className="max-w-7xl mx-auto">
+        <h2 className="mb-4">Match History</h2>
+        <div className="space-y-6">
+          {dataMatches?.map((match: string) => (
+            <SummonerMatchCard matchId={match} summonerId={data?.id} />
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
