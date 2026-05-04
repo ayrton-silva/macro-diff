@@ -10,10 +10,3 @@ export type RiotSummonerResponse = {
   summonerLevel: number
   region: string
 }
-
-export type RiotSummonerBadRepsonse = {
-  status: {
-    status_code: number,
-    message: string
-  }
-}

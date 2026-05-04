@@ -35,7 +35,7 @@ export function SummonerCard({ summoner }: SummonerCardProps) {
       >
         <div className="p-4 flex pb-5">
           <div className="relative">
-            <ProfileIcon icon={summoner.profileIconId} />
+            <ProfileIcon icon={summoner.profileIconId}  className='size-14' avatarSize='size-14' />
             <span className="absolute bg-gray-700 left-1/2 px-1 py-0.5 whitespace-nowrap rounded-sm -translate-1/2 text-white text-xs">
               {summoner.level}
             </span>

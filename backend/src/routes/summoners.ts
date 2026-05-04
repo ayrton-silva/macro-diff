@@ -27,8 +27,9 @@ export async function summonersRoutes(app: FastifyInstance) {
 
     const summoner = await searchSummoner({gameName, tagLine, region})
 
-    if(summoner?.directSearch.length == 0 && summoner.startWithSearch.length == 0){
+    if(summoner?.summonerExactlyMatch.length == 0 && gameName && tagLine && region){
       const response = await createSummoner({gameName, tagLine, region})
+      console.log("Creating Summoner: ",{gameName, tagLine, region})
       return response
     }
     return summoner
