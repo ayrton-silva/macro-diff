@@ -4,6 +4,8 @@ import { Field } from '@base-ui/react/field'
 import { useForm } from '@tanstack/react-form'
 import { useNavigate } from '@tanstack/react-router'
 import { Search } from 'lucide-react'
+import { useState } from 'react'
+import { useSummoner } from '@/features/summoner/hooks/useSummoner'
 
 const formSchema = z.object({
   gameName: z
@@ -16,6 +18,7 @@ const formSchema = z.object({
 
 export function SearchSummonerForm() {
   const navigate = useNavigate()
+  const [searchSummonerName, setSearchSummonerName] = useState('')
 
   const form = useForm({
     defaultValues: {
@@ -32,6 +35,13 @@ export function SearchSummonerForm() {
         to: `/search-summoners?gameName=${value.gameName}&tagLine=${value.tagLine}&region=${value.region}`,
       })
     },
+    listeners: {
+      onChange: ({ fieldApi }) => {
+            if (fieldApi.name == 'gameName') {
+              setSearchSummonerName(fieldApi.state.value)
+            }
+          },
+    }
   })
 
   const regions = [
@@ -48,21 +58,21 @@ export function SearchSummonerForm() {
           e.preventDefault()
           form.handleSubmit()
         }}
-        className="flex flex-row gap-2 items-start"
+        className="flex flex-col md:flex-row gap-2 items-center"
       >
         <form.Field name="region">
           {(field) => {
             const isInvalid =
               field.state.meta.isTouched && !field.state.meta.isValid
             return (
-              <Field.Root invalid={isInvalid} name={field.name}>
+              <Field.Root invalid={isInvalid} name={field.name} className='w-full md:w-auto'>
                 <Select.Root
                   value={field.state.value}
                   onValueChange={(value) => field.handleChange(value ?? '')}
                   items={regions}
                 >
                   <Select.Trigger
-                    className="min-w-[120px] h-12 px-3 flex items-center justify-between
+                    className="w-full md:min-w-[120px] h-12 px-3 flex items-center justify-between hover:text-green-300 focus:text-green-400
                     rounded-md  text-sm gap-2
                     focus:outline-none focus:ring-2 focus:ring-ring
                     data-[invalid]:border-destructive"
@@ -73,13 +83,13 @@ export function SearchSummonerForm() {
 
                   <Select.Portal>
                     <Select.Positioner align="center" sideOffset={4}>
-                      <Select.Popup className="rounded-md  bg-gray-900 shadow-md p-1 min-w-[150px]">
+                      <Select.Popup className="rounded-md  bg-gray-900 shadow-md p-1 min-w-[150px] ">
                         <Select.List>
                           {regions.map((r) => (
                             <Select.Item
                               key={r.value}
                               value={r.value}
-                              className="flex items-center gap-2 px-2 py-1.5 text-sm rounded cursor-pointer
+                              className="flex items-center gap-2 px-2 py-1.5 text-sm rounded cursor-pointer 
                               hover:bg-accent hover:text-accent-foreground
                               data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
                             >
@@ -110,7 +120,7 @@ export function SearchSummonerForm() {
               <Field.Root
                 invalid={isInvalid}
                 name={field.name}
-                className="w-[350px]"
+                className="w-full md:w-[350px]"
               >
                 <input
                   id={field.name}
@@ -119,7 +129,7 @@ export function SearchSummonerForm() {
                   onChange={(e) => field.handleChange(e.target.value)}
                   placeholder="Summoner Name"
                   autoComplete="off"
-                  className="h-12 w-full rounded-md  px-3 text-sm
+                  className="h-12 w-full rounded-md  px-3 text-sm hover:text-green-300 focus:text-green-400
                   focus:outline-none focus:ring-2 focus:ring-ring
                   data-[invalid]:border-destructive"
                 />
@@ -141,16 +151,17 @@ export function SearchSummonerForm() {
               <Field.Root
                 invalid={isInvalid}
                 name={field.name}
-                className="flex items-center"
+                className="flex w-full md:w-auto items-center"
               >
-                <div>#</div>
+                <div className='ml-2'>#</div>
                 <input
                   id={field.name}
                   value={field.state.value}
                   onBlur={field.handleBlur}
                   onChange={(e) => field.handleChange(e.target.value)}
                   placeholder="BR1"
-                  className="h-12 w-24 rounded-md ml-1  px-3 text-sm
+                  autoComplete="off"
+                  className="h-12 w-full md:w-24 rounded-md ml-1  px-3 text-sm hover:text-green-300 focus:text-green-400
                   focus:outline-none focus:ring-2 focus:ring-ring
                   data-[invalid]:border-destructive"
                 />
@@ -163,12 +174,11 @@ export function SearchSummonerForm() {
             )
           }}
         </form.Field>
-
         <button
           type="submit"
-          className="flex items-center h-12 px-4 rounded-md bg-green-400 text-black font-semibold shrink-0 text-sm hover:bg-green-300 cursor-pointer transition-colors"
+          className="flex items-center justify-center w-full md:w-26 h-12 px-4 mx-1 my-1 rounded-md bg-green-400 text-black font-semibold shrink-0 text-md hover:bg-green-300 hover:text-gray-700 cursor-pointer transition-colors"
         >
-          <Search className="h-4" />
+          <Search className="h-4 -ml-1" />
           GG
         </button>
       </form>
