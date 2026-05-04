@@ -4,6 +4,7 @@ import { useSummoner } from '@/features/summoner/hooks/useSummoner'
 import { useMatches } from '@/features/matches-list/hooks/useMatches'
 import { SummonerHeader } from '#/features/summoner/components/SummonerHeader'
 import { SummonerMatchCard } from '#/features/summoner/components/SummonerMatchCard'
+import { SummonerRankCard } from '#/features/summoner/components/SummonerRankCard'
 
 const summonerSearchSchema = z.object({
   gameName: z.string().default(''),
@@ -37,12 +38,15 @@ function RouteComponent() {
   return (
     <div>
       {data && <SummonerHeader summoner={data} />}
-      <div className="max-w-7xl mx-auto">
-        <h2 className="mb-4">Match History</h2>
-        <div className="space-y-6">
-          {dataMatches?.map((match: string) => (
-            <SummonerMatchCard matchId={match} summonerId={data?.id} />
-          ))}
+      <div className="flex gap-8 items-start">
+        {data && <SummonerRankCard summoner={data} />}
+        <div className="w-full mr-80">
+          {/* <h2 className="mb-4">Match History</h2> */}
+          <div className="space-y-6">
+            {dataMatches?.map((match: string) => (
+              <SummonerMatchCard matchId={match} summonerId={data?.id} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -1,12 +1,16 @@
 import { Prisma } from '../../prisma/generated/prisma/client'
 import { prisma } from '../app'
 import type { RiotAccountRequest } from '../dto/riotAccountDto'
-import { getAccount, getSummoner, getSummonerNameByPuuid } from '../services/riotService'
+import {
+  getAccount,
+  getSummoner,
+  getSummonerNameByPuuid,
+} from '../services/riotService'
 import { createSummonerLeague } from './riotSummonerLeague.repositories'
 
 export async function createSummoner(request: RiotAccountRequest) {
-  if(!request.gameName || !request.tagLine){
-    return "Missing gameName or tagLine!"
+  if (!request.gameName || !request.tagLine) {
+    return 'Missing gameName or tagLine!'
   }
   const account = await getAccount(request)
   const summoner = await getSummoner({
@@ -43,7 +47,6 @@ export async function createSummoner(request: RiotAccountRequest) {
   return summoner
 }
 export async function createSummonerByPuuid(puuid: string, region: string) {
-
   const summoner = await getSummoner({
     puuid: puuid,
   })
@@ -119,12 +122,15 @@ export async function readSummoner(id: string) {
 
 export async function readSummonerByName(request: RiotAccountRequest) {
   try {
-    const summoner = await prisma.summoner.findFirst({ 
-      where: { 
+    const summoner = await prisma.summoner.findFirst({
+      where: {
         gameName: request.gameName,
         tagLine: request.tagLine,
-        region: request.region
-      } 
+        region: request.region,
+      },
+      include: {
+        summonerLeagues: true,
+      },
     })
 
     return summoner
@@ -147,43 +153,47 @@ export async function searchSummoner(request: RiotAccountRequest) {
       where: {
         gameName: {
           contains: request.gameName,
-          mode: "insensitive",
+          mode: 'insensitive',
         },
       },
-      include:{
-        summonerLeagues: true
+      include: {
+        summonerLeagues: true,
       },
-      take: 10
+      take: 10,
     })
 
     const summonerStartMatch = await prisma.summoner.findMany({
       where: {
         gameName: {
           startsWith: request.gameName.slice(0, 3),
-          mode: "insensitive",
+          mode: 'insensitive',
         },
       },
-      include:{
-        summonerLeagues: true
+      include: {
+        summonerLeagues: true,
       },
-      take: 10
+      take: 10,
     })
 
     const summonerExactlyMatch = await prisma.summoner.findMany({
       where: {
         gameName: {
-          equals: request.gameName
+          equals: request.gameName,
         },
         tagLine: {
-          equals: request.tagLine
+          equals: request.tagLine,
         },
       },
-      include:{
-        summonerLeagues: true
-      }
+      include: {
+        summonerLeagues: true,
+      },
     })
 
-    return { "directSearch": summoner, "startWithSearch": summonerStartMatch, "summonerExactlyMatch":summonerExactlyMatch }
+    return {
+      directSearch: summoner,
+      startWithSearch: summonerStartMatch,
+      summonerExactlyMatch: summonerExactlyMatch,
+    }
   } catch (e) {
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
       if (e.code === 'P2002') {
