@@ -25,7 +25,7 @@ interface SummonerCardProps {
 export function SummonerSearchlistCard({ summoner }: SummonerCardProps) {
   console.log('summoner', summoner)
   return (
-    <div className="flex h-16 items-center border-b border-gray-700 bg-gray-900 last:border-b-0 hover:bg-gray-900/70 ">
+    <div className="flex h-16 items-center border-b-1 last:border-0 border-gray-700 bg-gray-900 hover:bg-gray-900/70 ">
       <Link
         to={`/summoner`}
         search={{
@@ -33,6 +33,7 @@ export function SummonerSearchlistCard({ summoner }: SummonerCardProps) {
           region: summoner.region,
           tagLine: summoner.tagLine,
         }}
+        className='w-full'
       >
         <div className="p-4 flex pb-5 items-center">
             <ProfileIcon icon={summoner.profileIconId} className='rounded-4xl size-10' avatarSize='size-10'/>

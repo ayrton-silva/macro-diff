@@ -16,7 +16,7 @@ export function SummonerHeader({ summoner }: SummonerHeaderProps) {
       <div className="relative w-fit">
         <ProfileIcon
           icon={summoner.profileIconId}
-          className="size-24 ring-2 rounded-md ring-green-400"
+          className="size-24 ring-2 rounded-md ring-cyan-400"
           avatarSize="size-24"
         />
         <div className="absolute bg-gray-700 text-white text-sm left-1/2 px-3 py-1 whitespace-nowrap rounded-full -translate-1/2">

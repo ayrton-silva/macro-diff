@@ -14,11 +14,15 @@ export function SearchSummonerFormList({
     tagLine: '',
   })
 
-  return (
-    <div className="mt-4 rounded-md overflow-hidden border border-gray-700">
+  if(data?.directSearch.length > 0){
+    return (<div className="border border-gray-700 mt-4 rounded-md overflow-hidden">
       {data?.directSearch?.slice(0, 5).map((summoner) => (
         <SummonerSearchlistCard summoner={summoner} />
       ))}
-    </div>
+    </div>)
+  }
+  
+  return (
+    null
   )
 }

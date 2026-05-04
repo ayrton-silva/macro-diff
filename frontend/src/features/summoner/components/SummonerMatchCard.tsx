@@ -134,7 +134,7 @@ export function SummonerMatchCard({ matchId, summonerId }: MatchCardProps) {
           relative ring-2
           ${
             summonerWin
-              ? 'bg-[#172335] ring-cyan-400'
+              ? 'bg-[#172335] ring-green-400'
               : 'bg-[#221923] ring-red-400'
           }
             `}
@@ -143,7 +143,7 @@ export function SummonerMatchCard({ matchId, summonerId }: MatchCardProps) {
           <div
             className={`absolute w-2 h-full top-0 left-0 ${
               summonerWin
-                ? 'bg-[#172335] bg-cyan-400'
+                ? 'bg-[#172335] bg-green-400'
                 : 'bg-[#221923] bg-red-400'
             }`}
           ></div>
@@ -151,7 +151,7 @@ export function SummonerMatchCard({ matchId, summonerId }: MatchCardProps) {
             <div className="w-full flex gap-4">
               <div className="ml-2 mr-4">
                 <h3
-                  className={`text-lg font-bold ${summonerWin ? 'text-cyan-400' : 'text-red-400'}`}
+                  className={`text-lg font-bold ${summonerWin ? 'text-green-400' : 'text-red-400'}`}
                 >
                   {summonerWin ? 'Victory' : 'Defeat'}
                 </h3>
