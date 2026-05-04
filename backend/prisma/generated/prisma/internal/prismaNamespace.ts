@@ -778,7 +778,9 @@ export const MatchScalarFieldEnum = {
   gameDuration: 'gameDuration',
   gameEndTimestamp: 'gameEndTimestamp',
   gameMode: 'gameMode',
-  gameType: 'gameType'
+  gameType: 'gameType',
+  platformId: 'platformId',
+  queueId: 'queueId'
 } as const
 
 export type MatchScalarFieldEnum = (typeof MatchScalarFieldEnum)[keyof typeof MatchScalarFieldEnum]

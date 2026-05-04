@@ -16,6 +16,8 @@ export type RiotMatchDataResponse = {
         gameEndTimestamp: string,
         gameMode: string,
         gameType: string,
+        platformId: string,
+        queueId: number,
         participants: Participants[],
     }
 }

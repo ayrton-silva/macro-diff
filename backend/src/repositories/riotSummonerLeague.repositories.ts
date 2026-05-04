@@ -10,7 +10,7 @@ export async function createSummonerLeague(request: RiotSummonerLeagueRequest) {
   for (const league of summonerLeague) {
     try {
       await prisma.summonerLeague.upsert({
-        where: { id: league.leagueId },
+        where: { id: league.queueType+request.puuid },
         update: {
           tier: league.tier,
           rank: league.rank,
@@ -23,7 +23,7 @@ export async function createSummonerLeague(request: RiotSummonerLeagueRequest) {
           hotStreak: league.hotStreak,
         },
         create: {
-          id: league.leagueId,
+          id: league.queueType+request.puuid,
           queueType: league.queueType,
           tier: league.tier,
           rank: league.rank,

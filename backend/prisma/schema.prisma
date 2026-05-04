@@ -41,6 +41,8 @@ model Match {
     gameEndTimestamp String
     gameMode         String
     gameType         String
+    platformId       String
+    queueId          Int
     participants     Participant[]
 }
 

@@ -21,6 +21,8 @@ export async function createMatches(request: RiotMatchesRequest) {
                             gameEndTimestamp: matchData.info.gameEndTimestamp.toString(),
                             gameMode: matchData.info.gameMode,
                             gameType: matchData.info.gameType,
+                            platformId: matchData.info.platformId,
+                            queueId: matchData.info.queueId,
                         },
                     })
                 } catch (e) {
