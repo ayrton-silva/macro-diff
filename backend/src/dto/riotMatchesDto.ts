@@ -3,6 +3,12 @@ export type RiotMatchesRequest = {
     region?: string,
     numberOfMatches: number
 }
+export type RiotExistentMatchesRequest = {
+    puuid: string,
+    region?: string,
+    numberOfMatches: number,
+    skip: number
+}
 
 export type RiotMatchesResponse = Array<string>
 

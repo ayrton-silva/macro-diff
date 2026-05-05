@@ -1,5 +1,5 @@
 import { prisma } from '../app'
-import type { RiotMatchesRequest } from '../dto/riotMatchesDto'
+import type { RiotExistentMatchesRequest, RiotMatchesRequest } from '../dto/riotMatchesDto'
 import { getMatchDetails, getMatches } from '../services/riotMatchService'
 import { createSummonerByPuuid } from './riotAccount.repositories'
 
@@ -87,6 +87,19 @@ export async function createMatches(request: RiotMatchesRequest) {
     }
 
     return matches
+}
+export async function getExistentMatches(request: RiotExistentMatchesRequest) {
+    const participantMatches = await prisma.participant.findMany({
+        where: {
+            summonerId: request.puuid
+        },
+        take: Number(request.numberOfMatches),
+        skip: Number(request.skip),
+        select: {
+            matchId: true
+        }
+    })
+    return participantMatches
 }
 
 export async function readMatch(id: string) {

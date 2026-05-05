@@ -1,6 +1,7 @@
 import type { FastifyInstance } from 'fastify'
 import {
   createMatches,
+  getExistentMatches,
   readMatch,
 } from '../repositories/riotMatches.repositories'
 
@@ -18,6 +19,29 @@ export async function matchesRoutes(app: FastifyInstance) {
       numberOfMatches: numberOfMatches,
     })
 
+    return response
+  })
+
+  app.get('/existentMatches/:puuid', async (request) => {
+    const { puuid } = request.params as { puuid: string }
+    const { numberOfMatches, skip } = request.query as { numberOfMatches: number, skip: number }
+
+    const response = await getExistentMatches({
+      puuid: puuid,
+      numberOfMatches: numberOfMatches,
+      skip: skip
+    })
+    if(response.length < numberOfMatches){
+      await createMatches({
+        puuid: puuid,
+        numberOfMatches: +numberOfMatches + +skip,
+      })
+      return await getExistentMatches({
+      puuid: puuid,
+      numberOfMatches: numberOfMatches,
+      skip: skip
+    })
+    }
     return response
   })
 
