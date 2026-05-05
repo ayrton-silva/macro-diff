@@ -99,7 +99,11 @@ export async function getExistentMatches(request: RiotExistentMatchesRequest) {
             matchId: true
         }
     })
-    return participantMatches
+    let response = []
+    for (let i = 0; i < participantMatches.length; i++) {
+        response.push(participantMatches[i].matchId);
+    }
+    return response
 }
 
 export async function readMatch(id: string) {
