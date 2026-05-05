@@ -97,6 +97,11 @@ export async function getExistentMatches(request: RiotExistentMatchesRequest) {
         skip: Number(request.skip),
         select: {
             matchId: true
+        },
+        orderBy: {
+            match: {
+                gameEndTimestamp: 'desc'
+            }
         }
     })
     let response = []
