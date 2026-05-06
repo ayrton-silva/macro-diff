@@ -5,6 +5,7 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { SummonerSpellIcon } from '#/shared/game/SummonerSpellIcon'
 import { ItemIcon } from '#/shared/game/ItemIcon'
 import { Link } from '@tanstack/react-router'
+import { returnDateAgo } from '#/shared/game/helpers'
 
 interface MatchCardProps {
   matchId: string
@@ -149,12 +150,13 @@ export function SummonerMatchCard({ matchId, summonerId }: MatchCardProps) {
           ></div>
           <div className="flex gap-4 text-white">
             <div className="w-full flex gap-4">
-              <div className="ml-2 mr-4">
+              <div className="ml-2 mr-4 space-y-1">
                 <h3
                   className={`text-lg font-bold ${summonerWin ? 'text-green-400' : 'text-red-400'}`}
                 >
                   {summonerWin ? 'Victory' : 'Defeat'}
                 </h3>
+                <h4 className='text-xs pb-2'>{returnDateAgo(data?.gameEndTimestamp)}</h4>
                 <h4>{data?.queueId === 420 ? 'Ranked Solo' : 'Ranked Flex'}</h4>
                 <h4>{`${Math.floor(data?.gameDuration / 60)}m ${Math.floor(data?.gameDuration % 60)}s`}</h4>
               </div>
