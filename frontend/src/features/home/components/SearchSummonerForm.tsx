@@ -6,6 +6,7 @@ import { useNavigate } from '@tanstack/react-router'
 import { Search } from 'lucide-react'
 import { useState } from 'react'
 import { SearchSummonerFormList } from './SearchSummonerFormList'
+import { primaryColor } from '@/shared/game/helpers'
 
 const formSchema = z.object({
   gameName: z
@@ -54,7 +55,7 @@ export function SearchSummonerForm() {
 
   return (
     <>
-      <div className="w-full mt-10 md:w-fit bg-[#000d1d] rounded-md shadow-2xl shadow-cyan-400/20 ring-2 ring-cyan-400/10 mx-auto">
+      <div className={`w-full mt-10 md:w-fit bg-[#000d1d] rounded-md shadow-2xl shadow-${primaryColor}-400/20 ring-2 ring-${primaryColor}-400/10 mx-auto`}>
         <form
           onSubmit={(e) => {
             e.preventDefault()
@@ -78,10 +79,10 @@ export function SearchSummonerForm() {
                     items={regions}
                   >
                     <Select.Trigger
-                      className="w-full md:min-w-[120px] h-12 px-3 flex items-center justify-between hover:text-cyan-300 focus:text-cyan-400
+                      className={`w-full md:min-w-[120px] h-12 px-3 flex items-center justify-between hover:text-${primaryColor}-300 focus:text-${primaryColor}-400
                     rounded-md  text-sm gap-2
                     focus:outline-none focus:ring-2 focus:ring-ring
-                    data-[invalid]:border-destructive"
+                    data-[invalid]:border-destructive`}
                     >
                       <Select.Value placeholder="Region" />
                       <Select.Icon />
@@ -135,9 +136,9 @@ export function SearchSummonerForm() {
                     onChange={(e) => field.handleChange(e.target.value)}
                     placeholder="Summoner Name"
                     autoComplete="off"
-                    className="h-12 w-full rounded-md  px-3 text-sm hover:text-cyan-300 focus:text-cyan-400
+                    className={`h-12 w-full rounded-md  px-3 text-sm hover:text-${primaryColor}-300 focus:text-${primaryColor}-400
                   focus:outline-none focus:ring-2 focus:ring-ring
-                  data-[invalid]:border-destructive"
+                  data-[invalid]:border-destructive`}
                   />
                   {isInvalid && (
                     <Field.Error className="text-xs text-destructive mt-1">
@@ -167,9 +168,9 @@ export function SearchSummonerForm() {
                     onChange={(e) => field.handleChange(e.target.value)}
                     placeholder="BR1"
                     autoComplete="off"
-                    className="h-12 w-full md:w-24 rounded-md ml-1  px-3 text-sm hover:text-cyan-300 focus:text-cyan-400
+                    className={`h-12 w-full md:w-24 rounded-md ml-1  px-3 text-sm hover:text-${primaryColor}-300 focus:text-${primaryColor}-400
                   focus:outline-none focus:ring-2 focus:ring-ring
-                  data-[invalid]:border-destructive"
+                  data-[invalid]:border-destructive`}
                   />
                   {isInvalid && (
                     <Field.Error className="text-xs text-destructive mt-1">
@@ -182,7 +183,7 @@ export function SearchSummonerForm() {
           </form.Field>
           <button
             type="submit"
-            className="flex items-center justify-center w-full md:w-26 h-12 px-4 mx-1 my-1 rounded-md bg-cyan-400 text-black font-semibold shrink-0 text-md hover:bg-cyan-300 hover:text-gray-700 cursor-pointer transition-colors"
+            className={`flex items-center justify-center w-full md:w-26 h-12 px-4 mx-1 my-1 rounded-md bg-${primaryColor}-400 text-black font-semibold shrink-0 text-md hover:bg-${primaryColor}-300 hover:text-gray-700 cursor-pointer transition-colors`}
           >
             <Search className="h-4 -ml-1" />
             GG

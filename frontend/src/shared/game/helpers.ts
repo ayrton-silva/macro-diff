@@ -1,3 +1,5 @@
+export const primaryColor = 'cyan'
+
 const SummonerLeagueConstant = {
   BRONZE: 'text-brown-400',
   CHALLENGER: 'text-white',
