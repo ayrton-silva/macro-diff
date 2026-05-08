@@ -29,7 +29,11 @@ export const Route = createRootRoute({
         href: appCss,
       },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com/' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com/', crossOrigin: 'anonymous' },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com/',
+        crossOrigin: 'anonymous',
+      },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap',
@@ -43,6 +47,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       gcTime: 1000 * 60 * 60 * 24, // 24 hours
+      refetchOnWindowFocus: false,
     },
   },
 })
@@ -56,22 +61,22 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <QueryClientProvider client={queryClient}>
         <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
-        <Header />
-        {children}
-        <Footer />
-        <TanStackDevtools
-          config={{
-            position: 'bottom-right',
-          }}
-          plugins={[
-            {
-              name: 'Tanstack Router',
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-          ]}
-        />
-        <Scripts />
-      </body>
+          <Header />
+          {children}
+          <Footer />
+          <TanStackDevtools
+            config={{
+              position: 'bottom-right',
+            }}
+            plugins={[
+              {
+                name: 'Tanstack Router',
+                render: <TanStackRouterDevtoolsPanel />,
+              },
+            ]}
+          />
+          <Scripts />
+        </body>
       </QueryClientProvider>
     </html>
   )

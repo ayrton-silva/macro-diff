@@ -1,10 +1,10 @@
-import { useMatch } from '@/features/matches-list/hooks/useMatches'
 import { Card, CardContent } from '@/components/ui/card'
 import { ChampionIcon } from '@/shared/game/ChampionIcon'
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { SummonerSpellIcon } from '#/shared/game/SummonerSpellIcon'
 import { ItemIcon } from '#/shared/game/ItemIcon'
 import { Link } from '@tanstack/react-router'
+import { useExistentMatch } from '../hooks/useExistentMatches'
 
 interface MatchCardProps {
   matchId: string
@@ -115,7 +115,7 @@ export function ParticipantCard({ participant }: ParticipantCardProps) {
 }
 
 export function SummonerMatchCard({ matchId, summonerId }: MatchCardProps) {
-  const { status, data, error, isFetching } = useMatch(matchId)
+  const { status, data, error, isFetching } = useExistentMatch(matchId)
 
   if (!data) {
     return null

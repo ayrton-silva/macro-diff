@@ -1,6 +1,6 @@
 export async function fetchMatchesByPuuid(puuid: string) {
   const response = await fetch(
-    `http://localhost:3001/matches/${puuid}?numberOfMatches=3`,
+    `http://localhost:3001/matches/${puuid}?numberOfMatches=6`,
   )
 
   return await response.json()
