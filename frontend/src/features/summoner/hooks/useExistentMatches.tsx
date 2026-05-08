@@ -27,18 +27,25 @@ export function useInfiniteExistentMatches({
     queryKey: ['lol', 'matches', puuid],
     queryFn: () =>
       fetchExistentMatchesByPuuid({ numberOfMatches, puuid, skip }),
-    initialPageParam: 1,
+    initialPageParam: 0,
+    enabled: !!puuid,
     getNextPageParam: (lastPage, allPages, lastPageParam) => {
       if (lastPage.length === 0) {
         return undefined
       }
-      return lastPageParam + 1
+
+      console.log('last page param', lastPageParam)
+
+      return lastPageParam + 3
     },
     getPreviousPageParam: (firstPage, allPages, firstPageParam) => {
+      console.log('first', firstPage)
+      console.log('first param', firstPageParam)
+      console.log('all', allPages)
       if (firstPageParam <= 1) {
         return undefined
       }
-      return firstPageParam - 1
+      return firstPageParam
     },
   })
 }

@@ -122,8 +122,6 @@ export function SummonerMatchCard({ matchId, summonerId }: MatchCardProps) {
     return null
   }
 
-  console.log('aquuiui', data)
-
   const summonerWin = data?.participants.filter(
     (p) => p.summonerId === summonerId,
   )[0].win

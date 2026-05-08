@@ -4,7 +4,7 @@ import { useSummoner } from '@/features/summoner/hooks/useSummoner'
 import { SummonerHeader } from '@/features/summoner/components/SummonerHeader'
 import { SummonerMatchCard } from '@/features/summoner/components/SummonerMatchCard'
 import { SummonerRankCard } from '@/features/summoner/components/SummonerRankCard'
-import { useExistentMatches } from '@/features/summoner/hooks/useExistentMatches'
+import { useInfiniteExistentMatches } from '@/features/summoner/hooks/useExistentMatches'
 import { LoadMoreMatchesButton } from '#/features/summoner/components/LoadMoreMatchesButton'
 
 const summonerSearchSchema = z.object({
@@ -29,16 +29,13 @@ function RouteComponent() {
     region,
   })
 
-  const {
-    status: statusMatches,
-    data: dataMatches,
-    error: errorMatches,
-    isFetching: isFetchingMatches,
-  } = useExistentMatches({ puuid: data?.id })
+  const matches = useInfiniteExistentMatches({
+    puuid: data?.id,
+    skip: 0,
+    numberOfMatches: 3,
+  })
 
-  console.log('matches', dataMatches)
-  console.log('skip', (+dataMatches?.pages.length - 1) * 3)
-  console.log('awiehuawe', typeof ((+dataMatches?.pages.length - 1) * 3))
+  console.log('Partidaaas', matches.data)
 
   return (
     <div>
@@ -48,14 +45,14 @@ function RouteComponent() {
         <div className="w-full mr-80">
           {/* <h2 className="mb-4">Match History</h2> */}
           <div className="space-y-6">
-            {dataMatches?.pages.flat().map((match: string) => (
+            {matches.data?.pages.flat().map((match: string) => (
               <SummonerMatchCard matchId={match} summonerId={data?.id} />
             ))}
           </div>
           {data && (
             <LoadMoreMatchesButton
               puuid={data?.id}
-              skip={+dataMatches?.pages.length * 3}
+              skip={Number(matches.data?.pages.length || 0) * 3}
             />
           )}
         </div>
