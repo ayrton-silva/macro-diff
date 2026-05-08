@@ -5,30 +5,31 @@ import { createSummonerByPuuid } from './riotAccount.repositories'
 
 export async function createMatches(request: RiotMatchesRequest) {
     const matches = await getMatches(request)
-
     for (const match of matches) {
         const doesMatchExist = await prisma.match.findUnique({
             where: { matchId: match },
         })
-        if (!doesMatchExist) {
-            const matchData = await getMatchDetails({ matchId: match })
-            if (matchData.info.gameDuration > 240) {
-                try {
-                    await prisma.match.create({
-                        data: {
-                            matchId: match,
-                            gameDuration: matchData.info.gameDuration,
-                            gameEndTimestamp: matchData.info.gameEndTimestamp.toString(),
-                            gameMode: matchData.info.gameMode,
-                            gameType: matchData.info.gameType,
-                            platformId: matchData.info.platformId,
-                            queueId: matchData.info.queueId,
-                        },
-                    })
-                } catch (e) {
-                    console.log(e)
-                }
+        const doesParticipantsExist = await readMatch(match)
 
+        if (!doesMatchExist || !doesParticipantsExist?.participants) {
+            const matchData = await getMatchDetails({ matchId: match })
+            if(!doesMatchExist){
+            try {
+                await prisma.match.create({
+                    data: {
+                        matchId: match,
+                        gameDuration: matchData.info.gameDuration,
+                        gameEndTimestamp: matchData.info.gameEndTimestamp.toString(),
+                        gameMode: matchData.info.gameMode,
+                        gameType: matchData.info.gameType,
+                        platformId: matchData.info.platformId,
+                        queueId: matchData.info.queueId,
+                    },
+                })
+            } catch (e) {
+                console.log(e)
+            }
+                }    
                     try {
                         await createSummonerByPuuid(request.puuid, match.split('_')[0].toLowerCase())
                         const participant = matchData.info.participants.filter((data)=> data.puuid == request.puuid)[0]
@@ -81,7 +82,6 @@ export async function createMatches(request: RiotMatchesRequest) {
                         console.log(e)
                     }
             }
-        }
     }
 
     return matches
