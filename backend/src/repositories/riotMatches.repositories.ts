@@ -11,7 +11,7 @@ export async function createMatches(request: RiotMatchesRequest) {
         })
         const doesParticipantsExist = await readMatch(match)
 
-        if (!doesMatchExist || !doesParticipantsExist?.participants) {
+        if (!doesMatchExist || !doesParticipantsExist?.participants || doesParticipantsExist?.participants.length < 10) {
             const matchData = await getMatchDetails({ matchId: match })
             if(!doesMatchExist){
             try {
