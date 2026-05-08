@@ -1,7 +1,8 @@
 export type RiotMatchesRequest = {
     puuid: string,
     region?: string,
-    numberOfMatches: number
+    numberOfMatches: number,
+    skip: number
 }
 export type RiotExistentMatchesRequest = {
     puuid: string,

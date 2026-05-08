@@ -31,9 +31,8 @@ export async function createMatches(request: RiotMatchesRequest) {
             }
                 }    
                     try {
-                        await createSummonerByPuuid(request.puuid, match.split('_')[0].toLowerCase())
                         const participant = matchData.info.participants.filter((data)=> data.puuid == request.puuid)[0]
-
+                        await createSummonerByPuuid(request.puuid, match.split('_')[0].toLowerCase())
                         await prisma.participant.upsert({
                             where: {
                                 participantId: { summonerId: request.puuid, matchId: match },

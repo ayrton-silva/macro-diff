@@ -7,16 +7,17 @@ import {
 
 /** Rotas de exemplo para match + timeline (corpo vazio / stub). */
 
-//http://localhost:3001/matches/-Wj7wFERxJTf8fIj0qNENBY1WzrBGsSzRF6o09mwZfpL5M7GTrnvA11RE34N4mU0MCoNnsQhnoQvbw?numberOfMatches=1
+//http://localhost:3001/matches/-Wj7wFERxJTf8fIj0qNENBY1WzrBGsSzRF6o09mwZfpL5M7GTrnvA11RE34N4mU0MCoNnsQhnoQvbw?numberOfMatches=3&skip=3
 
 export async function matchesRoutes(app: FastifyInstance) {
   app.get('/matches/:puuid', async (request) => {
     const { puuid } = request.params as { puuid: string }
-    const { numberOfMatches } = request.query as { numberOfMatches: number }
+    const { numberOfMatches, skip } = request.query as { numberOfMatches: number, skip: number }
 
     const response = await createMatches({
       puuid: puuid,
-      numberOfMatches: numberOfMatches,
+      numberOfMatches: +numberOfMatches,
+      skip: +skip
     })
 
     return response
@@ -28,18 +29,19 @@ export async function matchesRoutes(app: FastifyInstance) {
 
     const response = await getExistentMatches({
       puuid: puuid,
-      numberOfMatches: numberOfMatches,
-      skip: skip
+      numberOfMatches: +numberOfMatches,
+      skip: +skip
     })
     if(response.length < numberOfMatches){
       await createMatches({
         puuid: puuid,
-        numberOfMatches: +numberOfMatches + +skip,
+        numberOfMatches: +numberOfMatches,
+        skip: +skip
       })
       return await getExistentMatches({
       puuid: puuid,
-      numberOfMatches: numberOfMatches,
-      skip: skip
+      numberOfMatches: +numberOfMatches,
+      skip: +skip
     })
     }
     return response

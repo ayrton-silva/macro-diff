@@ -17,9 +17,10 @@ const RIOT_API_KEY = process.env.RIOT_API_KEY
 export async function getMatches({
   puuid,
   region,
-  numberOfMatches
+  numberOfMatches,
+  skip
 }: RiotMatchesRequest): Promise<RiotMatchesResponse> {
-  const url = `https://${validateRegion(region)}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${numberOfMatches}`
+  const url = `https://${validateRegion(region)}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=${skip}&count=${numberOfMatches}`
 
   const response = await fetch(url, {
     headers: {
