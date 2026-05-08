@@ -1,6 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { ChampionIcon } from '@/shared/game/ChampionIcon'
-import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { SummonerSpellIcon } from '#/shared/game/SummonerSpellIcon'
 import { ItemIcon } from '#/shared/game/ItemIcon'
 import { Link } from '@tanstack/react-router'
@@ -63,13 +62,12 @@ export function ParticipantCard({ participant }: ParticipantCardProps) {
         <CardContent>
           <>
             <div className="flex justify-between items-center">
-              <h3 className="font-bold">{participant.summoner.gameName}</h3>
-              <Avatar>
+              {/* <Avatar>
                 <AvatarImage
                   className="rounded-none"
                   src={`https://wiki.leagueoflegends.com/en-us/images/thumb/${(participant.teamPosition[0].toUpperCase() + participant.teamPosition.slice(1).toLowerCase()).replace('Utility', 'Support')}_icon.png/120px-${(participant.teamPosition[0].toUpperCase() + participant.teamPosition.slice(1).toLowerCase()).replace('Utility', 'Support')}_icon.png`}
                 />
-              </Avatar>
+              </Avatar> */}
             </div>
 
             <div className="flex gap-4">
@@ -132,27 +130,35 @@ export function SummonerMatchCard({ matchId, summonerId }: MatchCardProps) {
         className={`
           relative ring-2
           ${
-            summonerWin
-              ? 'bg-[#172335] ring-green-400'
-              : 'bg-[#221923] ring-red-400'
+            data?.gameDuration < 240
+              ? 'bg-gray-800 ring-gray-400'
+              : summonerWin
+                ? 'bg-[#172335] ring-green-400'
+                : 'bg-[#221923] ring-red-400'
           }
             `}
       >
         <CardContent>
           <div
             className={`absolute w-2 h-full top-0 left-0 ${
-              summonerWin
-                ? 'bg-[#172335] bg-green-400'
-                : 'bg-[#221923] bg-red-400'
+              data?.gameDuration < 240
+                ? 'bg-gray-400'
+                : summonerWin
+                  ? 'bg-[#172335] bg-green-400'
+                  : 'bg-[#221923] bg-red-400'
             }`}
           ></div>
           <div className="flex gap-4 text-white">
             <div className="w-full flex gap-4">
               <div className="ml-2 mr-4 space-y-1">
                 <h3
-                  className={`text-lg font-bold ${summonerWin ? 'text-green-400' : 'text-red-400'}`}
+                  className={`text-lg font-bold ${data?.gameDuration < 240 ? 'text-gray-400' : summonerWin ? 'text-green-400' : 'text-red-400'}`}
                 >
-                  {summonerWin ? 'Victory' : 'Defeat'}
+                  {data?.gameDuration < 240
+                    ? 'Remake'
+                    : summonerWin
+                      ? 'Victory'
+                      : 'Defeat'}
                 </h3>
                 <h4 className="text-xs pb-2">
                   {returnDateAgo(data?.gameEndTimestamp)}

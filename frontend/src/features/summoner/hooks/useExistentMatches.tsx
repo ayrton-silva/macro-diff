@@ -34,14 +34,9 @@ export function useInfiniteExistentMatches({
         return undefined
       }
 
-      console.log('last page param', lastPageParam)
-
       return lastPageParam + 3
     },
     getPreviousPageParam: (firstPage, allPages, firstPageParam) => {
-      console.log('first', firstPage)
-      console.log('first param', firstPageParam)
-      console.log('all', allPages)
       if (firstPageParam <= 1) {
         return undefined
       }

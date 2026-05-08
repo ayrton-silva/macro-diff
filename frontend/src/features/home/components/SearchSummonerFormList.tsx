@@ -27,7 +27,7 @@ export function SearchSummonerFormList({
     return (
       <div className="border border-gray-700 mt-4 rounded-md overflow-hidden">
         {data?.directSearch?.slice(0, 5).map((summoner) => (
-          <SummonerSearchlistCard summoner={summoner} />
+          <SummonerSearchlistCard gameName={gameName} summoner={summoner} />
         ))}
       </div>
     )

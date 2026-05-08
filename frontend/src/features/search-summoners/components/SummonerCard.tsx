@@ -22,7 +22,6 @@ interface SummonerCardProps {
 }
 
 export function SummonerCard({ summoner }: SummonerCardProps) {
-  console.log('summoner', summoner)
   return (
     <div className="border-b border-gray-700 last:border-b-0 hover:bg-black/10">
       <Link
@@ -35,7 +34,11 @@ export function SummonerCard({ summoner }: SummonerCardProps) {
       >
         <div className="p-4 flex pb-5">
           <div className="relative">
-            <ProfileIcon icon={summoner.profileIconId}  className='size-14' avatarSize='size-14' />
+            <ProfileIcon
+              icon={summoner.profileIconId}
+              className="size-14"
+              avatarSize="size-14"
+            />
             <span className="absolute bg-gray-700 left-1/2 px-1 py-0.5 whitespace-nowrap rounded-sm -translate-1/2 text-white text-xs">
               {summoner.level}
             </span>

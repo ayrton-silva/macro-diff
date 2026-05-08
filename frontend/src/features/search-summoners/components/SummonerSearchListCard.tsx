@@ -3,6 +3,7 @@ import { ProfileIcon } from '#/shared/game/ProfileIcon'
 import { Link } from '@tanstack/react-router'
 
 interface SummonerCardProps {
+  gameName: string
   summoner: {
     gameName: string
     profileIconId: number
@@ -22,8 +23,10 @@ interface SummonerCardProps {
   }
 }
 
-export function SummonerSearchlistCard({ summoner }: SummonerCardProps) {
-  console.log('summoner', summoner)
+export function SummonerSearchlistCard({
+  summoner,
+  gameName,
+}: SummonerCardProps) {
   return (
     <div className="flex h-16 items-center border-b-1 last:border-0 border-gray-700 bg-gray-900 hover:bg-gray-900/70 ">
       <Link
@@ -33,12 +36,18 @@ export function SummonerSearchlistCard({ summoner }: SummonerCardProps) {
           region: summoner.region,
           tagLine: summoner.tagLine,
         }}
-        className='w-full'
+        className="w-full"
       >
         <div className="p-4 flex pb-5 items-center">
-            <ProfileIcon icon={summoner.profileIconId} className='rounded-4xl size-10' avatarSize='size-10'/>
+          <ProfileIcon
+            icon={summoner.profileIconId}
+            className="rounded-4xl size-10"
+            avatarSize="size-10"
+          />
           <div className="flex ml-4 min-w-48 items-center">
-            <h3 className="text-white font-light text-sm">{summoner.gameName}</h3>
+            <h3 className="text-white font-light text-sm">
+              {summoner.gameName}
+            </h3>
             <span className="bg-gray-800 text-white ml-2 px-2 py-1 block w-fit text-xs rounded-xs">
               #{summoner.tagLine}
             </span>
@@ -47,10 +56,12 @@ export function SummonerSearchlistCard({ summoner }: SummonerCardProps) {
             .filter((l) => l.queueType === 'RANKED_SOLO_5x5')
             .map((league) => (
               <div className="ml-16 gap-12 hidden text-left sm:flex text-white font-light text-sm">
-                  <h3 className={`min-w-24 ${changeStyleOnSummonerLeague(league.tier)}`}>
-                    {league.tier} {league.rank}
-                  </h3>
-                  <h3>{league.leaguePoints} LP</h3>
+                <h3
+                  className={`min-w-24 ${changeStyleOnSummonerLeague(league.tier)}`}
+                >
+                  {league.tier} {league.rank}
+                </h3>
+                <h3>{league.leaguePoints} LP</h3>
               </div>
             ))}
         </div>

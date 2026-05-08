@@ -30,7 +30,6 @@ export function SearchSummonerForm() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      console.log('You submitted the following values:', value)
       navigate({
         to: `/search-summoners?gameName=${value.gameName}&tagLine=${value.tagLine}&region=${value.region}`,
       })

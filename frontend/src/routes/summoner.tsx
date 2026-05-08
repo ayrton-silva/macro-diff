@@ -35,8 +35,6 @@ function RouteComponent() {
     numberOfMatches: 3,
   })
 
-  console.log('Partidaaas', matches.data)
-
   return (
     <div>
       {data && <SummonerHeader summoner={data} />}
