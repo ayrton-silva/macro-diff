@@ -12,7 +12,21 @@ const adapter = new PrismaPg({
 export const prisma = new PrismaClient({ adapter });
 
 export async function buildApp() {
-  const app = Fastify({ logger: true })
+  const app = Fastify({
+    logger: {
+      serializers: {
+        req: function (req) {
+          return { url: req.url }
+        },
+      },
+      formatters: {
+        bindings: () => ({}),
+        level: () => ({})
+      },
+      timestamp: () => `"time":"${new Date().toISOString()}"`,
+
+    }
+  })
   await registerRoutes(app)
 
   return app

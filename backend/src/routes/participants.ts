@@ -7,10 +7,13 @@ import { createParticipants } from '../repositories/riotParticipants.repositorie
 
 export async function participantsRoutes(app: FastifyInstance) {
   app.get('/participants/:matchId', async (request) => {
+
     const { matchId } = request.params as { matchId: string }
-    console.log(matchId)
+    request.log.info({matchId}, 'Creating Participants from matchId')
+
     const response = await createParticipants(matchId)
-    console.log("Participantes Created!")
+    request.log.info({'TotalParticipants': response.length,'Participants':response.map((data)=> data.riotIdGameName)}, 'Participants created Response')
+
     return response
   })
 }

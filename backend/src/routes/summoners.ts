@@ -11,25 +11,35 @@ import type { RiotAccountRequest } from '../dto/riotAccountDto'
 export async function summonersRoutes(app: FastifyInstance) {
   app.get('/summoners', async () => {
     const summoners = await readAllSummoners()
-
+    if(summoners){
+      app.log.info({'TotalSummoners': summoners.length,'SummonersGameName':summoners.map((data)=> data.gameName)}, 'Summoners list')
+    }
     return summoners
   })
 
   app.get('/summoners/:summonerId', async (request) => {
     const { summonerId } = request.params as { summonerId: string }
     const summoner = await readSummoner(summonerId)
-
+    if(summoner){
+      request.log.info(summoner?.gameName)
+    }
     return summoner
   })
 
   app.get('/summoners/search', async (request) => {
     const {  gameName, tagLine, region = 'americas'} = request.query as {  gameName: string,tagLine: string, region: string}
-
     const summoner = await searchSummoner({gameName, tagLine, region})
+    request.log.info({ gameName, tagLine, region },'Searching for Summoner')
+
+    if(summoner && (summoner?.directSearch || summoner?.startWithSearch || summoner?.summonerExactlyMatch)){
+      request.log.info({"directSearch" : summoner?.directSearch.length})
+      request.log.info({"startWithSearch" : summoner?.startWithSearch.length})
+      request.log.info({"summonerExactlyMatch" : summoner?.summonerExactlyMatch.length})
+    }
 
     if(summoner?.summonerExactlyMatch.length == 0 && gameName && tagLine && region){
       const response = await createSummoner({gameName, tagLine, region})
-      console.log("Creating Summoner: ",{gameName, tagLine, region})
+      request.log.info({gameName, tagLine, region},'Created Summoner')
       return response
     }
     return summoner
@@ -38,15 +48,16 @@ export async function summonersRoutes(app: FastifyInstance) {
   app.post('/summoners', async (request) => {
     const { gameName, tagLine, region } = request.body as RiotAccountRequest
     const summoner = await createSummoner({ gameName, tagLine, region })
-
+    request.log.info({gameName, tagLine, region},'Created Summoner')
     return summoner
   })
-
+  
   
   app.get('/summoner', async (request) => {
     const { gameName, tagLine, region } = request.query as RiotAccountRequest
     const summoner = await readSummonerByName({gameName, tagLine, region})
-
+    request.log.info({gameName, tagLine, region}, 'Get Summoner')
+    
     return summoner
   })
 }

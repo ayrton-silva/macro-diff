@@ -14,6 +14,8 @@ export async function matchesRoutes(app: FastifyInstance) {
     const { puuid } = request.params as { puuid: string }
     const { numberOfMatches, skip } = request.query as { numberOfMatches: number, skip: number }
 
+    request.log.info({ puuid, numberOfMatches, skip },'Requesting matches for puuid')
+
     const response = await createMatches({
       puuid: puuid,
       numberOfMatches: +numberOfMatches,
@@ -27,30 +29,39 @@ export async function matchesRoutes(app: FastifyInstance) {
     const { puuid } = request.params as { puuid: string }
     const { numberOfMatches, skip } = request.query as { numberOfMatches: number, skip: number }
 
+    request.log.info({ puuid, numberOfMatches, skip },'Requesting existentMatches for puuid')
+    
     const response = await getExistentMatches({
       puuid: puuid,
       numberOfMatches: +numberOfMatches,
       skip: +skip
     })
+
+    request.log.info(response,'Response from getExistentMatches')
+    
     if(response.length < numberOfMatches){
       await createMatches({
         puuid: puuid,
         numberOfMatches: +numberOfMatches,
         skip: +skip
       })
-      return await getExistentMatches({
-      puuid: puuid,
-      numberOfMatches: +numberOfMatches,
-      skip: +skip
-    })
+      const responseData = await getExistentMatches({
+        puuid: puuid,
+        numberOfMatches: +numberOfMatches,
+        skip: +skip
+      })
+      request.log.info(responseData,'Response from getExistentMatches after createMatches')
+      return responseData
     }
     return response
   })
-
+  
   app.get('/match/:matchId', async (request) => {
     const { matchId } = request.params as { matchId: string }
-
+    request.log.info({matchId},'Requesting data for matchId')
+    
     const response = await readMatch(matchId)
+    request.log.info({'matchId' : response?.matchId, 'gameDuration' : response?.gameDuration, 'participants': response?.participants.map((data)=> data.summoner.gameName)},'Response from readMatch Data')
 
     return response
   })
