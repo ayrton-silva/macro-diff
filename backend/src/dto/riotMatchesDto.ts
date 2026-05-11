@@ -2,13 +2,13 @@ export type RiotMatchesRequest = {
     puuid: string,
     region?: string,
     numberOfMatches: number,
-    skip: number
+    endTime?: string
 }
 export type RiotExistentMatchesRequest = {
     puuid: string,
     region?: string,
     numberOfMatches: number,
-    skip: number
+    cursor: string
 }
 
 export type RiotMatchesResponse = Array<string>

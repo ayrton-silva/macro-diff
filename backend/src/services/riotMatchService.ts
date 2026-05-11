@@ -18,9 +18,9 @@ export async function getMatches({
   puuid,
   region,
   numberOfMatches,
-  skip
+  endTime
 }: RiotMatchesRequest): Promise<RiotMatchesResponse> {
-  const url = `https://${validateRegion(region)}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=${skip}&count=${numberOfMatches}`
+  const url = `https://${validateRegion(region)}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?${endTime ? `endTime=${Number(endTime)}&`:""}count=${numberOfMatches}`
 
   const response = await fetch(url, {
     headers: {

@@ -12,14 +12,14 @@ import {
 export async function matchesRoutes(app: FastifyInstance) {
   app.get('/matches/:puuid', async (request) => {
     const { puuid } = request.params as { puuid: string }
-    const { numberOfMatches, skip } = request.query as { numberOfMatches: number, skip: number }
+    const { numberOfMatches, endTime } = request.query as { numberOfMatches: number, endTime: string }
 
-    request.log.info({ puuid, numberOfMatches, skip },'Requesting matches for puuid')
+    request.log.info({ puuid, numberOfMatches, endTime },'Requesting matches for puuid')
 
     const response = await createMatches({
       puuid: puuid,
       numberOfMatches: +numberOfMatches,
-      skip: +skip
+      endTime: endTime
     })
 
     return response
@@ -27,28 +27,28 @@ export async function matchesRoutes(app: FastifyInstance) {
 
   app.get('/existentMatches/:puuid', async (request) => {
     const { puuid } = request.params as { puuid: string }
-    const { numberOfMatches, skip } = request.query as { numberOfMatches: number, skip: number }
+    const { numberOfMatches, cursor } = request.query as { numberOfMatches: number, cursor: string }
 
-    request.log.info({ puuid, numberOfMatches, skip },'Requesting existentMatches for puuid')
+    request.log.info({ puuid, numberOfMatches, cursor },'Requesting existentMatches for puuid')
     
     const response = await getExistentMatches({
       puuid: puuid,
       numberOfMatches: +numberOfMatches,
-      skip: +skip
+      cursor: cursor
     })
 
     request.log.info(response,'Response from getExistentMatches')
     
-    if(response.length < numberOfMatches){
+    if(response.data.length < numberOfMatches){
       await createMatches({
         puuid: puuid,
         numberOfMatches: +numberOfMatches,
-        skip: +skip
+        endTime: response.data[response.data.length-1].gameEndTimestamp
       })
       const responseData = await getExistentMatches({
         puuid: puuid,
         numberOfMatches: +numberOfMatches,
-        skip: +skip
+        cursor: cursor
       })
       request.log.info(responseData,'Response from getExistentMatches after createMatches')
       return responseData
