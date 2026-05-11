@@ -95,9 +95,9 @@ export async function getExistentMatches(request: RiotExistentMatchesRequest) {
                 matchId: request.cursor,
             }
         }),
-        include: {
+        where: {
             participants: {
-                where: {
+                some: {
                     summonerId: request.puuid
                 }
             }
