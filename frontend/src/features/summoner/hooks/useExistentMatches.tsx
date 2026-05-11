@@ -8,12 +8,12 @@ import type { fetchExistentMatchesByPuuidRequest } from '../services/fetchExiste
 export function useExistentMatches({
   numberOfMatches,
   puuid,
-  skip,
+  cursor,
 }: fetchExistentMatchesByPuuidRequest) {
   return useQuery({
     queryKey: ['lol', 'matches', puuid],
     queryFn: () =>
-      fetchExistentMatchesByPuuid({ numberOfMatches, puuid, skip }),
+      fetchExistentMatchesByPuuid({ numberOfMatches, puuid, cursor }),
     enabled: !!puuid,
   })
 }
@@ -21,27 +21,15 @@ export function useExistentMatches({
 export function useInfiniteExistentMatches({
   numberOfMatches,
   puuid,
-  skip,
+  cursor,
 }: fetchExistentMatchesByPuuidRequest) {
   return useInfiniteQuery({
     queryKey: ['lol', 'matches', puuid],
     queryFn: () =>
-      fetchExistentMatchesByPuuid({ numberOfMatches, puuid, skip }),
+      fetchExistentMatchesByPuuid({ numberOfMatches, puuid, cursor }),
     initialPageParam: 0,
     enabled: !!puuid,
-    getNextPageParam: (lastPage, allPages, lastPageParam) => {
-      if (lastPage.length === 0) {
-        return undefined
-      }
-
-      return lastPageParam + 3
-    },
-    getPreviousPageParam: (firstPage, allPages, firstPageParam) => {
-      if (firstPageParam <= 1) {
-        return undefined
-      }
-      return firstPageParam
-    },
+    getNextPageParam: (lastPage, pages) => lastPage.cursor,
   })
 }
 

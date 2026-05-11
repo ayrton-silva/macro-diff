@@ -31,7 +31,7 @@ function RouteComponent() {
 
   const matches = useInfiniteExistentMatches({
     puuid: data?.id,
-    skip: 0,
+    cursor: '',
     numberOfMatches: 3,
   })
 
@@ -43,14 +43,17 @@ function RouteComponent() {
         <div className="w-full mr-80">
           {/* <h2 className="mb-4">Match History</h2> */}
           <div className="space-y-6">
-            {matches.data?.pages.flat().map((match: string) => (
-              <SummonerMatchCard matchId={match} summonerId={data?.id} />
-            ))}
+            {matches.data?.pages
+              .map((data) => data.data)
+              .flat()
+              .map(({ matchId }: {}) => (
+                <SummonerMatchCard matchId={matchId} summonerId={data?.id} />
+              ))}
           </div>
           {data && (
             <LoadMoreMatchesButton
               puuid={data?.id}
-              skip={Number(matches.data?.pages.length || 0) * 3}
+              cursor={matches.data?.pages[matches.data.pages.length - 1].cursor}
             />
           )}
         </div>

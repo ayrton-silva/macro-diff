@@ -3,17 +3,17 @@ import { useInfiniteExistentMatches } from '../hooks/useExistentMatches'
 
 type LoadMoreMatchesButtonProps = {
   puuid: string
-  skip: number
+  cursor: string
 }
 
 export function LoadMoreMatchesButton({
   puuid,
-  skip,
+  cursor,
 }: LoadMoreMatchesButtonProps) {
   const { fetchNextPage, isFetching, isFetchingNextPage } =
     useInfiniteExistentMatches({
       puuid,
-      skip: +skip,
+      cursor,
       numberOfMatches: 3,
     })
 

@@ -55,10 +55,10 @@ export function capitalizeString(string: string) {
   return string[0].toUpperCase() + string.slice(1).toLowerCase()
 }
 
-export function returnDateAgo(input:number){
-  let timeAgo = (new Date().getTime() - +input)/1000/3600/24
-  if(timeAgo < 1){
-    return Math.floor(timeAgo*24) + " hours ago"
+export function returnDateAgo(input: number) {
+  let timeAgo = (new Date().getTime() - +input) / 1000 / 3600 / 24
+  if (timeAgo < 1) {
+    return Math.floor(timeAgo * 24) + ' hours ago'
   }
-  return Math.floor(timeAgo) + " days ago"
+  return Math.round(timeAgo) + ' days ago'
 }

@@ -109,7 +109,9 @@ export function SummonerMatchCard({ matchId, summonerId }: MatchCardProps) {
 
   const summonerWin = data?.participants.filter(
     (p) => p.summonerId === summonerId,
-  )[0].win
+  )[0]?.win
+
+  console.log('matchId', matchId)
 
   return (
     <div className="grid gap-6">

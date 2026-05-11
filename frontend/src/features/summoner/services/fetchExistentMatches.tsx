@@ -1,16 +1,16 @@
 export type fetchExistentMatchesByPuuidRequest = {
   puuid: string
   numberOfMatches?: number
-  skip?: number
+  cursor?: string
 }
 
 export async function fetchExistentMatchesByPuuid({
   puuid,
   numberOfMatches = 3,
-  skip = 0,
+  cursor = '',
 }: fetchExistentMatchesByPuuidRequest) {
   const response = await fetch(
-    `http://localhost:3001/existentMatches/${puuid}?numberOfMatches=${numberOfMatches}&skip=${isNaN(skip) ? 0 : skip}
+    `http://localhost:3001/existentMatches/${puuid}?numberOfMatches=${numberOfMatches}${cursor && `&cursor=${cursor}`}
 `,
   )
 
