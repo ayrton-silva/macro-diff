@@ -22,11 +22,13 @@ export async function getMatches({
 }: RiotMatchesRequest): Promise<RiotMatchesResponse> {
   const url = `https://${validateRegion(region)}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?${start ? `start=${Number(start)}&` : ''}count=${numberOfMatches}`
 
+  
   const response = await fetch(url, {
     headers: {
       'X-Riot-Token': RIOT_API_KEY || '',
     },
   })
+  console.log("X-App-Rate-Limit-Count: ",response.headers.get("X-App-Rate-Limit-Count"))
 
   const data = (await response.json()) as RiotMatchesResponse
 
@@ -48,6 +50,8 @@ export async function getMatchDetails({
       'X-Riot-Token': RIOT_API_KEY || '',
     },
   })
+
+  console.log("X-App-Rate-Limit-Count: ",response.headers.get("X-App-Rate-Limit-Count"))
 
   const data = (await response.json()) as RiotMatchDataResponse
 

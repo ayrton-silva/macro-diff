@@ -39,6 +39,9 @@ export async function getAccount({
       'X-Riot-Token': RIOT_API_KEY || '',
     },
   })
+
+  console.log("X-App-Rate-Limit-Count: ",response.headers.get("X-App-Rate-Limit-Count"))
+
   const data = await response.json()
 
   if (!response.ok) {
@@ -63,6 +66,8 @@ export async function getSummoner({
       'X-Riot-Token': RIOT_API_KEY || '',
     },
   })
+
+  console.log("X-App-Rate-Limit-Count: ",response.headers.get("X-App-Rate-Limit-Count"))
 
   const data = (await response.json()) as RiotSummonerResponse
 
@@ -89,6 +94,8 @@ export async function getSummonerNameByPuuid({
     },
   })
 
+  console.log("X-App-Rate-Limit-Count: ",response.headers.get("X-App-Rate-Limit-Count"))
+
   const data = (await response.json()) as RiotAccountResponse
 
   if (!data.puuid) {
@@ -109,6 +116,8 @@ export async function getSummonerLeague({
     },
   })
 
+  console.log("X-App-Rate-Limit-Count: ",response.headers.get("X-App-Rate-Limit-Count"))
+  
   const data = (await response.json()) as RiotSummonerLeagueResponse
 
   if (!data) {
