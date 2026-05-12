@@ -11,5 +11,8 @@
 export type * from './models/Summoner.ts'
 export type * from './models/SummonerLeague.ts'
 export type * from './models/Match.ts'
+export type * from './models/MatchTimeline.ts'
+export type * from './models/Events.ts'
+export type * from './models/ParticipantFrames.ts'
 export type * from './models/Participant.ts'
 export type * from './commonInputTypes.ts'

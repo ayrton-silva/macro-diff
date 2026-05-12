@@ -1,10 +1,12 @@
 import type { FastifyInstance } from 'fastify'
 import {
   createMatches,
+  createTimelineData,
   getExistentMatches,
+  getTimelineData,
   readMatch,
 } from '../repositories/riotMatches.repositories'
-import { getAllMatchesByPuuid } from '../services/riotMatchService'
+import { getAllMatchesByPuuid, getMatchTimeline } from '../services/riotMatchService'
 import { memoryMatchData } from '../app'
 
 /** Rotas de exemplo para match + timeline (corpo vazio / stub). */
@@ -123,5 +125,31 @@ export async function matchesRoutes(app: FastifyInstance) {
     )
 
     return response
+  })
+  app.get('/matchTimeline/:matchId', async (request) => {
+    const { matchId } = request.params as { matchId: string }
+    request.log.info({ matchId }, 'Requesting data for matchId')
+
+    let existentData = await getTimelineData(matchId)
+
+    if(!existentData?.matchTimeline){
+      await createTimelineData(matchId)
+      existentData = await getTimelineData(matchId)
+    }
+    
+    request.log.info(
+      {
+        matchId: existentData?.matchTimeline?.matchId,
+        events: existentData?.matchTimeline?.events.length,
+        frames: existentData?.matchTimeline?.participantFrames.length,
+        participants: existentData?.matchTimeline?.participantFrames.map(
+          (data) => data.id,
+        ),
+      },
+      'Response from readTimeline Data',
+    )
+
+
+    return existentData
   })
 }

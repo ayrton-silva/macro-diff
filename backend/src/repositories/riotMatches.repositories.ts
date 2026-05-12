@@ -3,7 +3,7 @@ import type {
   RiotExistentMatchesRequest,
   RiotMatchesRequest,
 } from '../dto/riotMatchesDto'
-import { getMatchDetails, getMatches } from '../services/riotMatchService'
+import { getMatchDetails, getMatches, getMatchTimeline } from '../services/riotMatchService'
 import { createSummonerByPuuid } from './riotAccount.repositories'
 
 export async function createMatches(request: RiotMatchesRequest) {
@@ -144,6 +144,97 @@ export async function readMatch(id: string) {
             },
           },
         },
+      },
+    })
+
+    return match
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export async function createTimelineData(matchId: string) {
+
+  const timelineData = await getMatchTimeline({ matchId })
+
+  const id = String(Date.now()+matchId)
+
+  try {
+    await prisma.matchTimeline.create({
+      data: {
+        matchTimelineId: id,
+        matchId: timelineData.metadata.matchId,
+      },
+    })
+  } catch (e) {
+    console.log(e)
+  }
+
+  for (const frame of timelineData.info.frames) {
+
+    for (const event of frame.events) {
+      try {
+        await prisma.events.create({
+          data: {
+            timestamp: event.timestamp,
+            type: event.type,
+            creatorId: event.creatorId? timelineData.info.participants.filter((data) => event.creatorId == data.participantId)[0].puuid : "",
+            wardType: event.wardType,
+            itemId: event.itemId,
+            participantPuuid: event.participantId ? timelineData.info.participants.filter((data) => event.participantId == data.participantId)[0].puuid : "",
+            teamId: event.teamId,
+            victimId: event.victimId ? timelineData.info.participants.filter((data) => event.victimId == data.participantId)[0].puuid : "",
+            killerId: event.killerId ? timelineData.info.participants.filter((data) => event.killerId == data.participantId)[0].puuid : "",
+            killType: event.killType,
+            positionx: event.position?.x,
+            positiony: event.position?.y,
+            monsterSubType: event.monsterSubType,
+            monsterType: event.monsterType,
+            matchTimelineId: id 
+          },
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    for (const [key, participantFrame] of Object.entries(frame.participantFrames)) {
+      try {
+        await prisma.participantFrames.create({
+          data: {
+            participantFrameId: Number(key),
+            participantPuuid: timelineData.info.participants.filter((data) => Number(key) == data.participantId)[0].puuid,
+            timestamp: frame.timestamp,
+            positionx: participantFrame.position.x,
+            positiony: participantFrame.position.y,
+            level: participantFrame.level,
+            minionsKilled: participantFrame.minionsKilled,
+            totalGold: participantFrame.totalGold,
+            totalDamageDoneToChampions: participantFrame.damageStats.totalDamageDoneToChampions,
+            matchTimelineId: id 
+          },
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+  }
+
+  return timelineData
+}
+export async function getTimelineData(matchId: string) {
+
+  try {
+    const match = await prisma.match.findUnique({
+      where: { matchId: matchId },
+      include: {
+        matchTimeline: {
+          include: {
+            events: true,
+            participantFrames: true
+          }
+        }
       },
     })
 

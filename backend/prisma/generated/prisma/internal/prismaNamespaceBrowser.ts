@@ -54,6 +54,9 @@ export const ModelName = {
   Summoner: 'Summoner',
   SummonerLeague: 'SummonerLeague',
   Match: 'Match',
+  MatchTimeline: 'MatchTimeline',
+  Events: 'Events',
+  ParticipantFrames: 'ParticipantFrames',
   Participant: 'Participant'
 } as const
 
@@ -117,6 +120,53 @@ export const MatchScalarFieldEnum = {
 export type MatchScalarFieldEnum = (typeof MatchScalarFieldEnum)[keyof typeof MatchScalarFieldEnum]
 
 
+export const MatchTimelineScalarFieldEnum = {
+  matchTimelineId: 'matchTimelineId',
+  matchId: 'matchId'
+} as const
+
+export type MatchTimelineScalarFieldEnum = (typeof MatchTimelineScalarFieldEnum)[keyof typeof MatchTimelineScalarFieldEnum]
+
+
+export const EventsScalarFieldEnum = {
+  eventId: 'eventId',
+  timestamp: 'timestamp',
+  type: 'type',
+  creatorId: 'creatorId',
+  wardType: 'wardType',
+  itemId: 'itemId',
+  participantPuuid: 'participantPuuid',
+  teamId: 'teamId',
+  victimId: 'victimId',
+  killerId: 'killerId',
+  killType: 'killType',
+  positionx: 'positionx',
+  positiony: 'positiony',
+  monsterSubType: 'monsterSubType',
+  monsterType: 'monsterType',
+  matchTimelineId: 'matchTimelineId'
+} as const
+
+export type EventsScalarFieldEnum = (typeof EventsScalarFieldEnum)[keyof typeof EventsScalarFieldEnum]
+
+
+export const ParticipantFramesScalarFieldEnum = {
+  id: 'id',
+  participantFrameId: 'participantFrameId',
+  participantPuuid: 'participantPuuid',
+  timestamp: 'timestamp',
+  positionx: 'positionx',
+  positiony: 'positiony',
+  level: 'level',
+  minionsKilled: 'minionsKilled',
+  totalGold: 'totalGold',
+  totalDamageDoneToChampions: 'totalDamageDoneToChampions',
+  matchTimelineId: 'matchTimelineId'
+} as const
+
+export type ParticipantFramesScalarFieldEnum = (typeof ParticipantFramesScalarFieldEnum)[keyof typeof ParticipantFramesScalarFieldEnum]
+
+
 export const ParticipantScalarFieldEnum = {
   summonerId: 'summonerId',
   matchId: 'matchId',
@@ -172,4 +222,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

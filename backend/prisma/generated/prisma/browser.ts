@@ -33,6 +33,21 @@ export type SummonerLeague = Prisma.SummonerLeagueModel
  */
 export type Match = Prisma.MatchModel
 /**
+ * Model MatchTimeline
+ * 
+ */
+export type MatchTimeline = Prisma.MatchTimelineModel
+/**
+ * Model Events
+ * 
+ */
+export type Events = Prisma.EventsModel
+/**
+ * Model ParticipantFrames
+ * 
+ */
+export type ParticipantFrames = Prisma.ParticipantFramesModel
+/**
  * Model Participant
  * 
  */

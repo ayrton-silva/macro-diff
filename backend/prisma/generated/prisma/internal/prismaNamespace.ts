@@ -387,6 +387,9 @@ export const ModelName = {
   Summoner: 'Summoner',
   SummonerLeague: 'SummonerLeague',
   Match: 'Match',
+  MatchTimeline: 'MatchTimeline',
+  Events: 'Events',
+  ParticipantFrames: 'ParticipantFrames',
   Participant: 'Participant'
 } as const
 
@@ -403,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "summoner" | "summonerLeague" | "match" | "participant"
+    modelProps: "summoner" | "summonerLeague" | "match" | "matchTimeline" | "events" | "participantFrames" | "participant"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -629,6 +632,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MatchTimeline: {
+      payload: Prisma.$MatchTimelinePayload<ExtArgs>
+      fields: Prisma.MatchTimelineFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MatchTimelineFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchTimelinePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MatchTimelineFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchTimelinePayload>
+        }
+        findFirst: {
+          args: Prisma.MatchTimelineFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchTimelinePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MatchTimelineFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchTimelinePayload>
+        }
+        findMany: {
+          args: Prisma.MatchTimelineFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchTimelinePayload>[]
+        }
+        create: {
+          args: Prisma.MatchTimelineCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchTimelinePayload>
+        }
+        createMany: {
+          args: Prisma.MatchTimelineCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MatchTimelineCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchTimelinePayload>[]
+        }
+        delete: {
+          args: Prisma.MatchTimelineDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchTimelinePayload>
+        }
+        update: {
+          args: Prisma.MatchTimelineUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchTimelinePayload>
+        }
+        deleteMany: {
+          args: Prisma.MatchTimelineDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MatchTimelineUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MatchTimelineUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchTimelinePayload>[]
+        }
+        upsert: {
+          args: Prisma.MatchTimelineUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchTimelinePayload>
+        }
+        aggregate: {
+          args: Prisma.MatchTimelineAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMatchTimeline>
+        }
+        groupBy: {
+          args: Prisma.MatchTimelineGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MatchTimelineGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MatchTimelineCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MatchTimelineCountAggregateOutputType> | number
+        }
+      }
+    }
+    Events: {
+      payload: Prisma.$EventsPayload<ExtArgs>
+      fields: Prisma.EventsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EventsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EventsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventsPayload>
+        }
+        findFirst: {
+          args: Prisma.EventsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EventsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventsPayload>
+        }
+        findMany: {
+          args: Prisma.EventsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventsPayload>[]
+        }
+        create: {
+          args: Prisma.EventsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventsPayload>
+        }
+        createMany: {
+          args: Prisma.EventsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EventsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventsPayload>[]
+        }
+        delete: {
+          args: Prisma.EventsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventsPayload>
+        }
+        update: {
+          args: Prisma.EventsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventsPayload>
+        }
+        deleteMany: {
+          args: Prisma.EventsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EventsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EventsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventsPayload>[]
+        }
+        upsert: {
+          args: Prisma.EventsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventsPayload>
+        }
+        aggregate: {
+          args: Prisma.EventsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEvents>
+        }
+        groupBy: {
+          args: Prisma.EventsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EventsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventsCountAggregateOutputType> | number
+        }
+      }
+    }
+    ParticipantFrames: {
+      payload: Prisma.$ParticipantFramesPayload<ExtArgs>
+      fields: Prisma.ParticipantFramesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ParticipantFramesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParticipantFramesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ParticipantFramesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParticipantFramesPayload>
+        }
+        findFirst: {
+          args: Prisma.ParticipantFramesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParticipantFramesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ParticipantFramesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParticipantFramesPayload>
+        }
+        findMany: {
+          args: Prisma.ParticipantFramesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParticipantFramesPayload>[]
+        }
+        create: {
+          args: Prisma.ParticipantFramesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParticipantFramesPayload>
+        }
+        createMany: {
+          args: Prisma.ParticipantFramesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ParticipantFramesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParticipantFramesPayload>[]
+        }
+        delete: {
+          args: Prisma.ParticipantFramesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParticipantFramesPayload>
+        }
+        update: {
+          args: Prisma.ParticipantFramesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParticipantFramesPayload>
+        }
+        deleteMany: {
+          args: Prisma.ParticipantFramesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ParticipantFramesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ParticipantFramesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParticipantFramesPayload>[]
+        }
+        upsert: {
+          args: Prisma.ParticipantFramesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParticipantFramesPayload>
+        }
+        aggregate: {
+          args: Prisma.ParticipantFramesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateParticipantFrames>
+        }
+        groupBy: {
+          args: Prisma.ParticipantFramesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ParticipantFramesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ParticipantFramesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ParticipantFramesCountAggregateOutputType> | number
+        }
+      }
+    }
     Participant: {
       payload: Prisma.$ParticipantPayload<ExtArgs>
       fields: Prisma.ParticipantFieldRefs
@@ -786,6 +1011,53 @@ export const MatchScalarFieldEnum = {
 export type MatchScalarFieldEnum = (typeof MatchScalarFieldEnum)[keyof typeof MatchScalarFieldEnum]
 
 
+export const MatchTimelineScalarFieldEnum = {
+  matchTimelineId: 'matchTimelineId',
+  matchId: 'matchId'
+} as const
+
+export type MatchTimelineScalarFieldEnum = (typeof MatchTimelineScalarFieldEnum)[keyof typeof MatchTimelineScalarFieldEnum]
+
+
+export const EventsScalarFieldEnum = {
+  eventId: 'eventId',
+  timestamp: 'timestamp',
+  type: 'type',
+  creatorId: 'creatorId',
+  wardType: 'wardType',
+  itemId: 'itemId',
+  participantPuuid: 'participantPuuid',
+  teamId: 'teamId',
+  victimId: 'victimId',
+  killerId: 'killerId',
+  killType: 'killType',
+  positionx: 'positionx',
+  positiony: 'positiony',
+  monsterSubType: 'monsterSubType',
+  monsterType: 'monsterType',
+  matchTimelineId: 'matchTimelineId'
+} as const
+
+export type EventsScalarFieldEnum = (typeof EventsScalarFieldEnum)[keyof typeof EventsScalarFieldEnum]
+
+
+export const ParticipantFramesScalarFieldEnum = {
+  id: 'id',
+  participantFrameId: 'participantFrameId',
+  participantPuuid: 'participantPuuid',
+  timestamp: 'timestamp',
+  positionx: 'positionx',
+  positiony: 'positiony',
+  level: 'level',
+  minionsKilled: 'minionsKilled',
+  totalGold: 'totalGold',
+  totalDamageDoneToChampions: 'totalDamageDoneToChampions',
+  matchTimelineId: 'matchTimelineId'
+} as const
+
+export type ParticipantFramesScalarFieldEnum = (typeof ParticipantFramesScalarFieldEnum)[keyof typeof ParticipantFramesScalarFieldEnum]
+
+
 export const ParticipantScalarFieldEnum = {
   summonerId: 'summonerId',
   matchId: 'matchId',
@@ -841,6 +1113,14 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 
@@ -1010,6 +1290,9 @@ export type GlobalOmitConfig = {
   summoner?: Prisma.SummonerOmit
   summonerLeague?: Prisma.SummonerLeagueOmit
   match?: Prisma.MatchOmit
+  matchTimeline?: Prisma.MatchTimelineOmit
+  events?: Prisma.EventsOmit
+  participantFrames?: Prisma.ParticipantFramesOmit
   participant?: Prisma.ParticipantOmit
 }
 

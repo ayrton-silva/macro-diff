@@ -237,6 +237,7 @@ export type MatchWhereInput = {
   platformId?: Prisma.StringFilter<"Match"> | string
   queueId?: Prisma.IntFilter<"Match"> | number
   participants?: Prisma.ParticipantListRelationFilter
+  matchTimeline?: Prisma.XOR<Prisma.MatchTimelineNullableScalarRelationFilter, Prisma.MatchTimelineWhereInput> | null
 }
 
 export type MatchOrderByWithRelationInput = {
@@ -248,6 +249,7 @@ export type MatchOrderByWithRelationInput = {
   platformId?: Prisma.SortOrder
   queueId?: Prisma.SortOrder
   participants?: Prisma.ParticipantOrderByRelationAggregateInput
+  matchTimeline?: Prisma.MatchTimelineOrderByWithRelationInput
 }
 
 export type MatchWhereUniqueInput = Prisma.AtLeast<{
@@ -262,6 +264,7 @@ export type MatchWhereUniqueInput = Prisma.AtLeast<{
   platformId?: Prisma.StringFilter<"Match"> | string
   queueId?: Prisma.IntFilter<"Match"> | number
   participants?: Prisma.ParticipantListRelationFilter
+  matchTimeline?: Prisma.XOR<Prisma.MatchTimelineNullableScalarRelationFilter, Prisma.MatchTimelineWhereInput> | null
 }, "matchId">
 
 export type MatchOrderByWithAggregationInput = {
@@ -301,6 +304,7 @@ export type MatchCreateInput = {
   platformId: string
   queueId: number
   participants?: Prisma.ParticipantCreateNestedManyWithoutMatchInput
+  matchTimeline?: Prisma.MatchTimelineCreateNestedOneWithoutMatchInput
 }
 
 export type MatchUncheckedCreateInput = {
@@ -312,6 +316,7 @@ export type MatchUncheckedCreateInput = {
   platformId: string
   queueId: number
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutMatchInput
+  matchTimeline?: Prisma.MatchTimelineUncheckedCreateNestedOneWithoutMatchInput
 }
 
 export type MatchUpdateInput = {
@@ -323,6 +328,7 @@ export type MatchUpdateInput = {
   platformId?: Prisma.StringFieldUpdateOperationsInput | string
   queueId?: Prisma.IntFieldUpdateOperationsInput | number
   participants?: Prisma.ParticipantUpdateManyWithoutMatchNestedInput
+  matchTimeline?: Prisma.MatchTimelineUpdateOneWithoutMatchNestedInput
 }
 
 export type MatchUncheckedUpdateInput = {
@@ -334,6 +340,7 @@ export type MatchUncheckedUpdateInput = {
   platformId?: Prisma.StringFieldUpdateOperationsInput | string
   queueId?: Prisma.IntFieldUpdateOperationsInput | number
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutMatchNestedInput
+  matchTimeline?: Prisma.MatchTimelineUncheckedUpdateOneWithoutMatchNestedInput
 }
 
 export type MatchCreateManyInput = {
@@ -411,6 +418,20 @@ export type MatchScalarRelationFilter = {
   isNot?: Prisma.MatchWhereInput
 }
 
+export type MatchCreateNestedOneWithoutMatchTimelineInput = {
+  create?: Prisma.XOR<Prisma.MatchCreateWithoutMatchTimelineInput, Prisma.MatchUncheckedCreateWithoutMatchTimelineInput>
+  connectOrCreate?: Prisma.MatchCreateOrConnectWithoutMatchTimelineInput
+  connect?: Prisma.MatchWhereUniqueInput
+}
+
+export type MatchUpdateOneRequiredWithoutMatchTimelineNestedInput = {
+  create?: Prisma.XOR<Prisma.MatchCreateWithoutMatchTimelineInput, Prisma.MatchUncheckedCreateWithoutMatchTimelineInput>
+  connectOrCreate?: Prisma.MatchCreateOrConnectWithoutMatchTimelineInput
+  upsert?: Prisma.MatchUpsertWithoutMatchTimelineInput
+  connect?: Prisma.MatchWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MatchUpdateToOneWithWhereWithoutMatchTimelineInput, Prisma.MatchUpdateWithoutMatchTimelineInput>, Prisma.MatchUncheckedUpdateWithoutMatchTimelineInput>
+}
+
 export type MatchCreateNestedOneWithoutParticipantsInput = {
   create?: Prisma.XOR<Prisma.MatchCreateWithoutParticipantsInput, Prisma.MatchUncheckedCreateWithoutParticipantsInput>
   connectOrCreate?: Prisma.MatchCreateOrConnectWithoutParticipantsInput
@@ -425,6 +446,66 @@ export type MatchUpdateOneRequiredWithoutParticipantsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MatchUpdateToOneWithWhereWithoutParticipantsInput, Prisma.MatchUpdateWithoutParticipantsInput>, Prisma.MatchUncheckedUpdateWithoutParticipantsInput>
 }
 
+export type MatchCreateWithoutMatchTimelineInput = {
+  matchId: string
+  gameDuration: number
+  gameEndTimestamp: string
+  gameMode: string
+  gameType: string
+  platformId: string
+  queueId: number
+  participants?: Prisma.ParticipantCreateNestedManyWithoutMatchInput
+}
+
+export type MatchUncheckedCreateWithoutMatchTimelineInput = {
+  matchId: string
+  gameDuration: number
+  gameEndTimestamp: string
+  gameMode: string
+  gameType: string
+  platformId: string
+  queueId: number
+  participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutMatchInput
+}
+
+export type MatchCreateOrConnectWithoutMatchTimelineInput = {
+  where: Prisma.MatchWhereUniqueInput
+  create: Prisma.XOR<Prisma.MatchCreateWithoutMatchTimelineInput, Prisma.MatchUncheckedCreateWithoutMatchTimelineInput>
+}
+
+export type MatchUpsertWithoutMatchTimelineInput = {
+  update: Prisma.XOR<Prisma.MatchUpdateWithoutMatchTimelineInput, Prisma.MatchUncheckedUpdateWithoutMatchTimelineInput>
+  create: Prisma.XOR<Prisma.MatchCreateWithoutMatchTimelineInput, Prisma.MatchUncheckedCreateWithoutMatchTimelineInput>
+  where?: Prisma.MatchWhereInput
+}
+
+export type MatchUpdateToOneWithWhereWithoutMatchTimelineInput = {
+  where?: Prisma.MatchWhereInput
+  data: Prisma.XOR<Prisma.MatchUpdateWithoutMatchTimelineInput, Prisma.MatchUncheckedUpdateWithoutMatchTimelineInput>
+}
+
+export type MatchUpdateWithoutMatchTimelineInput = {
+  matchId?: Prisma.StringFieldUpdateOperationsInput | string
+  gameDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  gameEndTimestamp?: Prisma.StringFieldUpdateOperationsInput | string
+  gameMode?: Prisma.StringFieldUpdateOperationsInput | string
+  gameType?: Prisma.StringFieldUpdateOperationsInput | string
+  platformId?: Prisma.StringFieldUpdateOperationsInput | string
+  queueId?: Prisma.IntFieldUpdateOperationsInput | number
+  participants?: Prisma.ParticipantUpdateManyWithoutMatchNestedInput
+}
+
+export type MatchUncheckedUpdateWithoutMatchTimelineInput = {
+  matchId?: Prisma.StringFieldUpdateOperationsInput | string
+  gameDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  gameEndTimestamp?: Prisma.StringFieldUpdateOperationsInput | string
+  gameMode?: Prisma.StringFieldUpdateOperationsInput | string
+  gameType?: Prisma.StringFieldUpdateOperationsInput | string
+  platformId?: Prisma.StringFieldUpdateOperationsInput | string
+  queueId?: Prisma.IntFieldUpdateOperationsInput | number
+  participants?: Prisma.ParticipantUncheckedUpdateManyWithoutMatchNestedInput
+}
+
 export type MatchCreateWithoutParticipantsInput = {
   matchId: string
   gameDuration: number
@@ -433,6 +514,7 @@ export type MatchCreateWithoutParticipantsInput = {
   gameType: string
   platformId: string
   queueId: number
+  matchTimeline?: Prisma.MatchTimelineCreateNestedOneWithoutMatchInput
 }
 
 export type MatchUncheckedCreateWithoutParticipantsInput = {
@@ -443,6 +525,7 @@ export type MatchUncheckedCreateWithoutParticipantsInput = {
   gameType: string
   platformId: string
   queueId: number
+  matchTimeline?: Prisma.MatchTimelineUncheckedCreateNestedOneWithoutMatchInput
 }
 
 export type MatchCreateOrConnectWithoutParticipantsInput = {
@@ -469,6 +552,7 @@ export type MatchUpdateWithoutParticipantsInput = {
   gameType?: Prisma.StringFieldUpdateOperationsInput | string
   platformId?: Prisma.StringFieldUpdateOperationsInput | string
   queueId?: Prisma.IntFieldUpdateOperationsInput | number
+  matchTimeline?: Prisma.MatchTimelineUpdateOneWithoutMatchNestedInput
 }
 
 export type MatchUncheckedUpdateWithoutParticipantsInput = {
@@ -479,6 +563,7 @@ export type MatchUncheckedUpdateWithoutParticipantsInput = {
   gameType?: Prisma.StringFieldUpdateOperationsInput | string
   platformId?: Prisma.StringFieldUpdateOperationsInput | string
   queueId?: Prisma.IntFieldUpdateOperationsInput | number
+  matchTimeline?: Prisma.MatchTimelineUncheckedUpdateOneWithoutMatchNestedInput
 }
 
 
@@ -521,6 +606,7 @@ export type MatchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   platformId?: boolean
   queueId?: boolean
   participants?: boolean | Prisma.Match$participantsArgs<ExtArgs>
+  matchTimeline?: boolean | Prisma.Match$matchTimelineArgs<ExtArgs>
   _count?: boolean | Prisma.MatchCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["match"]>
 
@@ -557,6 +643,7 @@ export type MatchSelectScalar = {
 export type MatchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"matchId" | "gameDuration" | "gameEndTimestamp" | "gameMode" | "gameType" | "platformId" | "queueId", ExtArgs["result"]["match"]>
 export type MatchInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   participants?: boolean | Prisma.Match$participantsArgs<ExtArgs>
+  matchTimeline?: boolean | Prisma.Match$matchTimelineArgs<ExtArgs>
   _count?: boolean | Prisma.MatchCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MatchIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -566,6 +653,7 @@ export type $MatchPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Match"
   objects: {
     participants: Prisma.$ParticipantPayload<ExtArgs>[]
+    matchTimeline: Prisma.$MatchTimelinePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     matchId: string
@@ -970,6 +1058,7 @@ readonly fields: MatchFieldRefs;
 export interface Prisma__MatchClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   participants<T extends Prisma.Match$participantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Match$participantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  matchTimeline<T extends Prisma.Match$matchTimelineArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Match$matchTimelineArgs<ExtArgs>>): Prisma.Prisma__MatchTimelineClient<runtime.Types.Result.GetResult<Prisma.$MatchTimelinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1420,6 +1509,25 @@ export type Match$participantsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.ParticipantScalarFieldEnum | Prisma.ParticipantScalarFieldEnum[]
+}
+
+/**
+ * Match.matchTimeline
+ */
+export type Match$matchTimelineArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MatchTimeline
+   */
+  select?: Prisma.MatchTimelineSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MatchTimeline
+   */
+  omit?: Prisma.MatchTimelineOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MatchTimelineInclude<ExtArgs> | null
+  where?: Prisma.MatchTimelineWhereInput
 }
 
 /**

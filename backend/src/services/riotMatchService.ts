@@ -1,6 +1,7 @@
 import type {
   RiotMatchesRequest,
   RiotMatchesResponse,
+  RiotMatchTimelineDataResponse,
 } from '../dto/riotMatchesDto'
 
 import type {
@@ -82,4 +83,27 @@ export async function getAllMatchesByPuuid({ puuid, inc }: { puuid: string, inc?
   }
 
   return matchesList
+}
+
+export async function getMatchTimeline({
+  matchId,
+  region,
+}: RiotMatchDataRequest): Promise<RiotMatchTimelineDataResponse> {
+  const url = `https://${encodeURIComponent(validateRegion(region))}.api.riotgames.com/lol/match/v5/matches/${matchId}/timeline`
+
+  const response = await fetch(url, {
+    headers: {
+      'X-Riot-Token': RIOT_API_KEY || '',
+    },
+  })
+
+  console.log("X-App-Rate-Limit-Count: ",response.headers.get("X-App-Rate-Limit-Count"))
+
+  const data = (await response.json()) as RiotMatchTimelineDataResponse
+
+  if (!data) {
+    throw new Error('Invalid Riot API response')
+  }
+
+  return data
 }

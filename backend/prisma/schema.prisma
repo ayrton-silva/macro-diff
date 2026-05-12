@@ -36,7 +36,7 @@ model SummonerLeague {
 }
 
 model Match {
-    matchId          String        @id
+    matchId          String         @id
     gameDuration     Int
     gameEndTimestamp String
     gameMode         String
@@ -44,6 +44,50 @@ model Match {
     platformId       String
     queueId          Int
     participants     Participant[]
+    matchTimeline    MatchTimeline?
+}
+
+model MatchTimeline {
+    matchTimelineId   String              @id
+    matchId           String              @unique
+    match             Match               @relation(fields: [matchId], references: [matchId])
+    events            Events[]
+    participantFrames ParticipantFrames[]
+}
+
+model Events {
+    eventId          Int           @id @default(autoincrement())
+    timestamp        Int
+    type             String
+    creatorId        String?
+    wardType         String?
+    itemId           Int?
+    participantPuuid String?
+    teamId           Int?
+    victimId         String?
+    killerId         String?
+    killType         String?
+    positionx        Int?
+    positiony        Int?
+    monsterSubType   String?
+    monsterType      String?
+    matchTimeline    MatchTimeline @relation(fields: [matchTimelineId], references: [matchTimelineId])
+    matchTimelineId  String
+}
+
+model ParticipantFrames {
+    id                         Int           @id @default(autoincrement())
+    participantFrameId         Int
+    participantPuuid           String
+    timestamp                  Int
+    positionx                  Int
+    positiony                  Int
+    level                      Int
+    minionsKilled              Int
+    totalGold                  Int
+    totalDamageDoneToChampions Int
+    matchTimeline              MatchTimeline @relation(fields: [matchTimelineId], references: [matchTimelineId])
+    matchTimelineId            String
 }
 
 model Participant {
