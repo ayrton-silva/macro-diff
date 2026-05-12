@@ -1,0 +1,5 @@
+export async function fetchMatchById(matchId: string) {
+  const response = await fetch(`http://localhost:3001/match/${matchId}`)
+
+  return await response.json()
+}
