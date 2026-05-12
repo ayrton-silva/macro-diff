@@ -1,4 +1,7 @@
-import { changeStyleOnSummonerLeague } from '#/shared/game/helpers'
+import {
+  changeStyleOnSummonerLeague,
+  showDivisionByTier,
+} from '#/shared/game/helpers'
 import { ProfileIcon } from '#/shared/game/ProfileIcon'
 import { Link } from '@tanstack/react-router'
 
@@ -59,7 +62,7 @@ export function SummonerSearchlistCard({
                 <h3
                   className={`min-w-24 ${changeStyleOnSummonerLeague(league.tier)}`}
                 >
-                  {league.tier} {league.rank}
+                  {league.tier} {showDivisionByTier(league.tier) && league.rank}
                 </h3>
                 <h3>{league.leaguePoints} LP</h3>
               </div>
