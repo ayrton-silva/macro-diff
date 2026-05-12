@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils'
 import {
   capitalizeString,
   changeStyleOnSummonerLeague,
+  showDivisionByTier,
 } from '#/shared/game/helpers'
 
 type SummonerRankCardProps = {
@@ -25,7 +26,29 @@ export function SummonerRankCard({ summoner }: SummonerRankCardProps) {
     (l) => l.queueType === 'RANKED_SOLO_5x5',
   )
 
-  if (!soloLeague || soloLeague.length < 1) return null
+  if (!soloLeague || soloLeague.length < 1) {
+    return (
+      <div className="ml-80 p-4 text-white border border-gray-700 rounded-md bg-[#121826] shrink-0 w-80">
+        <h2 className="mb-4">Current season</h2>
+        <div className="flex gap-8">
+          <img
+            className="size-24"
+            src={`/public/assets/Tier Icon/UNRANKED.png`}
+            alt=""
+          />
+          <div>
+            <h3 className="text-xl font-bold">Unranked</h3>
+            <h3 className="font-bold">0 LP</h3>
+            <h3>
+              <span className="text-cyan-400">0W</span> -{' '}
+              <span className="text-red-400">0L</span>
+              <p>0% Win Rate</p>
+            </h3>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   const league = soloLeague[0]
 
@@ -46,6 +69,9 @@ export function SummonerRankCard({ summoner }: SummonerRankCardProps) {
             )}
           >
             {capitalizeString(league.tier)}
+            {showDivisionByTier(league.tier) && (
+              <span className="ml-2">{league.rank}</span>
+            )}
           </h3>
           <h3 className="font-bold">{league.leaguePoints} LP</h3>
           <h3>
