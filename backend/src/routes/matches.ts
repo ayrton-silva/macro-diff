@@ -5,6 +5,7 @@ import {
   readMatch,
 } from '../repositories/riotMatches.repositories'
 import { getAllMatchesByPuuid } from '../services/riotMatchService'
+import { memoryMatchData } from '../app'
 
 /** Rotas de exemplo para match + timeline (corpo vazio / stub). */
 
@@ -38,10 +39,30 @@ export async function matchesRoutes(app: FastifyInstance) {
       cursor: string
     }
 
-    const listOfMatches = await getAllMatchesByPuuid({puuid});
+    let listOfMatches = memoryMatchData.get(puuid)
 
+    let inc = 1;
+    if(!listOfMatches){
+      memoryMatchData.set(puuid,await getAllMatchesByPuuid({puuid, inc}))
+      listOfMatches = memoryMatchData.get(puuid)
+      request.log.info("Requesting from Riot API")
+    }else{
+      request.log.info("Requesting from Memory")
+    }
+
+    if(cursor){
+      let limiter = 0;
+      while(limiter < 10 && (listOfMatches.indexOf(cursor) == -1 || listOfMatches.indexOf(cursor) >= listOfMatches.length-3)){
+        inc+=inc
+        limiter+=limiter
+        memoryMatchData.set(puuid,await getAllMatchesByPuuid({puuid, inc}))
+        listOfMatches = memoryMatchData.get(puuid)
+        request.log.info("Requesting from Riot API")
+      }
+    }
+    
     const cursorStart = listOfMatches.indexOf(cursor)
-
+    
     request.log.info(
       { puuid, numberOfMatches, cursor },
       'Requesting existentMatches for puuid',
@@ -75,29 +96,6 @@ export async function matchesRoutes(app: FastifyInstance) {
       'Response from getExistentMatches after createMatches',
     )
     return responseData
-/* 
-    request.log.info(response, 'Response from getExistentMatches')
-
-    if (response.data.length < numberOfMatches) {
-      await createMatches({
-        puuid: puuid,
-        numberOfMatches: +numberOfMatches,
-        start: cursorStart
-      })
-      const responseData = await getExistentMatches({
-        puuid: puuid,
-        numberOfMatches: +numberOfMatches,
-        cursor: cursor,
-      })
-      request.log.info(
-        responseData,
-        'Response from getExistentMatches after createMatches',
-      )
-
-      return responseData
-    }
-
-    return response */
   })
 
   app.get('/getAllMatches/:puuid', async (request) => {

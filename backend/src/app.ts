@@ -19,6 +19,8 @@ const adapter = new PrismaPg({
 
 export const prisma = new PrismaClient({ adapter });
 
+export const memoryMatchData = new Map()
+
 export async function buildApp() {
   
   const app = Fastify({

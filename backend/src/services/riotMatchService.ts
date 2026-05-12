@@ -62,12 +62,15 @@ export async function getMatchDetails({
   return data
 }
 
-export async function getAllMatchesByPuuid({ puuid }: { puuid: string }) {
+export async function getAllMatchesByPuuid({ puuid, inc }: { puuid: string, inc?:number }) {
   let keepFetching = true
   let start = 0
+  if(!inc || inc < 1 || inc > 20){
+    inc = 1
+  }
   const matchesList = []
 
-  while (keepFetching && matchesList.length < 300) {
+  while (keepFetching && matchesList.length < inc*300) {
     const matches = await getMatches({ puuid, numberOfMatches: 100, start })
     matchesList.push(...matches)
 
