@@ -8,11 +8,8 @@ import { useState } from 'react'
 import { SearchSummonerFormList } from './SearchSummonerFormList'
 
 const formSchema = z.object({
-  gameName: z
-    .string()
-    .min(2, 'Game name must be at least 2 characters.')
-    .max(64, 'Game name must be at most 64 characters.'),
-  tagLine: z.string().max(10, 'Tag must be at most 10'),
+  gameName: z.union([z.string(), z.number()]),
+  tagLine: z.union([z.string(), z.number()]),
   region: z.string().max(10, 'Region must be at most 10'),
 })
 
@@ -26,12 +23,15 @@ export function SearchSummonerForm() {
       tagLine: '',
       region: 'br1',
     },
-    validators: {
-      onSubmit: formSchema,
-    },
+    validators: {},
     onSubmit: async ({ value }) => {
       navigate({
-        to: `/search-summoners?gameName=${value.gameName}&tagLine=${value.tagLine}&region=${value.region}`,
+        to: '/search-summoners',
+        search: {
+          gameName: String(value.gameName),
+          tagLine: String(value.tagLine),
+          region: value.region,
+        },
       })
     },
     listeners: {
@@ -161,9 +161,11 @@ export function SearchSummonerForm() {
                   <div className="ml-2">#</div>
                   <input
                     id={field.name}
-                    value={field.state.value}
+                    value={field.state.value.toString()}
                     onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(e.target.value)}
+                    onChange={(e) =>
+                      field.handleChange(e.target.value.toString())
+                    }
                     placeholder="BR1"
                     autoComplete="off"
                     className="h-12 w-full md:w-24 rounded-md ml-1  px-3 text-sm hover:text-cyan-300 focus:text-cyan-400
