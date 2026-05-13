@@ -183,10 +183,10 @@ export function SummonerMatchCard({ matchId, summonerId }: MatchCardProps) {
           </div>
           <Link to="/match" search={{ matchId: matchId }}
             className={`border-l-2 px-2 min-w-18 self-stretch  text-center content-center items-center rounded-r-2xl hover:cursor-pointer hover:bg-black/30 ${data?.gameDuration < 240
-              ? 'bg-gray-900/40 text-gray-300!'
+              ? 'bg-gray-600/40 text-gray-300!'
               : summonerWin
-                ? 'bg-green-900/20 text-green-300!'
-                : 'bg-red-900/20 text-red-300!'
+                ? 'bg-green-800/20 text-green-300!'
+                : 'bg-red-800/20 text-red-300!'
               }`}><p>&gt;</p>
           </Link>
         </div>

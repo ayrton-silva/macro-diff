@@ -6,6 +6,7 @@ import { SummonerMatchCard } from '@/features/summoner/components/SummonerMatchC
 import { SummonerRankCard } from '@/features/summoner/components/SummonerRankCard'
 import { useInfiniteExistentMatches } from '@/features/summoner/hooks/useExistentMatches'
 import { LoadMoreMatchesButton } from '#/features/summoner/components/LoadMoreMatchesButton'
+import { SummonerRecentData } from '#/features/summoner/components/SummonerRecentData'
 
 const summonerSearchSchema = z.object({
   gameName: z.string().default(''),
@@ -28,7 +29,6 @@ function RouteComponent() {
     tagLine,
     region,
   })
-
   const matches = useInfiniteExistentMatches({
     puuid: data?.id,
     cursor: '',
@@ -43,6 +43,7 @@ function RouteComponent() {
         <div className="w-full mr-80">
           {/* <h2 className="mb-4">Match History</h2> */}
           <div className="space-y-6">
+              {status == "success" && data?.id ? <SummonerRecentData matchesData={matches} summonerId={data.id}/> : null}
             {matches.data?.pages
               .map((data) => data.data)
               .flat()
