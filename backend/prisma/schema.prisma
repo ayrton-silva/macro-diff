@@ -64,6 +64,9 @@ model Events {
     itemId           Int?
     participantPuuid String?
     teamId           Int?
+    buildingType     String?
+    laneType         String?
+    towerType        String?
     victimId         String?
     killerId         String?
     killType         String?

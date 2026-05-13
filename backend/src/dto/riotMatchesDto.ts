@@ -119,6 +119,9 @@ export type Events = {
   itemId?: number
   participantId?: number
   teamId?: number
+  buildingType: string
+  laneType?: string
+  towerType?: string
   victimId?: number
   killerId?: number
   killType?: string
