@@ -29,3 +29,11 @@ export async function fetchProfileIcons() {
 
   return await response.json()
 }
+
+export async function fetchSummonerPerks() {
+  const response = await fetch(
+    `https://ddragon.leagueoflegends.com/cdn/16.9.1/data/en_US/PERKS??????????.json`,
+  )
+
+  return await response.json()
+}
