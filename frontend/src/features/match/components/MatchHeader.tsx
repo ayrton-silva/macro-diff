@@ -82,7 +82,7 @@ export function MatchHeader({ match }: MatchHeaderProps) {
   )
 
   return (
-    <div className="bg-[linear-gradient(90deg,_#081225_0%,_#0b1020_45%,_#1a1020_75%,_#24101f_100%)] w-full h-32 flex items-center justify-between my-8 px-8 py-4 rounded-lg">
+    <div className="bg-[linear-gradient(90deg,_#101d35_0%,_#0b1020_45%,_#1a1020_75%,_#24101f_100%)] w-full h-32 flex items-center justify-between my-8 px-8 py-4 rounded-lg">
       <div>
         <span className="border border-gray-700 px-2 py-1 rounded-sm text-xs bg-gray-800">
           {match.queueId === 420 ? 'Ranked Solo Duo' : 'Ranked Flex'}
