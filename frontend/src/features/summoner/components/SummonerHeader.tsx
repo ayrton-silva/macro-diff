@@ -1,6 +1,6 @@
 import { ProfileIcon } from '#/shared/game/ProfileIcon'
 import { Link } from '@tanstack/react-router'
-import { Share2, Undo2 } from 'lucide-react'
+import { RefreshCw, Share2, Undo2 } from 'lucide-react'
 
 type SummonerHeaderProps = {
   summoner: {
@@ -11,6 +11,7 @@ type SummonerHeaderProps = {
     level: number
   }
 }
+
 
 export function SummonerHeader({ summoner }: SummonerHeaderProps) {
   return (
@@ -32,13 +33,17 @@ export function SummonerHeader({ summoner }: SummonerHeaderProps) {
             #{summoner.tagLine}
           </span>
         </div>
-        <span>{summoner.region == "br1"?  <img className='size-6' src="/public/assets/br1.svg" alt="Brazil Flag" /> : summoner.region} </span>
+        <span>{summoner.region == "br1" ? <img className='size-6' src="/public/assets/br1.svg" alt="Brazil Flag" /> : summoner.region} </span>
+        <Link to={`${window.location}`}
+          className='flex items-center w-fit border gap-2 mt-1 px-3 py-2 bg-cyan-400 text-black! hover:text-gray-800 text-sm font-bold rounded-sm hover:cursor-pointer hover:bg-cyan-300'>
+          <RefreshCw size={18} />Refresh Data</Link>
+        {/* TO DO LOGIC CALLING CURSOR EMPTY AND CREATE A COMPONENT*/}
       </div>
       <div className='flex items-center ml-auto gap-2'>
 
-      <Link to="/" className='flex items-center ml-auto border gap-2 h-12 px-4 py-1 bg-gray-800 text-white! rounded-md hover:cursor-pointer hover:bg-gray-700'><Undo2 /></Link>
-      <button className='flex items-center ml-auto border gap-2 h-12 px-4 py-1 bg-gray-800 text-white rounded-md hover:cursor-pointer hover:bg-gray-700 mr-[280px]'><Share2 /></button>
-      {/* TO DO SHARE LOGIC AND CREATE A COMPONENT WITH THE LOGIC */}
+        <Link to="/" className='flex items-center ml-auto border gap-2 h-12 px-4 py-1 bg-gray-800 text-white! rounded-md hover:cursor-pointer hover:bg-gray-700'><Undo2 /></Link>
+        <button className='flex items-center ml-auto border gap-2 h-12 px-4 py-1 bg-gray-800 text-white rounded-md hover:cursor-pointer hover:bg-gray-700 mr-[280px]'><Share2 /></button>
+        {/* TO DO SHARE LOGIC AND CREATE A COMPONENT WITH THE LOGIC */}
       </div>
     </div>
   )
