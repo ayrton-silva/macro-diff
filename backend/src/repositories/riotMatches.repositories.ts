@@ -190,6 +190,7 @@ export async function createTimelineData(matchId: string) {
             victimId: event.victimId ? timelineData.info.participants.filter((data) => event.victimId == data.participantId)[0].puuid : "",
             killerId: event.killerId ? timelineData.info.participants.filter((data) => event.killerId == data.participantId)[0].puuid : "",
             killType: event.killType,
+            multiKillLength: event.multiKillLength,
             positionx: event.position?.x,
             positiony: event.position?.y,
             monsterSubType: event.monsterSubType,

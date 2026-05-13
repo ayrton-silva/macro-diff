@@ -125,6 +125,7 @@ export type Events = {
   victimId?: number
   killerId?: number
   killType?: string
+  multiKillLength?: number
   position?: {
     x: number
     y: number

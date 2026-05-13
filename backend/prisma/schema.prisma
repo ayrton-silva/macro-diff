@@ -70,6 +70,7 @@ model Events {
     victimId         String?
     killerId         String?
     killType         String?
+    multiKillLength  Int?
     positionx        Int?
     positiony        Int?
     monsterSubType   String?

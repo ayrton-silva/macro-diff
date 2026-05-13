@@ -143,6 +143,7 @@ export const EventsScalarFieldEnum = {
   victimId: 'victimId',
   killerId: 'killerId',
   killType: 'killType',
+  multiKillLength: 'multiKillLength',
   positionx: 'positionx',
   positiony: 'positiony',
   monsterSubType: 'monsterSubType',

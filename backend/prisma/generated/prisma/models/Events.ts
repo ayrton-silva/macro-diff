@@ -31,6 +31,7 @@ export type EventsAvgAggregateOutputType = {
   timestamp: number | null
   itemId: number | null
   teamId: number | null
+  multiKillLength: number | null
   positionx: number | null
   positiony: number | null
 }
@@ -40,6 +41,7 @@ export type EventsSumAggregateOutputType = {
   timestamp: number | null
   itemId: number | null
   teamId: number | null
+  multiKillLength: number | null
   positionx: number | null
   positiony: number | null
 }
@@ -59,6 +61,7 @@ export type EventsMinAggregateOutputType = {
   victimId: string | null
   killerId: string | null
   killType: string | null
+  multiKillLength: number | null
   positionx: number | null
   positiony: number | null
   monsterSubType: string | null
@@ -81,6 +84,7 @@ export type EventsMaxAggregateOutputType = {
   victimId: string | null
   killerId: string | null
   killType: string | null
+  multiKillLength: number | null
   positionx: number | null
   positiony: number | null
   monsterSubType: string | null
@@ -103,6 +107,7 @@ export type EventsCountAggregateOutputType = {
   victimId: number
   killerId: number
   killType: number
+  multiKillLength: number
   positionx: number
   positiony: number
   monsterSubType: number
@@ -117,6 +122,7 @@ export type EventsAvgAggregateInputType = {
   timestamp?: true
   itemId?: true
   teamId?: true
+  multiKillLength?: true
   positionx?: true
   positiony?: true
 }
@@ -126,6 +132,7 @@ export type EventsSumAggregateInputType = {
   timestamp?: true
   itemId?: true
   teamId?: true
+  multiKillLength?: true
   positionx?: true
   positiony?: true
 }
@@ -145,6 +152,7 @@ export type EventsMinAggregateInputType = {
   victimId?: true
   killerId?: true
   killType?: true
+  multiKillLength?: true
   positionx?: true
   positiony?: true
   monsterSubType?: true
@@ -167,6 +175,7 @@ export type EventsMaxAggregateInputType = {
   victimId?: true
   killerId?: true
   killType?: true
+  multiKillLength?: true
   positionx?: true
   positiony?: true
   monsterSubType?: true
@@ -189,6 +198,7 @@ export type EventsCountAggregateInputType = {
   victimId?: true
   killerId?: true
   killType?: true
+  multiKillLength?: true
   positionx?: true
   positiony?: true
   monsterSubType?: true
@@ -298,6 +308,7 @@ export type EventsGroupByOutputType = {
   victimId: string | null
   killerId: string | null
   killType: string | null
+  multiKillLength: number | null
   positionx: number | null
   positiony: number | null
   monsterSubType: string | null
@@ -343,6 +354,7 @@ export type EventsWhereInput = {
   victimId?: Prisma.StringNullableFilter<"Events"> | string | null
   killerId?: Prisma.StringNullableFilter<"Events"> | string | null
   killType?: Prisma.StringNullableFilter<"Events"> | string | null
+  multiKillLength?: Prisma.IntNullableFilter<"Events"> | number | null
   positionx?: Prisma.IntNullableFilter<"Events"> | number | null
   positiony?: Prisma.IntNullableFilter<"Events"> | number | null
   monsterSubType?: Prisma.StringNullableFilter<"Events"> | string | null
@@ -366,6 +378,7 @@ export type EventsOrderByWithRelationInput = {
   victimId?: Prisma.SortOrderInput | Prisma.SortOrder
   killerId?: Prisma.SortOrderInput | Prisma.SortOrder
   killType?: Prisma.SortOrderInput | Prisma.SortOrder
+  multiKillLength?: Prisma.SortOrderInput | Prisma.SortOrder
   positionx?: Prisma.SortOrderInput | Prisma.SortOrder
   positiony?: Prisma.SortOrderInput | Prisma.SortOrder
   monsterSubType?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -392,6 +405,7 @@ export type EventsWhereUniqueInput = Prisma.AtLeast<{
   victimId?: Prisma.StringNullableFilter<"Events"> | string | null
   killerId?: Prisma.StringNullableFilter<"Events"> | string | null
   killType?: Prisma.StringNullableFilter<"Events"> | string | null
+  multiKillLength?: Prisma.IntNullableFilter<"Events"> | number | null
   positionx?: Prisma.IntNullableFilter<"Events"> | number | null
   positiony?: Prisma.IntNullableFilter<"Events"> | number | null
   monsterSubType?: Prisma.StringNullableFilter<"Events"> | string | null
@@ -415,6 +429,7 @@ export type EventsOrderByWithAggregationInput = {
   victimId?: Prisma.SortOrderInput | Prisma.SortOrder
   killerId?: Prisma.SortOrderInput | Prisma.SortOrder
   killType?: Prisma.SortOrderInput | Prisma.SortOrder
+  multiKillLength?: Prisma.SortOrderInput | Prisma.SortOrder
   positionx?: Prisma.SortOrderInput | Prisma.SortOrder
   positiony?: Prisma.SortOrderInput | Prisma.SortOrder
   monsterSubType?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -445,6 +460,7 @@ export type EventsScalarWhereWithAggregatesInput = {
   victimId?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
   killerId?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
   killType?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
+  multiKillLength?: Prisma.IntNullableWithAggregatesFilter<"Events"> | number | null
   positionx?: Prisma.IntNullableWithAggregatesFilter<"Events"> | number | null
   positiony?: Prisma.IntNullableWithAggregatesFilter<"Events"> | number | null
   monsterSubType?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
@@ -466,6 +482,7 @@ export type EventsCreateInput = {
   victimId?: string | null
   killerId?: string | null
   killType?: string | null
+  multiKillLength?: number | null
   positionx?: number | null
   positiony?: number | null
   monsterSubType?: string | null
@@ -488,6 +505,7 @@ export type EventsUncheckedCreateInput = {
   victimId?: string | null
   killerId?: string | null
   killType?: string | null
+  multiKillLength?: number | null
   positionx?: number | null
   positiony?: number | null
   monsterSubType?: string | null
@@ -509,6 +527,7 @@ export type EventsUpdateInput = {
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positionx?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positiony?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   monsterSubType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -531,6 +550,7 @@ export type EventsUncheckedUpdateInput = {
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positionx?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positiony?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   monsterSubType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -553,6 +573,7 @@ export type EventsCreateManyInput = {
   victimId?: string | null
   killerId?: string | null
   killType?: string | null
+  multiKillLength?: number | null
   positionx?: number | null
   positiony?: number | null
   monsterSubType?: string | null
@@ -574,6 +595,7 @@ export type EventsUpdateManyMutationInput = {
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positionx?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positiony?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   monsterSubType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -595,6 +617,7 @@ export type EventsUncheckedUpdateManyInput = {
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positionx?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positiony?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   monsterSubType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -627,6 +650,7 @@ export type EventsCountOrderByAggregateInput = {
   victimId?: Prisma.SortOrder
   killerId?: Prisma.SortOrder
   killType?: Prisma.SortOrder
+  multiKillLength?: Prisma.SortOrder
   positionx?: Prisma.SortOrder
   positiony?: Prisma.SortOrder
   monsterSubType?: Prisma.SortOrder
@@ -639,6 +663,7 @@ export type EventsAvgOrderByAggregateInput = {
   timestamp?: Prisma.SortOrder
   itemId?: Prisma.SortOrder
   teamId?: Prisma.SortOrder
+  multiKillLength?: Prisma.SortOrder
   positionx?: Prisma.SortOrder
   positiony?: Prisma.SortOrder
 }
@@ -658,6 +683,7 @@ export type EventsMaxOrderByAggregateInput = {
   victimId?: Prisma.SortOrder
   killerId?: Prisma.SortOrder
   killType?: Prisma.SortOrder
+  multiKillLength?: Prisma.SortOrder
   positionx?: Prisma.SortOrder
   positiony?: Prisma.SortOrder
   monsterSubType?: Prisma.SortOrder
@@ -680,6 +706,7 @@ export type EventsMinOrderByAggregateInput = {
   victimId?: Prisma.SortOrder
   killerId?: Prisma.SortOrder
   killType?: Prisma.SortOrder
+  multiKillLength?: Prisma.SortOrder
   positionx?: Prisma.SortOrder
   positiony?: Prisma.SortOrder
   monsterSubType?: Prisma.SortOrder
@@ -692,6 +719,7 @@ export type EventsSumOrderByAggregateInput = {
   timestamp?: Prisma.SortOrder
   itemId?: Prisma.SortOrder
   teamId?: Prisma.SortOrder
+  multiKillLength?: Prisma.SortOrder
   positionx?: Prisma.SortOrder
   positiony?: Prisma.SortOrder
 }
@@ -764,6 +792,7 @@ export type EventsCreateWithoutMatchTimelineInput = {
   victimId?: string | null
   killerId?: string | null
   killType?: string | null
+  multiKillLength?: number | null
   positionx?: number | null
   positiony?: number | null
   monsterSubType?: string | null
@@ -785,6 +814,7 @@ export type EventsUncheckedCreateWithoutMatchTimelineInput = {
   victimId?: string | null
   killerId?: string | null
   killType?: string | null
+  multiKillLength?: number | null
   positionx?: number | null
   positiony?: number | null
   monsterSubType?: string | null
@@ -835,6 +865,7 @@ export type EventsScalarWhereInput = {
   victimId?: Prisma.StringNullableFilter<"Events"> | string | null
   killerId?: Prisma.StringNullableFilter<"Events"> | string | null
   killType?: Prisma.StringNullableFilter<"Events"> | string | null
+  multiKillLength?: Prisma.IntNullableFilter<"Events"> | number | null
   positionx?: Prisma.IntNullableFilter<"Events"> | number | null
   positiony?: Prisma.IntNullableFilter<"Events"> | number | null
   monsterSubType?: Prisma.StringNullableFilter<"Events"> | string | null
@@ -857,6 +888,7 @@ export type EventsCreateManyMatchTimelineInput = {
   victimId?: string | null
   killerId?: string | null
   killType?: string | null
+  multiKillLength?: number | null
   positionx?: number | null
   positiony?: number | null
   monsterSubType?: string | null
@@ -877,6 +909,7 @@ export type EventsUpdateWithoutMatchTimelineInput = {
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positionx?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positiony?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   monsterSubType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -898,6 +931,7 @@ export type EventsUncheckedUpdateWithoutMatchTimelineInput = {
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positionx?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positiony?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   monsterSubType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -919,6 +953,7 @@ export type EventsUncheckedUpdateManyWithoutMatchTimelineInput = {
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positionx?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   positiony?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   monsterSubType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -942,6 +977,7 @@ export type EventsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   victimId?: boolean
   killerId?: boolean
   killType?: boolean
+  multiKillLength?: boolean
   positionx?: boolean
   positiony?: boolean
   monsterSubType?: boolean
@@ -965,6 +1001,7 @@ export type EventsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   victimId?: boolean
   killerId?: boolean
   killType?: boolean
+  multiKillLength?: boolean
   positionx?: boolean
   positiony?: boolean
   monsterSubType?: boolean
@@ -988,6 +1025,7 @@ export type EventsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   victimId?: boolean
   killerId?: boolean
   killType?: boolean
+  multiKillLength?: boolean
   positionx?: boolean
   positiony?: boolean
   monsterSubType?: boolean
@@ -1011,6 +1049,7 @@ export type EventsSelectScalar = {
   victimId?: boolean
   killerId?: boolean
   killType?: boolean
+  multiKillLength?: boolean
   positionx?: boolean
   positiony?: boolean
   monsterSubType?: boolean
@@ -1018,7 +1057,7 @@ export type EventsSelectScalar = {
   matchTimelineId?: boolean
 }
 
-export type EventsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"eventId" | "timestamp" | "type" | "creatorId" | "wardType" | "itemId" | "participantPuuid" | "teamId" | "buildingType" | "laneType" | "towerType" | "victimId" | "killerId" | "killType" | "positionx" | "positiony" | "monsterSubType" | "monsterType" | "matchTimelineId", ExtArgs["result"]["events"]>
+export type EventsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"eventId" | "timestamp" | "type" | "creatorId" | "wardType" | "itemId" | "participantPuuid" | "teamId" | "buildingType" | "laneType" | "towerType" | "victimId" | "killerId" | "killType" | "multiKillLength" | "positionx" | "positiony" | "monsterSubType" | "monsterType" | "matchTimelineId", ExtArgs["result"]["events"]>
 export type EventsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   matchTimeline?: boolean | Prisma.MatchTimelineDefaultArgs<ExtArgs>
 }
@@ -1049,6 +1088,7 @@ export type $EventsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     victimId: string | null
     killerId: string | null
     killType: string | null
+    multiKillLength: number | null
     positionx: number | null
     positiony: number | null
     monsterSubType: string | null
@@ -1492,6 +1532,7 @@ export interface EventsFieldRefs {
   readonly victimId: Prisma.FieldRef<"Events", 'String'>
   readonly killerId: Prisma.FieldRef<"Events", 'String'>
   readonly killType: Prisma.FieldRef<"Events", 'String'>
+  readonly multiKillLength: Prisma.FieldRef<"Events", 'Int'>
   readonly positionx: Prisma.FieldRef<"Events", 'Int'>
   readonly positiony: Prisma.FieldRef<"Events", 'Int'>
   readonly monsterSubType: Prisma.FieldRef<"Events", 'String'>
