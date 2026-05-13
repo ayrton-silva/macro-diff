@@ -70,6 +70,7 @@ export type Participants = {
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
+  neutralMinionsKilled: number
   totalDamageDealtToChampions: number
   wardsPlaced: number
   goldEarned: number

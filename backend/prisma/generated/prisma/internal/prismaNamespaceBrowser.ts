@@ -180,6 +180,7 @@ export const ParticipantScalarFieldEnum = {
   summoner1Id: 'summoner1Id',
   summoner2Id: 'summoner2Id',
   totalMinionsKilled: 'totalMinionsKilled',
+  neutralMinionsKilled: 'neutralMinionsKilled',
   totalDamageDealtToChampions: 'totalDamageDealtToChampions',
   wardsPlaced: 'wardsPlaced',
   goldEarned: 'goldEarned',

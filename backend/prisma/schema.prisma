@@ -105,6 +105,7 @@ model Participant {
     summoner1Id                 Int
     summoner2Id                 Int
     totalMinionsKilled          Int
+    neutralMinionsKilled        Int
     totalDamageDealtToChampions Int
     wardsPlaced                 Int
     goldEarned                  Int

@@ -19,6 +19,7 @@ interface Participant {
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
+  neutralMinionsKilled: number,
   totalDamageDealtToChampions: number
   wardsPlaced: number
   goldEarned: number
@@ -92,7 +93,7 @@ export function ParticipantCard({ participant }: ParticipantCardProps) {
               </div>
               <div className='flex gap-1 text-sm'>
                 <p className=''>CS:</p>
-                <p className='text-gray-300'>{participant.totalMinionsKilled}</p>
+                <p className='text-gray-300'>{participant.totalMinionsKilled+participant.neutralMinionsKilled}</p>
               </div>
             </div>
           </div>

@@ -62,6 +62,7 @@ export async function createMatches(request: RiotMatchesRequest) {
             teamPosition: participant.teamPosition,
             summoner1Id: participant.summoner1Id,
             summoner2Id: participant.summoner2Id,
+            neutralMinionsKilled: participant.neutralMinionsKilled,
             totalMinionsKilled: participant.totalMinionsKilled,
             totalDamageDealtToChampions:
               participant.totalDamageDealtToChampions,

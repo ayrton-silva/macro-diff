@@ -27,6 +27,7 @@ export async function createParticipants(matchId: string) {
                         summoner1Id: participant.summoner1Id,
                         summoner2Id: participant.summoner2Id,
                         totalMinionsKilled: participant.totalMinionsKilled,
+                        neutralMinionsKilled: participant.neutralMinionsKilled,
                         totalDamageDealtToChampions:
                             participant.totalDamageDealtToChampions,
                         wardsPlaced: participant.wardsPlaced,
