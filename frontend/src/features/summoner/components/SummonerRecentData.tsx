@@ -1,5 +1,6 @@
-import { cn } from '#/lib/utils'
+import { useCallback, useState } from 'react'
 import { useExistentMatch } from '../hooks/useExistentMatches'
+import { MatchDataCollector } from './MatchDataCollector'
 
 interface Page {
   data: Match[]
@@ -86,101 +87,114 @@ export function SummonerRecentData({
   matchesData,
   summonerId,
 }: MatchRecentDataCardProps) {
-  const laneData = {
+  const [laneData, setLaneData] = useState({
     TOP: 0,
     JUNGLE: 0,
     MIDDLE: 0,
     BOTTOM: 0,
     UTILITY: 0,
-  }
-  if (matchesData.status == 'success' && matchesData.data.pages) {
-    matchesData.data.pages[0].data.forEach((p) => {
-      const { status, data, error, isFetching } = useExistentMatch(p.matchId)
+  })
+  const handleMatchData = useCallback((position: string | null) => {
+    if (!position || !(position in laneData)) return
+    setLaneData((prev) => ({
+      ...prev,
+      [position]: prev[position as keyof typeof prev] + 1,
+    }))
+  }, [])
 
-      if (status == 'success') {
-        const summonerRecentData = data.participants.filter(
-          (p) => p.summonerId == summonerId,
-        )
-        if (summonerRecentData[0].teamPosition == 'TOP') {
-          laneData.TOP++
-        }
-        if (summonerRecentData[0].teamPosition == 'JUNGLE') {
-          laneData.JUNGLE++
-        }
-        if (summonerRecentData[0].teamPosition == 'MIDDLE') {
-          laneData.MIDDLE++
-        }
-        if (summonerRecentData[0].teamPosition == 'BOTTOM') {
-          laneData.BOTTOM++
-        }
-        if (summonerRecentData[0].teamPosition == 'UTILITY') {
-          laneData.UTILITY++
-        }
+  const allMatches = matchesData.data?.pages.flatMap((page) => page.data) ?? []
+
+  function calculateMaxHeight() {
+    const max = 100
+    let highest = 0
+    for (const [key, data] of Object.entries(laneData)) {
+      if (data > highest) {
+        highest = data
       }
-    })
+    }
+    const ratio = max / highest
+
+    const response = {
+      TOP: ratio * laneData.TOP,
+      JUNGLE: ratio * laneData.JUNGLE,
+      MIDDLE: ratio * laneData.MIDDLE,
+      BOTTOM: ratio * laneData.BOTTOM,
+      UTILITY: ratio * laneData.UTILITY,
+    }
+    return response
   }
 
   return (
-    <div className="border border-gray-700 rounded-md bg-[#121826]">
-      <div className="p-4 border-b-2 w-full">
-        <h2 className=" tracking-widest uppercase font-semibold text-gray-300 ml-1">
-          Recent Matches
-        </h2>
-      </div>
-      <div className="flex">
-        <div className="flex p-4 gap-4 items-end">
-          <div className="flex flex-col gap-0.5 w-fit items-center">
-            <p className="text-xs">{laneData.TOP}</p>
-            <span
-              className="w-6 bg-amber-400"
-              style={{
-                height: `${laneData.TOP < 1 ? 4 : (1 + laneData.TOP) * 10}px`,
-              }}
-            ></span>
-            <p className="text-xs mt-1">Top</p>
-          </div>
-          <div className="flex flex-col w-fit items-center">
-            <p className="text-xs">{laneData.JUNGLE}</p>
-            <span
-              className="w-6 bg-green-400"
-              style={{
-                height: `${laneData.JUNGLE < 1 ? 4 : (1 + laneData.JUNGLE) * 10}px`,
-              }}
-            ></span>
-            <p className="text-xs mt-1">Jungle</p>
-          </div>
-          <div className="flex flex-col w-fit items-center">
-            <p className="text-xs">{laneData.MIDDLE}</p>
-            <span
-              className="w-6 bg-cyan-400"
-              style={{
-                height: `${laneData.MIDDLE < 1 ? 4 : (1 + laneData.MIDDLE) * 10}px`,
-              }}
-            ></span>
-            <p className="text-xs mt-1">Mid</p>
-          </div>
-          <div className="flex flex-col w-fit items-center">
-            <p className="text-xs">{laneData.BOTTOM}</p>
-            <span
-              className="w-6 bg-red-400"
-              style={{
-                height: `${laneData.BOTTOM < 1 ? 4 : (1 + laneData.BOTTOM) * 10}px`,
-              }}
-            ></span>
-            <p className="text-xs mt-1">Adc</p>
-          </div>
-          <div className="flex flex-col w-fit items-center">
-            <p className="text-xs">{laneData.UTILITY}</p>
-            <span
-              className="w-6 bg-blue-400"
-              style={{
-                height: `${laneData.UTILITY < 1 ? 4 : (1 + laneData.UTILITY) * 10}px`,
-              }}
-            ></span>
-            <p className="text-xs mt-1">Sup</p>
+    <>
+      {allMatches.map(({ matchId }) => (
+        <MatchDataCollector
+          key={matchId}
+          matchId={matchId}
+          summonerId={summonerId}
+          onData={handleMatchData}
+        />
+      ))}
+      <div className="border border-gray-700 rounded-md bg-[#121826]">
+        <div className="p-4 border-b-2 w-full">
+          <h2 className=" tracking-widest uppercase font-semibold text-gray-300 ml-1">
+            Recent Maches
+          </h2>
+        </div>
+        <div className="flex">
+          <div className="flex p-4 gap-4 items-end">
+            <div className="flex flex-col w-fit items-center">
+              <p className="text-xs">{laneData.TOP}</p>
+              <span
+                className="w-6 bg-amber-400"
+                style={{
+                  height: `${laneData.TOP < 1 ? 4 : calculateMaxHeight().TOP}px`,
+                }}
+              ></span>
+              <p className="text-xs mt-1">Top</p>
+            </div>
+            <div className="flex flex-col w-fit items-center">
+              <p className="text-xs">{laneData.JUNGLE}</p>
+              <span
+                className="w-6 bg-green-400"
+                style={{
+                  height: `${laneData.JUNGLE < 1 ? 4 : calculateMaxHeight().JUNGLE}px`,
+                }}
+              ></span>
+              <p className="text-xs mt-1">Jungle</p>
+            </div>
+            <div className="flex flex-col w-fit items-center">
+              <p className="text-xs">{laneData.MIDDLE}</p>
+              <span
+                className="w-6 bg-cyan-400"
+                style={{
+                  height: `${laneData.MIDDLE < 1 ? 4 : calculateMaxHeight().MIDDLE}px`,
+                }}
+              ></span>
+              <p className="text-xs mt-1">Mid</p>
+            </div>
+            <div className="flex flex-col w-fit items-center">
+              <p className="text-xs">{laneData.BOTTOM}</p>
+              <span
+                className="w-6 bg-red-400"
+                style={{
+                  height: `${laneData.BOTTOM < 1 ? 4 : calculateMaxHeight().BOTTOM}px`,
+                }}
+              ></span>
+              <p className="text-xs mt-1">Adc</p>
+            </div>
+            <div className="flex flex-col w-fit items-center">
+              <p className="text-xs">{laneData.UTILITY}</p>
+              <span
+                className="w-6 bg-blue-400"
+                style={{
+                  height: `${laneData.UTILITY < 1 ? 4 : calculateMaxHeight().UTILITY}px`,
+                }}
+              ></span>
+              <p className="text-xs mt-1">Sup</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

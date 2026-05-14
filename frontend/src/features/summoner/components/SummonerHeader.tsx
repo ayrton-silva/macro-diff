@@ -1,10 +1,12 @@
 import { ProfileIcon } from '#/shared/game/ProfileIcon'
 import { Link } from '@tanstack/react-router'
-import { RefreshCw, Share2, Undo2 } from 'lucide-react'
+import { Share2, Undo2 } from 'lucide-react'
+import { RefreshMatchesButton } from './RefreshMatchesButton'
 
 type SummonerHeaderProps = {
   summoner: {
     gameName: string
+    id: string
     profileIconId: number
     region: string
     tagLine: string
@@ -14,6 +16,7 @@ type SummonerHeaderProps = {
 
 
 export function SummonerHeader({ summoner }: SummonerHeaderProps) {
+  console.log("ASDJSAIDSAIDJSADIAS", summoner)
   return (
     <div className="mb-6 bg-[#121826] px-12 py-8 pl-[320px] flex gap-8 border-b border-b-gray-700">
       <div className="relative w-fit">
@@ -34,10 +37,7 @@ export function SummonerHeader({ summoner }: SummonerHeaderProps) {
           </span>
         </div>
         <span>{summoner.region == "br1" ? <img className='size-6' src="/public/assets/br1.svg" alt="Brazil Flag" /> : summoner.region} </span>
-        <Link to={`${window.location}`}
-          className='flex items-center w-fit border gap-2 mt-1 px-3 py-2 bg-cyan-400 text-black! hover:text-gray-800 text-sm font-bold rounded-sm hover:cursor-pointer hover:bg-cyan-300'>
-          <RefreshCw size={18} />Refresh Data</Link>
-        {/* TO DO LOGIC CALLING CURSOR EMPTY AND CREATE A COMPONENT*/}
+        <RefreshMatchesButton puuid={summoner.id}/>
       </div>
       <div className='flex items-center ml-auto gap-2'>
 

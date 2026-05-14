@@ -43,7 +43,7 @@ function RouteComponent() {
         <div className="w-full mr-80">
           {/* <h2 className="mb-4">Match History</h2> */}
           <div className="space-y-6">
-            {status == 'success' && data?.id ? (
+            {matches.data?.pages && status == 'success' && data?.id ? (
               <SummonerRecentData matchesData={matches} summonerId={data.id} />
             ) : null}
             {matches.data?.pages
