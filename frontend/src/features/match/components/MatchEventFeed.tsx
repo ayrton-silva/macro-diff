@@ -90,13 +90,13 @@ export function MatchEventFeed({ events, participants }: MatchEventFeedProps) {
     <div className="flex flex-col gap-8 border-l-2 border-l-gray-700 ml-2">
       {sortered.map((e, i) => {
         const eventTeamColor =
-          participants.filter((p) => p.summonerId === e.killerId)[0].teamId ===
+          participants.filter((p) => p.summonerId === e.killerId)[0]?.teamId ===
           '100'
             ? 'ring-cyan-400 text-cyan-400 bg-cyan-950'
             : 'ring-red-400 text-red-400 bg-red-950'
 
         const firstBloodColor =
-          participants.filter((p) => p.summonerId === e.killerId)[0].teamId ===
+          participants.filter((p) => p.summonerId === e.killerId)[0]?.teamId ===
           '100'
             ? 'text-cyan-400 bg-cyan-950'
             : 'text-red-300 bg-red-950'
