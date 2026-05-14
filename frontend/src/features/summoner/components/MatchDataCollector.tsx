@@ -8,7 +8,7 @@ export function MatchDataCollector({
 }: {
   matchId: string
   summonerId: string
-  onData: (position: string | null) => void
+  onData: (matchId: string | null ,position: string | null, winLose: boolean , champion: string | null) => void
 }) {
   const { status, data } = useExistentMatch(matchId)
 
@@ -17,7 +17,7 @@ export function MatchDataCollector({
       const participant = data.participants.find(
         (p:any) => p.summonerId === summonerId
       )
-      onData(participant?.teamPosition ?? null)
+      onData(matchId ,participant?.teamPosition ?? null, participant?.win ?? null, participant?.championName ?? null)
     }
   }, [status, data, summonerId, onData])
 
