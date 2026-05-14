@@ -16,7 +16,6 @@ type SummonerHeaderProps = {
 
 
 export function SummonerHeader({ summoner }: SummonerHeaderProps) {
-  console.log("ASDJSAIDSAIDJSADIAS", summoner)
   return (
     <div className="mb-6 bg-[#121826] px-12 py-8 pl-[320px] flex gap-8 border-b border-b-gray-700">
       <div className="relative w-fit">

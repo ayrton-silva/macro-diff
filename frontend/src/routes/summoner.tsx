@@ -34,6 +34,7 @@ function RouteComponent() {
     cursor: '',
     numberOfMatches: 3,
   })
+  console.log(data)
 
   return (
     <div>

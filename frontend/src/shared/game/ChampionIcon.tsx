@@ -13,6 +13,11 @@ interface ChampionIconProps {
 }
 
 export function ChampionIcon({  icon, level , removeLevel, classProp}: ChampionIconProps) {
+  
+  if(icon === 'FiddleSticks'){ // Need to fix manually, as riot name does not match champion name on DataDragon
+    icon = 'Fiddlesticks'
+  }
+
   return (
     <Avatar className="w-14 h-14">
       <AvatarImage
