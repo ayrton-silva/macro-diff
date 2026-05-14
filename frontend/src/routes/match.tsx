@@ -3,10 +3,11 @@ import { createFileRoute, useSearch } from '@tanstack/react-router'
 import { MatchHeader } from '#/features/match/components/MatchHeader'
 import { useMatch } from '#/features/match/hooks/useMatch'
 import { useCreateMatchParticipants } from '#/features/match/hooks/useCreateMatchParticipants'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { MatchTeamSummaryCard } from '#/features/match/components/MatchTeamSummaryCard'
-import { MatchEventFeed } from '#/features/match/components/MatchEventFeed'
+import { MatchEventFeed } from '#/features/match/components/Sidebar/MatchEventFeed'
 import { useMatchTimeline } from '#/features/match/hooks/useMatchTimeline'
+import { MatchTimelineFilters } from '#/features/match/components/Sidebar/MatchTimelineFilters'
 
 const matchSchema = z.object({
   matchId: z.string().default(''),
@@ -25,6 +26,15 @@ function RouteComponent() {
   const match = useMatch(matchId)
   const createParticipants = useCreateMatchParticipants(matchId)
   const matchTimeline = useMatchTimeline(matchId)
+
+  const defaultFilter = {
+    championKills: false,
+    objectives: false,
+    buildings: false,
+    wards: false,
+  }
+
+  const [filter, setFilter] = useState(defaultFilter)
 
   useEffect(() => {
     if (
@@ -48,7 +58,7 @@ function RouteComponent() {
         <div className="w-full flex flex-col gap-5">
           <div className="p-5 rounded-md bg-gray-900">
             <img
-              className="w-240 h-240 rounded-md"
+              className="w-240 h-240 rounded-md mx-auto"
               src="/public/assets/map.png"
               alt="Summoner's Rift Map"
             />
@@ -68,15 +78,16 @@ function RouteComponent() {
             />
           </div>
         </div>
-        <div className="w-80 shrink-0 bg-gray-900 rounded-md px-4 py-2">
-          <h2 className="mb-6 tracking-widest uppercase font-semibold text-gray-300 mt-4 ml-2">
-            Event Feed
-          </h2>
+        <div className="w-80 shrink-0">
           {matchTimeline.data?.matchTimeline && (
-            <MatchEventFeed
-              events={matchTimeline.data.matchTimeline.events}
-              participants={match.data.participants}
-            />
+            <div>
+              <MatchTimelineFilters filter={filter} setFilter={setFilter} />
+              <MatchEventFeed
+                events={matchTimeline.data.matchTimeline.events}
+                participants={match.data.participants}
+                filter={filter}
+              />
+            </div>
           )}
         </div>
       </div>
