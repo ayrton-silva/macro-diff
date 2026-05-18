@@ -4,45 +4,15 @@ import { ItemIcon } from '@/shared/game/ItemIcon'
 import { Link } from '@tanstack/react-router'
 import { useExistentMatch } from '../hooks/useExistentMatches'
 import { returnDateAgo } from '@/shared/game/helpers'
+import { SummonerPerkIcon } from '#/shared/game/SummonerPerksIcon'
+import type { Participant } from '#/shared/game/MatchEvent/types'
 
 interface MatchCardProps {
   matchId: string
   summonerId: string
 }
 
-interface Participant {
-  puuid: string
-  championName: string
-  champLevel: number
-  lane: string
-  teamPosition: string
-  summoner1Id: number
-  summoner2Id: number
-  totalMinionsKilled: number
-  neutralMinionsKilled: number,
-  totalDamageDealtToChampions: number
-  wardsPlaced: number
-  goldEarned: number
-  riotIdGameName: string
-  riotIdTagline: string
-  item0: number
-  item1: number
-  item2: number
-  item3: number
-  item4: number
-  item5: number
-  item6: number
-  teamId: string
-  win: boolean
-  summoner: {
-    gameName: string
-    tagLine: string
-    region: string
-  }
-  kills: number
-  deaths: number
-  assists: number
-}
+
 
 interface ParticipantCardProps {
   participant: Participant
@@ -71,8 +41,8 @@ export function ParticipantCard({ participant }: ParticipantCardProps) {
                 <SummonerSpellIcon summonerSpellKey={participant.summoner2Id} />
               </div>
               <div>
-                <SummonerSpellIcon summonerSpellKey={999999} />
-                <SummonerSpellIcon summonerSpellKey={999999} />
+                <SummonerPerkIcon summonerPerkKey={participant.perksPrimaryStyleSelection0} />
+                <SummonerPerkIcon summonerPerkKey={participant.perksSubStyle} isSubPerk={true} customClass='size-5'/>
               </div>
             </div>
 

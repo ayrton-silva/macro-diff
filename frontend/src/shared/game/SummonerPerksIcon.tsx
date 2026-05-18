@@ -1,25 +1,33 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useSummonerPerks } from "../hooks/useSummonerSpells";
+import { perkImageNames } from "./MatchEvent/types";
 
 interface SummonerPerksIconProps {
-    summonerSpellKey: number
+    summonerPerkKey: number,
+    customClass?: string,
+    isSubPerk?: boolean
 }
 
-export function SummonerSpellIcon({summonerPerkKey}:SummonerPerksIconProps) {
-    const { status, data: perks, error, isFetching } = useSummonerPerks()
-    let perk = ''
-
-   if (perk?.data) {
-     for (const [key, value] of Object.entries(perk?.data) ) {
-        if (value.key === summonerPerkKey.toString()) {
-            spell = value.id
+export function SummonerPerkIcon({summonerPerkKey, customClass, isSubPerk = false}:SummonerPerksIconProps) {
+    let parent = ''
+    let name = ''
+    for(const [key,value] of Object.entries(perkImageNames)){
+        for(const [k,val] of Object.entries(value)){
+            if(+k == summonerPerkKey){
+                parent = key
+                name = val
+            }
         }
+        
     }
-   }
-    
     return (
-        <Avatar className="w-7 h-7">
-            <AvatarImage className="rounded-xs border border-black" src={`https://ddragon.leagueoflegends.com/cdn/16.9.1/img/spell/${perk}.png`} />
+        <Avatar className="w-7 h-7 items-center justify-center">
+            {isSubPerk ?        <AvatarImage 
+            className={`rounded-full items-center border-0 border-black ${customClass}`} 
+            src={`https://cdn.darkintaqt.com/lol/c-assets/perk-images/Styles/${name}.png`} />:
+            <AvatarImage 
+            className={`rounded-full items-center border-0 border-black ${customClass}`} 
+            src={`https://cdn.darkintaqt.com/lol/c-assets/perk-images/Styles/${parent}/${name}/${name}.png`} />
+            }
             <AvatarFallback>CN</AvatarFallback>
         </Avatar>
     )
