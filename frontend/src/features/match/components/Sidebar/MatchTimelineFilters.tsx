@@ -1,3 +1,7 @@
+import { cn } from '#/lib/utils'
+import { Switch } from '@base-ui/react/switch'
+import { Skull, TowerControl, Eye, Crosshair } from 'lucide-react'
+
 type MatchTimelineFiltersProps = {
   filter: {
     championKills: boolean
@@ -8,42 +12,87 @@ type MatchTimelineFiltersProps = {
   setFilter: any
 }
 
+const filterOptions = [
+  {
+    icon: Skull,
+    title: 'Champion Kills',
+    filterOption: 'championKills',
+  },
+  {
+    icon: Crosshair,
+    title: 'Objectives',
+    filterOption: 'objectives',
+  },
+  {
+    icon: TowerControl,
+    title: 'Buildings',
+    filterOption: 'buildings',
+  },
+  {
+    icon: Eye,
+    title: 'Wards',
+    filterOption: 'wards',
+  },
+]
+
 export function MatchTimelineFilters({
   filter,
   setFilter,
 }: MatchTimelineFiltersProps) {
-  console.log('filter', filter)
   return (
-    <div className="mb-4 bg-gray-900 rounded-md px-4 py-2">
+    <div className="mb-4 bg-gray-900 rounded-md px-4 py-2 pb-6">
       <h2 className="mb-6 tracking-widest uppercase font-semibold text-gray-300 mt-4 ml-2">
         Timeline Filters
       </h2>
-      <h1>ue {filter.championKills}</h1>
-      <div
-        className={filter.championKills ? 'bg-emerald-400' : ''}
-        onClick={() =>
-          setFilter({ ...filter, championKills: !filter.championKills })
-        }
-      >
-        Champion Kills
-      </div>
-      <div
-        className={filter.objectives ? 'bg-emerald-400' : ''}
-        onClick={() => setFilter({ ...filter, objectives: !filter.objectives })}
-      >
-        Objectives
-      </div>
-      <div
-        className={filter.buildings ? 'bg-emerald-400' : ''}
-        onClick={() => setFilter({ ...filter, buildings: !filter.buildings })}
-      >
-        Buildings
-      </div>
-      <div
-        className={filter.wards ? 'bg-emerald-400' : ''}
-        onClick={() => setFilter({ ...filter, wards: !filter.wards })}
-      >
-        Wards
+      <div className="space-y-4">
+        {filterOptions.map((opt) => (
+          <div
+            className={cn(
+              'p-3 rounded-md ring',
+              filter[opt.filterOption]
+                ? 'bg-[#0F3736] ring-emerald-700 text-emerald-400'
+                : 'ring-gray-600',
+            )}
+          >
+            <label className="flex items-center justify-between gap-2 text-base">
+              <div className="flex gap-3 items-center">
+                <opt.icon size={20} />
+                <span>{opt.title}</span>
+              </div>
+              <Switch.Root
+                checked={filter[opt.filterOption]}
+                onClick={() =>
+                  setFilter({
+                    ...filter,
+                    [opt.filterOption]: !filter[opt.filterOption],
+                  })
+                }
+                className="
+          relative flex h-6 w-12 rounded-full
+          bg-gray-600
+          p-[3px]
+      
+   
+          transition-colors duration-150
+          focus-visible:outline-blue-800
+          active:bg-gray-400
+          data-[checked]:bg-emerald-400
+          dark:bg-gray-700
+        "
+              >
+                <Switch.Thumb
+                  className="
+            aspect-square h-full rounded-full
+            bg-gray-900
+            shadow-md
+            transition-transform duration-150
+            data-[checked]:translate-x-6
+          "
+                />
+              </Switch.Root>
+            </label>
+          </div>
+        ))}
       </div>
     </div>
   )

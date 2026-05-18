@@ -1,7 +1,7 @@
 export type MatchEvent = {
   eventId: number
   timestamp: number
-  type: string
+  type: EventType
   creatorId?: string
   wardType?: string
   itemId?: number
@@ -16,6 +16,10 @@ export type MatchEvent = {
   monsterType?: string
   matchTimeline: string
   matchTimelineId: string
+  towerType?: string
+  buildingType?: string
+  multiKillLength?: number
+  laneType?: string
 }
 
 export type Participant = {
@@ -62,94 +66,106 @@ export type Participant = {
   win: boolean
 }
 
+export type EventType =
+  | 'LEVEL_UP'
+  | 'PAUSE_END'
+  | 'ITEM_DESTROYED'
+  | 'ITEM_PURCHASED'
+  | 'SKILL_LEVEL_UP'
+  | 'WARD_PLACED'
+  | 'TURRET_PLATE_DESTROYED'
+  | 'BUILDING_KILL'
+  | 'CHAMPION_KILL'
+  | 'CHAMPION_SPECIAL_KILL'
+  | 'ELITE_MONSTER_KILL'
+
 export type TeamId = 100 | 200
 
-
 export const perkImageNames = {
-  "Domination": {
-    8100: "7200_Domination",
-    8112: "Electrocute",
-    8128: "DarkHarvest",
-    9923: "HailOfBlades",
-    8126: "CheapShot",
-    8139: "TasteOfBlood",
-    8143: "SuddenImpact",
-    8137: "SixthSense",
-    8140: "GrislyMementos",
-    8141: "DeepWard",
-    8135: "TreasureHunter",
-    8105: "RelentlessHunter",
-    8106: "UltimateHunter",
+  Domination: {
+    8100: '7200_Domination',
+    8112: 'Electrocute',
+    8128: 'DarkHarvest',
+    9923: 'HailOfBlades',
+    8126: 'CheapShot',
+    8139: 'TasteOfBlood',
+    8143: 'SuddenImpact',
+    8137: 'SixthSense',
+    8140: 'GrislyMementos',
+    8141: 'DeepWard',
+    8135: 'TreasureHunter',
+    8105: 'RelentlessHunter',
+    8106: 'UltimateHunter',
   },
-  "Inspiration": {
-    8300: "7203_Whimsy",
-    8351: "GlacialAugment",
-    8360: "UnsealedSpellbook",
-    8369: "FirstStrike",
-    8306: "HextechFlashtraption",
-    8304: "MagicalFootwear",
-    8321: "CashBack",
-    8313: "PerfectTiming",
-    8352: "TimeWarpTonic",
-    8345: "BiscuitDelivery",
-    8347: "CosmicInsight",
-    8410: "ApproachVelocity",
-    8316: "JackOfAllTrades",
+  Inspiration: {
+    8300: '7203_Whimsy',
+    8351: 'GlacialAugment',
+    8360: 'UnsealedSpellbook',
+    8369: 'FirstStrike',
+    8306: 'HextechFlashtraption',
+    8304: 'MagicalFootwear',
+    8321: 'CashBack',
+    8313: 'PerfectTiming',
+    8352: 'TimeWarpTonic',
+    8345: 'BiscuitDelivery',
+    8347: 'CosmicInsight',
+    8410: 'ApproachVelocity',
+    8316: 'JackOfAllTrades',
   },
-  "Precision": {
-    8000: "7201_Precision",
-    8005: "PressTheAttack",
-    8008: "LethalTempo",
-    8021: "FleetFootwork",
-    8010: "Conqueror",
-    9101: "AbsorbLife",
-    9111: "Triumph",
-    8009: "PresenceOfMind",
-    9104: "LegendAlacrity",
-    9105: "LegendHaste",
-    9103: "LegendBloodline",
-    8014: "CoupDeGrace",
-    8017: "CutDown",
-    8299: "LastStand",
+  Precision: {
+    8000: '7201_Precision',
+    8005: 'PressTheAttack',
+    8008: 'LethalTempo',
+    8021: 'FleetFootwork',
+    8010: 'Conqueror',
+    9101: 'AbsorbLife',
+    9111: 'Triumph',
+    8009: 'PresenceOfMind',
+    9104: 'LegendAlacrity',
+    9105: 'LegendHaste',
+    9103: 'LegendBloodline',
+    8014: 'CoupDeGrace',
+    8017: 'CutDown',
+    8299: 'LastStand',
   },
-  "Resolve": {
-    8400: "7204_Resolve",
-    8437: "GraspOfTheUndying",
-    8439: "Aftershock",
-    8465: "Guardian",
-    8446: "Demolish",
-    8463: "FontOfLife",
-    8401: "ShieldBash",
-    8429: "Conditioning",
-    8444: "SecondWind",
-    8473: "BonePlating",
-    8451: "Overgrowth",
-    8453: "Revitalize",
-    8242: "Unflinching",
+  Resolve: {
+    8400: '7204_Resolve',
+    8437: 'GraspOfTheUndying',
+    8439: 'Aftershock',
+    8465: 'Guardian',
+    8446: 'Demolish',
+    8463: 'FontOfLife',
+    8401: 'ShieldBash',
+    8429: 'Conditioning',
+    8444: 'SecondWind',
+    8473: 'BonePlating',
+    8451: 'Overgrowth',
+    8453: 'Revitalize',
+    8242: 'Unflinching',
   },
-  "Sorcery": {
-    8200: "7202_Sorcery",
-    8214: "SummonAery",
-    8229: "ArcaneComet",
-    8230: "PhaseRush",
-    8992: "DeathfireTouch",
-    8224: "NullifyingOrb",
-    8226: "ManaflowBand",
-    8275: "NimbusCloak",
-    8210: "Transcendence",
-    8234: "Celerity",
-    8233: "AbsoluteFocus",
-    8237: "Scorch",
-    8232: "Waterwalking",
-    8236: "GatheringStorm",
+  Sorcery: {
+    8200: '7202_Sorcery',
+    8214: 'SummonAery',
+    8229: 'ArcaneComet',
+    8230: 'PhaseRush',
+    8992: 'DeathfireTouch',
+    8224: 'NullifyingOrb',
+    8226: 'ManaflowBand',
+    8275: 'NimbusCloak',
+    8210: 'Transcendence',
+    8234: 'Celerity',
+    8233: 'AbsoluteFocus',
+    8237: 'Scorch',
+    8232: 'Waterwalking',
+    8236: 'GatheringStorm',
   },
-  "StatMods": {
-    5008: "AdaptiveForce",
-    5005: "AttackSpeed",
-    5007: "AbilityHaste",
-    5010: "MoveSpeed",
-    5001: "HealthScaling",
-    5011: "Health",
-    5013: "TenacityAndSlowResist",
-  }
-};
+  StatMods: {
+    5008: 'AdaptiveForce',
+    5005: 'AttackSpeed',
+    5007: 'AbilityHaste',
+    5010: 'MoveSpeed',
+    5001: 'HealthScaling',
+    5011: 'Health',
+    5013: 'TenacityAndSlowResist',
+  },
+}
