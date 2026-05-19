@@ -6,6 +6,13 @@ type MatchTeamSummaryCardProps = {
   participants: Participant[]
   team: string
 }
+const lanePosition = {
+  "TOP":0,
+  "JUNGLE":1,
+  "MIDDLE":2,
+  "BOTTOM":3,
+  "UTILITY":4
+}
 
 export function MatchTeamSummaryCard({
   participants,
@@ -44,7 +51,9 @@ export function MatchTeamSummaryCard({
       </div>
       </div>
       {participants.length > 0 &&
-        participants.map((p) => <div className='py-3'><MatchParticipant participant={p}/></div>)}
+        participants.sort((a,b)=> lanePosition[a.teamPosition]- lanePosition[b.teamPosition]).map((p) => 
+            <div key={p.teamPosition} className='py-3'><MatchParticipant participant={p}/></div>
+        )}
     </div>
   )
 }

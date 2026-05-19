@@ -30,7 +30,7 @@ export type Participant = {
   deaths: number
   kills: number
   lane: string
-  teamPosition: string
+  teamPosition: "TOP"| "JUNGLE"| "MIDDLE" |"BOTTOM" |"UTILITY"
   summoner1Id: number
   summoner2Id: number
   totalMinionsKilled: number
