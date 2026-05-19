@@ -12,14 +12,14 @@ export function MatchTeamSummaryCard({
   team,
 }: MatchTeamSummaryCardProps) {
   return (
-    <div className="bg-gray-900 rounded-sm px-8 py-4  relative overflow-hidden">
+    <div className="bg-gray-900 rounded-sm px-8 py-4 relative overflow-hidden">
       <div
         className={cn(
           'absolute w-1 h-full top-0',
           team === 'Blue' ? 'left-0 bg-cyan-600' : 'right-0 bg-red-400',
         )}
       ></div>
-      <div className='border-b-2  border-gray-800 py-2 mb-2'>
+      <div className={`flex flex-col border-b-2 border-gray-800 py-2 mb-2 ${team == 'Blue' ? "items-baseline":"items-end"}`}>
       <h2
         className={cn(
           'font-bold flex gap-3 items-center text-xl  ',
