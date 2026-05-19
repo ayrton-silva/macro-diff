@@ -58,6 +58,9 @@ export function capitalizeString(string: string) {
 export function returnDateAgo(input: number) {
   const timeAgo = (new Date().getTime() - +input) / 1000 / 3600 / 24
 
+  if ((timeAgo * 24)  < 1) {
+    return Math.floor(timeAgo * 24 * 60) + ' min ago'
+  }
   if (timeAgo < 1) {
     return Math.floor(timeAgo * 24) + ' hours ago'
   }
