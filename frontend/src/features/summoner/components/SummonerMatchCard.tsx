@@ -3,9 +3,10 @@ import { SummonerSpellIcon } from '@/shared/game/SummonerSpellIcon'
 import { ItemIcon } from '@/shared/game/ItemIcon'
 import { Link } from '@tanstack/react-router'
 import { useExistentMatch } from '../hooks/useExistentMatches'
-import { returnDateAgo } from '@/shared/game/helpers'
+import { calculateKDA, returnDateAgo } from '@/shared/game/helpers'
 import { SummonerPerkIcon } from '#/shared/game/SummonerPerksIcon'
 import type { Participant } from '#/shared/game/MatchEvent/types'
+import { SummonerPositionIcon } from '#/shared/game/SummonerPositionIcon'
 
 interface MatchCardProps {
   matchId: string
@@ -23,9 +24,7 @@ export function ParticipantCard({ participant }: ParticipantCardProps) {
     <div className="flex items-center h-full w-full text-white text-shadow-black text-shadow-lg">
       <div className="flex items-center border-l h-full w-full">
         <div className='ml-4 mr-4 size-10'>
-          <img
-            src={`https://wiki.leagueoflegends.com/en-us/images/thumb/${(participant.teamPosition[0].toUpperCase() + participant.teamPosition.slice(1).toLowerCase()).replace('Utility', 'Support')}_icon.png/120px-${(participant.teamPosition[0].toUpperCase() + participant.teamPosition.slice(1).toLowerCase()).replace('Utility', 'Support')}_icon.png`}
-          />
+          <SummonerPositionIcon teamPosition={participant.teamPosition}/>
         </div>
         <div className="flex h-full items-center w-full">
           <div className="flex gap-4 items-center">
@@ -77,7 +76,7 @@ export function ParticipantCard({ participant }: ParticipantCardProps) {
               <span>{participant.assists}</span>
             </p>
             <p className="text-sm">
-              <span>{(participant.kills + participant.assists) == 0 ? "0" : (Math.round((100 * (participant.kills + participant.assists) / (participant.deaths == 0 ? 1 : participant.deaths))) / 100)}:1 KDA</span>
+              <span>{calculateKDA(participant.kills,participant.assists,participant.deaths)}:1 KDA</span>
             </p>
           </div>
         </div>

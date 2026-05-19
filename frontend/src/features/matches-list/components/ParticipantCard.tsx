@@ -4,6 +4,7 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { SummonerSpellIcon } from '#/shared/game/SummonerSpellIcon'
 import { ItemIcon } from '#/shared/game/ItemIcon'
 import { Link } from '@tanstack/react-router'
+import { SummonerPositionIcon } from '#/shared/game/SummonerPositionIcon'
 
 interface Participant {
   puuid: string
@@ -61,12 +62,9 @@ export function ParticipantCard({ participant }: ParticipantCardProps) {
           <>
             <div className="flex justify-between items-center">
               <h3 className="font-bold">{participant.summoner.gameName}</h3>
-              <Avatar>
-                <AvatarImage
-                  className="rounded-none"
-                  src={`https://wiki.leagueoflegends.com/en-us/images/thumb/${(participant.teamPosition[0].toUpperCase() + participant.teamPosition.slice(1).toLowerCase()).replace('Utility', 'Support')}_icon.png/120px-${(participant.teamPosition[0].toUpperCase() + participant.teamPosition.slice(1).toLowerCase()).replace('Utility', 'Support')}_icon.png`}
-                />
-              </Avatar>
+              <div>
+                <SummonerPositionIcon teamPosition={participant.teamPosition}/>
+              </div>
             </div>
 
             <div className="flex gap-4">

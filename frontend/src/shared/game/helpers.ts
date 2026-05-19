@@ -67,3 +67,7 @@ export function returnDateAgo(input: number) {
 export function showDivisionByTier(tier: string) {
   return !['MASTER', 'GRANDMASTER', 'CHALLENGER'].includes(tier)
 }
+
+export function calculateKDA(kills:number,assists:number,deaths:number) {
+  return ((kills + assists) == 0 ? "0" : (Math.round((100 * (kills + assists) / (deaths == 0 ? 1 : deaths))) / 100))
+}

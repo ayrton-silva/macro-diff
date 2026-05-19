@@ -1,60 +1,6 @@
-import { cn } from '#/lib/utils'
+import { cn } from '@/lib/utils'
+import type { Participant } from '@/shared/game/MatchEvent/types'
 import { MatchParticipant } from './MatchParticipant'
-
-type Participant = {
-  puuid: string
-  championName: string
-  champLevel: number
-  assists: number
-  deaths: number
-  kills: number
-  lane: string
-  teamPosition: string
-  summoner1Id: number
-  summoner2Id: number
-  totalMinionsKilled: number
-  totalDamageDealtToChampions: number
-  wardsPlaced: number
-  goldEarned: number
-  riotIdGameName: string
-  riotIdTagline: string
-  item0: number
-  item1: number
-  item2: number
-  item3: number
-  item4: number
-  item5: number
-  item6: number
-  perks: {
-    statPerks: {
-      defense: number
-      flex: number
-      offense: number
-    }
-    styles: [
-      {
-        selections: [
-          { perk: number },
-          { perk: number },
-          { perk: number },
-          { perk: number },
-        ]
-        style: number
-      },
-      {
-        selections: [{ perk: number }, { perk: number }]
-        style: number
-      },
-    ]
-  }
-  summoner: {
-    gameName: string
-    tagLine: string
-    region: string
-  }
-  teamId: string
-  win: boolean
-}
 
 type MatchTeamSummaryCardProps = {
   participants: Participant[]
@@ -73,9 +19,10 @@ export function MatchTeamSummaryCard({
           team === 'Blue' ? 'left-0 bg-cyan-600' : 'right-0 bg-red-400',
         )}
       ></div>
+      <div className='border-b-2  border-gray-800 py-2 mb-2'>
       <h2
         className={cn(
-          'font-bold flex gap-3 items-center text-xl',
+          'font-bold flex gap-3 items-center text-xl  ',
           `${team === 'Blue' ? 'text-cyan-500' : 'text-red-400'}`,
         )}
       >
@@ -90,8 +37,14 @@ export function MatchTeamSummaryCard({
           </span>
         )}
       </h2>
+      <div className='flex text-sm text-gray-400 gap-1 mt-0.5'>
+        <p>Dragons:</p>
+        <p>Towers:</p>
+        <p>Gold:</p>
+      </div>
+      </div>
       {participants.length > 0 &&
-        participants.map((p) => <MatchParticipant participant={p} />)}
+        participants.map((p) => <div className='py-3'><MatchParticipant participant={p}/></div>)}
     </div>
   )
 }

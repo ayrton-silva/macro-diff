@@ -172,7 +172,7 @@ function calculateLaneMaxHeight() {
               >
                 <p className="text-md text-black font-semibold">{winLoseData.WIN}</p>
               </span>
-                            <span
+                <span
                 className="flex items-center justify-center w-12 bg-red-400 rounded-r-sm border-2 border-red-500"
                 style={{
                   width: `${winLoseData.LOSE < 1 ? 16 : calculateWinLoseMaxSize().LOSE}px`,
