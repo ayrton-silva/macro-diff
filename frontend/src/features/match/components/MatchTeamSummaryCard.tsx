@@ -52,7 +52,11 @@ export function MatchTeamSummaryCard({
       </div>
       {participants.length > 0 &&
         participants.sort((a,b)=> lanePosition[a.teamPosition]- lanePosition[b.teamPosition]).map((p) => 
-            <div key={p.teamPosition} className='py-3'><MatchParticipant participant={p}/></div>
+          
+            <div key={p.teamPosition} className='flex flex-col py-2 border-b-2 border-dashed last:border-0'>
+                <h4 className={`text-sm text-gray-300 mb-2 ${p.teamId == 200? 'self-end mr-8': 'ml-8 '}`}>{p.summoner.gameName}</h4>
+                <MatchParticipant participant={p}/>
+            </div>
         )}
     </div>
   )

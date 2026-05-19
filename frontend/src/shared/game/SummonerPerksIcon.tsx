@@ -9,12 +9,12 @@ interface SummonerPerksIconProps {
 
 export function SummonerPerkIcon({summonerPerkKey, customClass, isSubPerk = false}:SummonerPerksIconProps) {
     let parent = ''
-    let name = ''
+    let url = ''
     for(const [key,value] of Object.entries(perkImageNames)){
         for(const [k,val] of Object.entries(value)){
             if(+k == summonerPerkKey){
                 parent = key
-                name = val
+                url = val.url
             }
         }
         
@@ -23,10 +23,10 @@ export function SummonerPerkIcon({summonerPerkKey, customClass, isSubPerk = fals
         <Avatar className="w-7 h-7 items-center justify-center">
             {isSubPerk ?        <AvatarImage 
             className={`rounded-full items-center border-0 border-black ${customClass}`} 
-            src={`https://cdn.darkintaqt.com/lol/c-assets/perk-images/Styles/${name}.png`} />:
+            src={url} />:
             <AvatarImage 
             className={`rounded-full items-center border-0 border-black ${customClass}`} 
-            src={`https://cdn.darkintaqt.com/lol/c-assets/perk-images/Styles/${parent}/${name}/${name}.png`} />
+            src={url} />
             }
             <AvatarFallback>CN</AvatarFallback>
         </Avatar>
