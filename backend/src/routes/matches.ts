@@ -152,4 +152,17 @@ export async function matchesRoutes(app: FastifyInstance) {
 
     return existentData
   })
+  app.get('/clearMatchesCache/:puuid', async (request) => {
+    const { puuid } = request.params as { puuid: string }
+
+    request.log.info({puuid},'Cache clear for user!')
+
+    const deleteResponse = memoryMatchData.delete(puuid)
+
+    if(!deleteResponse){
+      return {'message':'User does not exist!', 'user': puuid, 'isDeleted?': deleteResponse}
+    }
+
+    return {'message':'Cache clear!', 'user': puuid, 'isDeleted?': deleteResponse}
+  })
 }
