@@ -1,3 +1,4 @@
+import { ScrollArea } from '@base-ui/react/scroll-area'
 import { cn } from '#/lib/utils'
 import {
   getMatchEventColors,
@@ -199,64 +200,100 @@ export function MatchEventFeed({
     return { icon }
   }
 
-  console.log('filtroaweawhe', sorteredMatchEvents)
+  // TO DO: create useEvents hook
 
   return (
     <div className="bg-gray-900 px-4 py-2 rounded-md pb-6">
       <h2 className="mb-6 tracking-widest uppercase font-semibold text-gray-300 mt-4 ml-2">
         Event Feed
       </h2>
-      <div className="flex flex-col gap-8 border-l-2 border-l-gray-700 ml-2">
-        {sorteredMatchEvents
-          .map((e) =>
-            e.type === 'BUILDING_KILL'
-              ? { ...e, teamId: (e.teamId === 100 ? 200 : 100) as TeamId }
-              : e,
-          )
-          .map((e, i) => {
-            const team = getMatchEventTeam({ matchEvent: e, participants })
-            const colors = getMatchEventColors(team)
-            const eventIcon = getMatchEventIcon({ matchEvent: e })
-
-            return (
-              <div className="flex flex-col gap-2 relative pl-7 text-sm">
-                <div
-                  className={cn(
-                    'rounded-full ring-2 w-6 h-6 absolute -left-3 top-0 flex items-center justify-center',
-                    ...Object.values(colors),
-                  )}
-                >
-                  {eventIcon.icon && <eventIcon.icon size={18} />}
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-300">{`${Math.floor(
-                    e.timestamp / 1000 / 60,
+      <ScrollArea.Root className="h-[42vh]">
+        <ScrollArea.Viewport className="h-full">
+          <ScrollArea.Content>
+            {sorteredMatchEvents.length > 0 ? (
+              <div className="flex flex-col gap-8 border-l-2 border-l-gray-700 ml-4 mt-2">
+                {sorteredMatchEvents
+                  .map((e) =>
+                    e.type === 'BUILDING_KILL'
+                      ? {
+                          ...e,
+                          teamId: (e.teamId === 100 ? 200 : 100) as TeamId,
+                        }
+                      : e,
                   )
-                    .toString()
-                    .padStart(2, '0')}:${Math.floor((e.timestamp / 1000) % 60)
-                    .toString()
-                    .padStart(2, '0')}`}</span>
-                </div>
-                <p>
-                  {e.type === 'WARD_PLACED' && (
-                    <WardPlaced event={e} participants={participants} />
-                  )}
-                  {(e.type === 'CHAMPION_KILL' ||
-                    e.type === 'CHAMPION_SPECIAL_KILL') && (
-                    <ChampionKill event={e} participants={participants} />
-                  )}
-                  {(e.type === 'BUILDING_KILL' ||
-                    e.type === 'TURRET_PLATE_DESTROYED') && (
-                    <BuildingDestroyed event={e} participants={participants} />
-                  )}
-                  {e.type === 'ELITE_MONSTER_KILL' && (
-                    <ObjectiveCompleted event={e} participants={participants} />
-                  )}
-                </p>
+                  .map((e, i) => {
+                    const team = getMatchEventTeam({
+                      matchEvent: e,
+                      participants,
+                    })
+                    const colors = getMatchEventColors(team)
+                    const eventIcon = getMatchEventIcon({ matchEvent: e })
+
+                    return (
+                      <div className="flex flex-col gap-2 relative pl-7 text-sm">
+                        <div
+                          className={cn(
+                            'rounded-full ring-2 w-6 h-6 absolute -left-3 top-0 flex items-center justify-center',
+                            ...Object.values(colors),
+                          )}
+                        >
+                          {eventIcon.icon && <eventIcon.icon size={18} />}
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-300">{`${Math.floor(
+                            e.timestamp / 1000 / 60,
+                          )
+                            .toString()
+                            .padStart(2, '0')}:${Math.floor(
+                            (e.timestamp / 1000) % 60,
+                          )
+                            .toString()
+                            .padStart(2, '0')}`}</span>
+                        </div>
+                        <p>
+                          {e.type === 'WARD_PLACED' && (
+                            <WardPlaced event={e} participants={participants} />
+                          )}
+                          {(e.type === 'CHAMPION_KILL' ||
+                            e.type === 'CHAMPION_SPECIAL_KILL') && (
+                            <ChampionKill
+                              event={e}
+                              participants={participants}
+                            />
+                          )}
+                          {(e.type === 'BUILDING_KILL' ||
+                            e.type === 'TURRET_PLATE_DESTROYED') && (
+                            <BuildingDestroyed
+                              event={e}
+                              participants={participants}
+                            />
+                          )}
+                          {e.type === 'ELITE_MONSTER_KILL' && (
+                            <ObjectiveCompleted
+                              event={e}
+                              participants={participants}
+                            />
+                          )}
+                        </p>
+                      </div>
+                    )
+                  })}
               </div>
-            )
-          })}
-      </div>
+            ) : (
+              <div>
+                <img
+                  src="https://media.discordapp.net/attachments/1386819906707914917/1506408888176607432/content.png?ex=6a0e281a&is=6a0cd69a&hm=d3ee57c700739cb06d3d02a11bb9a6c0f35829609a447afd73db8cf9e32b5e33&=&format=webp&quality=lossless&width=960&height=960"
+                  alt=""
+                />
+                <p className="text-center -mt-6">Missing Poro-Snax...</p>
+              </div>
+            )}
+          </ScrollArea.Content>
+        </ScrollArea.Viewport>
+        <ScrollArea.Scrollbar className="m-px flex w-2 justify-center rounded-2xl bg-gray-800 opacity-0 transition-opacity pointer-events-none data-hovering:opacity-100 data-hovering:pointer-events-auto data-scrolling:opacity-100 data-scrolling:duration-0 data-scrolling:pointer-events-auto">
+          <ScrollArea.Thumb className="w-full bg-cyan-600 rounded-2xl" />
+        </ScrollArea.Scrollbar>
+      </ScrollArea.Root>
     </div>
   )
 }

@@ -77,7 +77,7 @@ function RouteComponent() {
   )
 
   return (
-    <div className="px-[320px]">
+    <div className="px-[12%]">
       <MatchHeader match={match.data} />
       <div className="flex items-start gap-5">
         <div className="w-full flex flex-col gap-5">
@@ -115,7 +115,7 @@ function RouteComponent() {
             />
           </div>
         </div>
-        <div className="w-80 shrink-0">
+        <div className="w-80 shrink-0 sticky top-[73px]">
           {matchTimeline.data?.matchTimeline && (
             <div>
               <MatchTimelineFilters filter={filter} setFilter={setFilter} />
