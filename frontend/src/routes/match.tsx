@@ -8,6 +8,7 @@ import { MatchTeamSummaryCard } from '#/features/match/components/MatchTeamSumma
 import { MatchEventFeed } from '#/features/match/components/Sidebar/MatchEventFeed'
 import { useMatchTimeline } from '#/features/match/hooks/useMatchTimeline'
 import { MatchTimelineFilters } from '#/features/match/components/Sidebar/MatchTimelineFilters'
+import { MatchTimeline } from '#/features/match/components/Map/MatchTimeline'
 
 const matchSchema = z.object({
   matchId: z.string().default(''),
@@ -35,6 +36,7 @@ function RouteComponent() {
   }
 
   const [filter, setFilter] = useState(defaultFilter)
+  const [values, setValues] = useState([0, 0])
 
   useEffect(() => {
     if (
@@ -47,9 +49,32 @@ function RouteComponent() {
     }
   }, [match.data])
 
+  useEffect(() => {
+    if (matchTimeline.data && matchTimeline.data?.matchTimeline) {
+      const sortedFrames =
+        matchTimeline.data?.matchTimeline.participantFrames.sort(
+          (a, b) => a.timestamp - b.timestamp,
+        )
+
+      setValues([
+        sortedFrames?.length > 0 ? sortedFrames[0].timestamp : 0,
+        sortedFrames?.length > 0
+          ? Math.ceil(sortedFrames[sortedFrames.length - 1].timestamp / 60000) *
+            60000
+          : 0,
+      ])
+    }
+  }, [matchTimeline.data?.matchTimeline])
+
   if (!match.data) {
     return <h1>sem partida</h1>
   }
+
+  console.log('values', values)
+
+  const sortedFrames = matchTimeline.data?.matchTimeline.participantFrames.sort(
+    (a, b) => a.timestamp - b.timestamp,
+  )
 
   return (
     <div className="px-[320px]">
@@ -62,6 +87,18 @@ function RouteComponent() {
               src="/public/assets/map.png"
               alt="Summoner's Rift Map"
             />
+            {matchTimeline.data?.matchTimeline && (
+              <MatchTimeline
+                min={sortedFrames[0].timestamp}
+                max={
+                  Math.ceil(
+                    sortedFrames[sortedFrames.length - 1].timestamp / 60000,
+                  ) * 60000
+                }
+                values={values}
+                setValues={setValues}
+              />
+            )}
           </div>
           <div className="grid grid-cols-2 gap-5 w-full">
             <MatchTeamSummaryCard
@@ -86,6 +123,7 @@ function RouteComponent() {
                 events={matchTimeline.data.matchTimeline.events}
                 participants={match.data.participants}
                 filter={filter}
+                timelineValues={values}
               />
             </div>
           )}

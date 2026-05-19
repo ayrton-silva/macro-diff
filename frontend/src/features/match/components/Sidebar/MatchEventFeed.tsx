@@ -20,6 +20,7 @@ type MatchEventFeedProps = {
     buildings: boolean
     wards: boolean
   }
+  timelineValues: [number, number]
 }
 
 function PlayerName({ participant }: { participant: Participant }) {
@@ -132,6 +133,7 @@ export function MatchEventFeed({
   events,
   participants,
   filter,
+  timelineValues,
 }: MatchEventFeedProps) {
   const filterOptions = [
     ['LEVEL_UP', false],
@@ -169,6 +171,10 @@ export function MatchEventFeed({
 
   const sorteredMatchEvents = events
     .filter((e) => filterMap.get(e.type) === true)
+    .filter(
+      (e) =>
+        e.timestamp >= timelineValues[0] && e.timestamp <= timelineValues[1],
+    )
     .sort((a, b) => a.timestamp - b.timestamp)
 
   function getMatchEventIcon({ matchEvent }: { matchEvent: MatchEvent }) {
