@@ -1,16 +1,42 @@
 import { ChampionIcon } from '@/shared/game/ChampionIcon'
 import { SummonerSpellIcon } from '@/shared/game/SummonerSpellIcon'
 import { ItemIcon } from '@/shared/game/ItemIcon'
-import type { Participant } from '@/shared/game/MatchEvent/types'
+import type { MatchEvent, Participant, ParticipantFrames } from '@/shared/game/MatchEvent/types'
 import { SummonerPositionIcon } from '#/shared/game/SummonerPositionIcon'
 import { calculateKDA } from '#/shared/game/helpers'
 import { SummonerPerkIcon } from '#/shared/game/SummonerPerksIcon'
 
 interface ParticipantProps {
   participant: Participant
+  events: MatchEvent[]
+  participantFrames: ParticipantFrames[]
+  timelineValues: [number, number]
 }
 
-export function MatchParticipant({ participant }: ParticipantProps) {
+export function MatchParticipant({ 
+  participant, 
+  events,
+  participantFrames,
+  timelineValues 
+}: ParticipantProps) {
+  const currentMinionsKilled = participantFrames?.filter((z)=> z.participantPuuid == participant.summonerId && z.timestamp >=  timelineValues[0] && z.timestamp <= timelineValues[1])
+    .map((b)=> b.minionsKilled)[participantFrames?.filter((z)=> z.participantPuuid == participant.summonerId && z.timestamp >=  timelineValues[0] && z.timestamp <= timelineValues[1])
+    .map((b)=> b.minionsKilled).length-1]
+  
+  const kills = events?.filter((z)=> z.killerId == participant.summonerId && z.type == "CHAMPION_KILL" && z.timestamp <= timelineValues[1])
+    .reduce((total)=> total+=1,0)
+  const deaths = events?.filter((z)=> z.victimId == participant.summonerId && z.type == "CHAMPION_KILL" && z.timestamp <= timelineValues[1])
+    .reduce((total)=> total+=1,0)
+
+  const currentLevel = participantFrames?.filter((z)=> z.participantPuuid == participant.summonerId && z.timestamp >=  timelineValues[0] && z.timestamp <= timelineValues[1]).sort((a,b)=> b.level-a.level).map((c)=> c.level)[0]
+
+  const items = []
+  events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_PURCHASED" && z.timestamp <= timelineValues[1]).forEach((b)=> items.push(b.itemId))
+  events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_DESTROYED" && z.timestamp <= timelineValues[1]).forEach((b)=> items.splice(items.indexOf(b.itemId),1))
+  // events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_SOLD" && z.timestamp <= timelineValues[1]).forEach((b)=> items.splice(items.indexOf(b.itemId),1))
+  // events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_UNDO" && z.timestamp <= timelineValues[1]).forEach((b)=> items.splice(items.indexOf(b.itemId),1))
+
+  console.log(items)
   return (
     <div className="bg-transparent text-white mb-1">
       {participant.teamId == 100 ?
@@ -23,7 +49,7 @@ export function MatchParticipant({ participant }: ParticipantProps) {
               <div className="w-fit">
                 <ChampionIcon
                   icon={participant.championName}
-                  level={participant.champLevel}
+                  level={currentLevel ? currentLevel : participant.champLevel}
                   classProp={`rounded-full border-2 border-cyan-400`}
                 />
               </div>
@@ -40,8 +66,9 @@ export function MatchParticipant({ participant }: ParticipantProps) {
               </div>
             </div>
             <div>
-              <div className="flex gap-1">
-                <ItemIcon itemKey={participant.item0} />
+              <div className="flex flex-wrap gap-1">
+                {items.map((a)=> <ItemIcon itemKey={a} />)}
+{/*                 <ItemIcon itemKey={participant.item0} />
                 <ItemIcon itemKey={participant.item1} />
                 <ItemIcon itemKey={participant.item2} />
                 <ItemIcon itemKey={participant.item6} />
@@ -49,7 +76,7 @@ export function MatchParticipant({ participant }: ParticipantProps) {
               <div className="flex gap-1">
                 <ItemIcon itemKey={participant.item3} />
                 <ItemIcon itemKey={participant.item4} />
-                <ItemIcon itemKey={participant.item5} />
+                <ItemIcon itemKey={participant.item5} /> */}
 
               </div>
             </div>
@@ -57,16 +84,16 @@ export function MatchParticipant({ participant }: ParticipantProps) {
 
           <div className='flex flex-col items-end justify-center'>
             <p className="gap-1 font-bold">
-              <span>{participant.kills}</span>
+              <span>{kills}</span>
               <span>/</span>
-              <span className='text-red-400'>{participant.deaths}</span>
+              <span className='text-red-400'>{deaths}</span>
               <span>/</span>
               <span>{participant.assists}</span>
             </p>
             <p className="flex text-xs text-gray-400 font-semibold space-x-1">
-              <span>{calculateKDA(participant.kills, participant.assists, participant.deaths)}:1 KDA</span>
+              <span>{calculateKDA(kills, participant.assists, deaths)}:1 KDA</span>
               <span>-</span>
-              <span>CS: {participant.totalMinionsKilled}</span>
+              <span>CS: {currentMinionsKilled}</span>
             </p>
           </div>
         </div>
@@ -75,21 +102,23 @@ export function MatchParticipant({ participant }: ParticipantProps) {
           <div className='flex justify-between w-full'>
             <div className='flex flex-col items-baseline justify-center'>
               <p className="font-bold">
-                <span>{participant.kills}</span>
+                <span>{kills}</span>
                 <span>/</span>
-                <span className='text-red-400'>{participant.deaths}</span>
+                <span className='text-red-400'>{deaths}</span>
                 <span>/</span>
                 <span>{participant.assists}</span>
               </p>
               <p className="flex text-xs text-gray-400 font-semibold space-x-1">
-                <span>{calculateKDA(participant.kills, participant.assists, participant.deaths)}:1 KDA</span>
+                <span>{calculateKDA(kills, participant.assists, deaths)}:1 KDA</span>
                 <span>-</span>
-                <span>CS: {participant.totalMinionsKilled}</span>
+                <span>CS: {currentMinionsKilled}
+                </span>
               </p>
             </div>
             <div>
-              <div className="flex gap-1">
-                <ItemIcon itemKey={participant.item0} />
+              <div className="flex flex-wrap gap-1">
+                            {items.map((a)=> <ItemIcon itemKey={a} />)}
+{/*                 <ItemIcon itemKey={participant.item0} />
                 <ItemIcon itemKey={participant.item1} />
                 <ItemIcon itemKey={participant.item2} />
                 <ItemIcon itemKey={participant.item6} />
@@ -97,7 +126,7 @@ export function MatchParticipant({ participant }: ParticipantProps) {
               <div className="flex gap-1">
                 <ItemIcon itemKey={participant.item3} />
                 <ItemIcon itemKey={participant.item4} />
-                <ItemIcon itemKey={participant.item5} />
+                <ItemIcon itemKey={participant.item5} /> */}
 
               </div>
             </div>
@@ -116,7 +145,7 @@ export function MatchParticipant({ participant }: ParticipantProps) {
           <div className="w-fit">
             <ChampionIcon
               icon={participant.championName}
-              level={participant.champLevel}
+              level={currentLevel ? currentLevel : participant.champLevel}
               classProp={`rounded-full border-2 border-red-400`}
             />
           </div>

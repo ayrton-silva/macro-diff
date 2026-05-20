@@ -22,6 +22,20 @@ export type MatchEvent = {
   laneType?: string
 }
 
+export type ParticipantFrames = {
+    id:number
+    participantFrameId:number
+    participantPuuid:string
+    timestamp:number
+    positionx:number
+    positiony:number
+    level:number
+    minionsKilled:number
+    totalGold:number
+    totalDamageDoneToChampions:number
+    matchTimelineId:string
+}
+
 export type Participant = {
   summonerId: string
   championName: string

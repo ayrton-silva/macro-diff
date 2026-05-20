@@ -100,20 +100,26 @@ function RouteComponent() {
               />
             )}
           </div>
-          <div className="grid grid-cols-2 gap-5 w-full">
+          {matchTimeline.data?.matchTimeline && (<div className="grid grid-cols-2 gap-5 w-full">
             <MatchTeamSummaryCard
+              events={matchTimeline.data.matchTimeline.events}
+              participantFrames={matchTimeline.data.matchTimeline.participantFrames}
+              timelineValues={values}
               team="Blue"
               participants={match.data.participants.filter(
                 (p) => p.teamId === '100',
               )}
             />
             <MatchTeamSummaryCard
+              events={matchTimeline.data.matchTimeline.events}
+              participantFrames={matchTimeline.data.matchTimeline.participantFrames}
+              timelineValues={values}
               team="Red"
               participants={match.data.participants.filter(
                 (p) => p.teamId === '200',
               )}
             />
-          </div>
+          </div>)}
         </div>
         <div className="w-80 shrink-0 sticky top-[73px]">
           {matchTimeline.data?.matchTimeline && (
