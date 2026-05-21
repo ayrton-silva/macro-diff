@@ -27,12 +27,14 @@ export function MatchParticipant({
     .reduce((total)=> total+=1,0)
   const deaths = events?.filter((z)=> z.victimId == participant.summonerId && z.type == "CHAMPION_KILL" && z.timestamp <= timelineValues[1])
     .reduce((total)=> total+=1,0)
+  const assists = events?.filter((z)=> z.type == "CHAMPION_KILL" && z.timestamp <= timelineValues[1]).filter((p)=> p.assistingParticipantIds.indexOf(participant.summonerId) != -1)
+    .reduce((total)=> total+=1,0)
 
   const currentLevel = participantFrames?.filter((z)=> z.participantPuuid == participant.summonerId && z.timestamp >=  timelineValues[0] && z.timestamp <= timelineValues[1]).sort((a,b)=> b.level-a.level).map((c)=> c.level)[0]
 
-  const items = []
-  events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_PURCHASED" && z.timestamp <= timelineValues[1]).forEach((b)=> items.push(b.itemId))
-  events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_DESTROYED" && z.timestamp <= timelineValues[1]).forEach((b)=> items.splice(items.indexOf(b.itemId),1))
+  const items:number[] = []
+  events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_PURCHASED" && z.timestamp <= timelineValues[1]).forEach((b)=> items.push(b.itemId!))
+  events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_DESTROYED" && z.timestamp <= timelineValues[1]).forEach((b)=> items.splice(items.indexOf(b.itemId!),1))
   // events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_SOLD" && z.timestamp <= timelineValues[1]).forEach((b)=> items.splice(items.indexOf(b.itemId),1))
   // events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_UNDO" && z.timestamp <= timelineValues[1]).forEach((b)=> items.splice(items.indexOf(b.itemId),1))
 
@@ -88,10 +90,10 @@ export function MatchParticipant({
               <span>/</span>
               <span className='text-red-400'>{deaths}</span>
               <span>/</span>
-              <span>{participant.assists}</span>
+              <span>{assists}</span>
             </p>
             <p className="flex text-xs text-gray-400 font-semibold space-x-1">
-              <span>{calculateKDA(kills, participant.assists, deaths)}:1 KDA</span>
+              <span>{calculateKDA(kills, assists, deaths)}:1 KDA</span>
               <span>-</span>
               <span>CS: {currentMinionsKilled}</span>
             </p>
@@ -106,10 +108,10 @@ export function MatchParticipant({
                 <span>/</span>
                 <span className='text-red-400'>{deaths}</span>
                 <span>/</span>
-                <span>{participant.assists}</span>
+                <span>{assists}</span>
               </p>
               <p className="flex text-xs text-gray-400 font-semibold space-x-1">
-                <span>{calculateKDA(kills, participant.assists, deaths)}:1 KDA</span>
+                <span>{calculateKDA(kills, assists, deaths)}:1 KDA</span>
                 <span>-</span>
                 <span>CS: {currentMinionsKilled}
                 </span>

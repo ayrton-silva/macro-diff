@@ -123,6 +123,7 @@ export type Events = {
   laneType?: string
   towerType?: string
   victimId?: number
+  assistingParticipantIds?: number[]
   killerId?: number
   killType?: string
   multiKillLength?: number

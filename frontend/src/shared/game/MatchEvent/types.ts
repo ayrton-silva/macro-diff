@@ -8,6 +8,7 @@ export type MatchEvent = {
   participantPuuid?: string
   teamId?: TeamId
   victimId?: string
+  assistingParticipantIds: string[]
   killerId?: string
   killType?: string
   positionx?: number

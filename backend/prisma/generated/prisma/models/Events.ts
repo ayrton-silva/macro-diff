@@ -105,6 +105,7 @@ export type EventsCountAggregateOutputType = {
   laneType: number
   towerType: number
   victimId: number
+  assistingParticipantIds: number
   killerId: number
   killType: number
   multiKillLength: number
@@ -196,6 +197,7 @@ export type EventsCountAggregateInputType = {
   laneType?: true
   towerType?: true
   victimId?: true
+  assistingParticipantIds?: true
   killerId?: true
   killType?: true
   multiKillLength?: true
@@ -306,6 +308,7 @@ export type EventsGroupByOutputType = {
   laneType: string | null
   towerType: string | null
   victimId: string | null
+  assistingParticipantIds: string[]
   killerId: string | null
   killType: string | null
   multiKillLength: number | null
@@ -352,6 +355,7 @@ export type EventsWhereInput = {
   laneType?: Prisma.StringNullableFilter<"Events"> | string | null
   towerType?: Prisma.StringNullableFilter<"Events"> | string | null
   victimId?: Prisma.StringNullableFilter<"Events"> | string | null
+  assistingParticipantIds?: Prisma.StringNullableListFilter<"Events">
   killerId?: Prisma.StringNullableFilter<"Events"> | string | null
   killType?: Prisma.StringNullableFilter<"Events"> | string | null
   multiKillLength?: Prisma.IntNullableFilter<"Events"> | number | null
@@ -376,6 +380,7 @@ export type EventsOrderByWithRelationInput = {
   laneType?: Prisma.SortOrderInput | Prisma.SortOrder
   towerType?: Prisma.SortOrderInput | Prisma.SortOrder
   victimId?: Prisma.SortOrderInput | Prisma.SortOrder
+  assistingParticipantIds?: Prisma.SortOrder
   killerId?: Prisma.SortOrderInput | Prisma.SortOrder
   killType?: Prisma.SortOrderInput | Prisma.SortOrder
   multiKillLength?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -403,6 +408,7 @@ export type EventsWhereUniqueInput = Prisma.AtLeast<{
   laneType?: Prisma.StringNullableFilter<"Events"> | string | null
   towerType?: Prisma.StringNullableFilter<"Events"> | string | null
   victimId?: Prisma.StringNullableFilter<"Events"> | string | null
+  assistingParticipantIds?: Prisma.StringNullableListFilter<"Events">
   killerId?: Prisma.StringNullableFilter<"Events"> | string | null
   killType?: Prisma.StringNullableFilter<"Events"> | string | null
   multiKillLength?: Prisma.IntNullableFilter<"Events"> | number | null
@@ -427,6 +433,7 @@ export type EventsOrderByWithAggregationInput = {
   laneType?: Prisma.SortOrderInput | Prisma.SortOrder
   towerType?: Prisma.SortOrderInput | Prisma.SortOrder
   victimId?: Prisma.SortOrderInput | Prisma.SortOrder
+  assistingParticipantIds?: Prisma.SortOrder
   killerId?: Prisma.SortOrderInput | Prisma.SortOrder
   killType?: Prisma.SortOrderInput | Prisma.SortOrder
   multiKillLength?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -458,6 +465,7 @@ export type EventsScalarWhereWithAggregatesInput = {
   laneType?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
   towerType?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
   victimId?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
+  assistingParticipantIds?: Prisma.StringNullableListFilter<"Events">
   killerId?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
   killType?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
   multiKillLength?: Prisma.IntNullableWithAggregatesFilter<"Events"> | number | null
@@ -480,6 +488,7 @@ export type EventsCreateInput = {
   laneType?: string | null
   towerType?: string | null
   victimId?: string | null
+  assistingParticipantIds?: Prisma.EventsCreateassistingParticipantIdsInput | string[]
   killerId?: string | null
   killType?: string | null
   multiKillLength?: number | null
@@ -503,6 +512,7 @@ export type EventsUncheckedCreateInput = {
   laneType?: string | null
   towerType?: string | null
   victimId?: string | null
+  assistingParticipantIds?: Prisma.EventsCreateassistingParticipantIdsInput | string[]
   killerId?: string | null
   killType?: string | null
   multiKillLength?: number | null
@@ -525,6 +535,7 @@ export type EventsUpdateInput = {
   laneType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   towerType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assistingParticipantIds?: Prisma.EventsUpdateassistingParticipantIdsInput | string[]
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -548,6 +559,7 @@ export type EventsUncheckedUpdateInput = {
   laneType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   towerType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assistingParticipantIds?: Prisma.EventsUpdateassistingParticipantIdsInput | string[]
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -571,6 +583,7 @@ export type EventsCreateManyInput = {
   laneType?: string | null
   towerType?: string | null
   victimId?: string | null
+  assistingParticipantIds?: Prisma.EventsCreateassistingParticipantIdsInput | string[]
   killerId?: string | null
   killType?: string | null
   multiKillLength?: number | null
@@ -593,6 +606,7 @@ export type EventsUpdateManyMutationInput = {
   laneType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   towerType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assistingParticipantIds?: Prisma.EventsUpdateassistingParticipantIdsInput | string[]
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -615,6 +629,7 @@ export type EventsUncheckedUpdateManyInput = {
   laneType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   towerType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assistingParticipantIds?: Prisma.EventsUpdateassistingParticipantIdsInput | string[]
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -635,6 +650,14 @@ export type EventsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
 export type EventsCountOrderByAggregateInput = {
   eventId?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
@@ -648,6 +671,7 @@ export type EventsCountOrderByAggregateInput = {
   laneType?: Prisma.SortOrder
   towerType?: Prisma.SortOrder
   victimId?: Prisma.SortOrder
+  assistingParticipantIds?: Prisma.SortOrder
   killerId?: Prisma.SortOrder
   killType?: Prisma.SortOrder
   multiKillLength?: Prisma.SortOrder
@@ -766,6 +790,10 @@ export type EventsUncheckedUpdateManyWithoutMatchTimelineNestedInput = {
   deleteMany?: Prisma.EventsScalarWhereInput | Prisma.EventsScalarWhereInput[]
 }
 
+export type EventsCreateassistingParticipantIdsInput = {
+  set: string[]
+}
+
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
@@ -776,6 +804,11 @@ export type NullableIntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type EventsUpdateassistingParticipantIdsInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type EventsCreateWithoutMatchTimelineInput = {
@@ -790,6 +823,7 @@ export type EventsCreateWithoutMatchTimelineInput = {
   laneType?: string | null
   towerType?: string | null
   victimId?: string | null
+  assistingParticipantIds?: Prisma.EventsCreateassistingParticipantIdsInput | string[]
   killerId?: string | null
   killType?: string | null
   multiKillLength?: number | null
@@ -812,6 +846,7 @@ export type EventsUncheckedCreateWithoutMatchTimelineInput = {
   laneType?: string | null
   towerType?: string | null
   victimId?: string | null
+  assistingParticipantIds?: Prisma.EventsCreateassistingParticipantIdsInput | string[]
   killerId?: string | null
   killType?: string | null
   multiKillLength?: number | null
@@ -863,6 +898,7 @@ export type EventsScalarWhereInput = {
   laneType?: Prisma.StringNullableFilter<"Events"> | string | null
   towerType?: Prisma.StringNullableFilter<"Events"> | string | null
   victimId?: Prisma.StringNullableFilter<"Events"> | string | null
+  assistingParticipantIds?: Prisma.StringNullableListFilter<"Events">
   killerId?: Prisma.StringNullableFilter<"Events"> | string | null
   killType?: Prisma.StringNullableFilter<"Events"> | string | null
   multiKillLength?: Prisma.IntNullableFilter<"Events"> | number | null
@@ -886,6 +922,7 @@ export type EventsCreateManyMatchTimelineInput = {
   laneType?: string | null
   towerType?: string | null
   victimId?: string | null
+  assistingParticipantIds?: Prisma.EventsCreateassistingParticipantIdsInput | string[]
   killerId?: string | null
   killType?: string | null
   multiKillLength?: number | null
@@ -907,6 +944,7 @@ export type EventsUpdateWithoutMatchTimelineInput = {
   laneType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   towerType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assistingParticipantIds?: Prisma.EventsUpdateassistingParticipantIdsInput | string[]
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -929,6 +967,7 @@ export type EventsUncheckedUpdateWithoutMatchTimelineInput = {
   laneType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   towerType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assistingParticipantIds?: Prisma.EventsUpdateassistingParticipantIdsInput | string[]
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -951,6 +990,7 @@ export type EventsUncheckedUpdateManyWithoutMatchTimelineInput = {
   laneType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   towerType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   victimId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assistingParticipantIds?: Prisma.EventsUpdateassistingParticipantIdsInput | string[]
   killerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   killType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   multiKillLength?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -975,6 +1015,7 @@ export type EventsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   laneType?: boolean
   towerType?: boolean
   victimId?: boolean
+  assistingParticipantIds?: boolean
   killerId?: boolean
   killType?: boolean
   multiKillLength?: boolean
@@ -999,6 +1040,7 @@ export type EventsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   laneType?: boolean
   towerType?: boolean
   victimId?: boolean
+  assistingParticipantIds?: boolean
   killerId?: boolean
   killType?: boolean
   multiKillLength?: boolean
@@ -1023,6 +1065,7 @@ export type EventsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   laneType?: boolean
   towerType?: boolean
   victimId?: boolean
+  assistingParticipantIds?: boolean
   killerId?: boolean
   killType?: boolean
   multiKillLength?: boolean
@@ -1047,6 +1090,7 @@ export type EventsSelectScalar = {
   laneType?: boolean
   towerType?: boolean
   victimId?: boolean
+  assistingParticipantIds?: boolean
   killerId?: boolean
   killType?: boolean
   multiKillLength?: boolean
@@ -1057,7 +1101,7 @@ export type EventsSelectScalar = {
   matchTimelineId?: boolean
 }
 
-export type EventsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"eventId" | "timestamp" | "type" | "creatorId" | "wardType" | "itemId" | "participantPuuid" | "teamId" | "buildingType" | "laneType" | "towerType" | "victimId" | "killerId" | "killType" | "multiKillLength" | "positionx" | "positiony" | "monsterSubType" | "monsterType" | "matchTimelineId", ExtArgs["result"]["events"]>
+export type EventsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"eventId" | "timestamp" | "type" | "creatorId" | "wardType" | "itemId" | "participantPuuid" | "teamId" | "buildingType" | "laneType" | "towerType" | "victimId" | "assistingParticipantIds" | "killerId" | "killType" | "multiKillLength" | "positionx" | "positiony" | "monsterSubType" | "monsterType" | "matchTimelineId", ExtArgs["result"]["events"]>
 export type EventsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   matchTimeline?: boolean | Prisma.MatchTimelineDefaultArgs<ExtArgs>
 }
@@ -1086,6 +1130,7 @@ export type $EventsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     laneType: string | null
     towerType: string | null
     victimId: string | null
+    assistingParticipantIds: string[]
     killerId: string | null
     killType: string | null
     multiKillLength: number | null
@@ -1530,6 +1575,7 @@ export interface EventsFieldRefs {
   readonly laneType: Prisma.FieldRef<"Events", 'String'>
   readonly towerType: Prisma.FieldRef<"Events", 'String'>
   readonly victimId: Prisma.FieldRef<"Events", 'String'>
+  readonly assistingParticipantIds: Prisma.FieldRef<"Events", 'String[]'>
   readonly killerId: Prisma.FieldRef<"Events", 'String'>
   readonly killType: Prisma.FieldRef<"Events", 'String'>
   readonly multiKillLength: Prisma.FieldRef<"Events", 'Int'>

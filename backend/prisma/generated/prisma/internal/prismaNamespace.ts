@@ -1032,6 +1032,7 @@ export const EventsScalarFieldEnum = {
   laneType: 'laneType',
   towerType: 'towerType',
   victimId: 'victimId',
+  assistingParticipantIds: 'assistingParticipantIds',
   killerId: 'killerId',
   killType: 'killType',
   multiKillLength: 'multiKillLength',

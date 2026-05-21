@@ -188,6 +188,7 @@ export async function createTimelineData(matchId: string) {
             laneType: event.laneType,
             towerType: event.towerType,
             victimId: event.victimId ? timelineData.info.participants.filter((data) => event.victimId == data.participantId)[0].puuid : "",
+            assistingParticipantIds: event.assistingParticipantIds && event.assistingParticipantIds.length > 0 ? event.assistingParticipantIds.map((p) => timelineData.info.participants.filter((data) => p == data.participantId)[0].puuid) : [""],
             killerId: event.killerId ? timelineData.info.participants.filter((data) => event.killerId == data.participantId)[0].puuid : "",
             killType: event.killType,
             multiKillLength: event.multiKillLength,
