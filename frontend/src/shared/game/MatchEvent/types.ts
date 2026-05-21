@@ -5,6 +5,8 @@ export type MatchEvent = {
   creatorId?: string
   wardType?: string
   itemId?: number
+  afterId?: number
+  beforeId?: number
   participantPuuid?: string
   teamId?: TeamId
   victimId?: string
@@ -86,6 +88,8 @@ export type EventType =
   | 'PAUSE_END'
   | 'ITEM_DESTROYED'
   | 'ITEM_PURCHASED'
+  | 'ITEM_UNDO'
+  | 'ITEM_SOLD'
   | 'SKILL_LEVEL_UP'
   | 'WARD_PLACED'
   | 'TURRET_PLATE_DESTROYED'

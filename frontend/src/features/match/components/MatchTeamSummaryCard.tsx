@@ -30,15 +30,15 @@ export function MatchTeamSummaryCard({
 }: MatchTeamSummaryCardProps) {
   const dragonsKilled = 
   team == 'Blue' ? 
-  events.filter((a) => a.monsterType == "DRAGON").filter((a)=> a.teamId ? a.teamId : getParticipantTeam(participants, a.killerId!) == 100).filter((a)=> a.timestamp >= timelineValues[0] && a.timestamp <= timelineValues[1]).reduce((total) => total += 1, 0)
+  events.filter((a) => a.monsterType == "DRAGON").filter((a)=> a.teamId ? a.teamId : getParticipantTeam(participants, a.killerId!) == 100).filter((a)=> a.timestamp <= timelineValues[1]).reduce((total) => total += 1, 0)
   : 
-  events.filter((a) => a.monsterType == "DRAGON").filter((a)=> a.teamId ? a.teamId : getParticipantTeam(participants, a.killerId!) == 200).filter((a)=> a.timestamp >= timelineValues[0] && a.timestamp <= timelineValues[1]).reduce((total) => total += 1, 0)
+  events.filter((a) => a.monsterType == "DRAGON").filter((a)=> a.teamId ? a.teamId : getParticipantTeam(participants, a.killerId!) == 200).filter((a)=> a.timestamp <= timelineValues[1]).reduce((total) => total += 1, 0)
 
   const towersDestroyed = 
   team == 'Blue' ? 
-  events.filter((a) => a.type == "BUILDING_KILL").filter((a)=> a.teamId == 200).filter((a)=> a.timestamp >= timelineValues[0] && a.timestamp <= timelineValues[1]).reduce((total) => total += 1, 0)
+  events.filter((a) => a.type == "BUILDING_KILL").filter((a)=> a.teamId == 200).filter((a)=> a.timestamp <= timelineValues[1]).reduce((total) => total += 1, 0)
   : 
-  events.filter((a) => a.type == "BUILDING_KILL").filter((a)=> a.teamId == 100).filter((a)=> a.timestamp >= timelineValues[0] && a.timestamp <= timelineValues[1]).reduce((total) => total += 1, 0)
+  events.filter((a) => a.type == "BUILDING_KILL").filter((a)=> a.teamId == 100).filter((a)=> a.timestamp <= timelineValues[1]).reduce((total) => total += 1, 0)
 
   const goldEarned = 
   team == 'Blue' ? 

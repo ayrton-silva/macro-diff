@@ -62,6 +62,8 @@ model Events {
     creatorId               String?
     wardType                String?
     itemId                  Int?
+    afterId                 Int?
+    beforeId                Int?
     participantPuuid        String?
     teamId                  Int?
     buildingType            String?

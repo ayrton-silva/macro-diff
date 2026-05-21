@@ -135,6 +135,8 @@ export const EventsScalarFieldEnum = {
   creatorId: 'creatorId',
   wardType: 'wardType',
   itemId: 'itemId',
+  afterId: 'afterId',
+  beforeId: 'beforeId',
   participantPuuid: 'participantPuuid',
   teamId: 'teamId',
   buildingType: 'buildingType',

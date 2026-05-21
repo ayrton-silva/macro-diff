@@ -182,6 +182,8 @@ export async function createTimelineData(matchId: string) {
             creatorId: event.creatorId? timelineData.info.participants.filter((data) => event.creatorId == data.participantId)[0].puuid : "",
             wardType: event.wardType,
             itemId: event.itemId,
+            afterId: event.afterId,
+            beforeId: event.beforeId,
             participantPuuid: event.participantId ? timelineData.info.participants.filter((data) => event.participantId == data.participantId)[0].puuid : "",
             teamId: event.teamId,
             buildingType: event.buildingType,

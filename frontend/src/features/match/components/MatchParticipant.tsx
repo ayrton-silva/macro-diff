@@ -13,14 +13,54 @@ interface ParticipantProps {
   timelineValues: [number, number]
 }
 
+function getUpgradedBoots(itemId: number) {
+  let isUpgraded = false;
+  let value = 0
+  switch (itemId) {
+    case  3008 : 
+    value = 3168
+    isUpgraded =true
+      break;
+    case  3009 : 
+    value = 3170
+    isUpgraded =true
+      break;
+    case  3158 : 
+    value = 3171
+    isUpgraded =true
+      break;
+    case  3006 : 
+    value = 3172
+    isUpgraded =true
+      break;
+    case  3111 : 
+    value = 3173
+    isUpgraded =true
+      break;
+    case  3047 : 
+    value = 3174
+    isUpgraded =true
+      break;
+    case  3020 : 
+    value = 3175
+    isUpgraded =true
+      break;
+    default: 
+    value = itemId
+    isUpgraded =false
+      break;
+  }
+  return {"value":value, "isUpgraded":isUpgraded}
+}
+
 export function MatchParticipant({ 
   participant, 
   events,
   participantFrames,
   timelineValues 
 }: ParticipantProps) {
-  const currentMinionsKilled = participantFrames?.filter((z)=> z.participantPuuid == participant.summonerId && z.timestamp >=  timelineValues[0] && z.timestamp <= timelineValues[1])
-    .map((b)=> b.minionsKilled)[participantFrames?.filter((z)=> z.participantPuuid == participant.summonerId && z.timestamp >=  timelineValues[0] && z.timestamp <= timelineValues[1])
+  const currentMinionsKilled = participantFrames?.filter((z)=> z.participantPuuid == participant.summonerId &&  z.timestamp <= timelineValues[1])
+    .map((b)=> b.minionsKilled)[participantFrames?.filter((z)=> z.participantPuuid == participant.summonerId &&  z.timestamp <= timelineValues[1])
     .map((b)=> b.minionsKilled).length-1]
   
   const kills = events?.filter((z)=> z.killerId == participant.summonerId && z.type == "CHAMPION_KILL" && z.timestamp <= timelineValues[1])
@@ -30,15 +70,46 @@ export function MatchParticipant({
   const assists = events?.filter((z)=> z.type == "CHAMPION_KILL" && z.timestamp <= timelineValues[1]).filter((p)=> p.assistingParticipantIds.indexOf(participant.summonerId) != -1)
     .reduce((total)=> total+=1,0)
 
-  const currentLevel = participantFrames?.filter((z)=> z.participantPuuid == participant.summonerId && z.timestamp >=  timelineValues[0] && z.timestamp <= timelineValues[1]).sort((a,b)=> b.level-a.level).map((c)=> c.level)[0]
+  const currentLevel = participantFrames?.filter((z)=> z.participantPuuid == participant.summonerId &&  z.timestamp <= timelineValues[1]).sort((a,b)=> b.level-a.level).map((c)=> c.level)[0]
 
   const items:number[] = []
-  events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_PURCHASED" && z.timestamp <= timelineValues[1]).forEach((b)=> items.push(b.itemId!))
-  events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_DESTROYED" && z.timestamp <= timelineValues[1]).forEach((b)=> items.splice(items.indexOf(b.itemId!),1))
-  // events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_SOLD" && z.timestamp <= timelineValues[1]).forEach((b)=> items.splice(items.indexOf(b.itemId),1))
-  // events?.filter((z)=> z.participantPuuid == participant.summonerId && z.type == "ITEM_UNDO" && z.timestamp <= timelineValues[1]).forEach((b)=> items.splice(items.indexOf(b.itemId),1))
 
-  console.log(items)
+  const byParticipantAndTime = (type: string) => (z: typeof events[0]) =>
+    z.participantPuuid === participant.summonerId &&
+    z.type === type &&
+    z.timestamp <= timelineValues[1]
+
+  const safeRemove = (itemId: number) => {
+    const idx = items.indexOf(itemId)
+    if (idx !== -1) items.splice(idx, 1)
+  }
+  const undoItem = (beforeId:number, afterId:number) => {
+    safeRemove(beforeId)
+    if( afterId > 0){
+      items.push(afterId)
+    }
+  }
+
+  events?.filter(byParticipantAndTime("ITEM_PURCHASED"))
+    .forEach((b) => items.push(b.itemId!))
+
+  events?.filter(byParticipantAndTime("ITEM_DESTROYED"))
+    .forEach((b) => {safeRemove(b.itemId!)})
+
+  events?.filter(byParticipantAndTime("ITEM_SOLD"))
+    .forEach((b) => safeRemove(b.itemId!)) 
+
+  events?.filter(byParticipantAndTime("ITEM_UNDO"))
+    .forEach((b) => undoItem(b.beforeId!, b.afterId!)) 
+
+  events?.filter((z) =>
+    z.participantPuuid === participant.summonerId &&
+    z.itemId &&
+    z.type === "ITEM_DESTROYED" &&
+    z.timestamp <= timelineValues[1] &&
+    getUpgradedBoots(z.itemId).isUpgraded === true
+  ).forEach((b) => items.push(getUpgradedBoots(b.itemId!).value))
+
   return (
     <div className="bg-transparent text-white mb-1">
       {participant.teamId == 100 ?
@@ -68,19 +139,9 @@ export function MatchParticipant({
               </div>
             </div>
             <div>
-              <div className="flex flex-wrap gap-1">
+                <div className='flex mb-4'>
                 {items.map((a)=> <ItemIcon itemKey={a} />)}
-{/*                 <ItemIcon itemKey={participant.item0} />
-                <ItemIcon itemKey={participant.item1} />
-                <ItemIcon itemKey={participant.item2} />
-                <ItemIcon itemKey={participant.item6} />
-              </div>
-              <div className="flex gap-1">
-                <ItemIcon itemKey={participant.item3} />
-                <ItemIcon itemKey={participant.item4} />
-                <ItemIcon itemKey={participant.item5} /> */}
-
-              </div>
+                </div>
             </div>
           </div>
 
@@ -95,7 +156,7 @@ export function MatchParticipant({
             <p className="flex text-xs text-gray-400 font-semibold space-x-1">
               <span>{calculateKDA(kills, assists, deaths)}:1 KDA</span>
               <span>-</span>
-              <span>CS: {currentMinionsKilled}</span>
+              <span>CS: {currentMinionsKilled ? currentMinionsKilled : participant.totalMinionsKilled}</span>
             </p>
           </div>
         </div>
@@ -113,24 +174,14 @@ export function MatchParticipant({
               <p className="flex text-xs text-gray-400 font-semibold space-x-1">
                 <span>{calculateKDA(kills, assists, deaths)}:1 KDA</span>
                 <span>-</span>
-                <span>CS: {currentMinionsKilled}
+                <span>CS: {currentMinionsKilled ? currentMinionsKilled : participant.totalMinionsKilled}
                 </span>
               </p>
             </div>
             <div>
-              <div className="flex flex-wrap gap-1">
-                            {items.map((a)=> <ItemIcon itemKey={a} />)}
-{/*                 <ItemIcon itemKey={participant.item0} />
-                <ItemIcon itemKey={participant.item1} />
-                <ItemIcon itemKey={participant.item2} />
-                <ItemIcon itemKey={participant.item6} />
-              </div>
-              <div className="flex gap-1">
-                <ItemIcon itemKey={participant.item3} />
-                <ItemIcon itemKey={participant.item4} />
-                <ItemIcon itemKey={participant.item5} /> */}
-
-              </div>
+                <div className='flex mb-4'>
+                {items.map((a)=> <ItemIcon itemKey={a} />)}
+                </div>
             </div>
           </div>
           <div className="flex items-center gap-0.5 ml-2">

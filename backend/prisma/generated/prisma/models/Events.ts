@@ -30,6 +30,8 @@ export type EventsAvgAggregateOutputType = {
   eventId: number | null
   timestamp: number | null
   itemId: number | null
+  afterId: number | null
+  beforeId: number | null
   teamId: number | null
   multiKillLength: number | null
   positionx: number | null
@@ -40,6 +42,8 @@ export type EventsSumAggregateOutputType = {
   eventId: number | null
   timestamp: number | null
   itemId: number | null
+  afterId: number | null
+  beforeId: number | null
   teamId: number | null
   multiKillLength: number | null
   positionx: number | null
@@ -53,6 +57,8 @@ export type EventsMinAggregateOutputType = {
   creatorId: string | null
   wardType: string | null
   itemId: number | null
+  afterId: number | null
+  beforeId: number | null
   participantPuuid: string | null
   teamId: number | null
   buildingType: string | null
@@ -76,6 +82,8 @@ export type EventsMaxAggregateOutputType = {
   creatorId: string | null
   wardType: string | null
   itemId: number | null
+  afterId: number | null
+  beforeId: number | null
   participantPuuid: string | null
   teamId: number | null
   buildingType: string | null
@@ -99,6 +107,8 @@ export type EventsCountAggregateOutputType = {
   creatorId: number
   wardType: number
   itemId: number
+  afterId: number
+  beforeId: number
   participantPuuid: number
   teamId: number
   buildingType: number
@@ -122,6 +132,8 @@ export type EventsAvgAggregateInputType = {
   eventId?: true
   timestamp?: true
   itemId?: true
+  afterId?: true
+  beforeId?: true
   teamId?: true
   multiKillLength?: true
   positionx?: true
@@ -132,6 +144,8 @@ export type EventsSumAggregateInputType = {
   eventId?: true
   timestamp?: true
   itemId?: true
+  afterId?: true
+  beforeId?: true
   teamId?: true
   multiKillLength?: true
   positionx?: true
@@ -145,6 +159,8 @@ export type EventsMinAggregateInputType = {
   creatorId?: true
   wardType?: true
   itemId?: true
+  afterId?: true
+  beforeId?: true
   participantPuuid?: true
   teamId?: true
   buildingType?: true
@@ -168,6 +184,8 @@ export type EventsMaxAggregateInputType = {
   creatorId?: true
   wardType?: true
   itemId?: true
+  afterId?: true
+  beforeId?: true
   participantPuuid?: true
   teamId?: true
   buildingType?: true
@@ -191,6 +209,8 @@ export type EventsCountAggregateInputType = {
   creatorId?: true
   wardType?: true
   itemId?: true
+  afterId?: true
+  beforeId?: true
   participantPuuid?: true
   teamId?: true
   buildingType?: true
@@ -302,6 +322,8 @@ export type EventsGroupByOutputType = {
   creatorId: string | null
   wardType: string | null
   itemId: number | null
+  afterId: number | null
+  beforeId: number | null
   participantPuuid: string | null
   teamId: number | null
   buildingType: string | null
@@ -349,6 +371,8 @@ export type EventsWhereInput = {
   creatorId?: Prisma.StringNullableFilter<"Events"> | string | null
   wardType?: Prisma.StringNullableFilter<"Events"> | string | null
   itemId?: Prisma.IntNullableFilter<"Events"> | number | null
+  afterId?: Prisma.IntNullableFilter<"Events"> | number | null
+  beforeId?: Prisma.IntNullableFilter<"Events"> | number | null
   participantPuuid?: Prisma.StringNullableFilter<"Events"> | string | null
   teamId?: Prisma.IntNullableFilter<"Events"> | number | null
   buildingType?: Prisma.StringNullableFilter<"Events"> | string | null
@@ -374,6 +398,8 @@ export type EventsOrderByWithRelationInput = {
   creatorId?: Prisma.SortOrderInput | Prisma.SortOrder
   wardType?: Prisma.SortOrderInput | Prisma.SortOrder
   itemId?: Prisma.SortOrderInput | Prisma.SortOrder
+  afterId?: Prisma.SortOrderInput | Prisma.SortOrder
+  beforeId?: Prisma.SortOrderInput | Prisma.SortOrder
   participantPuuid?: Prisma.SortOrderInput | Prisma.SortOrder
   teamId?: Prisma.SortOrderInput | Prisma.SortOrder
   buildingType?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -402,6 +428,8 @@ export type EventsWhereUniqueInput = Prisma.AtLeast<{
   creatorId?: Prisma.StringNullableFilter<"Events"> | string | null
   wardType?: Prisma.StringNullableFilter<"Events"> | string | null
   itemId?: Prisma.IntNullableFilter<"Events"> | number | null
+  afterId?: Prisma.IntNullableFilter<"Events"> | number | null
+  beforeId?: Prisma.IntNullableFilter<"Events"> | number | null
   participantPuuid?: Prisma.StringNullableFilter<"Events"> | string | null
   teamId?: Prisma.IntNullableFilter<"Events"> | number | null
   buildingType?: Prisma.StringNullableFilter<"Events"> | string | null
@@ -427,6 +455,8 @@ export type EventsOrderByWithAggregationInput = {
   creatorId?: Prisma.SortOrderInput | Prisma.SortOrder
   wardType?: Prisma.SortOrderInput | Prisma.SortOrder
   itemId?: Prisma.SortOrderInput | Prisma.SortOrder
+  afterId?: Prisma.SortOrderInput | Prisma.SortOrder
+  beforeId?: Prisma.SortOrderInput | Prisma.SortOrder
   participantPuuid?: Prisma.SortOrderInput | Prisma.SortOrder
   teamId?: Prisma.SortOrderInput | Prisma.SortOrder
   buildingType?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -459,6 +489,8 @@ export type EventsScalarWhereWithAggregatesInput = {
   creatorId?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
   wardType?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
   itemId?: Prisma.IntNullableWithAggregatesFilter<"Events"> | number | null
+  afterId?: Prisma.IntNullableWithAggregatesFilter<"Events"> | number | null
+  beforeId?: Prisma.IntNullableWithAggregatesFilter<"Events"> | number | null
   participantPuuid?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
   teamId?: Prisma.IntNullableWithAggregatesFilter<"Events"> | number | null
   buildingType?: Prisma.StringNullableWithAggregatesFilter<"Events"> | string | null
@@ -482,6 +514,8 @@ export type EventsCreateInput = {
   creatorId?: string | null
   wardType?: string | null
   itemId?: number | null
+  afterId?: number | null
+  beforeId?: number | null
   participantPuuid?: string | null
   teamId?: number | null
   buildingType?: string | null
@@ -506,6 +540,8 @@ export type EventsUncheckedCreateInput = {
   creatorId?: string | null
   wardType?: string | null
   itemId?: number | null
+  afterId?: number | null
+  beforeId?: number | null
   participantPuuid?: string | null
   teamId?: number | null
   buildingType?: string | null
@@ -529,6 +565,8 @@ export type EventsUpdateInput = {
   creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   wardType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   participantPuuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   teamId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -553,6 +591,8 @@ export type EventsUncheckedUpdateInput = {
   creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   wardType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   participantPuuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   teamId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -577,6 +617,8 @@ export type EventsCreateManyInput = {
   creatorId?: string | null
   wardType?: string | null
   itemId?: number | null
+  afterId?: number | null
+  beforeId?: number | null
   participantPuuid?: string | null
   teamId?: number | null
   buildingType?: string | null
@@ -600,6 +642,8 @@ export type EventsUpdateManyMutationInput = {
   creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   wardType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   participantPuuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   teamId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -623,6 +667,8 @@ export type EventsUncheckedUpdateManyInput = {
   creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   wardType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   participantPuuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   teamId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -665,6 +711,8 @@ export type EventsCountOrderByAggregateInput = {
   creatorId?: Prisma.SortOrder
   wardType?: Prisma.SortOrder
   itemId?: Prisma.SortOrder
+  afterId?: Prisma.SortOrder
+  beforeId?: Prisma.SortOrder
   participantPuuid?: Prisma.SortOrder
   teamId?: Prisma.SortOrder
   buildingType?: Prisma.SortOrder
@@ -686,6 +734,8 @@ export type EventsAvgOrderByAggregateInput = {
   eventId?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
   itemId?: Prisma.SortOrder
+  afterId?: Prisma.SortOrder
+  beforeId?: Prisma.SortOrder
   teamId?: Prisma.SortOrder
   multiKillLength?: Prisma.SortOrder
   positionx?: Prisma.SortOrder
@@ -699,6 +749,8 @@ export type EventsMaxOrderByAggregateInput = {
   creatorId?: Prisma.SortOrder
   wardType?: Prisma.SortOrder
   itemId?: Prisma.SortOrder
+  afterId?: Prisma.SortOrder
+  beforeId?: Prisma.SortOrder
   participantPuuid?: Prisma.SortOrder
   teamId?: Prisma.SortOrder
   buildingType?: Prisma.SortOrder
@@ -722,6 +774,8 @@ export type EventsMinOrderByAggregateInput = {
   creatorId?: Prisma.SortOrder
   wardType?: Prisma.SortOrder
   itemId?: Prisma.SortOrder
+  afterId?: Prisma.SortOrder
+  beforeId?: Prisma.SortOrder
   participantPuuid?: Prisma.SortOrder
   teamId?: Prisma.SortOrder
   buildingType?: Prisma.SortOrder
@@ -742,6 +796,8 @@ export type EventsSumOrderByAggregateInput = {
   eventId?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
   itemId?: Prisma.SortOrder
+  afterId?: Prisma.SortOrder
+  beforeId?: Prisma.SortOrder
   teamId?: Prisma.SortOrder
   multiKillLength?: Prisma.SortOrder
   positionx?: Prisma.SortOrder
@@ -817,6 +873,8 @@ export type EventsCreateWithoutMatchTimelineInput = {
   creatorId?: string | null
   wardType?: string | null
   itemId?: number | null
+  afterId?: number | null
+  beforeId?: number | null
   participantPuuid?: string | null
   teamId?: number | null
   buildingType?: string | null
@@ -840,6 +898,8 @@ export type EventsUncheckedCreateWithoutMatchTimelineInput = {
   creatorId?: string | null
   wardType?: string | null
   itemId?: number | null
+  afterId?: number | null
+  beforeId?: number | null
   participantPuuid?: string | null
   teamId?: number | null
   buildingType?: string | null
@@ -892,6 +952,8 @@ export type EventsScalarWhereInput = {
   creatorId?: Prisma.StringNullableFilter<"Events"> | string | null
   wardType?: Prisma.StringNullableFilter<"Events"> | string | null
   itemId?: Prisma.IntNullableFilter<"Events"> | number | null
+  afterId?: Prisma.IntNullableFilter<"Events"> | number | null
+  beforeId?: Prisma.IntNullableFilter<"Events"> | number | null
   participantPuuid?: Prisma.StringNullableFilter<"Events"> | string | null
   teamId?: Prisma.IntNullableFilter<"Events"> | number | null
   buildingType?: Prisma.StringNullableFilter<"Events"> | string | null
@@ -916,6 +978,8 @@ export type EventsCreateManyMatchTimelineInput = {
   creatorId?: string | null
   wardType?: string | null
   itemId?: number | null
+  afterId?: number | null
+  beforeId?: number | null
   participantPuuid?: string | null
   teamId?: number | null
   buildingType?: string | null
@@ -938,6 +1002,8 @@ export type EventsUpdateWithoutMatchTimelineInput = {
   creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   wardType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   participantPuuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   teamId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -961,6 +1027,8 @@ export type EventsUncheckedUpdateWithoutMatchTimelineInput = {
   creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   wardType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   participantPuuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   teamId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -984,6 +1052,8 @@ export type EventsUncheckedUpdateManyWithoutMatchTimelineInput = {
   creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   wardType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  afterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  beforeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   participantPuuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   teamId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1009,6 +1079,8 @@ export type EventsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   creatorId?: boolean
   wardType?: boolean
   itemId?: boolean
+  afterId?: boolean
+  beforeId?: boolean
   participantPuuid?: boolean
   teamId?: boolean
   buildingType?: boolean
@@ -1034,6 +1106,8 @@ export type EventsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   creatorId?: boolean
   wardType?: boolean
   itemId?: boolean
+  afterId?: boolean
+  beforeId?: boolean
   participantPuuid?: boolean
   teamId?: boolean
   buildingType?: boolean
@@ -1059,6 +1133,8 @@ export type EventsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   creatorId?: boolean
   wardType?: boolean
   itemId?: boolean
+  afterId?: boolean
+  beforeId?: boolean
   participantPuuid?: boolean
   teamId?: boolean
   buildingType?: boolean
@@ -1084,6 +1160,8 @@ export type EventsSelectScalar = {
   creatorId?: boolean
   wardType?: boolean
   itemId?: boolean
+  afterId?: boolean
+  beforeId?: boolean
   participantPuuid?: boolean
   teamId?: boolean
   buildingType?: boolean
@@ -1101,7 +1179,7 @@ export type EventsSelectScalar = {
   matchTimelineId?: boolean
 }
 
-export type EventsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"eventId" | "timestamp" | "type" | "creatorId" | "wardType" | "itemId" | "participantPuuid" | "teamId" | "buildingType" | "laneType" | "towerType" | "victimId" | "assistingParticipantIds" | "killerId" | "killType" | "multiKillLength" | "positionx" | "positiony" | "monsterSubType" | "monsterType" | "matchTimelineId", ExtArgs["result"]["events"]>
+export type EventsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"eventId" | "timestamp" | "type" | "creatorId" | "wardType" | "itemId" | "afterId" | "beforeId" | "participantPuuid" | "teamId" | "buildingType" | "laneType" | "towerType" | "victimId" | "assistingParticipantIds" | "killerId" | "killType" | "multiKillLength" | "positionx" | "positiony" | "monsterSubType" | "monsterType" | "matchTimelineId", ExtArgs["result"]["events"]>
 export type EventsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   matchTimeline?: boolean | Prisma.MatchTimelineDefaultArgs<ExtArgs>
 }
@@ -1124,6 +1202,8 @@ export type $EventsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     creatorId: string | null
     wardType: string | null
     itemId: number | null
+    afterId: number | null
+    beforeId: number | null
     participantPuuid: string | null
     teamId: number | null
     buildingType: string | null
@@ -1569,6 +1649,8 @@ export interface EventsFieldRefs {
   readonly creatorId: Prisma.FieldRef<"Events", 'String'>
   readonly wardType: Prisma.FieldRef<"Events", 'String'>
   readonly itemId: Prisma.FieldRef<"Events", 'Int'>
+  readonly afterId: Prisma.FieldRef<"Events", 'Int'>
+  readonly beforeId: Prisma.FieldRef<"Events", 'Int'>
   readonly participantPuuid: Prisma.FieldRef<"Events", 'String'>
   readonly teamId: Prisma.FieldRef<"Events", 'Int'>
   readonly buildingType: Prisma.FieldRef<"Events", 'String'>

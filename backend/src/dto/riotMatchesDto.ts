@@ -37,22 +37,22 @@ export type RiotMatchTimelineDataResponse = {
     frames: [{
       events: Events[]
       participantFrames: {
-        "1" : ParticipantFrames,
-        "2" : ParticipantFrames,
-        "3" : ParticipantFrames,
-        "4" : ParticipantFrames,
-        "5" : ParticipantFrames,
-        "6" : ParticipantFrames,
-        "7" : ParticipantFrames,
-        "8" : ParticipantFrames,
-        "9" : ParticipantFrames,
-        "10" : ParticipantFrames
+        "1": ParticipantFrames,
+        "2": ParticipantFrames,
+        "3": ParticipantFrames,
+        "4": ParticipantFrames,
+        "5": ParticipantFrames,
+        "6": ParticipantFrames,
+        "7": ParticipantFrames,
+        "8": ParticipantFrames,
+        "9": ParticipantFrames,
+        "10": ParticipantFrames
       }
       timestamp: number
     }],
     participants: [{
       participantId: number
-      puuid:string
+      puuid: string
     }]
   }
 }
@@ -117,6 +117,8 @@ export type Events = {
   creatorId?: number
   wardType?: string
   itemId?: number
+  afterId?: number
+  beforeId?: number
   participantId?: number
   teamId?: number
   buildingType: string
@@ -136,17 +138,17 @@ export type Events = {
 }
 
 export type ParticipantFrames = {
-  
-    position: {
-      x: number
-      y: number
-    }
-    level: number
-    minionsKilled: number
-    currentGold: number
-    totalGold: number
-    damageStats: {
-      totalDamageDoneToChampions: number
+
+  position: {
+    x: number
+    y: number
   }
-  
+  level: number
+  minionsKilled: number
+  currentGold: number
+  totalGold: number
+  damageStats: {
+    totalDamageDoneToChampions: number
+  }
+
 }
