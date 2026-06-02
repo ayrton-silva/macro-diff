@@ -1,14 +1,13 @@
 import { cn } from '#/lib/utils'
 import { RefreshCcw } from 'lucide-react'
-import { useState } from 'react'
 import type { SetStateAction } from 'react'
 import { Range, getTrackBackground } from 'react-range'
 
 type MatchTimelineProps = {
   min: number
   max: number
-  values: [number, number]
-  setValues: SetStateAction<[number, number]>
+  values: [number]
+  setValues: SetStateAction<[number]>
 }
 
 export function MatchTimeline({
@@ -25,8 +24,6 @@ export function MatchTimeline({
     const intervals = Math.floor(max / (5 * 60000))
     return intervals
   }
-
-  calculateLabelPosition()
 
   return (
     <div>
@@ -104,7 +101,7 @@ export function MatchTimeline({
                     borderRadius: '4px',
                     background: getTrackBackground({
                       values,
-                      colors: ['#364153', '#0092B8', '#364153'],
+                      colors: ['#0092B8', '#364153'],
                       min: MIN,
                       max: MAX,
                     }),
@@ -118,7 +115,7 @@ export function MatchTimeline({
                 {Array.from({ length: calculateLabelPosition() + 1 }).map(
                   (a, i) => (
                     <div
-                      className="absolute -bottom-7 -ml-3 text-xs"
+                      className="absolute -bottom-7 -ml-3 text-xs whitespace-nowrap"
                       style={{
                         left: `${((i * 5) / (max / 60000)) * 100}%`,
                       }}
@@ -143,17 +140,6 @@ export function MatchTimeline({
               {...props}
               key={props.key}
               className="w-6 h-6 border-[3px] border-cyan-600 rounded-full bg-white"
-              //   style={{
-              //     ...props.style,
-              //     height: '42px',
-              //     width: '42px',
-              //     borderRadius: '4px',
-              //     backgroundColor: '#FFF',
-              //     display: 'flex',
-              //     justifyContent: 'center',
-              //     alignItems: 'center',
-              //     boxShadow: '0px 2px 6px #AAA',
-              //   }}
             ></div>
           )}
         />
@@ -162,8 +148,7 @@ export function MatchTimeline({
         <div>
           <span className="mr-2">Showing:</span>
           <output className="text-cyan-400" id="output">
-            {(values[0] / 1000 / 60).toFixed(0)}:00 -{' '}
-            {(values[1] / 1000 / 60).toFixed(0)}:00
+            {(values[0] / 1000 / 60).toFixed(0)}:00
           </output>
         </div>
         <button

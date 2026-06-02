@@ -37,7 +37,9 @@ function RouteComponent() {
   }
 
   const [filter, setFilter] = useState(defaultFilter)
-  const [values, setValues] = useState([0, 0])
+  const [values, setValues] = useState([0])
+
+  console.log('timeline value', values)
 
   useEffect(() => {
     if (
@@ -58,7 +60,6 @@ function RouteComponent() {
         )
 
       setValues([
-        sortedFrames?.length > 0 ? sortedFrames[0].timestamp : 0,
         sortedFrames?.length > 0
           ? Math.ceil(sortedFrames[sortedFrames.length - 1].timestamp / 60000) *
             60000
@@ -67,13 +68,11 @@ function RouteComponent() {
     }
   }, [matchTimeline.data?.matchTimeline])
 
-  useMatchState(matchId, values[1], match.data?.participants)
+  useMatchState(matchId, values[0], match.data?.participants)
 
   if (!match.data) {
     return <h1>sem partida</h1>
   }
-
-  console.log('timeline?', matchTimeline.data?.matchTimeline)
 
   const sortedFrames = matchTimeline.data?.matchTimeline.participantFrames.sort(
     (a, b) => a.timestamp - b.timestamp,
