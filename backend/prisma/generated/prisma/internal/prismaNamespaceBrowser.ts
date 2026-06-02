@@ -167,6 +167,14 @@ export const ParticipantFramesScalarFieldEnum = {
   level: 'level',
   minionsKilled: 'minionsKilled',
   totalGold: 'totalGold',
+  currentGold: 'currentGold',
+  health: 'health',
+  healthMax: 'healthMax',
+  power: 'power',
+  powerMax: 'powerMax',
+  abilityPower: 'abilityPower',
+  attackDamage: 'attackDamage',
+  xp: 'xp',
   totalDamageDoneToChampions: 'totalDamageDoneToChampions',
   matchTimelineId: 'matchTimelineId'
 } as const

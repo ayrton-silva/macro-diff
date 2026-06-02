@@ -34,7 +34,7 @@ export type ParticipantMarker = {
   teamPosition: string
   summonerId: string
   teamId: number
-  level: number
+  champLevel: number
 }
 
 type MatchMapProps = {
@@ -53,7 +53,8 @@ export function MatchMap({
   events,
   currentTimestamp,
 }: MatchMapProps) {
-  console.log(events)
+  
+  console.log(participants)
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <div className="rounded-md w-260">
@@ -69,7 +70,7 @@ export function MatchMap({
           p.positiony && (
             <div
               key={index}
-              className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50 ${p.timestamp + 120000 < currentTimestamp[0] ? 'hidden opacity-0 scale-95' : ''}`}
+              className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50 ${p.timestamp + 120000 < currentTimestamp[0] ? 'hidden opacity-20 scale-95 z-0' : ''}`}
               style={{
                 left: `${((p.positionx - MIN_X) / (MAX_X - MIN_X)) * 100}%`,
                 top: `${100 - ((p.positiony - MIN_Y) / (MAX_Y - MIN_Y)) * 100}%`,
@@ -187,17 +188,17 @@ export function MatchMap({
                 top: `${100 - ((p.positionY - MIN_Y) / (MAX_Y - MIN_Y)) * 100}%`,
               }}
             >
-              <span className="absolute text-4xl -translate-x-1/2 -translate-y-1/2 z-20">
                 <MapTooltip
                   participant={p}
                   classProp="bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block"
                 />
+                <div className='transition-all transition-discrete duration-200 hover:scale-115  '>
                 <ChampionIcon
                   icon={p.champion}
-                  removeLevel
-                  classProp={`rounded-full border-2 ${p.teamId.toString() === '100' ? 'border-cyan-400' : 'border-red-400'}`}
+                  level={p.champLevel}
+                  classProp={`block rounded-full border-2 ${p.teamId.toString() === '100' ? 'border-cyan-400' : 'border-red-400'}`}
                 />
-              </span>
+                </div>
             </div>
           ),
       )}

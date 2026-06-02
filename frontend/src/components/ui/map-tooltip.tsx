@@ -1,5 +1,6 @@
 import type { EventMarker, ParticipantMarker } from "#/features/match/components/Map/MatchMap"
 import { returnTime } from "#/shared/game/helpers"
+import { SummonerPositionIcon } from "#/shared/game/SummonerPositionIcon"
 import * as React from "react"
 
 type MapTooltipProps = {
@@ -12,28 +13,37 @@ function MapTooltip({ classProp, eventData, participant }: MapTooltipProps) {
     return (
         <label
             data-slot="label"
-            className={`absolute bg-gray-800 border-2 border-gray-900 rounded-sm p-2 w-24 text-center text-xs text-white z-50 ${classProp}`}>
-            <div>
+            className={`absolute bg-gray-800 border-2 border-gray-900 rounded-sm p-1 w-fit text-center text-[10px] text-white z-50 ${classProp}`}>
+            {participant && <div className="flex flex-col items-center align-middle text-nowrap gap-1">
+                <p className="flex justify-between border-b-2 items-center w-full border-gray-700">
+                    <SummonerPositionIcon teamPosition={participant?.teamPosition} customClass="size-6" />
+                    <span className="text-sm">{participant?.kills}/<span className="text-red-500">{participant?.deaths}</span>/{participant?.assists}</span>
+                </p>
+                <div className="flex flex-col items-start align-baseline">
+                    <p>
+                        Name: {participant?.gameName}
+                    </p>
+                    <p>
+                        Champion: {participant && participant.champion}
+                    </p>
+                </div>
+            </div>}
+            {eventData && <div className="flex flex-col items-center align-baseline text-nowrap">
                 <p>
-                {eventData?.type}
-                {participant && participant.champion}
-            </p>
-{/*           <p>
-                {eventData?.killerId}
-            </p>
-          <p>
-                {eventData?.victimId}
-            </p> */}
-            <p>
-                {eventData?.buildingType}
-            </p>
-            <p>
-                {eventData?.monsterSubType}
-            </p>
-            <p>
-                {returnTime(eventData?.timestamp)}
-            </p>
+                    {eventData?.type}
+                </p>
+                <p>
+                    {eventData?.buildingType}
+                </p>
+                <p>
+                    {eventData?.monsterSubType}
+                </p>
+                <p>
+                    {returnTime(eventData?.timestamp)}
+                </p>
             </div>
+            }
+
         </label>
     )
 }

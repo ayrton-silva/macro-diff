@@ -152,7 +152,7 @@ export function aggregateTeamsStatus(
     ] ??= {
       gold: 0,
     })
-
+    participant.champLevel = value.level
     participant.gold = value.totalGold
     participant.positionX = value.positionx
     participant.positionY = value.positiony
@@ -177,7 +177,6 @@ export function aggregateTeamsStatus(
       participant.teamPosition = p.teamPosition
       participant.summonerId = p.summonerId
       participant.teamId = p.teamId
-      participant.champLevel = p.champLevel
     }
   })
 

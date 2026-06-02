@@ -92,6 +92,14 @@ model ParticipantFrames {
     level                      Int
     minionsKilled              Int
     totalGold                  Int
+    currentGold                Int
+    health                     Int
+    healthMax                  Int
+    power                      Int
+    powerMax                   Int
+    abilityPower               Int
+    attackDamage               Int
+    xp                         Int
     totalDamageDoneToChampions Int
     matchTimeline              MatchTimeline @relation(fields: [matchTimelineId], references: [matchTimelineId])
     matchTimelineId            String

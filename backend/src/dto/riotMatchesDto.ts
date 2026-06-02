@@ -138,17 +138,25 @@ export type Events = {
 }
 
 export type ParticipantFrames = {
-
   position: {
     x: number
     y: number
   }
   level: number
   minionsKilled: number
-  currentGold: number
   totalGold: number
+  currentGold: number  
+  xp: number           
   damageStats: {
     totalDamageDoneToChampions: number
+  }
+  championStats: {
+    health: number       
+    healthMax: number    
+    power: number        
+    powerMax: number     
+    abilityPower: number 
+    attackDamage: number 
   }
 
 }

@@ -35,6 +35,14 @@ export type ParticipantFramesAvgAggregateOutputType = {
   level: number | null
   minionsKilled: number | null
   totalGold: number | null
+  currentGold: number | null
+  health: number | null
+  healthMax: number | null
+  power: number | null
+  powerMax: number | null
+  abilityPower: number | null
+  attackDamage: number | null
+  xp: number | null
   totalDamageDoneToChampions: number | null
 }
 
@@ -47,6 +55,14 @@ export type ParticipantFramesSumAggregateOutputType = {
   level: number | null
   minionsKilled: number | null
   totalGold: number | null
+  currentGold: number | null
+  health: number | null
+  healthMax: number | null
+  power: number | null
+  powerMax: number | null
+  abilityPower: number | null
+  attackDamage: number | null
+  xp: number | null
   totalDamageDoneToChampions: number | null
 }
 
@@ -60,6 +76,14 @@ export type ParticipantFramesMinAggregateOutputType = {
   level: number | null
   minionsKilled: number | null
   totalGold: number | null
+  currentGold: number | null
+  health: number | null
+  healthMax: number | null
+  power: number | null
+  powerMax: number | null
+  abilityPower: number | null
+  attackDamage: number | null
+  xp: number | null
   totalDamageDoneToChampions: number | null
   matchTimelineId: string | null
 }
@@ -74,6 +98,14 @@ export type ParticipantFramesMaxAggregateOutputType = {
   level: number | null
   minionsKilled: number | null
   totalGold: number | null
+  currentGold: number | null
+  health: number | null
+  healthMax: number | null
+  power: number | null
+  powerMax: number | null
+  abilityPower: number | null
+  attackDamage: number | null
+  xp: number | null
   totalDamageDoneToChampions: number | null
   matchTimelineId: string | null
 }
@@ -88,6 +120,14 @@ export type ParticipantFramesCountAggregateOutputType = {
   level: number
   minionsKilled: number
   totalGold: number
+  currentGold: number
+  health: number
+  healthMax: number
+  power: number
+  powerMax: number
+  abilityPower: number
+  attackDamage: number
+  xp: number
   totalDamageDoneToChampions: number
   matchTimelineId: number
   _all: number
@@ -103,6 +143,14 @@ export type ParticipantFramesAvgAggregateInputType = {
   level?: true
   minionsKilled?: true
   totalGold?: true
+  currentGold?: true
+  health?: true
+  healthMax?: true
+  power?: true
+  powerMax?: true
+  abilityPower?: true
+  attackDamage?: true
+  xp?: true
   totalDamageDoneToChampions?: true
 }
 
@@ -115,6 +163,14 @@ export type ParticipantFramesSumAggregateInputType = {
   level?: true
   minionsKilled?: true
   totalGold?: true
+  currentGold?: true
+  health?: true
+  healthMax?: true
+  power?: true
+  powerMax?: true
+  abilityPower?: true
+  attackDamage?: true
+  xp?: true
   totalDamageDoneToChampions?: true
 }
 
@@ -128,6 +184,14 @@ export type ParticipantFramesMinAggregateInputType = {
   level?: true
   minionsKilled?: true
   totalGold?: true
+  currentGold?: true
+  health?: true
+  healthMax?: true
+  power?: true
+  powerMax?: true
+  abilityPower?: true
+  attackDamage?: true
+  xp?: true
   totalDamageDoneToChampions?: true
   matchTimelineId?: true
 }
@@ -142,6 +206,14 @@ export type ParticipantFramesMaxAggregateInputType = {
   level?: true
   minionsKilled?: true
   totalGold?: true
+  currentGold?: true
+  health?: true
+  healthMax?: true
+  power?: true
+  powerMax?: true
+  abilityPower?: true
+  attackDamage?: true
+  xp?: true
   totalDamageDoneToChampions?: true
   matchTimelineId?: true
 }
@@ -156,6 +228,14 @@ export type ParticipantFramesCountAggregateInputType = {
   level?: true
   minionsKilled?: true
   totalGold?: true
+  currentGold?: true
+  health?: true
+  healthMax?: true
+  power?: true
+  powerMax?: true
+  abilityPower?: true
+  attackDamage?: true
+  xp?: true
   totalDamageDoneToChampions?: true
   matchTimelineId?: true
   _all?: true
@@ -257,6 +337,14 @@ export type ParticipantFramesGroupByOutputType = {
   level: number
   minionsKilled: number
   totalGold: number
+  currentGold: number
+  health: number
+  healthMax: number
+  power: number
+  powerMax: number
+  abilityPower: number
+  attackDamage: number
+  xp: number
   totalDamageDoneToChampions: number
   matchTimelineId: string
   _count: ParticipantFramesCountAggregateOutputType | null
@@ -294,6 +382,14 @@ export type ParticipantFramesWhereInput = {
   level?: Prisma.IntFilter<"ParticipantFrames"> | number
   minionsKilled?: Prisma.IntFilter<"ParticipantFrames"> | number
   totalGold?: Prisma.IntFilter<"ParticipantFrames"> | number
+  currentGold?: Prisma.IntFilter<"ParticipantFrames"> | number
+  health?: Prisma.IntFilter<"ParticipantFrames"> | number
+  healthMax?: Prisma.IntFilter<"ParticipantFrames"> | number
+  power?: Prisma.IntFilter<"ParticipantFrames"> | number
+  powerMax?: Prisma.IntFilter<"ParticipantFrames"> | number
+  abilityPower?: Prisma.IntFilter<"ParticipantFrames"> | number
+  attackDamage?: Prisma.IntFilter<"ParticipantFrames"> | number
+  xp?: Prisma.IntFilter<"ParticipantFrames"> | number
   totalDamageDoneToChampions?: Prisma.IntFilter<"ParticipantFrames"> | number
   matchTimelineId?: Prisma.StringFilter<"ParticipantFrames"> | string
   matchTimeline?: Prisma.XOR<Prisma.MatchTimelineScalarRelationFilter, Prisma.MatchTimelineWhereInput>
@@ -309,6 +405,14 @@ export type ParticipantFramesOrderByWithRelationInput = {
   level?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
+  currentGold?: Prisma.SortOrder
+  health?: Prisma.SortOrder
+  healthMax?: Prisma.SortOrder
+  power?: Prisma.SortOrder
+  powerMax?: Prisma.SortOrder
+  abilityPower?: Prisma.SortOrder
+  attackDamage?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
   totalDamageDoneToChampions?: Prisma.SortOrder
   matchTimelineId?: Prisma.SortOrder
   matchTimeline?: Prisma.MatchTimelineOrderByWithRelationInput
@@ -327,6 +431,14 @@ export type ParticipantFramesWhereUniqueInput = Prisma.AtLeast<{
   level?: Prisma.IntFilter<"ParticipantFrames"> | number
   minionsKilled?: Prisma.IntFilter<"ParticipantFrames"> | number
   totalGold?: Prisma.IntFilter<"ParticipantFrames"> | number
+  currentGold?: Prisma.IntFilter<"ParticipantFrames"> | number
+  health?: Prisma.IntFilter<"ParticipantFrames"> | number
+  healthMax?: Prisma.IntFilter<"ParticipantFrames"> | number
+  power?: Prisma.IntFilter<"ParticipantFrames"> | number
+  powerMax?: Prisma.IntFilter<"ParticipantFrames"> | number
+  abilityPower?: Prisma.IntFilter<"ParticipantFrames"> | number
+  attackDamage?: Prisma.IntFilter<"ParticipantFrames"> | number
+  xp?: Prisma.IntFilter<"ParticipantFrames"> | number
   totalDamageDoneToChampions?: Prisma.IntFilter<"ParticipantFrames"> | number
   matchTimelineId?: Prisma.StringFilter<"ParticipantFrames"> | string
   matchTimeline?: Prisma.XOR<Prisma.MatchTimelineScalarRelationFilter, Prisma.MatchTimelineWhereInput>
@@ -342,6 +454,14 @@ export type ParticipantFramesOrderByWithAggregationInput = {
   level?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
+  currentGold?: Prisma.SortOrder
+  health?: Prisma.SortOrder
+  healthMax?: Prisma.SortOrder
+  power?: Prisma.SortOrder
+  powerMax?: Prisma.SortOrder
+  abilityPower?: Prisma.SortOrder
+  attackDamage?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
   totalDamageDoneToChampions?: Prisma.SortOrder
   matchTimelineId?: Prisma.SortOrder
   _count?: Prisma.ParticipantFramesCountOrderByAggregateInput
@@ -364,6 +484,14 @@ export type ParticipantFramesScalarWhereWithAggregatesInput = {
   level?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
   minionsKilled?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
   totalGold?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
+  currentGold?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
+  health?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
+  healthMax?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
+  power?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
+  powerMax?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
+  abilityPower?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
+  attackDamage?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
+  xp?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
   totalDamageDoneToChampions?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
   matchTimelineId?: Prisma.StringWithAggregatesFilter<"ParticipantFrames"> | string
 }
@@ -377,6 +505,14 @@ export type ParticipantFramesCreateInput = {
   level: number
   minionsKilled: number
   totalGold: number
+  currentGold: number
+  health: number
+  healthMax: number
+  power: number
+  powerMax: number
+  abilityPower: number
+  attackDamage: number
+  xp: number
   totalDamageDoneToChampions: number
   matchTimeline: Prisma.MatchTimelineCreateNestedOneWithoutParticipantFramesInput
 }
@@ -391,6 +527,14 @@ export type ParticipantFramesUncheckedCreateInput = {
   level: number
   minionsKilled: number
   totalGold: number
+  currentGold: number
+  health: number
+  healthMax: number
+  power: number
+  powerMax: number
+  abilityPower: number
+  attackDamage: number
+  xp: number
   totalDamageDoneToChampions: number
   matchTimelineId: string
 }
@@ -404,6 +548,14 @@ export type ParticipantFramesUpdateInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
+  currentGold?: Prisma.IntFieldUpdateOperationsInput | number
+  health?: Prisma.IntFieldUpdateOperationsInput | number
+  healthMax?: Prisma.IntFieldUpdateOperationsInput | number
+  power?: Prisma.IntFieldUpdateOperationsInput | number
+  powerMax?: Prisma.IntFieldUpdateOperationsInput | number
+  abilityPower?: Prisma.IntFieldUpdateOperationsInput | number
+  attackDamage?: Prisma.IntFieldUpdateOperationsInput | number
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
   totalDamageDoneToChampions?: Prisma.IntFieldUpdateOperationsInput | number
   matchTimeline?: Prisma.MatchTimelineUpdateOneRequiredWithoutParticipantFramesNestedInput
 }
@@ -418,6 +570,14 @@ export type ParticipantFramesUncheckedUpdateInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
+  currentGold?: Prisma.IntFieldUpdateOperationsInput | number
+  health?: Prisma.IntFieldUpdateOperationsInput | number
+  healthMax?: Prisma.IntFieldUpdateOperationsInput | number
+  power?: Prisma.IntFieldUpdateOperationsInput | number
+  powerMax?: Prisma.IntFieldUpdateOperationsInput | number
+  abilityPower?: Prisma.IntFieldUpdateOperationsInput | number
+  attackDamage?: Prisma.IntFieldUpdateOperationsInput | number
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
   totalDamageDoneToChampions?: Prisma.IntFieldUpdateOperationsInput | number
   matchTimelineId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -432,6 +592,14 @@ export type ParticipantFramesCreateManyInput = {
   level: number
   minionsKilled: number
   totalGold: number
+  currentGold: number
+  health: number
+  healthMax: number
+  power: number
+  powerMax: number
+  abilityPower: number
+  attackDamage: number
+  xp: number
   totalDamageDoneToChampions: number
   matchTimelineId: string
 }
@@ -445,6 +613,14 @@ export type ParticipantFramesUpdateManyMutationInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
+  currentGold?: Prisma.IntFieldUpdateOperationsInput | number
+  health?: Prisma.IntFieldUpdateOperationsInput | number
+  healthMax?: Prisma.IntFieldUpdateOperationsInput | number
+  power?: Prisma.IntFieldUpdateOperationsInput | number
+  powerMax?: Prisma.IntFieldUpdateOperationsInput | number
+  abilityPower?: Prisma.IntFieldUpdateOperationsInput | number
+  attackDamage?: Prisma.IntFieldUpdateOperationsInput | number
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
   totalDamageDoneToChampions?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -458,6 +634,14 @@ export type ParticipantFramesUncheckedUpdateManyInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
+  currentGold?: Prisma.IntFieldUpdateOperationsInput | number
+  health?: Prisma.IntFieldUpdateOperationsInput | number
+  healthMax?: Prisma.IntFieldUpdateOperationsInput | number
+  power?: Prisma.IntFieldUpdateOperationsInput | number
+  powerMax?: Prisma.IntFieldUpdateOperationsInput | number
+  abilityPower?: Prisma.IntFieldUpdateOperationsInput | number
+  attackDamage?: Prisma.IntFieldUpdateOperationsInput | number
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
   totalDamageDoneToChampions?: Prisma.IntFieldUpdateOperationsInput | number
   matchTimelineId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -482,6 +666,14 @@ export type ParticipantFramesCountOrderByAggregateInput = {
   level?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
+  currentGold?: Prisma.SortOrder
+  health?: Prisma.SortOrder
+  healthMax?: Prisma.SortOrder
+  power?: Prisma.SortOrder
+  powerMax?: Prisma.SortOrder
+  abilityPower?: Prisma.SortOrder
+  attackDamage?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
   totalDamageDoneToChampions?: Prisma.SortOrder
   matchTimelineId?: Prisma.SortOrder
 }
@@ -495,6 +687,14 @@ export type ParticipantFramesAvgOrderByAggregateInput = {
   level?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
+  currentGold?: Prisma.SortOrder
+  health?: Prisma.SortOrder
+  healthMax?: Prisma.SortOrder
+  power?: Prisma.SortOrder
+  powerMax?: Prisma.SortOrder
+  abilityPower?: Prisma.SortOrder
+  attackDamage?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
   totalDamageDoneToChampions?: Prisma.SortOrder
 }
 
@@ -508,6 +708,14 @@ export type ParticipantFramesMaxOrderByAggregateInput = {
   level?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
+  currentGold?: Prisma.SortOrder
+  health?: Prisma.SortOrder
+  healthMax?: Prisma.SortOrder
+  power?: Prisma.SortOrder
+  powerMax?: Prisma.SortOrder
+  abilityPower?: Prisma.SortOrder
+  attackDamage?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
   totalDamageDoneToChampions?: Prisma.SortOrder
   matchTimelineId?: Prisma.SortOrder
 }
@@ -522,6 +730,14 @@ export type ParticipantFramesMinOrderByAggregateInput = {
   level?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
+  currentGold?: Prisma.SortOrder
+  health?: Prisma.SortOrder
+  healthMax?: Prisma.SortOrder
+  power?: Prisma.SortOrder
+  powerMax?: Prisma.SortOrder
+  abilityPower?: Prisma.SortOrder
+  attackDamage?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
   totalDamageDoneToChampions?: Prisma.SortOrder
   matchTimelineId?: Prisma.SortOrder
 }
@@ -535,6 +751,14 @@ export type ParticipantFramesSumOrderByAggregateInput = {
   level?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
+  currentGold?: Prisma.SortOrder
+  health?: Prisma.SortOrder
+  healthMax?: Prisma.SortOrder
+  power?: Prisma.SortOrder
+  powerMax?: Prisma.SortOrder
+  abilityPower?: Prisma.SortOrder
+  attackDamage?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
   totalDamageDoneToChampions?: Prisma.SortOrder
 }
 
@@ -589,6 +813,14 @@ export type ParticipantFramesCreateWithoutMatchTimelineInput = {
   level: number
   minionsKilled: number
   totalGold: number
+  currentGold: number
+  health: number
+  healthMax: number
+  power: number
+  powerMax: number
+  abilityPower: number
+  attackDamage: number
+  xp: number
   totalDamageDoneToChampions: number
 }
 
@@ -602,6 +834,14 @@ export type ParticipantFramesUncheckedCreateWithoutMatchTimelineInput = {
   level: number
   minionsKilled: number
   totalGold: number
+  currentGold: number
+  health: number
+  healthMax: number
+  power: number
+  powerMax: number
+  abilityPower: number
+  attackDamage: number
+  xp: number
   totalDamageDoneToChampions: number
 }
 
@@ -644,6 +884,14 @@ export type ParticipantFramesScalarWhereInput = {
   level?: Prisma.IntFilter<"ParticipantFrames"> | number
   minionsKilled?: Prisma.IntFilter<"ParticipantFrames"> | number
   totalGold?: Prisma.IntFilter<"ParticipantFrames"> | number
+  currentGold?: Prisma.IntFilter<"ParticipantFrames"> | number
+  health?: Prisma.IntFilter<"ParticipantFrames"> | number
+  healthMax?: Prisma.IntFilter<"ParticipantFrames"> | number
+  power?: Prisma.IntFilter<"ParticipantFrames"> | number
+  powerMax?: Prisma.IntFilter<"ParticipantFrames"> | number
+  abilityPower?: Prisma.IntFilter<"ParticipantFrames"> | number
+  attackDamage?: Prisma.IntFilter<"ParticipantFrames"> | number
+  xp?: Prisma.IntFilter<"ParticipantFrames"> | number
   totalDamageDoneToChampions?: Prisma.IntFilter<"ParticipantFrames"> | number
   matchTimelineId?: Prisma.StringFilter<"ParticipantFrames"> | string
 }
@@ -658,6 +906,14 @@ export type ParticipantFramesCreateManyMatchTimelineInput = {
   level: number
   minionsKilled: number
   totalGold: number
+  currentGold: number
+  health: number
+  healthMax: number
+  power: number
+  powerMax: number
+  abilityPower: number
+  attackDamage: number
+  xp: number
   totalDamageDoneToChampions: number
 }
 
@@ -670,6 +926,14 @@ export type ParticipantFramesUpdateWithoutMatchTimelineInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
+  currentGold?: Prisma.IntFieldUpdateOperationsInput | number
+  health?: Prisma.IntFieldUpdateOperationsInput | number
+  healthMax?: Prisma.IntFieldUpdateOperationsInput | number
+  power?: Prisma.IntFieldUpdateOperationsInput | number
+  powerMax?: Prisma.IntFieldUpdateOperationsInput | number
+  abilityPower?: Prisma.IntFieldUpdateOperationsInput | number
+  attackDamage?: Prisma.IntFieldUpdateOperationsInput | number
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
   totalDamageDoneToChampions?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -683,6 +947,14 @@ export type ParticipantFramesUncheckedUpdateWithoutMatchTimelineInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
+  currentGold?: Prisma.IntFieldUpdateOperationsInput | number
+  health?: Prisma.IntFieldUpdateOperationsInput | number
+  healthMax?: Prisma.IntFieldUpdateOperationsInput | number
+  power?: Prisma.IntFieldUpdateOperationsInput | number
+  powerMax?: Prisma.IntFieldUpdateOperationsInput | number
+  abilityPower?: Prisma.IntFieldUpdateOperationsInput | number
+  attackDamage?: Prisma.IntFieldUpdateOperationsInput | number
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
   totalDamageDoneToChampions?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -696,6 +968,14 @@ export type ParticipantFramesUncheckedUpdateManyWithoutMatchTimelineInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
+  currentGold?: Prisma.IntFieldUpdateOperationsInput | number
+  health?: Prisma.IntFieldUpdateOperationsInput | number
+  healthMax?: Prisma.IntFieldUpdateOperationsInput | number
+  power?: Prisma.IntFieldUpdateOperationsInput | number
+  powerMax?: Prisma.IntFieldUpdateOperationsInput | number
+  abilityPower?: Prisma.IntFieldUpdateOperationsInput | number
+  attackDamage?: Prisma.IntFieldUpdateOperationsInput | number
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
   totalDamageDoneToChampions?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -711,6 +991,14 @@ export type ParticipantFramesSelect<ExtArgs extends runtime.Types.Extensions.Int
   level?: boolean
   minionsKilled?: boolean
   totalGold?: boolean
+  currentGold?: boolean
+  health?: boolean
+  healthMax?: boolean
+  power?: boolean
+  powerMax?: boolean
+  abilityPower?: boolean
+  attackDamage?: boolean
+  xp?: boolean
   totalDamageDoneToChampions?: boolean
   matchTimelineId?: boolean
   matchTimeline?: boolean | Prisma.MatchTimelineDefaultArgs<ExtArgs>
@@ -726,6 +1014,14 @@ export type ParticipantFramesSelectCreateManyAndReturn<ExtArgs extends runtime.T
   level?: boolean
   minionsKilled?: boolean
   totalGold?: boolean
+  currentGold?: boolean
+  health?: boolean
+  healthMax?: boolean
+  power?: boolean
+  powerMax?: boolean
+  abilityPower?: boolean
+  attackDamage?: boolean
+  xp?: boolean
   totalDamageDoneToChampions?: boolean
   matchTimelineId?: boolean
   matchTimeline?: boolean | Prisma.MatchTimelineDefaultArgs<ExtArgs>
@@ -741,6 +1037,14 @@ export type ParticipantFramesSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   level?: boolean
   minionsKilled?: boolean
   totalGold?: boolean
+  currentGold?: boolean
+  health?: boolean
+  healthMax?: boolean
+  power?: boolean
+  powerMax?: boolean
+  abilityPower?: boolean
+  attackDamage?: boolean
+  xp?: boolean
   totalDamageDoneToChampions?: boolean
   matchTimelineId?: boolean
   matchTimeline?: boolean | Prisma.MatchTimelineDefaultArgs<ExtArgs>
@@ -756,11 +1060,19 @@ export type ParticipantFramesSelectScalar = {
   level?: boolean
   minionsKilled?: boolean
   totalGold?: boolean
+  currentGold?: boolean
+  health?: boolean
+  healthMax?: boolean
+  power?: boolean
+  powerMax?: boolean
+  abilityPower?: boolean
+  attackDamage?: boolean
+  xp?: boolean
   totalDamageDoneToChampions?: boolean
   matchTimelineId?: boolean
 }
 
-export type ParticipantFramesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "participantFrameId" | "participantPuuid" | "timestamp" | "positionx" | "positiony" | "level" | "minionsKilled" | "totalGold" | "totalDamageDoneToChampions" | "matchTimelineId", ExtArgs["result"]["participantFrames"]>
+export type ParticipantFramesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "participantFrameId" | "participantPuuid" | "timestamp" | "positionx" | "positiony" | "level" | "minionsKilled" | "totalGold" | "currentGold" | "health" | "healthMax" | "power" | "powerMax" | "abilityPower" | "attackDamage" | "xp" | "totalDamageDoneToChampions" | "matchTimelineId", ExtArgs["result"]["participantFrames"]>
 export type ParticipantFramesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   matchTimeline?: boolean | Prisma.MatchTimelineDefaultArgs<ExtArgs>
 }
@@ -786,6 +1098,14 @@ export type $ParticipantFramesPayload<ExtArgs extends runtime.Types.Extensions.I
     level: number
     minionsKilled: number
     totalGold: number
+    currentGold: number
+    health: number
+    healthMax: number
+    power: number
+    powerMax: number
+    abilityPower: number
+    attackDamage: number
+    xp: number
     totalDamageDoneToChampions: number
     matchTimelineId: string
   }, ExtArgs["result"]["participantFrames"]>
@@ -1221,6 +1541,14 @@ export interface ParticipantFramesFieldRefs {
   readonly level: Prisma.FieldRef<"ParticipantFrames", 'Int'>
   readonly minionsKilled: Prisma.FieldRef<"ParticipantFrames", 'Int'>
   readonly totalGold: Prisma.FieldRef<"ParticipantFrames", 'Int'>
+  readonly currentGold: Prisma.FieldRef<"ParticipantFrames", 'Int'>
+  readonly health: Prisma.FieldRef<"ParticipantFrames", 'Int'>
+  readonly healthMax: Prisma.FieldRef<"ParticipantFrames", 'Int'>
+  readonly power: Prisma.FieldRef<"ParticipantFrames", 'Int'>
+  readonly powerMax: Prisma.FieldRef<"ParticipantFrames", 'Int'>
+  readonly abilityPower: Prisma.FieldRef<"ParticipantFrames", 'Int'>
+  readonly attackDamage: Prisma.FieldRef<"ParticipantFrames", 'Int'>
+  readonly xp: Prisma.FieldRef<"ParticipantFrames", 'Int'>
   readonly totalDamageDoneToChampions: Prisma.FieldRef<"ParticipantFrames", 'Int'>
   readonly matchTimelineId: Prisma.FieldRef<"ParticipantFrames", 'String'>
 }

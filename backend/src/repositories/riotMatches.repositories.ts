@@ -158,7 +158,7 @@ export async function createTimelineData(matchId: string) {
 
   const timelineData = await getMatchTimeline({ matchId })
 
-  const id = String(Date.now()+matchId)
+  const id = String(Date.now() + matchId)
 
   try {
     await prisma.matchTimeline.create({
@@ -179,7 +179,7 @@ export async function createTimelineData(matchId: string) {
           data: {
             timestamp: event.timestamp,
             type: event.type,
-            creatorId: event.creatorId? timelineData.info.participants.filter((data) => event.creatorId == data.participantId)[0].puuid : "",
+            creatorId: event.creatorId ? timelineData.info.participants.filter((data) => event.creatorId == data.participantId)[0].puuid : "",
             wardType: event.wardType,
             itemId: event.itemId,
             afterId: event.afterId,
@@ -198,7 +198,7 @@ export async function createTimelineData(matchId: string) {
             positiony: event.position?.y,
             monsterSubType: event.monsterSubType,
             monsterType: event.monsterType,
-            matchTimelineId: id 
+            matchTimelineId: id
           },
         })
       } catch (e) {
@@ -218,8 +218,16 @@ export async function createTimelineData(matchId: string) {
             level: participantFrame.level,
             minionsKilled: participantFrame.minionsKilled,
             totalGold: participantFrame.totalGold,
+            currentGold: participantFrame.currentGold,
+            health: participantFrame.championStats.health,
+            healthMax: participantFrame.championStats.healthMax,
+            power: participantFrame.championStats.power,
+            powerMax: participantFrame.championStats.powerMax,
+            abilityPower: participantFrame.championStats.abilityPower,
+            attackDamage: participantFrame.championStats.attackDamage,
+            xp: participantFrame.xp,
             totalDamageDoneToChampions: participantFrame.damageStats.totalDamageDoneToChampions,
-            matchTimelineId: id 
+            matchTimelineId: id
           },
         })
       } catch (e) {
