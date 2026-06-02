@@ -40,8 +40,6 @@ function RouteComponent() {
   const [filter, setFilter] = useState(defaultFilter)
   const [values, setValues] = useState([0])
 
-  console.log('timeline value', values)
-
   useEffect(() => {
     if (
       match.data &&
@@ -90,7 +88,14 @@ function RouteComponent() {
         <div className="w-full flex flex-col gap-5">
           <div className="p-5 rounded-md bg-gray-900">
             <div className="flex justify-center self-center">
-              <MatchMap />
+              {blue.participants && red.participants && (
+                <MatchMap
+                  participants={[
+                    ...Object.values(blue.participants),
+                    ...Object.values(red.participants),
+                  ]}
+                />
+              )}
             </div>
             {matchTimeline.data?.matchTimeline && (
               <MatchTimeline

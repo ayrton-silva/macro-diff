@@ -69,13 +69,14 @@ export function aggregateTeamsStatus(
 
           if (key === event.victimId) {
             participantVictimId = value.participantFrameId
-            const participant = (acc[
-              teamId === '100' ? '200' : '100'
-            ].participants[participantVictimId] ??= {
-              deaths: 0,
-            })
+            const participant =
+              acc[teamId === '100' ? '200' : '100'].participants[
+                participantVictimId
+              ]
 
-            participant.deaths++
+            if (participant) {
+              participant.deaths++
+            }
           }
 
           if (event.assistingParticipantIds.length > 0) {
@@ -160,6 +161,7 @@ export function aggregateTeamsStatus(
       participant.champion = p.championName
     }
   })
-
+  console.log('teamstats', teamsStats)
+  console.log('participants', participants)
   return teamsStats
 }
