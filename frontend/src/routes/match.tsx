@@ -69,7 +69,11 @@ function RouteComponent() {
     }
   }, [matchTimeline.data?.matchTimeline])
 
-  useMatchState(matchId, values[0], match.data?.participants)
+  const { eventsUntilNow, blue, red } = useMatchState(
+    matchId,
+    values[0],
+    match.data?.participants,
+  )
 
   if (!match.data) {
     return <h1>sem partida</h1>
@@ -86,7 +90,7 @@ function RouteComponent() {
         <div className="w-full flex flex-col gap-5">
           <div className="p-5 rounded-md bg-gray-900">
             <div className="flex justify-center self-center">
-              <MatchMap/>
+              <MatchMap />
             </div>
             {matchTimeline.data?.matchTimeline && (
               <MatchTimeline

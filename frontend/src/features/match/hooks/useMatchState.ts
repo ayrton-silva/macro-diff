@@ -11,7 +11,8 @@ export function useMatchState(
   const { data } = useMatchTimeline(matchId)
 
   return useMemo(() => {
-    if (!data) return null
+    if (!data)
+      return { eventsUntilNow: 0, blue: {}, red: {}, currentFrames: {} }
 
     const { events, participantFrames } = data.matchTimeline
 
@@ -27,8 +28,8 @@ export function useMatchState(
         return acc
       }, {})
 
-    const { blue, red } = aggregateTeamsStatus(
-      events,
+    const { 100: blue, 200: red } = aggregateTeamsStatus(
+      eventsUntilNow,
       currentFrames,
       participants,
     )

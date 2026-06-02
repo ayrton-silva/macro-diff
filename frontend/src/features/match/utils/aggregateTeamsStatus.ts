@@ -5,8 +5,6 @@ export function aggregateTeamsStatus(
   currentFrames,
   participants,
 ) {
-  console.log('currentfra,es', currentFrames)
-
   function createParticipants(start = 0) {
     return Object.fromEntries(
       Array.from({ length: 5 }, (_, i) => [
@@ -15,6 +13,9 @@ export function aggregateTeamsStatus(
           kills: 0,
           deaths: 0,
           assists: 0,
+          positionX: 0,
+          positionY: 0,
+          champion: '',
         },
       ]),
     )
@@ -138,10 +139,27 @@ export function aggregateTeamsStatus(
     })
 
     participant.gold = value.totalGold
+    participant.positionX = value.positionx
+    participant.positionY = value.positiony
     teamsStats[teamId].gold += value.totalGold
   }
 
-  console.log('team stats', teamsStats)
+  participants.forEach((p) => {
+    const teamId = p.teamId
+    let participantFrameId = null
 
-  return 'test'
+    for (const [key, value] of Object.entries(currentFrames)) {
+      if (p.summonerId === key) {
+        participantFrameId = value.participantFrameId
+      }
+    }
+
+    if (participantFrameId) {
+      const participant = teamsStats[teamId].participants[participantFrameId]
+
+      participant.champion = p.championName
+    }
+  })
+
+  return teamsStats
 }
