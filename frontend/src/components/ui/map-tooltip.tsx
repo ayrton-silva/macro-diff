@@ -1,12 +1,14 @@
-import type { EventMarker } from "#/features/match/components/Map/MatchMap"
+import type { EventMarker, ParticipantMarker } from "#/features/match/components/Map/MatchMap"
+import { returnTime } from "#/shared/game/helpers"
 import * as React from "react"
 
 type MapTooltipProps = {
     classProp?: string,
-    eventData: EventMarker
+    eventData?: EventMarker
+    participant?: ParticipantMarker
 }
 
-function MapTooltip({ classProp, eventData }: MapTooltipProps) {
+function MapTooltip({ classProp, eventData, participant }: MapTooltipProps) {
     return (
         <label
             data-slot="label"
@@ -14,18 +16,22 @@ function MapTooltip({ classProp, eventData }: MapTooltipProps) {
             <div>
                 <p>
                 {eventData?.type}
+                {participant && participant.champion}
             </p>
-          <p>
+{/*           <p>
                 {eventData?.killerId}
             </p>
           <p>
                 {eventData?.victimId}
-            </p>
+            </p> */}
             <p>
                 {eventData?.buildingType}
             </p>
             <p>
                 {eventData?.monsterSubType}
+            </p>
+            <p>
+                {returnTime(eventData?.timestamp)}
             </p>
             </div>
         </label>

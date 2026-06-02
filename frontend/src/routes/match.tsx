@@ -95,6 +95,7 @@ function RouteComponent() {
                     ...Object.values(red.participants),
                   ]}
                   events={eventsUntilNow}
+                  currentTimestamp={values}
                 />
               )}
             </div>

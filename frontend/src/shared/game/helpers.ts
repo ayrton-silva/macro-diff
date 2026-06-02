@@ -66,6 +66,9 @@ export function returnDateAgo(input: number) {
   }
   return Math.round(timeAgo) + ' days ago'
 }
+export function returnTime(input: number) {
+  return (Math.round(input/60000) < 10 ? '0'+Math.round(input/60000): Math.round(input/60000)) + ':' + (Math.floor((input%60000)/1000) < 10? '0'+Math.floor((input%60000)/1000) : Math.floor((input%60000)/1000))
+}
 
 export function showDivisionByTier(tier: string) {
   return !['MASTER', 'GRANDMASTER', 'CHALLENGER'].includes(tier)

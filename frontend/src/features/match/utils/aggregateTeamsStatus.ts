@@ -1,9 +1,10 @@
-import type { MatchEvent } from '#/shared/game/MatchEvent/types'
+import type { MatchEvent, Participant } from '#/shared/game/MatchEvent/types'
+
 
 export function aggregateTeamsStatus(
   events: MatchEvent[],
   currentFrames,
-  participants,
+  participants: Participant[],
 ) {
   function createParticipants(start = 0) {
     return Object.fromEntries(
@@ -16,6 +17,11 @@ export function aggregateTeamsStatus(
           positionX: 0,
           positionY: 0,
           champion: '',
+          gameName:'',
+          teamPosition:'',
+          summonerId:'',
+          teamId: 100,
+          champLevel: 1,
         },
       ]),
     )
@@ -159,6 +165,12 @@ export function aggregateTeamsStatus(
       const participant = teamsStats[teamId].participants[participantFrameId]
 
       participant.champion = p.championName
+      participant.gameName = p.summoner.gameName
+      participant.teamPosition = p.teamPosition
+      participant.summonerId = p.summonerId
+      participant.teamId = p.teamId
+      participant.champLevel = p.champLevel
+
     }
   })
   console.log('teamstats', teamsStats)
