@@ -11,6 +11,7 @@ import { MatchTimelineFilters } from '#/features/match/components/Sidebar/MatchT
 import { MatchTimeline } from '#/features/match/components/Map/MatchTimeline'
 import { useMatchState } from '#/features/match/hooks/useMatchState'
 import { MatchMap } from '#/features/match/components/Map/MatchMap'
+import { MatchScoreboard } from '#/features/match/components/Map/MatchScoreboard'
 
 const matchSchema = z.object({
   matchId: z.string().default(''),
@@ -72,7 +73,7 @@ function RouteComponent() {
     values[0],
     match.data?.participants,
   )
-  
+
   if (!match.data) {
     return <h1>sem partida</h1>
   }
@@ -89,13 +90,16 @@ function RouteComponent() {
           <div className="p-5 rounded-md bg-gray-900">
             <div className="flex justify-center self-center">
               {blue.participants && red.participants && (
-                <MatchMap
-                  participants={[
-                    ...Object.values(blue.participants),
-                    ...Object.values(red.participants),
-                  ]}
-                  events={eventsUntilNow}
-                />
+                <>
+                  <MatchScoreboard blue={blue} red={red} />
+                  <MatchMap
+                    participants={[
+                      ...Object.values(blue.participants),
+                      ...Object.values(red.participants),
+                    ]}
+                    events={eventsUntilNow}
+                  />
+                </>
               )}
             </div>
             {matchTimeline.data?.matchTimeline && (
