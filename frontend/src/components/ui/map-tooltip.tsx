@@ -11,18 +11,23 @@ function MapTooltip({ classProp, eventData }: MapTooltipProps) {
         <label
             data-slot="label"
             className={`absolute bg-gray-800 border-2 border-gray-900 rounded-sm p-2 w-24 text-center text-xs text-white z-50 ${classProp}`}>
-            <p>
+            <div>
+                <p>
                 {eventData?.type}
             </p>
-          {/*<p>
+          <p>
                 {eventData?.killerId}
-            </p> */}
+            </p>
+          <p>
+                {eventData?.victimId}
+            </p>
             <p>
                 {eventData?.buildingType}
             </p>
             <p>
                 {eventData?.monsterSubType}
             </p>
+            </div>
         </label>
     )
 }

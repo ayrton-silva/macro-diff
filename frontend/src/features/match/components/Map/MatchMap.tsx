@@ -4,6 +4,7 @@ import { MapTooltip } from '#/components/ui/map-tooltip'
 import { ChampionIcon } from '#/shared/game/ChampionIcon'
 
 export type EventMarker = {
+  eventId: number,
   type: string
   monsterType?:string
   monsterSubType?: string
@@ -40,6 +41,7 @@ const MIN_Y = -1100
 const MAX_Y = 15870
 
 export function MatchMap({ participants, events }: MatchMapProps) {
+  console.log("VEENNNTSSS", events)
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <div className="rounded-md w-260">
