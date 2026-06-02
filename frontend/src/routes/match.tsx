@@ -72,7 +72,7 @@ function RouteComponent() {
     values[0],
     match.data?.participants,
   )
-
+  
   if (!match.data) {
     return <h1>sem partida</h1>
   }
@@ -94,6 +94,7 @@ function RouteComponent() {
                     ...Object.values(blue.participants),
                     ...Object.values(red.participants),
                   ]}
+                  events={eventsUntilNow}
                 />
               )}
             </div>

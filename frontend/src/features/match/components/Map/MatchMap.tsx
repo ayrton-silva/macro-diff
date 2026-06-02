@@ -1,62 +1,27 @@
 'use client'
 
+import { MapTooltip } from '#/components/ui/map-tooltip'
 import { ChampionIcon } from '#/shared/game/ChampionIcon'
 
-type Marker = {
+export type EventMarker = {
   type: string
+  monsterType?:string
   monsterSubType?: string
-  x: number
-  y: number
+  positionx?:number
+  positiony?:number
   icon?: string
+  assistingParticipantIds:[]
+  buildingType?:string
+  creatorId?:string
+  killType?:string
+  killerId?:string
+  multiKillLength?:number
+  participantPuuid?:string
+  teamId?:number
+  towerType?:string
+  victimId?:string
+  wardType?:string
 }
-
-const MARKERS: Marker[] = [
-  { type: 'BUILDING_KILL', x: 10504, y: 1029, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 5846, y: 6396, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 4318, y: 13875, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 5048, y: 4812, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 981, y: 10441, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 13866, y: 4505, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 3651, y: 3696, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 1512, y: 6699, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 1169, y: 4287, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 1748, y: 2270, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 6919, y: 1483, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 4281, y: 1253, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 2177, y: 1807, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 1748, y: 2270, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 9767, y: 10113, icon: '🗼' },
-  { type: 'BUILDING_KILL', x: 8955, y: 8510, icon: '🗼' },
-  {
-    type: 'MONSTER_ELITE_KILL',
-    monsterSubType: 'CHEMTECH_DRAGON',
-    x: 9837,
-    y: 4397,
-    icon: '🐉',
-  },
-  {
-    type: 'MONSTER_ELITE_KILL',
-    monsterSubType: 'CHEMTECH_DRAGON',
-    x: 9847,
-    y: 4427,
-    icon: '🐉',
-  },
-  {
-    type: 'MONSTER_ELITE_KILL',
-    monsterSubType: 'CHEMTECH_DRAGON',
-    x: 10370,
-    y: 4930,
-    icon: '🐉',
-  },
-  { type: 'CHAMPION_KILL', x: 12904, y: 1347, icon: '💀' },
-  { type: 'CHAMPION_KILL', x: 2288, y: 13528, icon: '💀' },
-  { type: 'CHAMPION_KILL', x: 12498, y: 1354, icon: '💀' },
-]
-
-const MIN_X = -2250
-const MAX_X = 16970
-const MIN_Y = -1100
-const MAX_Y = 15870
 
 type Participant = {
   positionX: number
@@ -66,9 +31,15 @@ type Participant = {
 
 type MatchMapProps = {
   participants: Participant[]
+  events: EventMarker[]
 }
 
-export function MatchMap({ participants }: MatchMapProps) {
+const MIN_X = -2250
+const MAX_X = 16970
+const MIN_Y = -1100
+const MAX_Y = 15870
+
+export function MatchMap({ participants, events }: MatchMapProps) {
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <div className="rounded-md w-260">
@@ -78,9 +49,27 @@ export function MatchMap({ participants }: MatchMapProps) {
           alt="Summoner's Rift Map"
         />
       </div>
+      {events.map((p, index) => ( p.positionx && p.positiony &&
+        <div 
+          key={index}
+          className="absolute group -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50"
+          style={{
+            left: `${((p.positionx - MIN_X) / (MAX_X - MIN_X)) * 100}%`,
+            top: `${100 - ((p.positiony - MIN_Y) / (MAX_Y - MIN_Y)) * 100}%`,
+          }}
+        >
+        <MapTooltip 
+          eventData={p} 
+          classProp="bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block" 
+        />
+        <span className="block text-2xl cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-150">
+          {p.type === "CHAMPION_KILL" ? "💀" : p.monsterType === "DRAGON" ? "🐉" : p.type === "BUILDING_KILL" ? "🏛️" : p.type === "WARD_PLACED" ? "🌱" : ""}
+        </span>
+        </div>
+      ))}
       {participants.map((p) => (
         <span
-          className="absolute text-4xl -translate-x-1/2 -translate-y-1/2"
+          className="absolute text-4xl -translate-x-1/2 -translate-y-1/2 z-20"
           style={{
             left: `${((p.positionX - MIN_X) / (MAX_X - MIN_X)) * 100}%`,
             top: `${100 - ((p.positionY - MIN_Y) / (MAX_Y - MIN_Y)) * 100}%`,
