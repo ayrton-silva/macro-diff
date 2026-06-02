@@ -82,22 +82,29 @@ function RouteComponent() {
     (a, b) => a.timestamp - b.timestamp,
   )
 
+  console.log('aqui', eventsUntilNow.length)
+  console.log('aqui 2', matchTimeline)
+  console.log('aqui 3', matchTimeline.data?.matchTimeline)
+
   return (
     <div className="px-[12%]">
       <MatchHeader match={match.data} />
       <div className="flex items-start gap-5">
         <div className="w-full flex flex-col gap-5">
           <div className="p-5 rounded-md bg-gray-900">
-            <div className="flex justify-center self-center">
+            <div className="flex justify-center self-center relative">
               {blue.participants && red.participants && (
-                <MatchMap
-                  participants={[
-                    ...Object.values(blue.participants),
-                    ...Object.values(red.participants),
-                  ]}
-                  events={eventsUntilNow}
-                  currentTimestamp={values}
-                />
+                <>
+                  <MatchScoreboard blue={blue} red={red} />
+                  <MatchMap
+                    participants={[
+                      ...Object.values(blue.participants),
+                      ...Object.values(red.participants),
+                    ]}
+                    events={eventsUntilNow}
+                    currentTimestamp={values}
+                  />
+                </>
               )}
             </div>
             {matchTimeline.data?.matchTimeline && (
@@ -141,17 +148,18 @@ function RouteComponent() {
           )}
         </div>
         <div className="w-80 shrink-0 sticky top-[73px]">
-          {matchTimeline.data?.matchTimeline && (
-            <div>
-              <MatchTimelineFilters filter={filter} setFilter={setFilter} />
-              <MatchEventFeed
-                events={matchTimeline.data.matchTimeline.events}
-                participants={match.data.participants}
-                filter={filter}
-                timelineValues={values}
-              />
-            </div>
-          )}
+          {matchTimeline.data?.matchTimeline &&
+            match.data?.participants &&
+            eventsUntilNow.length > 0 && (
+              <div>
+                <MatchTimelineFilters filter={filter} setFilter={setFilter} />
+                <MatchEventFeed
+                  events={eventsUntilNow}
+                  participants={match.data.participants}
+                  filter={filter}
+                />
+              </div>
+            )}
         </div>
       </div>
     </div>

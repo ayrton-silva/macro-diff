@@ -21,7 +21,7 @@ export function useMatchState(
     )
 
     const currentFrames = participantFrames
-      .filter((f) => f.timestamp <= currentTimestamp)
+      .filter((f) => f.timestamp <= currentTimestamp + 5999)
       .reduce((acc, frame) => {
         acc[frame.participantPuuid] = frame
 

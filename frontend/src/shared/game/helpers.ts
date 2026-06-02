@@ -58,7 +58,7 @@ export function capitalizeString(string: string) {
 export function returnDateAgo(input: number) {
   const timeAgo = (new Date().getTime() - +input) / 1000 / 3600 / 24
 
-  if ((timeAgo * 24)  < 1) {
+  if (timeAgo * 24 < 1) {
     return Math.floor(timeAgo * 24 * 60) + ' min ago'
   }
   if (timeAgo < 1) {
@@ -67,13 +67,23 @@ export function returnDateAgo(input: number) {
   return Math.round(timeAgo) + ' days ago'
 }
 export function returnTime(input: number) {
-  return (Math.round(input/60000) < 10 ? '0'+Math.round(input/60000): Math.round(input/60000)) + ':' + (Math.floor((input%60000)/1000) < 10? '0'+Math.floor((input%60000)/1000) : Math.floor((input%60000)/1000))
+  return (
+    (Math.round(input / 60000) < 10
+      ? '0' + Math.round(input / 60000)
+      : Math.round(input / 60000)) +
+    ':' +
+    (Math.floor((input % 60000) / 1000) < 10
+      ? '0' + Math.floor((input % 60000) / 1000)
+      : Math.floor((input % 60000) / 1000))
+  )
 }
 
 export function showDivisionByTier(tier: string) {
   return !['MASTER', 'GRANDMASTER', 'CHALLENGER'].includes(tier)
 }
 
-export function calculateKDA(kills:number,assists:number,deaths:number) {
-  return ((kills + assists) == 0 ? "0" : (Math.round((100 * (kills + assists) / (deaths == 0 ? 1 : deaths))) / 100))
+export function calculateKDA(kills: number, assists: number, deaths: number) {
+  return kills + assists == 0
+    ? '0'
+    : Math.round((100 * (kills + assists)) / (deaths == 0 ? 1 : deaths)) / 100
 }

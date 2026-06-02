@@ -30,8 +30,10 @@ export function getMatchEventTeam({
       'ELITE_MONSTER_KILL',
     ].includes(matchEvent.type)
   ) {
-    return participants.filter((p) => p.summonerId === matchEvent.killerId)[0]
-      .teamId
+    return (
+      participants.filter((p) => p.summonerId === matchEvent.killerId)[0]
+        ?.teamId || matchEvent.teamId
+    )
   }
 
   return 100

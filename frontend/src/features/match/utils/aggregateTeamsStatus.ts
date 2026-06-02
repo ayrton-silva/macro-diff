@@ -1,5 +1,6 @@
 import type { MatchEvent, Participant } from '#/shared/game/MatchEvent/types'
 
+type BuildingType = 'tower' | 'inhibitor' | 'nexus'
 
 export function aggregateTeamsStatus(
   events: MatchEvent[],
@@ -17,9 +18,9 @@ export function aggregateTeamsStatus(
           positionX: 0,
           positionY: 0,
           champion: '',
-          gameName:'',
-          teamPosition:'',
-          summonerId:'',
+          gameName: '',
+          teamPosition: '',
+          summonerId: '',
           teamId: 100,
           champLevel: 1,
         },
@@ -107,6 +108,13 @@ export function aggregateTeamsStatus(
         }
       }
 
+      if (event.type === 'BUILDING_KILL') {
+        const teamId = event.teamId === 100 ? '200' : '100'
+        if (event.buildingType === 'TOWER_BUILDING') {
+          acc[teamId].buildings.push('tower')
+        }
+      }
+
       return acc
     },
 
@@ -115,7 +123,7 @@ export function aggregateTeamsStatus(
         kills: 0,
         gold: 0,
         dragons: [],
-        buildings: [],
+        buildings: [] as BuildingType[],
         nashors: 0,
         hordes: 0,
         herald: 0,
@@ -126,7 +134,7 @@ export function aggregateTeamsStatus(
         kills: 0,
         gold: 0,
         dragons: [],
-        buildings: [],
+        buildings: [] as BuildingType[],
         nashors: 0,
         hordes: 0,
         herald: 0,
@@ -170,10 +178,8 @@ export function aggregateTeamsStatus(
       participant.summonerId = p.summonerId
       participant.teamId = p.teamId
       participant.champLevel = p.champLevel
-
     }
   })
-  console.log('teamstats', teamsStats)
-  console.log('participants', participants)
+
   return teamsStats
 }

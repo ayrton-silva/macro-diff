@@ -21,7 +21,6 @@ type MatchEventFeedProps = {
     buildings: boolean
     wards: boolean
   }
-  timelineValues: [number, number]
 }
 
 function PlayerName({ participant }: { participant: Participant }) {
@@ -134,7 +133,6 @@ export function MatchEventFeed({
   events,
   participants,
   filter,
-  timelineValues,
 }: MatchEventFeedProps) {
   const filterOptions = [
     ['LEVEL_UP', false],
@@ -157,26 +155,18 @@ export function MatchEventFeed({
   }
 
   if (filter.buildings) {
-    //filterMap.set('TURRET_PLATE_DESTROYED', true)
     filterMap.set('BUILDING_KILL', true)
   }
 
   if (filter.championKills) {
     filterMap.set('CHAMPION_KILL', true)
-    //filterMap.set('CHAMPION_SPECIAL_KILL', true)
   }
 
   if (filter.objectives) {
     filterMap.set('ELITE_MONSTER_KILL', true)
   }
 
-  const sorteredMatchEvents = events
-    .filter((e) => filterMap.get(e.type) === true)
-    .filter(
-      (e) =>
-        e.timestamp >= timelineValues[0] && e.timestamp <= timelineValues[1],
-    )
-    .sort((a, b) => a.timestamp - b.timestamp)
+  const filteredEvents = events.filter((e) => filterMap.get(e.type) === true)
 
   function getMatchEventIcon({ matchEvent }: { matchEvent: MatchEvent }) {
     let icon = null
@@ -210,9 +200,9 @@ export function MatchEventFeed({
       <ScrollArea.Root className="h-[42vh]">
         <ScrollArea.Viewport className="h-full">
           <ScrollArea.Content>
-            {sorteredMatchEvents.length > 0 ? (
+            {filteredEvents.length > 0 ? (
               <div className="flex flex-col gap-8 border-l-2 border-l-gray-700 ml-4 mt-2">
-                {sorteredMatchEvents
+                {filteredEvents
                   .map((e) =>
                     e.type === 'BUILDING_KILL'
                       ? {
