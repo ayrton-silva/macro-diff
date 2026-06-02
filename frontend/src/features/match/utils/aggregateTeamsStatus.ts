@@ -23,6 +23,8 @@ export function aggregateTeamsStatus(
           summonerId: '',
           teamId: 100,
           champLevel: 1,
+          currentGold: 0,
+          minionsKilled: 0,
         },
       ]),
     )
@@ -154,6 +156,8 @@ export function aggregateTeamsStatus(
     })
     participant.champLevel = value.level
     participant.gold = value.totalGold
+    participant.currentGold = value.currentGold
+    participant.minionsKilled = value.minionsKilled
     participant.positionX = value.positionx
     participant.positionY = value.positiony
     teamsStats[teamId].gold += value.totalGold

@@ -24,7 +24,15 @@ function MapTooltip({ classProp, eventData, participant }: MapTooltipProps) {
                         Name: {participant?.gameName}
                     </p>
                     <p>
-                        Champion: {participant && participant.champion}
+                        Champion: {participant.champion}
+                    </p>
+                    <p className="flex gap-2 mt-1 items-center">
+                        <div className="flex gap-0.5 text-amber-400">
+                            <img className="size-3" src="/public/assets/Gold_icon.svg" alt="Gold coin symbol" />{participant.currentGold}
+                        </div>
+
+                        <span>
+                            CS: {participant.minionsKilled}</span>
                     </p>
                 </div>
             </div>}
@@ -39,7 +47,7 @@ function MapTooltip({ classProp, eventData, participant }: MapTooltipProps) {
                     {eventData?.monsterSubType}
                 </p>
                 <p>
-                    {returnTime(eventData?.timestamp)}
+                    {eventData?.timestamp  && returnTime(eventData?.timestamp)}
                 </p>
             </div>
             }

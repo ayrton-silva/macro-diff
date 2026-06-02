@@ -35,8 +35,18 @@ export type ParticipantFrames = {
     level:number
     minionsKilled:number
     totalGold:number
+    currentGold: number  
+    xp: number     
     totalDamageDoneToChampions:number
     matchTimelineId:string
+      championStats: {
+    health: number       
+    healthMax: number    
+    power: number        
+    powerMax: number     
+    abilityPower: number 
+    attackDamage: number 
+  }
 }
 
 export type Participant = {
