@@ -90,16 +90,14 @@ function RouteComponent() {
           <div className="p-5 rounded-md bg-gray-900">
             <div className="flex justify-center self-center">
               {blue.participants && red.participants && (
-                <>
-                  <MatchScoreboard blue={blue} red={red} />
-                  <MatchMap
-                    participants={[
-                      ...Object.values(blue.participants),
-                      ...Object.values(red.participants),
-                    ]}
-                    events={eventsUntilNow}
-                  />
-                </>
+                <MatchMap
+                  participants={[
+                    ...Object.values(blue.participants),
+                    ...Object.values(red.participants),
+                  ]}
+                  events={eventsUntilNow}
+                  currentTimestamp={values}
+                />
               )}
             </div>
             {matchTimeline.data?.matchTimeline && (
