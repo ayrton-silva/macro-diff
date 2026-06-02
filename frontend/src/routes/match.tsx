@@ -11,6 +11,7 @@ import { MatchTimelineFilters } from '#/features/match/components/Sidebar/MatchT
 import { MatchTimeline } from '#/features/match/components/Map/MatchTimeline'
 import { useMatchState } from '#/features/match/hooks/useMatchState'
 import { MatchMap } from '#/features/match/components/Map/MatchMap'
+import { MatchScoreboard } from '#/features/match/components/Map/MatchScoreboard'
 
 const matchSchema = z.object({
   matchId: z.string().default(''),
@@ -72,7 +73,7 @@ function RouteComponent() {
     values[0],
     match.data?.participants,
   )
-  
+
   if (!match.data) {
     return <h1>sem partida</h1>
   }
