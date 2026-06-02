@@ -9,6 +9,7 @@ import { MatchEventFeed } from '#/features/match/components/Sidebar/MatchEventFe
 import { useMatchTimeline } from '#/features/match/hooks/useMatchTimeline'
 import { MatchTimelineFilters } from '#/features/match/components/Sidebar/MatchTimelineFilters'
 import { MatchTimeline } from '#/features/match/components/Map/MatchTimeline'
+import { useMatchState } from '#/features/match/hooks/useMatchState'
 
 const matchSchema = z.object({
   matchId: z.string().default(''),
@@ -66,11 +67,13 @@ function RouteComponent() {
     }
   }, [matchTimeline.data?.matchTimeline])
 
+  useMatchState(matchId, values[1], match.data?.participants)
+
   if (!match.data) {
     return <h1>sem partida</h1>
   }
 
-  console.log('values', values)
+  console.log('timeline?', matchTimeline.data?.matchTimeline)
 
   const sortedFrames = matchTimeline.data?.matchTimeline.participantFrames.sort(
     (a, b) => a.timestamp - b.timestamp,
@@ -82,11 +85,14 @@ function RouteComponent() {
       <div className="flex items-start gap-5">
         <div className="w-full flex flex-col gap-5">
           <div className="p-5 rounded-md bg-gray-900">
-            <img
-              className="w-240 h-240 rounded-md mx-auto"
-              src="/public/assets/map.png"
-              alt="Summoner's Rift Map"
-            />
+            <div>
+              <img
+                className="w-240 h-240 rounded-md mx-auto"
+                src="/public/assets/map.png"
+                alt="Summoner's Rift Map"
+              />
+              <p style={{ left: '317px', top: '460px' }}>teste</p>
+            </div>
             {matchTimeline.data?.matchTimeline && (
               <MatchTimeline
                 min={sortedFrames[0].timestamp}
@@ -100,26 +106,32 @@ function RouteComponent() {
               />
             )}
           </div>
-          {matchTimeline.data?.matchTimeline && (<div className="grid grid-cols-2 gap-5 w-full">
-            <MatchTeamSummaryCard
-              events={matchTimeline.data.matchTimeline.events}
-              participantFrames={matchTimeline.data.matchTimeline.participantFrames}
-              timelineValues={values}
-              team="Blue"
-              participants={match.data.participants.filter(
-                (p) => p.teamId === '100',
-              )}
-            />
-            <MatchTeamSummaryCard
-              events={matchTimeline.data.matchTimeline.events}
-              participantFrames={matchTimeline.data.matchTimeline.participantFrames}
-              timelineValues={values}
-              team="Red"
-              participants={match.data.participants.filter(
-                (p) => p.teamId === '200',
-              )}
-            />
-          </div>)}
+          {matchTimeline.data?.matchTimeline && (
+            <div className="grid grid-cols-2 gap-5 w-full">
+              <MatchTeamSummaryCard
+                events={matchTimeline.data.matchTimeline.events}
+                participantFrames={
+                  matchTimeline.data.matchTimeline.participantFrames
+                }
+                timelineValues={values}
+                team="Blue"
+                participants={match.data.participants.filter(
+                  (p) => p.teamId === '100',
+                )}
+              />
+              <MatchTeamSummaryCard
+                events={matchTimeline.data.matchTimeline.events}
+                participantFrames={
+                  matchTimeline.data.matchTimeline.participantFrames
+                }
+                timelineValues={values}
+                team="Red"
+                participants={match.data.participants.filter(
+                  (p) => p.teamId === '200',
+                )}
+              />
+            </div>
+          )}
         </div>
         <div className="w-80 shrink-0 sticky top-[73px]">
           {matchTimeline.data?.matchTimeline && (
