@@ -10,6 +10,7 @@ import { useMatchTimeline } from '#/features/match/hooks/useMatchTimeline'
 import { MatchTimelineFilters } from '#/features/match/components/Sidebar/MatchTimelineFilters'
 import { MatchTimeline } from '#/features/match/components/Map/MatchTimeline'
 import { useMatchState } from '#/features/match/hooks/useMatchState'
+import { MatchMap } from '#/features/match/components/Map/MatchMap'
 
 const matchSchema = z.object({
   matchId: z.string().default(''),
@@ -84,13 +85,8 @@ function RouteComponent() {
       <div className="flex items-start gap-5">
         <div className="w-full flex flex-col gap-5">
           <div className="p-5 rounded-md bg-gray-900">
-            <div>
-              <img
-                className="w-240 h-240 rounded-md mx-auto"
-                src="/public/assets/map.png"
-                alt="Summoner's Rift Map"
-              />
-              <p style={{ left: '317px', top: '460px' }}>teste</p>
+            <div className="flex justify-center self-center">
+              <MatchMap/>
             </div>
             {matchTimeline.data?.matchTimeline && (
               <MatchTimeline
