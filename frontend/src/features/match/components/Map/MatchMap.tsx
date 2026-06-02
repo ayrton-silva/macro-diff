@@ -1,12 +1,10 @@
-'use client'
-
 import { MapTooltip } from '#/components/ui/map-tooltip'
 import { ChampionIcon } from '#/shared/game/ChampionIcon'
 
 export type EventMarker = {
-  eventId: number,
+  eventId: number
   type: string
-  timestamp?: number,
+  timestamp?: number
   monsterType?: string
   monsterSubType?: string
   positionx?: number
@@ -50,7 +48,11 @@ const MAX_X = 16970
 const MIN_Y = -1100
 const MAX_Y = 15870
 
-export function MatchMap({ participants, events, currentTimestamp }: MatchMapProps) {
+export function MatchMap({
+  participants,
+  events,
+  currentTimestamp,
+}: MatchMapProps) {
   console.log(events)
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
@@ -61,82 +63,144 @@ export function MatchMap({ participants, events, currentTimestamp }: MatchMapPro
           alt="Summoner's Rift Map"
         />
       </div>
-      {events.map((p, index) => (p.positionx && p.positiony &&
-        <div
-          key={index}
-          className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50 ${p.timestamp + 120000 < currentTimestamp[0] ? "hidden opacity-0 scale-95" : ""}`}
-          style={{
-            left: `${((p.positionx - MIN_X) / (MAX_X - MIN_X)) * 100}%`,
-            top: `${100 - ((p.positiony - MIN_Y) / (MAX_Y - MIN_Y)) * 100}%`,
-          }}
-        >
-          <MapTooltip
-            eventData={p}
-            classProp="bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block"
-          />
-          <span className="block text-3xl cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-150">
-            {p.type === "CHAMPION_KILL" ?
-              <div>
-                <img src="/assets/MapMarkers/Kill.png" alt="killed champion" className='w-10' />
-              </div> :
-              p.monsterSubType === "AIR_DRAGON" ? <div>
-                <img src="/assets/MapMarkers/AirDragon.png" alt="killed champion" className='w-18' />
-              </div>
-                : p.monsterSubType === "EARTH_DRAGON" ? <div>
-                  <img src="/assets/MapMarkers/AirDragon.png" alt="killed champion" className='w-18' />
-                </div>
-                : p.monsterSubType === "CHEMTECH_DRAGON" ? <div>
-                  <img src="/assets/MapMarkers/ChemtechDragon.png" alt="killed champion" className='w-18' />
-                </div>
-                : p.monsterSubType === "INFERNAL_DRAGON" ? <div>
-                  <img src="/assets/MapMarkers/InfernalDragon.png" alt="killed champion" className='w-18' />
-                </div>
-                : p.monsterSubType === "HEXTECH_DRAGON" ? <div>
-                  <img src="/assets/MapMarkers/HextechDragon.png" alt="killed champion" className='w-18' />
-                </div>
-                : p.buildingType === "TOWER_BUILDING" ? <div>
-                  <img src="/assets/MapMarkers/Tower.png" alt="killed champion" className='w-14' />
-                </div>
-                  : p.buildingType === "INHIBITOR_BUILDING" ? <div>
-                    <img src="/assets/MapMarkers/Inhibitor.png" alt="killed champion" className='w-14' />
+      {events.map(
+        (p, index) =>
+          p.positionx &&
+          p.positiony && (
+            <div
+              key={index}
+              className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50 ${p.timestamp + 120000 < currentTimestamp[0] ? 'hidden opacity-0 scale-95' : ''}`}
+              style={{
+                left: `${((p.positionx - MIN_X) / (MAX_X - MIN_X)) * 100}%`,
+                top: `${100 - ((p.positiony - MIN_Y) / (MAX_Y - MIN_Y)) * 100}%`,
+              }}
+            >
+              <MapTooltip
+                eventData={p}
+                classProp="bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block"
+              />
+              <span className="block text-3xl cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-150">
+                {p.type === 'CHAMPION_KILL' ? (
+                  <div>
+                    <img
+                      src="/assets/MapMarkers/Kill.png"
+                      alt="killed champion"
+                      className="w-10"
+                    />
                   </div>
-                    : p.monsterType === "RIFTHERALD" ? <div>
-                      <img src="/assets/MapMarkers/Riftherald.png" alt="killed champion" className='w-18' />
-                    </div>
-                    : p.monsterType === "HORDE" ? <div>
-                      <img src="/assets/MapMarkers/Horde.png" alt="killed champion" className='w-8' />
-                    </div>
-                      : p.monsterType === "BARON_NASHOR" ? <div>
-                        <img src="/assets/MapMarkers/BaronNashor.png" alt="killed champion" className='w-18' />
-                      </div> : ""}
-          </span>
-        </div>
-      ))}
-      {participants.map((p, index) => (
-        p.positionX && p.positionY &&
-        <div
-          key={index}
-          className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50 ${p.timestamp + 120000 < currentTimestamp[0] ? "hidden opacity-0 scale-95" : ""}`}
-          style={{
-            left: `${((p.positionX - MIN_X) / (MAX_X - MIN_X)) * 100}%`,
-            top: `${100 - ((p.positionY - MIN_Y) / (MAX_Y - MIN_Y)) * 100}%`,
-          }}
-        >
-          <span
-            className="absolute text-4xl -translate-x-1/2 -translate-y-1/2 z-20"
-          >
-            <MapTooltip
-              participant={p}
-              classProp="bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block"
-            />
-            <ChampionIcon
-              icon={p.champion}
-              removeLevel
-              classProp="rounded-full border-2 border-black"
-            />
-          </span>
-        </div>
-      ))}
+                ) : p.monsterSubType === 'AIR_DRAGON' ? (
+                  <div>
+                    <img
+                      src="/assets/MapMarkers/AirDragon.png"
+                      alt="killed champion"
+                      className="w-18"
+                    />
+                  </div>
+                ) : p.monsterSubType === 'EARTH_DRAGON' ? (
+                  <div>
+                    <img
+                      src="/assets/MapMarkers/AirDragon.png"
+                      alt="killed champion"
+                      className="w-18"
+                    />
+                  </div>
+                ) : p.monsterSubType === 'CHEMTECH_DRAGON' ? (
+                  <div>
+                    <img
+                      src="/assets/MapMarkers/ChemtechDragon.png"
+                      alt="killed champion"
+                      className="w-18"
+                    />
+                  </div>
+                ) : p.monsterSubType === 'INFERNAL_DRAGON' ? (
+                  <div>
+                    <img
+                      src="/assets/MapMarkers/InfernalDragon.png"
+                      alt="killed champion"
+                      className="w-18"
+                    />
+                  </div>
+                ) : p.monsterSubType === 'HEXTECH_DRAGON' ? (
+                  <div>
+                    <img
+                      src="/assets/MapMarkers/HextechDragon.png"
+                      alt="killed champion"
+                      className="w-18"
+                    />
+                  </div>
+                ) : p.buildingType === 'TOWER_BUILDING' ? (
+                  <div>
+                    <img
+                      src="/assets/MapMarkers/Tower.png"
+                      alt="killed champion"
+                      className="w-14"
+                    />
+                  </div>
+                ) : p.buildingType === 'INHIBITOR_BUILDING' ? (
+                  <div>
+                    <img
+                      src="/assets/MapMarkers/Inhibitor.png"
+                      alt="killed champion"
+                      className="w-14"
+                    />
+                  </div>
+                ) : p.monsterType === 'RIFTHERALD' ? (
+                  <div>
+                    <img
+                      src="/assets/MapMarkers/Riftherald.png"
+                      alt="killed champion"
+                      className="w-18"
+                    />
+                  </div>
+                ) : p.monsterType === 'HORDE' ? (
+                  <div>
+                    <img
+                      src="/assets/MapMarkers/Horde.png"
+                      alt="killed champion"
+                      className="w-8"
+                    />
+                  </div>
+                ) : p.monsterType === 'BARON_NASHOR' ? (
+                  <div>
+                    <img
+                      src="/assets/MapMarkers/BaronNashor.png"
+                      alt="killed champion"
+                      className="w-18"
+                    />
+                  </div>
+                ) : (
+                  ''
+                )}
+              </span>
+            </div>
+          ),
+      )}
+      {participants.map(
+        (p, index) =>
+          p.positionX &&
+          p.positionY && (
+            <div
+              key={index}
+              className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50 ${p.timestamp + 120000 < currentTimestamp[0] ? 'hidden opacity-0 scale-95' : ''}`}
+              style={{
+                left: `${((p.positionX - MIN_X) / (MAX_X - MIN_X)) * 100}%`,
+                top: `${100 - ((p.positionY - MIN_Y) / (MAX_Y - MIN_Y)) * 100}%`,
+              }}
+            >
+              <span className="absolute text-4xl -translate-x-1/2 -translate-y-1/2 z-20">
+                <MapTooltip
+                  participant={p}
+                  classProp="bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block"
+                />
+                <ChampionIcon
+                  icon={p.champion}
+                  removeLevel
+                  classProp={`rounded-full border-2 ${p.teamId.toString() === '100' ? 'border-cyan-400' : 'border-red-400'}`}
+                />
+              </span>
+            </div>
+          ),
+      )}
     </div>
   )
 }

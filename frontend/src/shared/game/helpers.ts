@@ -68,9 +68,9 @@ export function returnDateAgo(input: number) {
 }
 export function returnTime(input: number) {
   return (
-    (Math.round(input / 60000) < 10
-      ? '0' + Math.round(input / 60000)
-      : Math.round(input / 60000)) +
+    (Math.floor(input / 60000) < 10
+      ? '0' + Math.floor(input / 60000)
+      : Math.floor(input / 60000)) +
     ':' +
     (Math.floor((input % 60000) / 1000) < 10
       ? '0' + Math.floor((input % 60000) / 1000)

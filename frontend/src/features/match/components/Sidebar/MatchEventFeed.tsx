@@ -166,7 +166,9 @@ export function MatchEventFeed({
     filterMap.set('ELITE_MONSTER_KILL', true)
   }
 
-  const filteredEvents = events.filter((e) => filterMap.get(e.type) === true)
+  const filteredEvents = events
+    .filter((e) => filterMap.get(e.type) === true)
+    .sort((a, b) => b.timestamp - a.timestamp)
 
   function getMatchEventIcon({ matchEvent }: { matchEvent: MatchEvent }) {
     let icon = null
