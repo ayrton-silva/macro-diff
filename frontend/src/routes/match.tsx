@@ -52,22 +52,6 @@ function RouteComponent() {
     }
   }, [match.data])
 
-  useEffect(() => {
-    if (matchTimeline.data && matchTimeline.data?.matchTimeline) {
-      const sortedFrames =
-        matchTimeline.data?.matchTimeline.participantFrames.sort(
-          (a, b) => a.timestamp - b.timestamp,
-        )
-
-      setValues([
-        sortedFrames?.length > 0
-          ? Math.ceil(sortedFrames[sortedFrames.length - 1].timestamp / 60000) *
-            60000
-          : 0,
-      ])
-    }
-  }, [matchTimeline.data?.matchTimeline])
-
   const { eventsUntilNow, blue, red } = useMatchState(
     matchId,
     values[0],
@@ -81,10 +65,6 @@ function RouteComponent() {
   const sortedFrames = matchTimeline.data?.matchTimeline.participantFrames.sort(
     (a, b) => a.timestamp - b.timestamp,
   )
-
-  console.log('aqui', eventsUntilNow.length)
-  console.log('aqui 2', matchTimeline)
-  console.log('aqui 3', matchTimeline.data?.matchTimeline)
 
   return (
     <div className="px-[12%]">

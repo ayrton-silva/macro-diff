@@ -35,31 +35,29 @@ export function MatchTimeline({
           <button
             className={cn(
               'px-2 py-1 border border-gray-700 bg-gray-800 cursor-pointer rounded-md',
-              values[0] === 0 * 60000 &&
-                values[1] === 10 * 60000 &&
-                'bg-cyan-600',
+              values[0] < 15 * 60000 && 'bg-cyan-600',
             )}
-            onClick={() => setValues([0, 10 * 60000])}
+            onClick={() => setValues([5 * 60000])}
           >
-            Early (0-10)
+            Early (0-15)
           </button>
           <button
             className={cn(
               'px-2 py-1 border border-gray-700 bg-gray-800 cursor-pointer rounded-md',
-              values[0] === 10 * 60000 &&
-                values[1] === 20 * 60000 &&
+              values[0] >= 15 * 60000 &&
+                values[0] < 20 * 60000 &&
                 'bg-cyan-600',
             )}
-            onClick={() => setValues([10 * 60000, 20 * 60000])}
+            onClick={() => setValues([15 * 60000])}
           >
-            Mid (10-20)
+            Mid (15-20)
           </button>
           <button
             className={cn(
               'px-2 py-1 border border-gray-700 bg-gray-800 cursor-pointer rounded-md',
-              values[0] === 20 * 60000 && values[1] === max && 'bg-cyan-600',
+              values[0] >= 20 * 60000 && 'bg-cyan-600',
             )}
-            onClick={() => setValues([20 * 60000, max])}
+            onClick={() => setValues([20 * 60000])}
           >
             Late (20+)
           </button>
@@ -153,7 +151,7 @@ export function MatchTimeline({
         </div>
         <button
           className="flex gap-2 items-center px-3 py-2 border border-gray-700 bg-gray-800 cursor-pointer rounded-md"
-          onClick={() => setValues([min, max])}
+          onClick={() => setValues([min])}
         >
           <RefreshCcw size={16} />
           <span>Reset</span>

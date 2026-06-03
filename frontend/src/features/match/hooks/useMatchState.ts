@@ -6,7 +6,7 @@ import { aggregateTeamsStatus } from '../utils/aggregateTeamsStatus'
 export function useMatchState(
   matchId: string,
   currentTimestamp: number,
-  participants,
+  participants: Participant[],
 ) {
   const { data } = useMatchTimeline(matchId)
 
