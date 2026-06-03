@@ -58,7 +58,7 @@ export function MatchMap({
   
   console.log(participants)
   return (
-    <div style={{ position: 'relative', display: 'inline-block' }}>
+    <div className='mt-8' style={{ position: 'relative', display: 'inline-block'}}>
       <div className="rounded-md w-260">
         <img
           className="w-260 h-auto block"

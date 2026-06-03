@@ -47,7 +47,7 @@ export function MatchScoreboard({ blue, red }: MatchScoreboardProps) {
             </div>
           </div>
         </div>
-        <div className="flex gap-4 items-center text-2xl font-bold absolute top-[50%] left-1/2 -translate-1/2 h-[120%] p-3 bg-gray-800 shadow-[0px_5px_24px_rgb(0,0,0,0.5)]">
+        <div className="flex gap-4 items-center justify-center text-2xl w-40 font-bold absolute top-[50%] left-1/2 -translate-1/2 h-[120%] p-3 bg-gray-800 shadow-[0px_5px_24px_rgb(0,0,0,0.5)]">
           <h3 className="text-cyan-400">{blue.kills}</h3>
           <img src="/public/assets/versus.png" className="size-8" alt="" />
           <h3 className="text-red-400">{red.kills}</h3>
