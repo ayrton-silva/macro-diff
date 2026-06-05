@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "app/server.ts": {
-      "runtime": "vercel/node@20.x"
-    }
-  },
   "routes": [
     {
       "src": "/(.*)",
