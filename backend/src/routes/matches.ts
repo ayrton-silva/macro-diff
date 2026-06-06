@@ -6,7 +6,7 @@ import {
   getTimelineData,
   readMatch,
 } from '../repositories/riotMatches.repositories'
-import { getAllMatchesByPuuid, getMatchTimeline } from '../services/riotMatchService'
+import { getAllMatchesByPuuid } from '../services/riotMatchService'
 import { memoryMatchData } from '../app'
 
 /** Rotas de exemplo para match + timeline (corpo vazio / stub). */
