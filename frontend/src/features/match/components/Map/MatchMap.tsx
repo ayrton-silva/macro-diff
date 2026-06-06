@@ -55,14 +55,16 @@ export function MatchMap({
   events,
   currentTimestamp,
 }: MatchMapProps) {
-  
   console.log(participants)
   return (
-    <div className='mt-8' style={{ position: 'relative', display: 'inline-block'}}>
+    <div
+      className="mt-8"
+      style={{ position: 'relative', display: 'inline-block' }}
+    >
       <div className="rounded-md w-260">
         <img
           className="w-260 h-auto block"
-          src="/public/assets/Summoner's_Rift_Update_Mapv2.png"
+          src="/assets/Summoner's_Rift_Update_Mapv2.png"
           alt="Summoner's Rift Map"
         />
       </div>
@@ -190,17 +192,17 @@ export function MatchMap({
                 top: `${100 - ((p.positionY - MIN_Y) / (MAX_Y - MIN_Y)) * 100}%`,
               }}
             >
-                <MapTooltip
-                  participant={p}
-                  classProp="bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block"
-                />
-                <div className='transition-all transition-discrete duration-200 hover:scale-115  '>
+              <MapTooltip
+                participant={p}
+                classProp="bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block"
+              />
+              <div className="transition-all transition-discrete duration-200 hover:scale-115  ">
                 <ChampionIcon
                   icon={p.champion}
                   level={p.champLevel}
                   classProp={`block rounded-full border-2 ${p.teamId.toString() === '100' ? 'border-cyan-400' : 'border-red-400'}`}
                 />
-                </div>
+              </div>
             </div>
           ),
       )}

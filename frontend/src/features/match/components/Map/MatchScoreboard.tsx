@@ -24,20 +24,12 @@ export function MatchScoreboard({ blue, red }: MatchScoreboardProps) {
             Blue Team
           </h2>
           <div className="flex gap-2 justify-center items-center">
-            <img
-              className="size-6"
-              src="/public/assets/Turret_icon.png"
-              alt=""
-            />
+            <img className="size-6" src="/assets/Turret_icon.png" alt="" />
             {blue.buildings.length}
           </div>
           <div>
             <div className="flex gap-2 justify-center items-center relative">
-              <img
-                className="size-6"
-                src="/public/assets/Gold_icon.svg"
-                alt=""
-              />
+              <img className="size-6" src="/assets/Gold_icon.svg" alt="" />
               {(blue.gold / 1000).toFixed(1)}K
               {blue.gold - red.gold >= 1000 && (
                 <span className="absolute text-emerald-400 text-xs left-[40%] whitespace-nowrap -bottom-3.5">
@@ -49,17 +41,13 @@ export function MatchScoreboard({ blue, red }: MatchScoreboardProps) {
         </div>
         <div className="flex gap-4 items-center justify-center text-2xl w-40 font-bold absolute top-[50%] left-1/2 -translate-1/2 h-[120%] p-3 bg-gray-800 shadow-[0px_5px_24px_rgb(0,0,0,0.5)]">
           <h3 className="text-cyan-400">{blue.kills}</h3>
-          <img src="/public/assets/versus.png" className="size-8" alt="" />
+          <img src="/assets/versus.png" className="size-8" alt="" />
           <h3 className="text-red-400">{red.kills}</h3>
         </div>
         <div className="flex gap-16 ml-auto">
           <div>
             <div className="flex gap-2 justify-center items-center relative">
-              <img
-                className="size-6"
-                src="/public/assets/Gold_icon.svg"
-                alt=""
-              />
+              <img className="size-6" src="/assets/Gold_icon.svg" alt="" />
               {(red.gold / 1000).toFixed(1)}K
               {red.gold - blue.gold >= 1000 && (
                 <span className="absolute text-emerald-400 text-xs left-[40%] whitespace-nowrap -bottom-3.5">
@@ -69,11 +57,7 @@ export function MatchScoreboard({ blue, red }: MatchScoreboardProps) {
             </div>
           </div>
           <div className="flex gap-2 justify-center items-center">
-            <img
-              className="size-6"
-              src="/public/assets/Turret_icon.png"
-              alt=""
-            />
+            <img className="size-6" src="/assets/Turret_icon.png" alt="" />
             {red.buildings.length}
           </div>
           <h2 className="text-red-400 font-bold uppercase tracking-wider">
@@ -85,21 +69,13 @@ export function MatchScoreboard({ blue, red }: MatchScoreboardProps) {
         <div className="flex justify-between">
           <div>
             <div className="flex gap-2 items-center justify-center">
-              <img
-                src="/public/assets/Voidgrub.png"
-                className="size-6"
-                alt=""
-              />
+              <img src="/assets/Voidgrub.png" className="size-6" alt="" />
               <span>{blue.hordes}</span>
             </div>
           </div>
           <div>
             <div className="flex gap-2 items-center justify-center">
-              <img
-                src="/public/assets/Voidgrub.png"
-                className="size-6"
-                alt=""
-              />
+              <img src="/assets/Voidgrub.png" className="size-6" alt="" />
               <span>{red.hordes}</span>
             </div>
           </div>

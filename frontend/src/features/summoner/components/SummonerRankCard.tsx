@@ -33,7 +33,7 @@ export function SummonerRankCard({ summoner }: SummonerRankCardProps) {
         <div className="flex gap-8">
           <img
             className="size-24"
-            src={`/public/assets/Tier Icon/UNRANKED.png`}
+            src={`/assets/Tier Icon/UNRANKED.png`}
             alt=""
           />
           <div>
@@ -54,11 +54,13 @@ export function SummonerRankCard({ summoner }: SummonerRankCardProps) {
 
   return (
     <div className="ml-80 text-white border border-gray-700 rounded-md bg-[#121826] shrink-0 w-80">
-      <h2 className="tracking-widest w-full border-b-2 p-4 uppercase font-semibold text-gray-300">Current Season</h2>
+      <h2 className="tracking-widest w-full border-b-2 p-4 uppercase font-semibold text-gray-300">
+        Current Season
+      </h2>
       <div className="flex gap-8 p-4 mb-4">
         <img
           className="size-24"
-          src={`/public/assets/Tier Icon/${league.tier}.png`}
+          src={`/assets/Tier Icon/${league.tier}.png`}
           alt=""
         />
         <div>

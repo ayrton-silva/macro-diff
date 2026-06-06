@@ -14,7 +14,6 @@ type SummonerHeaderProps = {
   }
 }
 
-
 export function SummonerHeader({ summoner }: SummonerHeaderProps) {
   return (
     <div className="mb-6 bg-[#121826] px-12 py-8 pl-[320px] flex gap-8 border-b border-b-gray-700">
@@ -35,13 +34,25 @@ export function SummonerHeader({ summoner }: SummonerHeaderProps) {
             #{summoner.tagLine}
           </span>
         </div>
-        <span>{summoner.region == "br1" ? <img className='size-6' src="/public/assets/br1.svg" alt="Brazil Flag" /> : summoner.region} </span>
-        <RefreshMatchesButton puuid={summoner.id}/>
+        <span>
+          {summoner.region == 'br1' ? (
+            <img className="size-6" src="/assets/br1.svg" alt="Brazil Flag" />
+          ) : (
+            summoner.region
+          )}{' '}
+        </span>
+        <RefreshMatchesButton puuid={summoner.id} />
       </div>
-      <div className='flex items-center ml-auto gap-2'>
-
-        <Link to="/" className='flex items-center ml-auto border gap-2 h-12 px-4 py-1 bg-gray-800 text-white! rounded-md hover:cursor-pointer hover:bg-gray-700'><Undo2 /></Link>
-        <button className='flex items-center ml-auto border gap-2 h-12 px-4 py-1 bg-gray-800 text-white rounded-md hover:cursor-pointer hover:bg-gray-700 mr-[280px]'><Share2 /></button>
+      <div className="flex items-center ml-auto gap-2">
+        <Link
+          to="/"
+          className="flex items-center ml-auto border gap-2 h-12 px-4 py-1 bg-gray-800 text-white! rounded-md hover:cursor-pointer hover:bg-gray-700"
+        >
+          <Undo2 />
+        </Link>
+        <button className="flex items-center ml-auto border gap-2 h-12 px-4 py-1 bg-gray-800 text-white rounded-md hover:cursor-pointer hover:bg-gray-700 mr-[280px]">
+          <Share2 />
+        </button>
         {/* TO DO SHARE LOGIC AND CREATE A COMPONENT WITH THE LOGIC */}
       </div>
     </div>

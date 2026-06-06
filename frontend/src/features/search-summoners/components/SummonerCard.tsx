@@ -55,7 +55,7 @@ export function SummonerCard({ summoner }: SummonerCardProps) {
               <div className="ml-16 flex gap-4">
                 <img
                   className="w-16 h-16"
-                  src={`/public/assets/Tier Icon/${league.tier}.png`}
+                  src={`/assets/Tier Icon/${league.tier}.png`}
                   alt=""
                 />
                 <div>
