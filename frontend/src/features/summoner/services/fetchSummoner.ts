@@ -10,7 +10,7 @@ export async function fetchSummoner({
   tagLine,
 }: SummonerRequest) {
   const response = await fetch(
-    `http://localhost:3001/summoner?gameName=${gameName}&tagLine=${tagLine}&region=${region}`,
+    `${import.meta.env.VITE_BACKEND_URL}/summoner?gameName=${gameName}&tagLine=${tagLine}&region=${region}`,
   )
 
   return await response.json()

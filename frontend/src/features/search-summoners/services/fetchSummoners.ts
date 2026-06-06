@@ -10,7 +10,7 @@ export async function fetchSummoners({
   tagLine,
 }: SearchSummonersRequest) {
   const response = await fetch(
-    `http://localhost:3001/summoners/search?gameName=${gameName}&tagLine=${tagLine}&region=${region}`,
+    `${import.meta.env.VITE_BACKEND_URL}/summoners/search?gameName=${gameName}&tagLine=${tagLine}&region=${region}`,
   )
 
   return await response.json()
