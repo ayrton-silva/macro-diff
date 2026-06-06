@@ -74,7 +74,7 @@ export function MatchMap({
           p.positiony && (
             <div
               key={index}
-              className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50 ${p.timestamp + 120000 < currentTimestamp[0] ? 'hidden opacity-20 scale-95 z-0' : ''}`}
+              className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50 ${p.timestamp && p.timestamp + 120000 < currentTimestamp[0] ? 'hidden opacity-20 scale-95 z-0' : ''}`}
               style={{
                 left: `${((p.positionx - MIN_X) / (MAX_X - MIN_X)) * 100}%`,
                 top: `${100 - ((p.positiony - MIN_Y) / (MAX_Y - MIN_Y)) * 100}%`,
@@ -93,43 +93,11 @@ export function MatchMap({
                       className="w-10"
                     />
                   </div>
-                ) : p.monsterSubType === 'AIR_DRAGON' ? (
+                ) : p.monsterType === 'DRAGON' ? (
                   <div>
                     <img
-                      src="/assets/MapMarkers/AirDragon.png"
-                      alt="killed champion"
-                      className="w-18"
-                    />
-                  </div>
-                ) : p.monsterSubType === 'EARTH_DRAGON' ? (
-                  <div>
-                    <img
-                      src="/assets/MapMarkers/AirDragon.png"
-                      alt="killed champion"
-                      className="w-18"
-                    />
-                  </div>
-                ) : p.monsterSubType === 'CHEMTECH_DRAGON' ? (
-                  <div>
-                    <img
-                      src="/assets/MapMarkers/ChemtechDragon.png"
-                      alt="killed champion"
-                      className="w-18"
-                    />
-                  </div>
-                ) : p.monsterSubType === 'INFERNAL_DRAGON' ? (
-                  <div>
-                    <img
-                      src="/assets/MapMarkers/InfernalDragon.png"
-                      alt="killed champion"
-                      className="w-18"
-                    />
-                  </div>
-                ) : p.monsterSubType === 'HEXTECH_DRAGON' ? (
-                  <div>
-                    <img
-                      src="/assets/MapMarkers/HextechDragon.png"
-                      alt="killed champion"
+                      src={`/assets/MapMarkers/${p.monsterSubType}.png`}
+                      alt={`Dragon ${p.monsterSubType} image`}
                       className="w-18"
                     />
                   </div>
@@ -186,7 +154,7 @@ export function MatchMap({
           p.positionY && (
             <div
               key={index}
-              className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50 ${p.timestamp + 120000 < currentTimestamp[0] ? 'hidden opacity-0 scale-95' : ''}`}
+              className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50`}
               style={{
                 left: `${((p.positionX - MIN_X) / (MAX_X - MIN_X)) * 100}%`,
                 top: `${100 - ((p.positionY - MIN_Y) / (MAX_Y - MIN_Y)) * 100}%`,
