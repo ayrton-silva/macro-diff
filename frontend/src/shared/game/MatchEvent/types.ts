@@ -33,6 +33,7 @@ export type ParticipantFrames = {
     positionx:number
     positiony:number
     level:number
+    jungleMinionsKilled: number
     minionsKilled:number
     totalGold:number
     currentGold: number  

@@ -143,6 +143,7 @@ export type ParticipantFrames = {
     y: number
   }
   level: number
+  jungleMinionsKilled: number
   minionsKilled: number
   totalGold: number
   currentGold: number  

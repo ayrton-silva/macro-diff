@@ -216,6 +216,7 @@ export async function createTimelineData(matchId: string) {
             positionx: participantFrame.position.x,
             positiony: participantFrame.position.y,
             level: participantFrame.level,
+            jungleMinionsKilled: participantFrame.jungleMinionsKilled,
             minionsKilled: participantFrame.minionsKilled,
             totalGold: participantFrame.totalGold,
             currentGold: participantFrame.currentGold,

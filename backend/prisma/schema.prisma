@@ -90,6 +90,7 @@ model ParticipantFrames {
     positionx                  Int
     positiony                  Int
     level                      Int
+    jungleMinionsKilled        Int
     minionsKilled              Int
     totalGold                  Int
     currentGold                Int

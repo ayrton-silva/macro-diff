@@ -44,7 +44,7 @@ function MapTooltip({ classProp, eventData, participant }: MapTooltipProps) {
                 {participant.currentGold}
               </div>
 
-              <span>CS: {participant.minionsKilled}</span>
+              <span>CS: {participant.minionsKilled+participant.jungleMinionsKilled}</span>
             </div>
           </div>
         </div>

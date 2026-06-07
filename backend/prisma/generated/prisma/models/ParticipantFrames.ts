@@ -33,6 +33,7 @@ export type ParticipantFramesAvgAggregateOutputType = {
   positionx: number | null
   positiony: number | null
   level: number | null
+  jungleMinionsKilled: number | null
   minionsKilled: number | null
   totalGold: number | null
   currentGold: number | null
@@ -53,6 +54,7 @@ export type ParticipantFramesSumAggregateOutputType = {
   positionx: number | null
   positiony: number | null
   level: number | null
+  jungleMinionsKilled: number | null
   minionsKilled: number | null
   totalGold: number | null
   currentGold: number | null
@@ -74,6 +76,7 @@ export type ParticipantFramesMinAggregateOutputType = {
   positionx: number | null
   positiony: number | null
   level: number | null
+  jungleMinionsKilled: number | null
   minionsKilled: number | null
   totalGold: number | null
   currentGold: number | null
@@ -96,6 +99,7 @@ export type ParticipantFramesMaxAggregateOutputType = {
   positionx: number | null
   positiony: number | null
   level: number | null
+  jungleMinionsKilled: number | null
   minionsKilled: number | null
   totalGold: number | null
   currentGold: number | null
@@ -118,6 +122,7 @@ export type ParticipantFramesCountAggregateOutputType = {
   positionx: number
   positiony: number
   level: number
+  jungleMinionsKilled: number
   minionsKilled: number
   totalGold: number
   currentGold: number
@@ -141,6 +146,7 @@ export type ParticipantFramesAvgAggregateInputType = {
   positionx?: true
   positiony?: true
   level?: true
+  jungleMinionsKilled?: true
   minionsKilled?: true
   totalGold?: true
   currentGold?: true
@@ -161,6 +167,7 @@ export type ParticipantFramesSumAggregateInputType = {
   positionx?: true
   positiony?: true
   level?: true
+  jungleMinionsKilled?: true
   minionsKilled?: true
   totalGold?: true
   currentGold?: true
@@ -182,6 +189,7 @@ export type ParticipantFramesMinAggregateInputType = {
   positionx?: true
   positiony?: true
   level?: true
+  jungleMinionsKilled?: true
   minionsKilled?: true
   totalGold?: true
   currentGold?: true
@@ -204,6 +212,7 @@ export type ParticipantFramesMaxAggregateInputType = {
   positionx?: true
   positiony?: true
   level?: true
+  jungleMinionsKilled?: true
   minionsKilled?: true
   totalGold?: true
   currentGold?: true
@@ -226,6 +235,7 @@ export type ParticipantFramesCountAggregateInputType = {
   positionx?: true
   positiony?: true
   level?: true
+  jungleMinionsKilled?: true
   minionsKilled?: true
   totalGold?: true
   currentGold?: true
@@ -335,6 +345,7 @@ export type ParticipantFramesGroupByOutputType = {
   positionx: number
   positiony: number
   level: number
+  jungleMinionsKilled: number
   minionsKilled: number
   totalGold: number
   currentGold: number
@@ -380,6 +391,7 @@ export type ParticipantFramesWhereInput = {
   positionx?: Prisma.IntFilter<"ParticipantFrames"> | number
   positiony?: Prisma.IntFilter<"ParticipantFrames"> | number
   level?: Prisma.IntFilter<"ParticipantFrames"> | number
+  jungleMinionsKilled?: Prisma.IntFilter<"ParticipantFrames"> | number
   minionsKilled?: Prisma.IntFilter<"ParticipantFrames"> | number
   totalGold?: Prisma.IntFilter<"ParticipantFrames"> | number
   currentGold?: Prisma.IntFilter<"ParticipantFrames"> | number
@@ -403,6 +415,7 @@ export type ParticipantFramesOrderByWithRelationInput = {
   positionx?: Prisma.SortOrder
   positiony?: Prisma.SortOrder
   level?: Prisma.SortOrder
+  jungleMinionsKilled?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
   currentGold?: Prisma.SortOrder
@@ -429,6 +442,7 @@ export type ParticipantFramesWhereUniqueInput = Prisma.AtLeast<{
   positionx?: Prisma.IntFilter<"ParticipantFrames"> | number
   positiony?: Prisma.IntFilter<"ParticipantFrames"> | number
   level?: Prisma.IntFilter<"ParticipantFrames"> | number
+  jungleMinionsKilled?: Prisma.IntFilter<"ParticipantFrames"> | number
   minionsKilled?: Prisma.IntFilter<"ParticipantFrames"> | number
   totalGold?: Prisma.IntFilter<"ParticipantFrames"> | number
   currentGold?: Prisma.IntFilter<"ParticipantFrames"> | number
@@ -452,6 +466,7 @@ export type ParticipantFramesOrderByWithAggregationInput = {
   positionx?: Prisma.SortOrder
   positiony?: Prisma.SortOrder
   level?: Prisma.SortOrder
+  jungleMinionsKilled?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
   currentGold?: Prisma.SortOrder
@@ -482,6 +497,7 @@ export type ParticipantFramesScalarWhereWithAggregatesInput = {
   positionx?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
   positiony?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
   level?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
+  jungleMinionsKilled?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
   minionsKilled?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
   totalGold?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
   currentGold?: Prisma.IntWithAggregatesFilter<"ParticipantFrames"> | number
@@ -503,6 +519,7 @@ export type ParticipantFramesCreateInput = {
   positionx: number
   positiony: number
   level: number
+  jungleMinionsKilled: number
   minionsKilled: number
   totalGold: number
   currentGold: number
@@ -525,6 +542,7 @@ export type ParticipantFramesUncheckedCreateInput = {
   positionx: number
   positiony: number
   level: number
+  jungleMinionsKilled: number
   minionsKilled: number
   totalGold: number
   currentGold: number
@@ -546,6 +564,7 @@ export type ParticipantFramesUpdateInput = {
   positionx?: Prisma.IntFieldUpdateOperationsInput | number
   positiony?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  jungleMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
   currentGold?: Prisma.IntFieldUpdateOperationsInput | number
@@ -568,6 +587,7 @@ export type ParticipantFramesUncheckedUpdateInput = {
   positionx?: Prisma.IntFieldUpdateOperationsInput | number
   positiony?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  jungleMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
   currentGold?: Prisma.IntFieldUpdateOperationsInput | number
@@ -590,6 +610,7 @@ export type ParticipantFramesCreateManyInput = {
   positionx: number
   positiony: number
   level: number
+  jungleMinionsKilled: number
   minionsKilled: number
   totalGold: number
   currentGold: number
@@ -611,6 +632,7 @@ export type ParticipantFramesUpdateManyMutationInput = {
   positionx?: Prisma.IntFieldUpdateOperationsInput | number
   positiony?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  jungleMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
   currentGold?: Prisma.IntFieldUpdateOperationsInput | number
@@ -632,6 +654,7 @@ export type ParticipantFramesUncheckedUpdateManyInput = {
   positionx?: Prisma.IntFieldUpdateOperationsInput | number
   positiony?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  jungleMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
   currentGold?: Prisma.IntFieldUpdateOperationsInput | number
@@ -664,6 +687,7 @@ export type ParticipantFramesCountOrderByAggregateInput = {
   positionx?: Prisma.SortOrder
   positiony?: Prisma.SortOrder
   level?: Prisma.SortOrder
+  jungleMinionsKilled?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
   currentGold?: Prisma.SortOrder
@@ -685,6 +709,7 @@ export type ParticipantFramesAvgOrderByAggregateInput = {
   positionx?: Prisma.SortOrder
   positiony?: Prisma.SortOrder
   level?: Prisma.SortOrder
+  jungleMinionsKilled?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
   currentGold?: Prisma.SortOrder
@@ -706,6 +731,7 @@ export type ParticipantFramesMaxOrderByAggregateInput = {
   positionx?: Prisma.SortOrder
   positiony?: Prisma.SortOrder
   level?: Prisma.SortOrder
+  jungleMinionsKilled?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
   currentGold?: Prisma.SortOrder
@@ -728,6 +754,7 @@ export type ParticipantFramesMinOrderByAggregateInput = {
   positionx?: Prisma.SortOrder
   positiony?: Prisma.SortOrder
   level?: Prisma.SortOrder
+  jungleMinionsKilled?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
   currentGold?: Prisma.SortOrder
@@ -749,6 +776,7 @@ export type ParticipantFramesSumOrderByAggregateInput = {
   positionx?: Prisma.SortOrder
   positiony?: Prisma.SortOrder
   level?: Prisma.SortOrder
+  jungleMinionsKilled?: Prisma.SortOrder
   minionsKilled?: Prisma.SortOrder
   totalGold?: Prisma.SortOrder
   currentGold?: Prisma.SortOrder
@@ -811,6 +839,7 @@ export type ParticipantFramesCreateWithoutMatchTimelineInput = {
   positionx: number
   positiony: number
   level: number
+  jungleMinionsKilled: number
   minionsKilled: number
   totalGold: number
   currentGold: number
@@ -832,6 +861,7 @@ export type ParticipantFramesUncheckedCreateWithoutMatchTimelineInput = {
   positionx: number
   positiony: number
   level: number
+  jungleMinionsKilled: number
   minionsKilled: number
   totalGold: number
   currentGold: number
@@ -882,6 +912,7 @@ export type ParticipantFramesScalarWhereInput = {
   positionx?: Prisma.IntFilter<"ParticipantFrames"> | number
   positiony?: Prisma.IntFilter<"ParticipantFrames"> | number
   level?: Prisma.IntFilter<"ParticipantFrames"> | number
+  jungleMinionsKilled?: Prisma.IntFilter<"ParticipantFrames"> | number
   minionsKilled?: Prisma.IntFilter<"ParticipantFrames"> | number
   totalGold?: Prisma.IntFilter<"ParticipantFrames"> | number
   currentGold?: Prisma.IntFilter<"ParticipantFrames"> | number
@@ -904,6 +935,7 @@ export type ParticipantFramesCreateManyMatchTimelineInput = {
   positionx: number
   positiony: number
   level: number
+  jungleMinionsKilled: number
   minionsKilled: number
   totalGold: number
   currentGold: number
@@ -924,6 +956,7 @@ export type ParticipantFramesUpdateWithoutMatchTimelineInput = {
   positionx?: Prisma.IntFieldUpdateOperationsInput | number
   positiony?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  jungleMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
   currentGold?: Prisma.IntFieldUpdateOperationsInput | number
@@ -945,6 +978,7 @@ export type ParticipantFramesUncheckedUpdateWithoutMatchTimelineInput = {
   positionx?: Prisma.IntFieldUpdateOperationsInput | number
   positiony?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  jungleMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
   currentGold?: Prisma.IntFieldUpdateOperationsInput | number
@@ -966,6 +1000,7 @@ export type ParticipantFramesUncheckedUpdateManyWithoutMatchTimelineInput = {
   positionx?: Prisma.IntFieldUpdateOperationsInput | number
   positiony?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  jungleMinionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   minionsKilled?: Prisma.IntFieldUpdateOperationsInput | number
   totalGold?: Prisma.IntFieldUpdateOperationsInput | number
   currentGold?: Prisma.IntFieldUpdateOperationsInput | number
@@ -989,6 +1024,7 @@ export type ParticipantFramesSelect<ExtArgs extends runtime.Types.Extensions.Int
   positionx?: boolean
   positiony?: boolean
   level?: boolean
+  jungleMinionsKilled?: boolean
   minionsKilled?: boolean
   totalGold?: boolean
   currentGold?: boolean
@@ -1012,6 +1048,7 @@ export type ParticipantFramesSelectCreateManyAndReturn<ExtArgs extends runtime.T
   positionx?: boolean
   positiony?: boolean
   level?: boolean
+  jungleMinionsKilled?: boolean
   minionsKilled?: boolean
   totalGold?: boolean
   currentGold?: boolean
@@ -1035,6 +1072,7 @@ export type ParticipantFramesSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   positionx?: boolean
   positiony?: boolean
   level?: boolean
+  jungleMinionsKilled?: boolean
   minionsKilled?: boolean
   totalGold?: boolean
   currentGold?: boolean
@@ -1058,6 +1096,7 @@ export type ParticipantFramesSelectScalar = {
   positionx?: boolean
   positiony?: boolean
   level?: boolean
+  jungleMinionsKilled?: boolean
   minionsKilled?: boolean
   totalGold?: boolean
   currentGold?: boolean
@@ -1072,7 +1111,7 @@ export type ParticipantFramesSelectScalar = {
   matchTimelineId?: boolean
 }
 
-export type ParticipantFramesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "participantFrameId" | "participantPuuid" | "timestamp" | "positionx" | "positiony" | "level" | "minionsKilled" | "totalGold" | "currentGold" | "health" | "healthMax" | "power" | "powerMax" | "abilityPower" | "attackDamage" | "xp" | "totalDamageDoneToChampions" | "matchTimelineId", ExtArgs["result"]["participantFrames"]>
+export type ParticipantFramesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "participantFrameId" | "participantPuuid" | "timestamp" | "positionx" | "positiony" | "level" | "jungleMinionsKilled" | "minionsKilled" | "totalGold" | "currentGold" | "health" | "healthMax" | "power" | "powerMax" | "abilityPower" | "attackDamage" | "xp" | "totalDamageDoneToChampions" | "matchTimelineId", ExtArgs["result"]["participantFrames"]>
 export type ParticipantFramesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   matchTimeline?: boolean | Prisma.MatchTimelineDefaultArgs<ExtArgs>
 }
@@ -1096,6 +1135,7 @@ export type $ParticipantFramesPayload<ExtArgs extends runtime.Types.Extensions.I
     positionx: number
     positiony: number
     level: number
+    jungleMinionsKilled: number
     minionsKilled: number
     totalGold: number
     currentGold: number
@@ -1539,6 +1579,7 @@ export interface ParticipantFramesFieldRefs {
   readonly positionx: Prisma.FieldRef<"ParticipantFrames", 'Int'>
   readonly positiony: Prisma.FieldRef<"ParticipantFrames", 'Int'>
   readonly level: Prisma.FieldRef<"ParticipantFrames", 'Int'>
+  readonly jungleMinionsKilled: Prisma.FieldRef<"ParticipantFrames", 'Int'>
   readonly minionsKilled: Prisma.FieldRef<"ParticipantFrames", 'Int'>
   readonly totalGold: Prisma.FieldRef<"ParticipantFrames", 'Int'>
   readonly currentGold: Prisma.FieldRef<"ParticipantFrames", 'Int'>

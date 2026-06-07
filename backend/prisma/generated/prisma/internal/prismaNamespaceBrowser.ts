@@ -165,6 +165,7 @@ export const ParticipantFramesScalarFieldEnum = {
   positionx: 'positionx',
   positiony: 'positiony',
   level: 'level',
+  jungleMinionsKilled: 'jungleMinionsKilled',
   minionsKilled: 'minionsKilled',
   totalGold: 'totalGold',
   currentGold: 'currentGold',

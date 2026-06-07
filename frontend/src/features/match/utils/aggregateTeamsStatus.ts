@@ -163,6 +163,7 @@ export function aggregateTeamsStatus(
     participant.gold = value.totalGold
     participant.currentGold = value.currentGold
     participant.minionsKilled = value.minionsKilled
+    participant.jungleMinionsKilled = value.jungleMinionsKilled
     participant.positionX = value.positionx
     participant.positionY = value.positiony
     teamsStats[teamId].gold += value.totalGold

@@ -36,6 +36,7 @@ export type ParticipantMarker = {
   teamPosition: string
   summonerId: string
   currentGold: number
+  jungleMinionsKilled: number
   minionsKilled: number
   teamId: number
   champLevel: number
