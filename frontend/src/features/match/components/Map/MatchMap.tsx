@@ -37,6 +37,9 @@ export type ParticipantMarker = {
   minionsKilled: number
   teamId: number
   champLevel: number
+  isDead: boolean
+  lastDeath: number
+  brw: number
 }
 
 type MatchMapProps = {
@@ -164,12 +167,19 @@ export function MatchMap({
                 participant={p}
                 classProp="bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block"
               />
-              <div className="transition-all transition-discrete duration-200 hover:scale-115  ">
+              <div className="transition-all transition-discrete duration-200 hover:scale-115 relative">
                 <ChampionIcon
                   icon={p.champion}
                   level={p.champLevel}
-                  classProp={`block rounded-full border-2 ${p.teamId.toString() === '100' ? 'border-cyan-400' : 'border-red-400'}`}
+                  removeLevel={p.isDead}
+                  avatarProp="w-12 h-12"
+                  classProp={`block rounded-full  border-2 ${p.teamId.toString() === '100' ? 'border-cyan-400' : 'border-red-400'} ${p.isDead && 'grayscale-100'}`}
                 />
+                {p.isDead && (
+                  <div className="w-full h-full rounded-full flex justify-center items-center absolute top-1/2 left-1/2 -translate-1/2 text-xl text-red-500 text-shadow-black text-shadow-lg font-bold bg-[rgba(0,0,0,0.3)]">
+                    {p.brw}
+                  </div>
+                )}
               </div>
             </div>
           ),
