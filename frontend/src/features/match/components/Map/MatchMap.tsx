@@ -15,11 +15,13 @@ export type EventMarker = {
   creatorId?: string
   killType?: string
   killerId?: string
+  killerName?: string
   multiKillLength?: number
   participantPuuid?: string
   teamId?: number
   towerType?: string
   victimId?: string
+  victimName?: string
   wardType?: string
 }
 
@@ -55,7 +57,8 @@ export function MatchMap({
   events,
   currentTimestamp,
 }: MatchMapProps) {
-  console.log(participants)
+  events.map((z)=> z.killerName = participants.filter((p)=> p.summonerId == z.killerId)[0]?.gameName)
+  events.map((z)=> z.victimName = participants.filter((p)=> p.summonerId == z.victimId)[0]?.gameName)
   return (
     <div
       className="mt-8"
@@ -71,7 +74,8 @@ export function MatchMap({
       {events.map(
         (p, index) =>
           p.positionx &&
-          p.positiony && (
+          p.positiony && 
+          (
             <div
               key={index}
               className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50 ${p.timestamp && p.timestamp + 120000 < currentTimestamp[0] ? 'hidden opacity-20 scale-95 z-0' : ''}`}

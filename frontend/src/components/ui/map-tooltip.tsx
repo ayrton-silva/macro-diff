@@ -49,12 +49,28 @@ function MapTooltip({ classProp, eventData, participant }: MapTooltipProps) {
           </div>
         </div>
       )}
-      {eventData && (
+      {eventData?.type == 'ELITE_MONSTER_KILL' && (
+        <div className="flex flex-col items-center align-baseline text-nowrap">
+          <p>{eventData?.type}</p>
+          <p>{eventData?.monsterSubType}</p>
+          <p>{eventData?.timestamp && returnTime(eventData?.timestamp)}</p>
+        </div>
+      )}
+      {eventData?.type == 'BUILDING_KILL' && (
         <div className="flex flex-col items-center align-baseline text-nowrap">
           <p>{eventData?.type}</p>
           <p>{eventData?.buildingType}</p>
-          <p>{eventData?.monsterSubType}</p>
           <p>{eventData?.timestamp && returnTime(eventData?.timestamp)}</p>
+        </div>
+      )}
+      {eventData?.type == 'CHAMPION_KILL' && (
+        <div className="flex flex-col items-center align-baseline text-nowrap">
+          <p>{eventData?.killerName}</p>
+          <p className='text-red-300'>killed</p>
+          <p className='text-gray-300'>{eventData?.victimName}</p>
+          <div className="flex w-full items-center justify-center self-center align-middle border-t-2 border-dashed border-gray-700">
+          {eventData?.timestamp && returnTime(eventData?.timestamp)}
+          </div>
         </div>
       )}
     </label>
