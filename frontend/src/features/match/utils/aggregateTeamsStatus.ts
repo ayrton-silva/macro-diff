@@ -1,4 +1,5 @@
 import type { MatchEvent, Participant } from '#/shared/game/MatchEvent/types'
+import { calculateDeathTimer } from './calculateDeathTimer'
 
 type BuildingType = 'tower' | 'inhibitor' | 'nexus'
 
@@ -25,6 +26,9 @@ export function aggregateTeamsStatus(
           champLevel: 1,
           currentGold: 0,
           minionsKilled: 0,
+          lastDeath: 0,
+          isDead: false,
+          brw: 0,
         },
       ]),
     )
@@ -85,6 +89,7 @@ export function aggregateTeamsStatus(
 
             if (participant) {
               participant.deaths++
+              participant.lastDeath = event.timestamp
             }
           }
 
@@ -161,6 +166,19 @@ export function aggregateTeamsStatus(
     participant.positionX = value.positionx
     participant.positionY = value.positiony
     teamsStats[teamId].gold += value.totalGold
+
+    if (participant.lastDeath !== 0) {
+      const deathTimer = calculateDeathTimer(
+        participant.champLevel,
+        participant.lastDeath,
+        value.timestamp,
+      )
+
+      participant.isDead = deathTimer > 0
+      participant.brw = deathTimer
+    } else {
+      participant.isDead = false
+    }
   }
 
   participants.forEach((p) => {
