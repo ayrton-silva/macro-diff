@@ -82,7 +82,7 @@ export function MatchMap({
           (
             <div
               key={index}
-              className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50 ${p.timestamp && p.timestamp + 120000 < currentTimestamp[0] ? 'hidden opacity-20 scale-95 z-0' : ''}`}
+              className={`absolute group transition-all transition-discrete duration-1000 -translate-x-1/2 -translate-y-1/2 z-10 hover:z-50 ${p.timestamp && p.timestamp + 120000 < currentTimestamp[0] && p.type != 'BUILDING_KILL' ? 'hidden opacity-20 scale-95 z-0' : `${p.type == 'BUILDING_KILL' && p.timestamp && p.timestamp + 120000 < currentTimestamp[0] ? 'opacity-50 scale-90':''}`}`}
               style={{
                 left: `${((p.positionx - MIN_X) / (MAX_X - MIN_X)) * 100}%`,
                 top: `${100 - ((p.positiony - MIN_Y) / (MAX_Y - MIN_Y)) * 100}%`,

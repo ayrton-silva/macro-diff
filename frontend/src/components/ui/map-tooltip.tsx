@@ -43,7 +43,7 @@ function MapTooltip({ classProp, eventData, participant }: MapTooltipProps) {
           <div className="flex flex-col items-start align-baseline">
             <p>Name: {participant?.gameName}</p>
             <p>Champion: {participant.champion}</p>
-            <div className="flex p-1 w-full justify-between mt-1 items-center border-t-2 border-dashed border-gray-700">
+            <div className="flex p-1 w-full min-w-[88px] justify-between mt-1 items-center border-t-2 border-dashed border-gray-700">
               <div className="flex gap-0.5 text-amber-400">
                 <img
                   className="size-3"

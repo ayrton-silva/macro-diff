@@ -64,6 +64,7 @@ export function calculateDeathTimer(
   const brw = calculateBRW(level, lastDeath)
   const gameAndDeathSecondsDiff = gameSeconds - lastDeathSeconds
 
+  //BR1_3248980890
   console.log('brw', brw)
   console.log('game seocnds', returnTime(currentTimestamp))
   console.log('last death', returnTime(lastDeath))
