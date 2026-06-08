@@ -10,8 +10,10 @@ export function getMatchEventTeam({
   matchEvent,
 }: GetMatchEventTeamParams): TeamId {
   if (['WARD_PLACED'].includes(matchEvent.type)) {
-    return participants.filter((p) => p.summonerId === matchEvent.creatorId)[0]
-      .teamId
+    if(matchEvent.creatorId){
+      return participants.filter((p) => p.summonerId === matchEvent.creatorId)[0].teamId
+    }
+    return 100
   }
 
   if (['BUILDING_KILL', 'TURRET_PLATE_DESTROYED'].includes(matchEvent.type)) {

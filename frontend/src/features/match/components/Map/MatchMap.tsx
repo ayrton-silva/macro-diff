@@ -106,7 +106,7 @@ export function MatchMap({
                     <img
                       src={`/assets/MapMarkers/${p.monsterSubType}.png`}
                       alt={`Dragon ${p.monsterSubType} image`}
-                      className="w-18"
+                      className={`${p.monsterSubType == 'ELDER_DRAGON'? 'w-24' : 'w-18'} image`}
                     />
                   </div>
                 ) : p.buildingType === 'TOWER_BUILDING' ? (

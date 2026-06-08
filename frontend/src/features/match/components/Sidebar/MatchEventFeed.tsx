@@ -11,6 +11,8 @@ import type {
   TeamId,
 } from '#/shared/game/MatchEvent/types'
 import { Crosshair, Eye, Skull, TowerControl } from 'lucide-react'
+import { ChampionIcon } from '#/shared/game/ChampionIcon'
+import { capitalizeComplexString, capitalizeString, dragonColor } from '#/shared/game/helpers'
 
 type MatchEventFeedProps = {
   events: MatchEvent[]
@@ -37,13 +39,16 @@ function WardPlaced({
   participants: Participant[]
 }) {
   const creator = getParticipant(participants, event.creatorId!)
-
   if (!creator) return null
-
   return (
-    <div>
-      <span className="mr-1">Ward Placed by</span>
-      <PlayerName participant={creator} />
+    <div className='flex items-center space-x-1.5'>
+        <div> 
+        <ChampionIcon icon={creator.championName} removeLevel avatarProp='size-10' classProp={`border-1 ${creator.teamId == 100 ? 'border-cyan-400' : 'border-red-400'}`}></ChampionIcon>
+      </div>
+      <span className="mr-1">placed</span> 
+      <div className='size-8 border ml-1 border-black'>
+      <img src={`/assets/${event.wardType == 'SIGHT_WARD' ? 'YELLOW_TRINKET':event.wardType}.png`} alt={`Ward ${event.wardType}`} />
+      </div>
     </div>
   )
 }
@@ -61,10 +66,10 @@ function ChampionKill({
   if (!killer || !victim) return null
 
   return (
-    <div>
-      <PlayerName participant={killer} />
-      <span className="mx-1">killed</span>
-      <PlayerName participant={victim} />
+    <div className='flex space-x-1.5 text-shadow-xs'>
+        <ChampionIcon icon={killer.championName} removeLevel avatarProp='size-10' classProp={`border-1 ${killer.teamId == 100 ? 'border-cyan-400' : 'border-red-400'}`}></ChampionIcon>
+      <img className='size-10' src="/assets/MapMarkers/KillSword.png" alt="" />
+        <ChampionIcon icon={victim.championName} removeLevel avatarProp='size-10' classProp={`border-1 ${victim.teamId == 100 ? 'border-cyan-400' : 'border-red-400'}`}></ChampionIcon>
     </div>
   )
 }
@@ -79,9 +84,12 @@ function ObjectiveCompleted({
   const killer = getParticipant(participants, event.killerId!)
 
   return (
-    <div>
+    <div className='flex items-center space-x-1.5'>
+      <div>
       {killer ? (
-        <PlayerName participant={killer} />
+        <div>
+          <ChampionIcon icon={killer.championName} removeLevel avatarProp='size-10' classProp={`border-1 ${killer.teamId == 100 ? 'border-cyan-400' : 'border-red-400'}`}></ChampionIcon>
+        </div>
       ) : (
         <span
           className={event.teamId === 100 ? 'text-cyan-400' : 'text-red-400'}
@@ -89,12 +97,29 @@ function ObjectiveCompleted({
           {event.teamId === 100 ? 'Blue' : 'Red'} Team
         </span>
       )}
-      <span className="mx-1">destroyed</span>
+      </div>
+      <span className='mr-1'>got</span>
+      <div>
       {event.monsterSubType ? (
-        <span className="text-purple-500">{event.monsterSubType}</span>
+        <div className='flex items-center gap-0.5'>
+          <div className='size-6'>
+          <img src={`/assets/${event.monsterSubType}_ICON.png`} alt="" />
+          </div>
+          <p className={`${event.monsterSubType && dragonColor[event.monsterSubType]}`}>
+            {capitalizeComplexString(event?.monsterSubType)}
+          </p>
+        </div>
       ) : (
-        <span className="text-purple-500">{event.monsterType}</span>
+        <div className='flex items-center gap-0.5'>
+          <div className='size-6'>
+            <img src={`/assets/${event.monsterType}_ICON.png`} alt="" />
+            </div>
+            <p className='text-purple-400'>
+            {event?.monsterType ? capitalizeComplexString(event.monsterType):''}
+            </p>
+        </div>
       )}
+      </div>
     </div>
   )
 }
@@ -109,9 +134,11 @@ function BuildingDestroyed({
   const killer = getParticipant(participants, event.killerId!)
 
   return (
-    <div>
+    <div className='flex items-center'>
       {killer ? (
-        <PlayerName participant={killer} />
+        <div>
+          <ChampionIcon icon={killer.championName} removeLevel avatarProp='size-10' classProp={`border-1 ${killer.teamId == 100 ? 'border-cyan-400' : 'border-red-400'}`}></ChampionIcon>
+        </div>
       ) : (
         <span
           className={event.teamId === 100 ? 'text-cyan-400' : 'text-red-400'}
@@ -119,11 +146,26 @@ function BuildingDestroyed({
           {event.teamId === 100 ? 'Blue' : 'Red'} Team
         </span>
       )}
-      <span className="mx-1">secured</span>
+      <span className="mx-1.5">secured</span>
       {event.towerType ? (
-        <span className="text-purple-500">{event.towerType}</span>
+        <div className='flex items-center'>
+          <div className='size-9 -mx-1.5'>
+          <img src={`/assets/${(event.teamId == 200 ? "BLUE_": "RED_")+event.buildingType?.split('_')[0]}_ICON.png`} alt="" />
+          </div>
+          <span className={`-ml-2 ${event.teamId === 200 ? 'text-cyan-400' : 'text-red-400'}`}>
+            {event.towerType == 'BASE_TURRET' ? 'T3': ''}
+            {event.towerType == 'INNER_TURRET' ? 'T2': ''}
+            {event.towerType == 'OUTER_TURRET' ? 'T1': ''}
+            {event.towerType == 'NEXUS_TURRET' ? 'T Nexus': ''}
+          </span>
+        </div>
       ) : (
-        <span className="text-purple-500">{event.buildingType}</span>
+        <div className='flex items-center'>
+          <div className='size-6 -ml-0.5'>
+          <img src={`/assets/${(event.teamId == 200 ? "BLUE_": "RED_")+event.buildingType}_ICON.png`} alt="" />
+          </div>
+          <span className={`ml-0.5 ${event.teamId === 200 ? 'text-cyan-400' : 'text-red-400'}`}>{event.buildingType?.toLowerCase().split('_')[0]}</span>
+        </div>
       )}
     </div>
   )
@@ -167,8 +209,9 @@ export function MatchEventFeed({
   }
 
   const filteredEvents = events
-    .filter((e) => filterMap.get(e.type) === true)
-    .sort((a, b) => b.timestamp - a.timestamp)
+  .filter((e) => filterMap.get(e.type) === true && e.timestamp > 0)
+  .filter((e) => e.wardType !==  'UNDEFINED')
+  .sort((a, b) => b.timestamp - a.timestamp)
 
   function getMatchEventIcon({ matchEvent }: { matchEvent: MatchEvent }) {
     let icon = null
@@ -208,9 +251,9 @@ export function MatchEventFeed({
                   .map((e) =>
                     e.type === 'BUILDING_KILL'
                       ? {
-                          ...e,
-                          teamId: (e.teamId === 100 ? 200 : 100) as TeamId,
-                        }
+                        ...e,
+                        teamId: (e.teamId === 100 ? 200 : 100) as TeamId,
+                      }
                       : e,
                   )
                   .map((e, i) => {
@@ -237,10 +280,10 @@ export function MatchEventFeed({
                           )
                             .toString()
                             .padStart(2, '0')}:${Math.floor(
-                            (e.timestamp / 1000) % 60,
-                          )
-                            .toString()
-                            .padStart(2, '0')}`}</span>
+                              (e.timestamp / 1000) % 60,
+                            )
+                              .toString()
+                              .padStart(2, '0')}`}</span>
                         </div>
                         <p>
                           {e.type === 'WARD_PLACED' && (
@@ -248,18 +291,18 @@ export function MatchEventFeed({
                           )}
                           {(e.type === 'CHAMPION_KILL' ||
                             e.type === 'CHAMPION_SPECIAL_KILL') && (
-                            <ChampionKill
-                              event={e}
-                              participants={participants}
-                            />
-                          )}
+                              <ChampionKill
+                                event={e}
+                                participants={participants}
+                              />
+                            )}
                           {(e.type === 'BUILDING_KILL' ||
                             e.type === 'TURRET_PLATE_DESTROYED') && (
-                            <BuildingDestroyed
-                              event={e}
-                              participants={participants}
-                            />
-                          )}
+                              <BuildingDestroyed
+                                event={e}
+                                participants={participants}
+                              />
+                            )}
                           {e.type === 'ELITE_MONSTER_KILL' && (
                             <ObjectiveCompleted
                               event={e}

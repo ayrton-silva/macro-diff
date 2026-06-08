@@ -11,6 +11,16 @@ const SummonerLeagueConstant = {
   SILVER: 'text-gray-200',
 }
 
+export const dragonColor = {
+  'FIRE_DRAGON': 'text-orange-500',
+  'AIR_DRAGON': 'text-cyan-300',
+  'WATER_DRAGON': 'text-emerald-500',
+  'HEXTECH_DRAGON': 'text-cyan-500',
+  'CHEMTECH_DRAGON': 'text-green-500',
+  'EARTH_DRAGON': 'text-amber-700',
+  'ELDER_DRAGON': 'text-indigo-300'
+}
+
 export function changeStyleOnSummonerLeague(summonerLeague: string) {
   let style = ''
   switch (summonerLeague) {
@@ -53,6 +63,14 @@ export function changeStyleOnSummonerLeague(summonerLeague: string) {
 
 export function capitalizeString(string: string) {
   return string[0].toUpperCase() + string.slice(1).toLowerCase()
+}
+
+export function capitalizeComplexString(string: string){
+  let stringArray = string.split('_')
+  for (let i = 0; i < stringArray.length; i++) {
+    stringArray[i] = capitalizeString(stringArray[i].toLowerCase())
+  }
+  return stringArray.join(' ')
 }
 
 export function returnDateAgo(input: number) {
