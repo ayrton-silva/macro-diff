@@ -12,6 +12,8 @@ import { MatchTimeline } from '#/features/match/components/Map/MatchTimeline'
 import { useMatchState } from '#/features/match/hooks/useMatchState'
 import { MatchMap } from '#/features/match/components/Map/MatchMap'
 import { MatchScoreboard } from '#/features/match/components/Map/MatchScoreboard'
+import { Spinner } from '#/components/ui/spinner'
+import { Skeleton } from '#/components/ui/skeleton'
 
 const matchSchema = z.object({
   matchId: z.string().default(''),
@@ -72,6 +74,12 @@ function RouteComponent() {
       <div className="flex items-start gap-5">
         <div className="w-full flex flex-col gap-5">
           <div className="p-5 rounded-md bg-gray-900">
+            {matchTimeline.isFetching &&
+              <div className="flex flex-col gap-4 h-[1198px] items-center mt-80 rounded-md overflow-hidden bg-gray-900">
+                <Spinner className="size-10" />
+                Loading Match Data...
+              </div>
+            }
             <div className="flex justify-center self-center relative">
               {blue.participants && red.participants && (
                 <>
@@ -128,6 +136,32 @@ function RouteComponent() {
           )}
         </div>
         <div className="w-80 shrink-0 sticky top-[73px]">
+          {matchTimeline.isFetching &&
+            <div>
+              <div className="mb-4 bg-gray-900 rounded-md px-4 py-2 pb-6">
+                <Skeleton className='w-42 h-4 mt-4 ml-2' />
+                <Skeleton className='w-full h-12 mt-8' />
+                <Skeleton className='w-full h-12 mt-4' />
+                <Skeleton className='w-full h-12 mt-4' />
+                <Skeleton className='w-full h-12 mt-4' />
+              </div>
+              <div className="bg-gray-900 h-[524px] px-4 py-2 rounded-md pb-6">
+                <Skeleton className='w-42 h-4 mt-4 ml-2' />
+                <div className='flex mt-16 items-center'>
+                  <Skeleton className='w-14 h-12 mr-4' />
+                  <Skeleton className='w-full h-4' />
+                </div>
+                <div className='flex mt-8 items-center'>
+                  <Skeleton className='w-14 h-12 mr-4' />
+                  <Skeleton className='w-full h-4' />
+                </div>
+                <div className='flex mt-8 items-center'>
+                  <Skeleton className='w-14 h-12 mr-4' />
+                  <Skeleton className='w-full h-4' />
+                </div>
+              </div>
+            </div>
+          }
           {matchTimeline.data?.matchTimeline &&
             match.data?.participants &&
             eventsUntilNow.length > 0 && (

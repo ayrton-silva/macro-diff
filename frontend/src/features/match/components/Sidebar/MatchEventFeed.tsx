@@ -174,7 +174,7 @@ function BuildingDestroyed({
 export function MatchEventFeed({
   events,
   participants,
-  filter,
+  filter
 }: MatchEventFeedProps) {
   const filterOptions = [
     ['LEVEL_UP', false],

@@ -69,14 +69,17 @@ export function MatchTimelineFilters({
                 }
                 className="
           relative flex h-6 w-12 rounded-full
+          hover:bg-gray-500
           bg-gray-600
           p-[3px]
+          hover:cursor-pointer
       
    
           transition-colors duration-150
           focus-visible:outline-blue-800
           active:bg-gray-400
           data-[checked]:bg-emerald-400
+          data-[checked]:hover:bg-emerald-300
           dark:bg-gray-700
         "
               >
